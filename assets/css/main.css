@@ -147,7 +147,7 @@ h6 {
   --heading-color: #ffffff;
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 20px 0;
+  padding: 12px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -157,13 +157,15 @@ h6 {
 }
 
 .header .logo img {
+  height: 50px;
+  width: 50px;
   margin-right: 8px;
   padding: 0;
-  margin-top: -30px;
+  margin-top: -12px;
 }
 
 .header .logo h1 {
-  font-size: 30px;
+  font-size: 15px;
   margin: 0;
   font-weight: 700;
   color: var(--heading-color);
@@ -186,6 +188,7 @@ h6 {
 @media (min-width: 1200px) {
   .navmenu {
     padding: 0;
+    margin-top: 20px;
   }
 
   .navmenu ul {
