@@ -1,15 +1,3 @@
-/**
-* Template Name: Selecao
-* Template URL: https://bootstrapmade.com/selecao-bootstrap-template/
-* Updated: Jul 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -674,14 +662,128 @@ section,
 --------------------------------------------------------------*/
 .hero {
   width: 100%;
-  overflow: hidden;
   position: relative;
-  background: linear-gradient(0deg, var(--background-color) 0%, color-mix(in srgb, var(--background-color) 90%, white 10%) 100%);
-  padding: 0;
+  background: linear-gradient(135deg, #2a2c39 0%, #33364a 100%);
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--contrast-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero .lead {
+  font-size: 1.25rem;
+  color: var(--contrast-color);
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.hero .btn-primary-outline {
+  color: var(--contrast-color);
+  border: 2px solid var(--accent-color);
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.hero .btn-primary {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 12px 32px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.hero .feature-item {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
   align-items: center;
+  gap: 12px;
+  color: var(--contrast-color);
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+}
+
+.hero .feature-item:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.hero .feature-item i {
+  font-size: 1.5rem;
+  color: var(--accent-color);
+}
+
+.hero .feature-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hero-decorator {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+}
+
+.decorator-ring {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.decorator-ring:after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid rgba(255,255,255,0.05);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.decorator-dots {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+}
+
+@media (max-width: 991px) {
+  .hero {
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero .d-flex {
+    justify-content: center;
+  }
+  
+  .hero .feature-grid {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .hero .carousel-container {
@@ -770,37 +872,37 @@ section,
 .hero .hero-waves {
   display: block;
   width: 100%;
-  height: 60px;
+  height: 100px;
   position: relative;
+  margin-top: -50px;
 }
 
 .hero .wave1 use {
-  animation: move-forever1 10s linear infinite;
+  animation: move-forever1 25s cubic-bezier(.55,.5,.45,.5) infinite;
   animation-delay: -2s;
-  fill: var(--default-color);
-  opacity: 0.6;
 }
 
 .hero .wave2 use {
-  animation: move-forever2 8s linear infinite;
-  animation-delay: -2s;
-  fill: var(--default-color);
-  opacity: 0.4;
+  animation: move-forever2 15s cubic-bezier(.55,.5,.45,.5) infinite;
+  animation-delay: -4s;
 }
 
 .hero .wave3 use {
-  animation: move-forever3 6s linear infinite;
-  animation-delay: -2s;
-  fill: var(--default-color);
+  animation: move-forever3 12s cubic-bezier(.55,.5,.45,.5) infinite;
+  animation-delay: -3s;
+}
+
+.hero .wave4 use {
+  animation: move-forever4 8s cubic-bezier(.55,.5,.45,.5) infinite;
+  animation-delay: -5s;
 }
 
 @keyframes move-forever1 {
   0% {
-    transform: translate(85px, 0%);
-  }
-
-  100% {
     transform: translate(-90px, 0%);
+  }
+  100% {
+    transform: translate(85px, 0%);
   }
 }
 
@@ -808,7 +910,6 @@ section,
   0% {
     transform: translate(-90px, 0%);
   }
-
   100% {
     transform: translate(85px, 0%);
   }
@@ -816,11 +917,26 @@ section,
 
 @keyframes move-forever3 {
   0% {
+    transform: translate(85px, 0%);
+  }
+  100% {
     transform: translate(-90px, 0%);
   }
+}
 
-  100% {
+@keyframes move-forever4 {
+  0% {
     transform: translate(85px, 0%);
+  }
+  100% {
+    transform: translate(-90px, 0%);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero .hero-waves {
+    height: 40px;
+    margin-top: -20px;
   }
 }
 
@@ -2089,7 +2205,7 @@ section,
 }
 
 .blog-posts .title a:hover {
-  color: var(--accent-color);
+  color: var (--accent-color);
 }
 
 .blog-posts .post-author-img {
@@ -2214,70 +2330,6 @@ section,
   width: 3px;
   background-color: var(--accent-color);
   margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.blog-details .meta-top {
-  margin-top: 20px;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.blog-details .meta-top ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-}
-
-.blog-details .meta-top ul li+li {
-  padding-left: 20px;
-}
-
-.blog-details .meta-top i {
-  font-size: 16px;
-  margin-right: 8px;
-  line-height: 0;
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-}
-
-.blog-details .meta-top a {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  font-size: 14px;
-  display: inline-block;
-  line-height: 1;
-}
-
-.blog-details .meta-bottom {
-  padding-top: 10px;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
-}
-
-.blog-details .meta-bottom i {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  display: inline;
-}
-
-.blog-details .meta-bottom a {
-  color: color-mix(in srgb, var(--default-color), transparent 40%);
-  transition: 0.3s;
-}
-
-.blog-details .meta-bottom a:hover {
-  color: var(--accent-color);
-}
-
-.blog-details .meta-bottom .cats {
-  list-style: none;
-  display: inline;
-  padding: 0 20px 0 0;
-  font-size: 14px;
-}
-
-.blog-details .meta-bottom .cats li {
-  display: inline-block;
-}
 
 .blog-details .meta-bottom .tags {
   list-style: none;
@@ -2290,87 +2342,163 @@ section,
   display: inline-block;
 }
 
+  margin-bottom: 20px;.blog-details .meta-bottom .tags li+li::before {
+}
+ult-color);
+.blog-details .meta-top {
+  margin-top: 20px;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}blog-details .meta-bottom .share {
+  font-size: 16px;
+.blog-details .meta-top ul {
+  display: flex;
+  flex-wrap: wrap;blog-details .meta-bottom .share i {
+  list-style: none;  padding-left: 5px;
+  align-items: center;
+  padding: 0;
+  margin: 0;----------------------------------
+} Section
+-------------------------------------------------------------*/
+.blog-details .meta-top ul li+li {.blog-comments {
+  padding-left: 20px;
+}
+
+.blog-details .meta-top i {.blog-comments .comments-count {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);.blog-comments .comment {
+}
+
+.blog-details .meta-top a {
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  font-size: 14px;mment .comment-img {
+  display: inline-block; margin-right: 14px;
+  line-height: 1;}
+}
+ent .comment-img img {
+.blog-details .meta-bottom { width: 60px;
+  padding-top: 10px;}
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}ment h5 {
+
+.blog-details .meta-bottom i { margin-bottom: 2px;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);}
+  display: inline;
+}nt h5 a {
+ font-weight: bold;
+.blog-details .meta-bottom a {  color: var(--default-color);
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+  transition: 0.3s;
+}
+.blog-comments .comment h5 a:hover {
+.blog-details .meta-bottom a:hover {;
+  color: var(--accent-color);
+}
+blog-comments .comment h5 .reply {
+.blog-details .meta-bottom .cats {  padding-left: 10px;
+  list-style: none;r(--default-color), transparent 20%);
+  display: inline;
+  padding: 0 20px 0 0;
+  font-size: 14px;ment h5 .reply i {
+} font-size: 20px;
+}
+.blog-details .meta-bottom .cats li {
+  display: inline-block;{
+} display: block;
+  font-size: 14px;
+.blog-details .meta-bottom .tags {efault-color), transparent 40%);
+  list-style: none;
+  display: inline;
+  padding: 0;
+  font-size: 14px;.blog-comments .comment.comment-reply {
+}
+
+.blog-details .meta-bottom .tags li {
+  display: inline-block;/*--------------------------------------------------------------
+}
+---------------------------------------------*/
 .blog-details .meta-bottom .tags li+li::before {
   padding-right: 6px;
   color: var(--default-color);
   content: ",";
-}
-
+}.comment-form form {
+);
 .blog-details .meta-bottom .share {
-  font-size: 16px;
-}
+  font-size: 16px; padding: 30px;
+}  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 
 .blog-details .meta-bottom .share i {
   padding-left: 5px;
-}
+}bold;
 
 /*--------------------------------------------------------------
 # Blog Comments Section
---------------------------------------------------------------*/
+--------------------------------------------------------------*/ {
 .blog-comments {
   padding: 10px 0;
 }
 
-.blog-comments .comments-count {
-  font-weight: bold;
-}
+.blog-comments .comments-count { background-color: var(--surface-color);
+  font-weight: bold;  color: var(--default-color);
+}or-mix(in srgb, var(--default-color), transparent 70%);
 
-.blog-comments .comment {
-  margin-top: 30px;
-  position: relative;
+.blog-comments .comment {px;
+  margin-top: 30px; padding: 10px 10px;
+  position: relative;}
 }
-
-.blog-comments .comment .comment-img {
-  margin-right: 14px;
+ input:focus {
+.blog-comments .comment .comment-img { color: var(--default-color);
+  margin-right: 14px;  background-color: var(--surface-color);
 }
 
 .blog-comments .comment .comment-img img {
   width: 60px;
-}
-
+} input::placeholder {
+ srgb, var(--default-color), transparent 50%);
 .blog-comments .comment h5 {
   font-size: 16px;
-  margin-bottom: 2px;
-}
+  margin-bottom: 2px;.comment-form form textarea {
+}e-color);
 
-.blog-comments .comment h5 a {
-  font-weight: bold;
-  color: var(--default-color);
-  transition: 0.3s;
-}
+.blog-comments .comment h5 a {r(--default-color), transparent 70%);
+  font-weight: bold;x;
+  color: var (--default-color);
+  transition: 0.3s; font-size: 14px;
+}  height: 120px;
 
 .blog-comments .comment h5 a:hover {
-  color: var(--accent-color);
-}
+  color: var(--accent-color);comment-form form textarea:focus {
+}  color: var(--default-color);
 
 .blog-comments .comment h5 .reply {
-  padding-left: 10px;
+  padding-left: 10px;ace-color);
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
-
-.blog-comments .comment h5 .reply i {
+xtarea::placeholder {
+.blog-comments .comment h5 .reply i {(in srgb, var(--default-color), transparent 50%);
   font-size: 20px;
 }
-
+.comment-form form .form-group {
 .blog-comments .comment time {
   display: block;
   font-size: 14px;
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   margin-bottom: 5px;
-}
-
+} padding: 10px 20px;
+  border: 0;
 .blog-comments .comment.comment-reply {
   padding-left: 40px;
 }
 
-/*--------------------------------------------------------------
-# Comment Form Section
---------------------------------------------------------------*/
-.comment-form {
+/*--------------------------------------------------------------hover {
+# Comment Form Sectiont-color);
+--------------------------------------------------------------*/ background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
+.comment-form {}
   padding-top: 10px;
-}
+}-------------------------------------------
 
-.comment-form form {
+.comment-form form {--------------------------------------------------*/
   background-color: var(--surface-color);
   margin-top: 30px;
   padding: 30px;
@@ -2378,259 +2506,247 @@ section,
 }
 
 .comment-form form h4 {
-  font-weight: bold;
-  font-size: 22px;
+  font-weight: bold; font-weight: 600;
+  font-size: 22px;  padding: 0 0 0 10px;
 }
-
+left: 4px solid var(--accent-color);
 .comment-form form p {
   font-size: 14px;
 }
-
-.comment-form form input {
-  background-color: var(--surface-color);
+ margin-bottom: 30px;
+.comment-form form input {  background-color: color-mix(in srgb, var(--default-color), transparent 98%);
+  background-color: var(--surface-color);olid color-mix(in srgb, var(--default-color), transparent 90%);
   color: var(--default-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);px;
   font-size: 14px;
   border-radius: 4px;
-  padding: 10px 10px;
+  padding: 10px 10px;ld {
 }
 
 .comment-form form input:focus {
-  color: var(--default-color);
+  color: var(--default-color);idget img {
   background-color: var(--surface-color);
   box-shadow: none;
   border-color: var(--accent-color);
-}
+}get h4 {
 
-.comment-form form input::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
+.comment-form form input::placeholder { font-size: 24px;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);  margin: 15px 0 0 0;
 }
-
+in srgb, var(--default-color), transparent 20%);
 .comment-form form textarea {
   background-color: var(--surface-color);
-  color: var(--default-color);
+  color: var(--default-color);al-links {
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 70%);
   border-radius: 4px;
   padding: 10px 10px;
-  font-size: 14px;
-  height: 120px;
+  font-size: 14px;ial-links a {
+  height: 120px;in srgb, var(--default-color), transparent 60%);
 }
 
 .comment-form form textarea:focus {
   color: var(--default-color);
-  box-shadow: none;
-  border-color: var(--accent-color);
+  box-shadow: none;blog-author-widget .social-links a:hover {
+  border-color: var(--accent-color);  color: var(--accent-color);
   background-color: var(--surface-color);
 }
-
-.comment-form form textarea::placeholder {
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
+blog-author-widget p {
+.comment-form form textarea::placeholder {  font-style: italic;
+  color: color-mix(in srgb, var(--default-color), transparent 50%);ault-color), transparent 30%);
 }
 
 .comment-form form .form-group {
-  margin-bottom: 25px;
-}
-
+  margin-bottom: 25px;search-widget form {
+}  background: var(--background-color);
+--default-color), transparent 75%);
 .comment-form form .btn-primary {
-  border-radius: 4px;
-  padding: 10px 20px;
+  border-radius: 4px; position: relative;
+  padding: 10px 20px;  border-radius: 50px;
   border: 0;
   background-color: var(--accent-color);
   color: var(--contrast-color);
-}
-
-.comment-form form .btn-primary:hover {
+}nput[type=text] {
+ border: 0;
+.comment-form form .btn-primary:hover {  padding: 4px 10px;
   color: var(--contrast-color);
   background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
-
+lt-color);
 /*--------------------------------------------------------------
 # Widgets
---------------------------------------------------------------*/
-.widgets-container {
-  margin: 60px 0 30px 0;
+--------------------------------------------------------------*/ input[type=text]:focus {
+.widgets-container { outline: none;
+  margin: 60px 0 30px 0;}
 }
-
+et form button {
 .widget-title {
-  color: var(--heading-color);
+  color: var(--heading-color);t-color);
   font-size: 20px;
   font-weight: 600;
   padding: 0 0 0 10px;
-  margin: 0 0 20px 0;
-  border-left: 4px solid var(--accent-color);
+  margin: 0 0 20px 0; bottom: 0;
+  border-left: 4px solid var(--accent-color);  border: 0;
 }
-
-.widget-item {
-  margin-bottom: 30px;
+x;
+.widget-item { transition: 0.3s;
+  margin-bottom: 30px;  line-height: 0;
   background-color: color-mix(in srgb, var(--default-color), transparent 98%);
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   padding: 30px;
   border-radius: 5px;
 }
 
-.widget-item:last-child {
-  margin-bottom: 0;
+.widget-item:last-child {et form button:hover {
+  margin-bottom: 0;(--accent-color);
 }
 
-.blog-author-widget img {
-  max-width: 160px;
+.blog-author-widget img {:is(:focus-within) {
+  max-width: 160px;ar(--accent-color);
 }
 
 .blog-author-widget h4 {
-  font-weight: 600;
-  font-size: 24px;
-  margin: 15px 0 0 0;
+  font-weight: 600;e;
+  font-size: 24px; padding: 0;
+  margin: 15px 0 0 0;  margin: 0;
   padding: 0;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
-}
-
+}categories-widget ul li {
+  padding-bottom: 10px;
 .blog-author-widget .social-links {
   margin: 5px 0;
-}
-
+}categories-widget ul li:last-child {
+  padding-bottom: 0;
 .blog-author-widget .social-links a {
   color: color-mix(in srgb, var(--default-color), transparent 60%);
-  margin: 0 3px;
-  font-size: 18px;
+  margin: 0 3px;idget ul a {
+  font-size: 18px;or-mix(in srgb, var(--default-color), transparent 20%);
+} transition: 0.3s;
 }
-
 .blog-author-widget .social-links a:hover {
-  color: var(--accent-color);
+  color: var(--accent-color);:hover {
+} color: var(--accent-color);
 }
-
 .blog-author-widget p {
-  font-style: italic;
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  margin: 10px 0 0 0;
+  font-style: italic;l a span {
+  color: color-mix(in srgb, var(--default-color), transparent 30%); padding-left: 5px;
+  margin: 10px 0 0 0;  color: color-mix(in srgb, var (--default-color), transparent 50%);
 }
 
 .search-widget form {
-  background: var(--background-color);
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);
+  background: var(--background-color);recent-posts-widget .post-item {
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 75%);  display: flex;
   padding: 3px 10px;
   position: relative;
   border-radius: 50px;
   transition: 0.3s;
-}
+}m:last-child {
 
 .search-widget form input[type=text] {
   border: 0;
-  padding: 4px 10px;
-  border-radius: 4px;
+  padding: 4px 10px;recent-posts-widget .post-item h4 {
+  border-radius: 4px;  font-size: 16px;
   width: calc(100% - 40px);
-  background-color: var(--background-color);
+  background-color: var(--background-color); 5px;
   color: var(--default-color);
 }
-
-.search-widget form input[type=text]:focus {
+recent-posts-widget .post-item h4 a {
+.search-widget form input[type=text]:focus {  color: var(--default-color);
   outline: none;
 }
 
-.search-widget form button {
+.search-widget form button {.recent-posts-widget .post-item h4 a:hover {
   background: none;
   color: var(--default-color);
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  top: 0;.post-item time {
+  right: 0; display: block;
+  bottom: 0;  font-style: italic;
   border: 0;
-  font-size: 16px;
+  font-size: 16px;r(--default-color), transparent 50%);
   padding: 0 16px;
   transition: 0.3s;
-  line-height: 0;
+  line-height: 0;.tags-widget ul {
 }
 
-.search-widget form button i {
-  line-height: 0;
+.search-widget form button i { margin: 0;
+  line-height: 0;}
 }
-
-.search-widget form button:hover {
+i {
+.search-widget form button:hover {ck;
   color: var(--accent-color);
 }
-
-.search-widget form:is(:focus-within) {
-  border-color: var(--accent-color);
-}
-
-.categories-widget ul {
-  list-style: none;
-  padding: 0;
+tags-widget ul a {
+.search-widget form:is(:focus-within) {  background-color: color-mix(in srgb, var(--default-color), transparent 94%);
+  border-color: var(--accent-color);x(in srgb, var(--default-color), transparent 30%);
+}px;
+14px;
+.categories-widget ul {px 15px;
+  list-style: none; margin: 0 6px 8px 0;
+  padding: 0;  display: inline-block;
   margin: 0;
 }
 
-.categories-widget ul li {
-  padding-bottom: 10px;
+.categories-widget ul li {.tags-widget ul a:hover {
+  padding-bottom: 10px;-accent-color);
 }
 
 .categories-widget ul li:last-child {
-  padding-bottom: 0;
+  padding-bottom: 0;span {
 }
-
+srgb, var(--default-color), transparent 60%);
 .categories-widget ul a {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   transition: 0.3s;
-}
+}/*--------------------------------------------------------------
 
-.categories-widget ul a:hover {
+.categories-widget ul a:hover {----------------------------*/
   color: var(--accent-color);
+} transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .categories-widget ul a span {
   padding-left: 5px;
   color: color-mix(in srgb, var (--default-color), transparent 50%);
-  font-size: 14px;
+  font-size: 14px;px 20px rgba(0,0,0,0.1) !important;
 }
 
 .recent-posts-widget .post-item {
-  display: flex;
+  display: flex;hite;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-bottom: 20px;%;
 }
 
-.recent-posts-widget .post-item:last-child {
-  margin-bottom: 0;
-}
+.recent-posts-widget .post-item:last-child {.client-card:hover {
+  margin-bottom: 0;ateY(-5px);
+}(0,0,0,0.1) !important;
 
 .recent-posts-widget .post-item h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.recent-posts-widget .post-item h4 a {
-  color: var(--default-color);
+  font-size: 16px;.expertise-box {
+  font-weight: 600;var(--surface-color);
+  margin-bottom: 5px;;
+}a(0,0,0,0.1);
+ll 0.3s ease;
+.recent-posts-widget .post-item h4 a { width: 30%;
+  color: var(--default-color);}
   transition: 0.3s;
 }
 
-.recent-posts-widget .post-item h4 a:hover {
-  color: var(--accent-color);
+.recent-posts-widget .post-item h4 a:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  color: var(--accent-color);}
 }
 
-.recent-posts-widget .post-item time {
+.recent-posts-widget .post-item time {-color);
   display: block;
   font-style: italic;
-  font-size: 14px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-}
+  font-size: 14px;x h5 {
+  color: color-mix(in srgb, var(--default-color), transparent 50%); font-size: 1.1rem;
+}  margin-bottom: 0.25rem;
 
 .tags-widget ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0; font-size: 2.5rem;
+  margin: 0;  margin-bottom: 0.5rem;
 }
-
-.tags-widget ul li {
-  display: inline-block;
-}
-
-.tags-widget ul a {
-  background-color: color-mix(in srgb, var(--default-color), transparent 94%);
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  border-radius: 50px;
-  font-size: 14px;
-  padding: 5px 15px;
-  margin: 0 6px 8px 0;
-  display: inline-block;
+.tags-widget ul li {  display: inline-block;}.tags-widget ul a {  background-color: color-mix(in srgb, var(--default-color), transparent 94%);  color: color-mix(in srgb, var(--default-color), transparent 30%);  border-radius: 50px;  font-size: 14px;  padding: 5px 15px;  margin: 0 6px 8px 0;  display: inline-block;
   transition: 0.3s;
 }
 
