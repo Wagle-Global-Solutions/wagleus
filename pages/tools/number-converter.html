@@ -376,6 +376,68 @@
         .example-table th {
             background: #f8f9fa;
         }
+
+        /* Add new styles for related tools */
+        .related-tools {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .related-tools h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.5rem;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .tool-card .card-body {
+            padding: 1.5rem;
+        }
+
+        .tool-card .card-title {
+            color: #333;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tool-card .card-text {
+            color: #666;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
+        }
+
+        .tool-card .btn-primary {
+            background: #007bff;
+            border: none;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -388,7 +450,8 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/pages/tools/tools.html">All Tools</a></li>
-                    <li><a href="/pages/tools/text-manipulation.html" class="active">Text Manipulation</a></li>
+                    <li><a href="/pages/tools/text-manipulation.html" >Text Manipulation</a></li>
+                    <li><a href="/pages/tools/number-converter.html" class="active">Number Converter</a></li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
                 </ul>
             </nav>
@@ -504,24 +567,80 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Add more relevant FAQs -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                What is hexadecimal and when is it used?
+                            </button>
+                        </h3>
+                        <div id="faq2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Hexadecimal (Base-16) is a number system that uses 16 digits: 0-9 and A-F. It's commonly used in programming for representing memory addresses, color codes (like #FF0000 for red), and making binary numbers more readable.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Why does my binary number only contain 0s and 1s?
+                            </button>
+                        </h3>
+                        <div id="faq3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Binary is a base-2 number system that only uses two digits: 0 and 1. This matches how computers work internally, where each digit represents an electronic signal that's either on (1) or off (0). Any number can be represented using just these two digits.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                What's the difference between octal and decimal?
+                            </button>
+                        </h3>
+                        <div id="faq4" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Decimal (Base-10) uses digits 0-9 and is our standard counting system. Octal (Base-8) only uses digits 0-7. While decimal is used in everyday counting, octal is sometimes used in computing and programming, particularly in file permissions on Unix-like systems.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                How do I know if my conversion is correct?
+                            </button>
+                        </h3>
+                        <div id="faq5" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                You can verify your conversion by converting the result back to the original number system - it should match your input. Our tool also provides examples of common conversions in the table below the converter for reference.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header"></h3>
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                Is there a limit to the numbers I can convert?
+                            </button>
+                        </h3>
+                        <div id="faq6" class="accordion-collapse collapse">
+                            <div class="accordion-body"></div>
+                                While our converter can handle most common numbers, very large numbers might be limited by JavaScript's number precision limits. For practical purposes, numbers up to 2^53 (9007199254740991) can be converted accurately.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Related Tools Section -->
-            <section class="related-tools mt-5">
+            <section class="related-tools">
                 <h2>Related Tools</h2>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h3 class="card-title h5">Text Manipulation</h3>
-                                <p class="card-text">Convert text case, remove spaces, and more.</p>
-                                <a href="/pages/tools/text-manipulation.html" class="btn btn-primary">Try Tool</a>
-                            </div>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Text Manipulation</h3>
+                            <p class="card-text">Convert text case, remove spaces, and transform text with our versatile text tools.</p>
+                            <a href="/pages/tools/text-manipulation.html" class="btn btn-primary">Try Tool</a>
                         </div>
                     </div>
-                    <!-- Add more related tools -->
                 </div>
             </section>
         </div>
