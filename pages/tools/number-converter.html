@@ -75,7 +75,8 @@
 
     <!-- Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
-    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
     <style>
         /* Verify these header styles are at the top of your styles */
         .header {
@@ -438,6 +439,53 @@
             background: #0056b3;
             transform: translateY(-1px);
         }
+
+        /* Remove loading state styles */
+        .loading {
+            display: none;
+        }
+
+        .error-message {
+            display: none;
+            color: #dc3545;
+            background: rgba(220, 53, 69, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .number-input.error {
+            border-color: #dc3545;
+        }
+
+        /* Add tooltip styles */
+        .tooltip-container {
+            position: fixed;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            pointer-events: none;
+            z-index: 1000;
+            display: none;
+        }
+
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-flash {
+            animation: flash-animation 0.5s;
+        }
+
+        @keyframes flash-animation {
+            0% { background-color: #007bff; color: white; }
+            50% { background-color: #0056b3; color: white; }
+            100% { background-color: transparent; }
+        }
     </style>
 </head>
 <body>
@@ -464,31 +512,22 @@
         <div class="tool-container">
             <h1>Number System Converter</h1>
             <p class="tool-description">
-                Convert numbers between different number systems instantly. Supports binary (base-2), 
-                decimal (base-10), hexadecimal (base-16), and octal (base-8) conversions.
+                Advanced number system converter for software development, computer science, and digital electronics. 
+                Handles binary, decimal, hexadecimal, and octal conversions with detailed explanations and real-world examples.
             </p>
 
-            <!-- Number Systems Explanation -->
-            <div class="number-systems-grid">
-                <div class="number-system-card">
-                    <h3>Binary (Base-2)</h3>
-                    <p>Uses only 0 and 1. Common in computer systems and digital logic.</p>
-                </div>
-                <div class="number-system-card">
-                    <h3>Decimal (Base-10)</h3>
-                    <p>Standard number system using digits 0-9.</p>
-                </div>
-                <div class="number-system-card">
-                    <h3>Hexadecimal (Base-16)</h3>
-                    <p>Uses 0-9 and A-F. Common in programming and memory addresses.</p>
-                </div>
-                <div class="number-system-card">
-                    <h3>Octal (Base-8)</h3>
-                    <p>Uses digits 0-7. Used in some computing contexts.</p>
+            <!-- Interactive Examples -->
+            <div class="alert alert-info mb-4">
+                <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Click to Try:</h5>
+                <div class="d-flex gap-3 flex-wrap">
+                    <button onclick="loadExampleConversion('255', '10', '16')" class="btn btn-sm btn-outline-primary" data-tooltip="Web Color Value">255 → FF</button>
+                    <button onclick="loadExampleConversion('1111111', '2', '10')" class="btn btn-sm btn-outline-primary" data-tooltip="ASCII Range">1111111 → 127</button>
+                    <button onclick="loadExampleConversion('644', '8', '10')" class="btn btn-sm btn-outline-primary" data-tooltip="Unix Permission">644 → 420</button>
                 </div>
             </div>
 
-            <div class="conversion-controls">
+            <!-- Single Converter Tool Section -->
+            <div class="conversion-controls mb-4">
                 <div class="converter-wrapper">
                     <div>
                         <select id="fromBase" class="conversion-type">
@@ -520,38 +559,151 @@
                 </div>
             </div>
 
-            <!-- Example Conversions -->
-            <div class="example-conversions">
-                <h2>Common Number System Conversions</h2>
-                <table class="example-table">
-                    <tr>
-                        <th>Decimal</th>
-                        <th>Binary</th>
-                        <th>Hexadecimal</th>
-                        <th>Octal</th>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>1010</td>
-                        <td>A</td>
-                        <td>12</td>
-                    </tr>
-                    <tr>
-                        <td>15</td>
-                        <td>1111</td>
-                        <td>F</td>
-                        <td>17</td>
-                    </tr>
-                    <tr>
-                        <td>255</td>
-                        <td>11111111</td>
-                        <td>FF</td>
-                        <td>377</td>
-                    </tr>
-                </table>
+            <!-- Real Examples Second -->
+            <div class="applications-guide mb-4">
+                <h3>Common Applications</h3>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4>Web Development</h4>
+                                <ul>
+                                    <li>Color Codes (Hex): #FF0000 = RGB(255,0,0)</li>
+                                    <li>Unicode Characters: U+0041 = 65 (ASCII 'A')</li>
+                                    <li>CSS Values: 255 = FF (opacity)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4>System Programming</h4>
+                                <ul>
+                                    <li>File Permissions: 644 (octal) = rw-r--r--</li>
+                                    <li>Memory Addresses: 0xFF = 255 (offset)</li>
+                                    <li>Binary Flags: 1010 = 10 (settings)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Add FAQ Section -->
+            <!-- Technical Reference Third -->
+            <div class="reference-section mb-5">
+                <h3>Technical Reference</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Base</th>
+                                <th>Digits</th>
+                                <th>Example</th>
+                                <th>Usage</th>
+                                <th>Common Values</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Binary (2)</td>
+                                <td>0-1</td>
+                                <td>1010</td>
+                                <td>Digital Logic</td>
+                                <td>8-bit: 00-FF</td>
+                            </tr>
+                            <tr>
+                                <td>Decimal (10)</td>
+                                <td>0-9</td>
+                                <td>255</td>
+                                <td>Standard Math</td>
+                                <td>0-255 (byte)</td>
+                            </tr>
+                            <tr>
+                                <td>Hex (16)</td>
+                                <td>0-9, A-F</td>
+                                <td>FF</td>
+                                <td>Memory/Colors</td>
+                                <td>#RRGGBB</td>
+                            </tr>
+                            <tr>
+                                <td>Octal (8)</td>
+                                <td>0-7</td>
+                                <td>644</td>
+                                <td>File Permissions</td>
+                                <td>rwx (Unix)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Technical Guide -->
+            <section class="number-systems-guide">
+                <h2>Understanding Number Systems</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Binary (Base-2)</h3>
+                                <p>Core computing number system:</p>
+                                <ul>
+                                    <li>Uses only 0 and 1</li>
+                                    <li>Each bit position = power of 2</li>
+                                    <li>Example: 1010 = 10 decimal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Decimal (Base-10)</h3>
+                                <p>Our standard counting system:</p>
+                                <ul>
+                                    <li>Uses digits 0-9</li>
+                                    <li>Each position is power of 10</li>
+                                    <li>Used in everyday calculations</li>
+                                    <li>Natural for human counting</li>
+                                    <li>Example: 255 = FF (hex)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Hexadecimal (Base-16)</h3>
+                                <p>Common in programming:</p>
+                                <ul>
+                                    <li>Uses 0-9 and A-F</li>
+                                    <li>Each digit = 4 binary digits</li>
+                                    <li>Memory addresses</li>
+                                    <li>Color codes (#FF0000)</li>
+                                    <li>Example: FF = 255 (decimal)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3>Octal (Base-8)</h3>
+                                <p>Used in specific contexts:</p>
+                                <ul>
+                                    <li>Uses digits 0-7</li>
+                                    <li>Each digit = 3 binary digits</li>
+                                    <li>Unix file permissions</li>
+                                    <li>Legacy systems</li>
+                                    <li>Example: 377 = 255 (decimal)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rest of the content -->
             <section class="faqs mt-5">
                 <h2>Frequently Asked Questions</h2>
                 <div class="accordion" id="numberConverterFAQ">
@@ -641,20 +793,6 @@
                             <a href="/pages/tools/text-manipulation.html" class="btn btn-primary">Try Tool</a>
                         </div>
                     </div>
-                    <div class="tool-card coming-soon">
-                        <div class="card-body">
-                            <h3 class="card-title">Hash Generator</h3>
-                            <p class="card-text">Generate different types of hashes including MD5, SHA-1, and SHA-256.</p>
-                            <button class="btn btn-secondary" disabled>Coming Soon</button>
-                        </div>
-                    </div>
-                    <div class="tool-card coming-soon">
-                        <div class="card-body">
-                            <h3 class="card-title">Password Generator</h3>
-                            <p class="card-text">Create secure passwords with customizable options for length and character types.</p>
-                            <button class="btn btn-secondary" disabled>Coming Soon</button>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
@@ -698,13 +836,21 @@
 
     <script>
         function validateInput(number, fromBase) {
+            if (!number.trim()) return true; // Empty input is valid
+            
             const regex = {
                 2: /^[01]+$/,
                 8: /^[0-7]+$/,
                 10: /^[0-9]+$/,
                 16: /^[0-9A-Fa-f]+$/
             };
-            return regex[fromBase].test(number);
+
+            // Check length limits
+            if (number.length > 32) {
+                return false;
+            }
+
+            return regex[fromBase].test(number.trim());
         }
 
         function convertNumber() {
@@ -713,32 +859,63 @@
             const toBase = parseInt(document.getElementById('toBase').value);
             const errorElement = document.getElementById('errorMessage');
             const resultElement = document.getElementById('convertedNumber');
+            const inputElement = document.getElementById('inputNumber');
 
+            // Reset states
+            errorElement.style.display = 'none';
+            inputElement.classList.remove('error');
+            
             if (!input) {
-                errorElement.style.display = 'none';
                 resultElement.textContent = '';
                 return;
             }
 
             if (!validateInput(input, fromBase)) {
-                errorElement.textContent = 'Invalid input for selected number system';
+                errorElement.textContent = `Invalid input for ${fromBase === 16 ? 'hexadecimal' : `base-${fromBase}`} number`;
                 errorElement.style.display = 'block';
+                inputElement.classList.add('error');
                 resultElement.textContent = '';
                 return;
             }
 
             try {
-                const decimal = parseInt(input, fromBase);
+                // Direct conversion without loading state
+                const decimal = BigInt(parseInt(input, fromBase));
                 let result = decimal.toString(toBase);
-                if (toBase === 16) result = result.toUpperCase();
+                
+                if (toBase === 16) {
+                    result = result.toUpperCase();
+                }
+
                 resultElement.textContent = result;
-                errorElement.style.display = 'none';
+                // Store last successful conversion
+                localStorage.setItem('lastConversion', JSON.stringify({
+                    input,
+                    fromBase,
+                    toBase
+                }));
             } catch (e) {
-                errorElement.textContent = 'Conversion error';
+                errorElement.textContent = 'Number is too large to convert';
                 errorElement.style.display = 'block';
                 resultElement.textContent = '';
             }
         }
+
+        // Load last conversion on page load
+        window.addEventListener('load', () => {
+            try {
+                const lastConversion = JSON.parse(localStorage.getItem('lastConversion'));
+                if (lastConversion) {
+                    document.getElementById('inputNumber').value = lastConversion.input;
+                    document.getElementById('fromBase').value = lastConversion.fromBase;
+                    document.getElementById('toBase').value = lastConversion.toBase;
+                    convertNumber();
+                }
+            } catch (e) {
+                console.error('Failed to load last conversion:', e);
+            }
+            document.querySelector('#preloader').remove();
+        });
 
         function copyResult() {
             const text = document.getElementById('convertedNumber').textContent;
@@ -753,6 +930,69 @@
         document.getElementById('inputNumber').addEventListener('input', convertNumber);
         document.getElementById('fromBase').addEventListener('change', convertNumber);
         document.getElementById('toBase').addEventListener('change', convertNumber);
+
+        // Add enhanced conversion function
+        function loadExampleConversion(value, fromBase, toBase) {
+            document.getElementById('inputNumber').value = value;
+            document.getElementById('fromBase').value = fromBase;
+            document.getElementById('toBase').value = toBase;
+            convertNumber();
+            
+            // Scroll to input and highlight
+            const inputElement = document.getElementById('inputNumber');
+            inputElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            inputElement.focus();
+            
+            // Flash effect
+            inputElement.style.backgroundColor = '#e3f2fd';
+            setTimeout(() => inputElement.style.backgroundColor = '', 1000);
+        }
+
+        // Add tooltip functionality
+        function showConversionContext(event, tooltip) {
+            const tooltipDiv = document.getElementById('tooltip') || createTooltip();
+            tooltipDiv.textContent = tooltip;
+            tooltipDiv.style.display = 'block';
+            tooltipDiv.style.left = event.pageX + 10 + 'px';
+            tooltipDiv.style.top = event.pageY + 10 + 'px';
+        }
+
+        function createTooltip() {
+            const div = document.createElement('div');
+            div.id = 'tooltip';
+            div.className = 'tooltip-container';
+            document.body.appendChild(div);
+            return div;
+        }
+
+        // Add tooltip event listeners
+        document.querySelectorAll('[data-tooltip]').forEach(element => {
+            element.addEventListener('mouseover', (e) => {
+                showConversionContext(e, e.target.dataset.tooltip);
+            });
+            element.addEventListener('mouseout', () => {
+                document.getElementById('tooltip').style.display = 'none';
+            });
+        });
+
+        // Enhanced tooltip functionality
+        document.addEventListener('mousemove', (e) => {
+            const tooltip = document.getElementById('tooltip');
+            if (tooltip && tooltip.style.display === 'block') {
+                tooltip.style.left = (e.pageX + 10) + 'px';
+                tooltip.style.top = (e.pageY + 10) + 'px';
+            }
+        });
+
+        // Make example buttons more interactive
+        document.querySelectorAll('[data-tooltip]').forEach(button => {
+            button.classList.add('btn-interactive');
+            button.style.cursor = 'pointer';
+            button.addEventListener('click', function() {
+                this.classList.add('btn-flash');
+                setTimeout(() => this.classList.remove('btn-flash'), 500);
+            });
+        });
     </script>
 </body>
 </html>

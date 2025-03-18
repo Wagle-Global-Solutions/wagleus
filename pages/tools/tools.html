@@ -80,6 +80,7 @@
 
     <!-- Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 
     <style>
         /* Add header styles before existing styles */
@@ -170,21 +171,9 @@
             line-height: 1.6;
         }
 
-        .coming-soon {
-            opacity: 0.7;
-            position: relative;
-        }
-
+        .coming-soon,
         .coming-soon::after {
-            content: 'Coming Soon';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #28a745;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            display: none;
         }
     </style>
 </head>
@@ -199,7 +188,8 @@
                 <ul>
                     <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
                     <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
-                    <li><a href="/pages/tools/number-converter.html" >Number Converter</a></li>
+                    <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
+                    <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
                 </ul>
             </nav>
@@ -210,46 +200,132 @@
     <main class="main">
         <div class="tools-container">
             <div class="tools-header">
-                <h1>Free Developer Tools & Utilities</h1>
-                <p>Powerful online tools designed to enhance productivity for developers, writers, and content creators. All tools are free, secure, and easy to use.</p>
+                <h1>Professional Development Tools</h1>
+                <p>Efficient online utilities for text processing and number conversion. Each tool is designed for specific development tasks, with examples and technical documentation.</p>
             </div>
 
-            <!-- Tool Categories with Enhanced Descriptions -->
-            <section class="tool-categories mb-5">
-                <h2 class="text-center mb-4">Available Tools</h2>
-                <div class="tools-grid">
-                    <a href="./text-manipulation.html" class="tool-card">
-                        <div class="tool-icon">
-                            <i class="bi bi-type"></i>
+            <!-- Tool Usage Statistics -->
+            <div class="stats-banner alert alert-info mb-4 text-center">
+                <p class="mb-0"><strong>Browser-Based Processing:</strong> All tools run locally in your browser for maximum privacy and speed</p>
+            </div>
+
+            <!-- Integrated Tool Showcase -->
+            <section class="tool-showcase mb-5">
+                <div class="row g-4">
+                    <!-- Text Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Text Manipulation</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Input: snake_case_variable</code>
+                                        <code class="d-block mb-2">↓ Title Case Convert</code>
+                                        <code class="d-block">Output: Snake Case Variable</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Case conversion with intelligent handling</li>
+                                    <li>Advanced text cleaning and formatting</li>
+                                    <li>Real-time character and word counting</li>
+                                    <li>Secure client-side processing</li>
+                                </ul>
+                                <a href="./text-manipulation.html" class="btn btn-primary">Open Tool</a>
+                            </div>
                         </div>
-                        <h3>Text Manipulation</h3>
-                        <p>Convert text case, remove spaces, reverse text, and more. Perfect for developers, writers, and content editors needing quick text transformations.</p>
-                    </a>
-                    <a href="./number-converter.html" class="tool-card">
-                        <div class="tool-icon">
-                            <i class="bi bi-123"></i>
-                        </div>
-                        <h3>Number Converter</h3>
-                        <p>Convert numbers between different formats and systems. Binary, decimal, hexadecimal conversions.</p>
-                    </a>
-                    <div class="tool-card coming-soon">
-                        <div class="tool-icon">
-                            <i class="bi bi-hash"></i>
-                        </div>
-                        <h3>Hash Generator</h3>
-                        <p>Generate different types of hashes for your text. MD5, SHA-1, SHA-256, and more.</p>
                     </div>
-                    <div class="tool-card coming-soon">
-                        <div class="tool-icon">
-                            <i class="bi bi-shield-lock"></i>
+
+                    <!-- Number Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Number Converter</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Input: 255 (Decimal)</code>
+                                        <code class="d-block mb-2">↓ Multi-Base Convert</code>
+                                        <code class="d-block">Output: FF (Hex) | 11111111 (Binary)</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Multi-base number conversion</li>
+                                    <li>Step-by-step conversion process</li>
+                                    <li>Scientific notation support</li>
+                                    <li>Common base quick convert</li>
+                                </ul>
+                                <a href="./number-converter.html" class="btn btn-primary">Open Tool</a>
+                            </div>
                         </div>
-                        <h3>Password Generator</h3>
-                        <p>Create strong, secure passwords with customizable options. Choose length, include numbers, special characters, uppercase and lowercase letters.</p>
+                    </div>
+
+                    <!-- Add Base64 Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Base64 Encoder/Decoder</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Input: Hello, World!</code>
+                                        <code class="d-block mb-2">↓ Base64 Encode</code>
+                                        <code class="d-block">Output: SGVsbG8sIFdvcmxkIQ==</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Text and file encoding</li>
+                                    <li>URL-safe Base64 support</li>
+                                    <li>Instant encoding/decoding</li>
+                                    <li>Common use case examples</li>
+                                </ul>
+                                <a href="./base64encoder-decoder.html" class="btn btn-primary">Open Tool</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <!-- FAQ Section for Featured Snippets -->
+            <!-- Technical Documentation -->
+            <section class="documentation mt-5">
+                <h2 class="text-center mb-4">Technical Details</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <h3>Tool Specifications</h3>
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <h4>Text Processing</h4>
+                                <ul>
+                                    <li>UTF-8 character support</li>
+                                    <li>Regular expression capabilities</li>
+                                    <li>Batch processing support</li>
+                                    <li>Real-time character counting</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Number Systems</h4>
+                                <ul>
+                                    <li>32-bit integer support</li>
+                                    <li>Floating-point precision</li>
+                                    <li>Base 2-36 conversion</li>
+                                    <li>Scientific notation</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Base64 Processing</h4>
+                                <ul>
+                                    <li>Standard Base64 encoding</li>
+                                    <li>URL-safe encoding variant</li>
+                                    <li>File to Base64 conversion</li>
+                                    <li>Unicode text support</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
             <section class="faqs mt-5">
                 <h2 class="text-center mb-4">Frequently Asked Questions</h2>
                 <div class="accordion" id="toolsFAQ">
@@ -316,24 +392,25 @@
                     <div class="accordion-item">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                                How often are new tools added?
+                                What is Base64 encoding used for?
                             </button>
                         </h3>
                         <div id="faq6" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                We regularly update our toolkit based on user feedback and needs. New tools are added monthly, and existing tools are continuously improved. Follow us on social media to stay updated about new releases.
+                                Base64 encoding is commonly used to transmit binary data over text-based systems, encode email attachments, create data URIs for images, and handle API authentication tokens. It converts binary data into a safe ASCII string format.
                             </div>
                         </div>
                     </div>
+
                     <div class="accordion-item">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
-                                Can I suggest a new tool?
+                                What's the difference between standard and URL-safe Base64?
                             </button>
                         </h3>
                         <div id="faq7" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                Absolutely! We welcome suggestions from our users. You can contact us through our social media channels or email to suggest new tools or features you'd like to see added.
+                                Standard Base64 uses '+' and '/' characters which can cause issues in URLs. URL-safe Base64 replaces these with '-' and '_' respectively, making it safe for use in URLs, filenames, and other contexts where special characters might be problematic.
                             </div>
                         </div>
                     </div>

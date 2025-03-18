@@ -75,201 +75,20 @@
 
     <!-- Main CSS File -->
     <link href="/assets/css/main.css" rel="stylesheet">
-    
+    <link href="/assets/css/style.css" rel="stylesheet">
+
     <style>
-        /* Verify these header styles are at the top of your styles */
-        .header {
-            background: rgba(0, 0, 0, 0.8) !important;
-        }
-
-        .header .navmenu a {
-            color: rgba(255, 255, 255, 0.7) !important;
-        }
-
-        .header .navmenu a:hover,
-        .header .navmenu .active {
-            color: #fff !important;
-        }
-
-        .mobile-nav-toggle {
-            color: #fff !important;
-        }
-
-        /* Tool-specific styles with improvements */
-        .tool-container {
-            max-width: 900px;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-            margin: 100px auto;
-        }
-
-        .tool-description {
-            color: #555;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
-
-        .text-stats {
-            margin: 15px 0;
-            padding: 12px 20px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            color: #555;
-            display: flex;
-            gap: 20px;
-        }
-
-        .text-area {
-            width: 100%;
-            min-height: 200px;
-            padding: 20px;
-            margin: 10px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            resize: vertical;
-            font-size: 16px;
-            line-height: 1.6;
-            transition: border-color 0.3s;
-        }
-
-        .text-area:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
-        }
-
-        .buttons {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: all 0.3s;
-            background: #007bff;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .buttons button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .result {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            position: relative;
-            margin-top: 20px;
-            min-height: 60px;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #28a745;
-            border: none;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .copy-btn:hover {
-            background: #218838;
-            transform: translateY(-1px);
-        }
-
-        #transformedText {
-            padding-right: 100px; /* Space for copy button */
-            min-height: 20px;
-            white-space: pre-wrap;
-        }
-
-        /* Add new styles for related tools */
-        .related-tools {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-top: 3rem;
-        }
-
-        .related-tools h2 {
-            margin-bottom: 1.5rem;
-            color: #333;
-            font-size: 1.5rem;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tool-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            height: 100%;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .tool-card .card-body {
-            padding: 1.5rem;
-        }
-
-        .tool-card .card-title {
-            color: #333;
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .tool-card .card-text {
-            color: #666;
-            margin-bottom: 1.25rem;
-            line-height: 1.5;
-        }
-
-        .tool-card .btn {
-            padding: 0.5rem 1.25rem;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .tool-card .btn-primary {
-            background: #007bff;
-            border: none;
-        }
-
-        .tool-card .btn-primary:hover {
+        /* Page-specific styles only */
+        .buttons button.active {
             background: #0056b3;
-            transform: translateY(-1px);
+            box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+            transform: translateY(1px);
         }
 
-        .tool-card .btn-secondary {
-            background: #6c757d;
-            border: none;
-            opacity: 0.7;
-        }
-
-        .tool-card.coming-soon {
-            opacity: 0.8;
+        .last-used {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -297,11 +116,21 @@
         <div class="tool-container">
             <h1>Text Converter Tool</h1>
             <p class="tool-description">
-                Free online text manipulation tool to help you transform your text instantly. 
-                Convert text to uppercase, lowercase, title case, reverse text, or remove extra spaces. 
-                Simply paste your text and choose the transformation you need.
+                Transform your text with our professional text manipulation tool. Perfect for developers, content writers, 
+                and data analysts who need quick text transformations. Features include case conversion, space removal, 
+                text reversal, and character counting - all with instant results and secure client-side processing.
             </p>
-            
+
+            <!-- Tool Demo -->
+            <div class="tool-demo alert alert-info mb-4">
+                <h5 class="mb-3"><i class="bi bi-lightbulb"></i> Try these examples:</h5>
+                <div class="d-flex gap-2 flex-wrap">
+                    <button onclick="loadExampleAndTransform('snake_case_variable', 'title')" class="btn btn-sm btn-outline-primary">Variable Name → Title Case</button>
+                    <button onclick="loadExampleAndTransform('CLEANUP    EXTRA     SPACES', 'trim')" class="btn btn-sm btn-outline-primary">Clean Extra Spaces</button>
+                    <button onclick="loadExampleAndTransform('Convert this to uppercase', 'upper')" class="btn btn-sm btn-outline-primary">Text → UPPERCASE</button>
+                </div>
+            </div>
+
             <textarea id="inputText" class="text-area" placeholder="Paste your text here..."></textarea>
         
             <div class="text-stats">
@@ -310,11 +139,11 @@
             </div>
 
             <div class="buttons">
-                <button onclick="transformText('upper')">UPPERCASE</button>
-                <button onclick="transformText('lower')">lowercase</button>
-                <button onclick="transformText('title')">Title Case</button>
-                <button onclick="transformText('reverse')">Reverse</button>
-                <button onclick="transformText('trim')">Trim Spaces</button>
+                <button onclick="transformText('upper')" data-type="upper">UPPERCASE</button>
+                <button onclick="transformText('lower')" data-type="lower">lowercase</button>
+                <button onclick="transformText('title')" data-type="title">Title Case</button>
+                <button onclick="transformText('reverse')" data-type="reverse">Reverse</button>
+                <button onclick="transformText('trim')" data-type="trim">Trim Spaces</button>
             </div>
 
             <div class="result" id="result">
@@ -322,7 +151,7 @@
                 <div id="transformedText"></div>
             </div>
 
-            <!-- Add FAQ Section for Featured Snippets -->
+            <!-- FAQ Section -->
             <section class="faqs mt-5">
                 <h2>Frequently Asked Questions</h2>
                 <div class="accordion" id="textToolFAQ">
@@ -365,7 +194,50 @@
                 </div>
             </section>
 
-            <!-- Add Related Tools Section -->
+            <!-- Use Cases Section -->
+            <section class="use-cases mt-5">
+                <h2 class="text-center mb-4">Real-World Applications</h2>
+                <div class="card">
+                    <div class="card-body">
+                        <article class="blog-content">
+                            <h3>Transform Text for Professional Use</h3>
+                            
+                            <h4>Content Creation</h4>
+                            <ul>
+                                <li>Format headlines and titles consistently</li>
+                                <li>Clean up text copied from various sources</li>
+                                <li>Prepare social media content</li>
+                                <li>Standardize document formatting</li>
+                            </ul>
+
+                            <h4>Development & Documentation</h4>
+                            <ul>
+                                <li>Format code comments and documentation</li>
+                                <li>Clean up log files and debug output</li>
+                                <li>Process configuration files</li>
+                                <li>Prepare API documentation</li>
+                            </ul>
+
+                            <h4>Data Processing</h4>
+                            <ul>
+                                <li>Clean CSV data before import</li>
+                                <li>Format database exports</li>
+                                <li>Standardize text data</li>
+                                <li>Remove unwanted characters</li>
+                            </ul>
+
+                            <div class="example-usage mt-4 p-3 bg-light rounded">
+                                <h5>Example Usage</h5>
+                                <p>Converting a list of product names to title case for an e-commerce catalog:</p>
+                                <pre class="mb-0">Input: "leather office chair black"
+Output: "Leather Office Chair Black"</pre>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Related Tools Section -->
             <section class="related-tools mt-5">
                 <h2>Related Tools</h2>
                 <div class="tools-grid">
@@ -374,20 +246,6 @@
                             <h3 class="card-title">Number Converter</h3>
                             <p class="card-text">Convert between different number systems including binary, decimal, hexadecimal, and octal.</p>
                             <a href="/pages/tools/number-converter.html" class="btn btn-primary">Try Tool</a>
-                        </div>
-                    </div>
-                    <div class="tool-card coming-soon">
-                        <div class="card-body">
-                            <h3 class="card-title">Hash Generator</h3>
-                            <p class="card-text">Generate different types of hashes including MD5, SHA-1, and SHA-256.</p>
-                            <button class="btn btn-secondary" disabled>Coming Soon</button>
-                        </div>
-                    </div>
-                    <div class="tool-card coming-soon">
-                        <div class="card-body">
-                            <h3 class="card-title">Password Generator</h3>
-                            <p class="card-text">Create secure passwords with customizable options for length and character types.</p>
-                            <button class="btn btn-secondary" disabled>Coming Soon</button>
                         </div>
                     </div>
                 </div>
@@ -445,7 +303,22 @@
 
         function transformText(type) {
             const text = document.getElementById('inputText').value;
+            
+            // Show error if no text
+            if (!text.trim()) {
+                document.getElementById('transformedText').textContent = '';
+                return;
+            }
+
+            // Save last used transformation
+            localStorage.setItem('lastTransformation', type);
+
             let result = '';
+
+            // Remove active class from all buttons first
+            document.querySelectorAll('.buttons button').forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            document.querySelector(`button[data-type="${type}"]`).classList.add('active');
 
             switch(type) {
                 case 'upper':
@@ -455,7 +328,14 @@
                     result = text.toLowerCase();
                     break;
                 case 'title':
-                    result = text.toLowerCase().replace(/(?:^|\s)\w/g, match => match.toUpperCase());
+                    // First replace underscores with spaces, then apply title case, then trim
+                    result = text
+                        .replace(/_+/g, ' ') // Replace one or more underscores with a single space
+                        .toLowerCase()
+                        .split(' ')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ')
+                        .trim();
                     break;
                 case 'reverse':
                     result = text.split('').reverse().join('');
@@ -468,16 +348,72 @@
             document.getElementById('transformedText').textContent = result;
         }
 
+        // Load last used transformation on page load
+        window.addEventListener('load', () => {
+            const lastType = localStorage.getItem('lastTransformation');
+            if (lastType) {
+                const button = document.querySelector(`button[data-type="${lastType}"]`);
+                if (button) button.classList.add('active');
+            }
+            // ...existing preloader code...
+        });
+
         function copyResult() {
             const text = document.getElementById('transformedText').textContent;
             navigator.clipboard.writeText(text).then(() => {
                 const btn = document.querySelector('.copy-btn');
                 btn.textContent = 'Copied!';
                 setTimeout(() => btn.textContent = 'Copy', 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copy Failed';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
             });
         }
 
         document.getElementById('inputText').addEventListener('input', updateStats);
+
+        // Add new function for example loading
+        function loadExample(text) {
+            const inputField = document.getElementById('inputText');
+            inputField.value = text;
+            updateStats();
+            // Scroll to input field
+            inputField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Focus and select text
+            inputField.focus();
+            inputField.select();
+        }
+
+        // Enhanced example loading with automatic transformation
+        function loadExampleAndTransform(text, transformType) {
+            const inputField = document.getElementById('inputText');
+            inputField.value = text;
+            updateStats();
+            transformText(transformType);
+            inputField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            inputField.focus();
+            inputField.select();
+        }
+
+        // Add live preview functionality
+        document.getElementById('inputText').addEventListener('input', function() {
+            updateStats();
+            // Auto-transform if there's an active transformation
+            const activeButton = document.querySelector('.buttons button.active');
+            if (activeButton) {
+                transformText(activeButton.dataset.type);
+            }
+        });
+
+        // Add active state to transformation buttons
+        document.querySelectorAll('.buttons button').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.buttons button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
