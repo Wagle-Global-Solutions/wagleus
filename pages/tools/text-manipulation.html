@@ -3,116 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Free online text manipulation tool - Convert case, reverse text, and more">
-    <title>Text Manipulation Tool</title>
+    <title>Free Text Manipulation Tool - Case Converter, Text Transformer | WUS</title>
+    <meta name="description" content="Free online text manipulation tool. Convert text to UPPERCASE, lowercase, Title Case, reverse text, and remove extra spaces. Fast, free, and easy to use.">
+    <meta name="keywords" content="text manipulation, case converter, uppercase converter, lowercase converter, text transformer, reverse text, text tools, online text tools">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
+    <meta property="og:description" content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
+    <meta property="og:image" content="/assets/img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="twitter:title" content="Free Text Manipulation Tool">
+    <meta property="twitter:description" content="Transform your text instantly with our free online text tools.">
+    <meta property="twitter:image" content="/assets/img/logo.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Text Manipulation Tool",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free online text manipulation tool for converting text case, reversing text, and removing extra spaces."
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* Add these header-specific styles before other tool-specific styles */
+        .header {
+            background: rgba(0, 0, 0, 0.8) !important;
         }
 
-        body {
-            font-family: -apple-system, system-ui, sans-serif;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            background: #f5f5f5;
+        .header .navmenu a {
+            color: rgba(255, 255, 255, 0.7) !important;
         }
 
-        .container {
+        .header .navmenu a:hover,
+        .header .navmenu .active {
+            color: #fff !important;
+        }
+
+        .mobile-nav-toggle {
+            color: #fff !important;
+        }
+
+        /* Tool-specific styles with improvements */
+        .tool-container {
+            max-width: 900px;
+            padding: 30px;
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin: 100px auto;
         }
 
-        h1 {
-            margin-bottom: 20px;
-            color: #333;
+        .tool-description {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
         }
 
         .text-stats {
             margin: 15px 0;
-            padding: 10px;
+            padding: 12px 20px;
             background: #f8f9fa;
-            border-radius: 4px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #555;
+            display: flex;
+            gap: 20px;
         }
 
         .text-area {
             width: 100%;
             min-height: 200px;
-            padding: 15px;
+            padding: 20px;
             margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             resize: vertical;
+            font-size: 16px;
+            line-height: 1.6;
+            transition: border-color 0.3s;
+        }
+
+        .text-area:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
         }
 
         .buttons {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
-        button {
-            padding: 8px 16px;
+        .buttons button {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
             background: #007bff;
-            color: white;
             border: none;
-            border-radius: 4px;
+            color: white;
             cursor: pointer;
-            transition: background 0.2s;
         }
 
-        button:hover {
-            background: #0056b3;
+        .buttons button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .result {
             background: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
+            padding: 20px;
+            border-radius: 8px;
             position: relative;
             margin-top: 20px;
+            min-height: 60px;
         }
 
         .copy-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             background: #28a745;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+
+        #transformedText {
+            padding-right: 100px; /* Space for copy button */
+            min-height: 20px;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Text Manipulation Tool</h1>
-        
-        <textarea id="inputText" class="text-area" placeholder="Paste your text here..."></textarea>
-        
-        <div class="text-stats">
-            Words: <span id="wordCount">0</span> | 
-            Characters: <span id="charCount">0</span>
+    <!-- Header -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a href="/index.html" class="logo d-flex align-items-center">
+                <img src="/assets/img/logo.png" alt="WUS LOGO" width="100" height="100px">
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/index.html#about">About</a></li>
+                    <li><a href="/index.html#services">Services</a></li>
+                    <li><a href="/index.html#product">Products</a></li>
+                    <li><a href="/index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </div>
+    </header>
 
-        <div class="buttons">
-            <button onclick="transformText('upper')">UPPERCASE</button>
-            <button onclick="transformText('lower')">lowercase</button>
-            <button onclick="transformText('title')">Title Case</button>
-            <button onclick="transformText('reverse')">Reverse</button>
-            <button onclick="transformText('trim')">Trim Spaces</button>
-        </div>
+    <!-- Wrap content in main tag -->
+    <main class="main">
+        <div class="tool-container">
+            <h1>Text Converter Tool</h1>
+            <p class="tool-description">
+                Free online text manipulation tool to help you transform your text instantly. 
+                Convert text to uppercase, lowercase, title case, reverse text, or remove extra spaces. 
+                Simply paste your text and choose the transformation you need.
+            </p>
+            
+            <textarea id="inputText" class="text-area" placeholder="Paste your text here..."></textarea>
+        
+            <div class="text-stats">
+                Words: <span id="wordCount">0</span> | 
+                Characters: <span id="charCount">0</span>
+            </div>
 
-        <div class="result" id="result">
-            <button class="copy-btn" onclick="copyResult()">Copy</button>
-            <div id="transformedText"></div>
+            <div class="buttons">
+                <button onclick="transformText('upper')">UPPERCASE</button>
+                <button onclick="transformText('lower')">lowercase</button>
+                <button onclick="transformText('title')">Title Case</button>
+                <button onclick="transformText('reverse')">Reverse</button>
+                <button onclick="transformText('trim')">Trim Spaces</button>
+            </div>
+
+            <div class="result" id="result">
+                <button class="copy-btn" onclick="copyResult()">Copy</button>
+                <div id="transformedText"></div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <!-- Add Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container text-center">
+            <h3 class="sitename">Wagle Universal Solutions</h3>
+            <p>Contact us today to learn how we can help you achieve your goals.</p>
+            <div class="social-links d-flex justify-content-center">
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <div class="copyright mt-4">
+                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+            </div>
+            <div class="credits">
+                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="/assets/js/main.js"></script>
 
     <script>
+        // Add preloader removal
+        window.addEventListener('load', () => {
+            document.querySelector('#preloader').remove();
+        });
+
         function updateStats() {
             const text = document.getElementById('inputText').value;
             document.getElementById('wordCount').textContent = text.trim().split(/\s+/).filter(Boolean).length;
