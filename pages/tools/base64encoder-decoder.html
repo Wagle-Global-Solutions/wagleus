@@ -157,7 +157,7 @@
                     <li><a href="/pages/tools/tools.html">All Tools</a></li>
                     <li><a href="/pages/tools/text-manipulation.html" >Text Manipulation</a></li>
                     <li><a href="/pages/tools/number-converter.html" >Number Converter</a></li>
-                    <li><a href="/pages/tools/base64encoder-decoder.html" class="active">Base64 Encoder</a></li>
+                    <li><a href="/pages/tools/base64encoder-decoder.html" class="active">Base64 Encoder/Decoder</a></li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
                 </ul>
             </nav>
@@ -311,12 +311,9 @@
                                 <input type="file" id="fileInput" hidden onchange="handleFileSelect(event)" 
                                        accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.txt,.json,.xml,.csv">
                             </div>
-                            <div id="encodedFileActions" class="mt-3" style="display: none;">
-                                <button class="btn btn-primary" onclick="downloadEncodedText()">
-                                    <i class="bi bi-download"></i> Download Encoded Text
-                                </button>
-                                <small class="text-muted ms-2">Save encoded text as .txt file</small>
-                            </div>
+                            <button class="btn btn-primary mt-3" onclick="downloadEncodedFile()" style="display: none;" id="downloadBtn">
+                                <i class="bi bi-download"></i> Download Encoded File
+                            </button>
                         </div>
 
                         <!-- Decode Section -->
@@ -842,15 +839,13 @@ print(decoded) # b'Hello, World!'</code></pre>
                 try {
                     const base64 = e.target.result;
                     document.getElementById('result').textContent = base64;
-                    document.getElementById('resultInfo').textContent = 
-                        `${file.name} (${formatFileSize(file.size)})`;
-                    document.querySelector('.shared-result').style.display = 'block';
+                    document.getElementById('downloadBtn').style.display = 'block'; // Show download button
                     fileInfo.textContent = 'File encoded successfully!';
-                    document.getElementById('encodedFileActions').style.display = 'block';
                 } catch (error) {
                     fileError.textContent = 'Error encoding file: ' + error.message;
                     fileError.style.display = 'block';
                     fileInfo.style.display = 'none';
+                    document.getElementById('downloadBtn').style.display = 'none'; // Hide download button on error
                 }
             };
 
@@ -1031,25 +1026,20 @@ print(decoded) # b'Hello, World!'</code></pre>
         });
 
         // Add these new functions to your existing JavaScript
-        function downloadEncodedText() {
+        function downloadEncodedFile() {
+            const encodedContent = document.getElementById('result').textContent;
             const file = document.getElementById('fileInput').files[0];
-            if (!file) return;
+            
+            if (!encodedContent || !file) return;
 
-            // Create reader for getting encoded content
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // Create and trigger download
-                const blob = new Blob([e.target.result], { type: 'text/plain' });
-                const downloadLink = document.createElement('a');
-                downloadLink.href = URL.createObjectURL(blob);
-                downloadLink.download = `${file.name}_encoded.txt`;
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                
-                showFileInfo('Encoded text downloaded successfully');
-            };
-            reader.readAsDataURL(file);
+            // Create blob and trigger download
+            const blob = new Blob([encodedContent], { type: 'text/plain' });
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = `${file.name}_encoded.txt`;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
         }
 
         function handleEncodedFileSelect(event) {
@@ -1158,15 +1148,13 @@ print(decoded) # b'Hello, World!'</code></pre>
                 try {
                     const base64 = e.target.result;
                     document.getElementById('result').textContent = base64;
-                    document.getElementById('resultInfo').textContent = 
-                        `${file.name} (${formatFileSize(file.size)})`;
-                    document.querySelector('.shared-result').style.display = 'block';
+                    document.getElementById('downloadBtn').style.display = 'block'; // Show download button
                     fileInfo.textContent = 'File encoded successfully!';
-                    document.getElementById('encodedFileActions').style.display = 'block';
                 } catch (error) {
                     fileError.textContent = 'Error encoding file: ' + error.message;
                     fileError.style.display = 'block';
                     fileInfo.style.display = 'none';
+                    document.getElementById('downloadBtn').style.display = 'none'; // Hide download button on error
                 }
             };
 
