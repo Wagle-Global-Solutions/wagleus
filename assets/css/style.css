@@ -16,6 +16,38 @@
     color: #fff !important;
 }
 
+/* Navigation Styles */
+.header .navmenu .dropdown-menu {
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    padding: 15px 0;  /* Increased padding */
+    min-width: 200px; /* Ensure minimum width */
+}
+
+.header .navmenu .dropdown-item {
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 12px 20px;  /* Increased padding */
+    margin: 2px 0;      /* Added margin between items */
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.header .navmenu .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff !important;
+    padding-left: 25px; /* Slight indent on hover */
+}
+
+.header .navmenu .dropdown-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 8px 0;
+}
+
+/* Ensure dropdown is visible on hover */
+.header .navmenu .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 /* Common Tool Container Styles */
 .tool-container {
     max-width: 1000px;
@@ -371,4 +403,28 @@
     font-size: 0.9rem;
     color: #888;
     margin-top: 0.5rem;
+}
+
+/* Updated Navigation Styles */
+.header .navmenu .navbar-nav {
+    margin: 0;
+}
+
+@media (max-width: 991px) {
+    .header .navmenu .navbar-nav {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+        width: 100%;
+    }
+
+    .header .navmenu .dropdown-menu {
+        position: static;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .header .navmenu .nav-item {
+        width: 100%;
+    }
 }
