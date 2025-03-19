@@ -11,48 +11,44 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
-    <title>Free Online JSON Formatter & Validator | WUS</title>
-    <meta name="description" content="Format, validate, and beautify JSON with our free online tool. Features include pretty printing, minification, tree view, and syntax highlighting.">
-    <meta name="keywords" content="json formatter, json validator, json beautifier, json parser, json tools, pretty print json">
+    <link rel="canonical" href="https://wagleus.com/pages/tools/json-formatter.html" />
+    <title>JSON Formatter & Validator | Free Online Tool</title>
+    <meta name="description" content="Free online JSON formatter and validator with syntax highlighting. Convert JSON to CSV, XML, YAML. Format, minify, and validate JSON data with our powerful tool.">
+    <meta name="keywords" content="json formatter, json validator, json beautifier, json to csv, json to xml, json to yaml, tree view json, minify json">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
     <meta name="google-adsense-account" content="ca-pub-2031642574589224">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
-    <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
-    <meta property="og:description" content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
-    <meta property="og:image" content="/assets/img/logo.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
-    <meta property="twitter:title" content="Free Text Manipulation Tool">
-    <meta property="twitter:description" content="Transform your text instantly with our free online text tools.">
-    <meta property="twitter:image" content="/assets/img/logo.png">
-
-    <!-- Enhanced Structured Data -->
+    <!-- Single Schema Markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Text Manipulation Tool",
-        "applicationCategory": "UtilityApplication",
+        "name": "JSON Formatter & Validator",
+        "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Any",
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD"
         },
-        "description": "Free online text manipulation tool for converting text case, reversing text, and removing extra spaces.",
+        "description": "Free online JSON formatter and validator with syntax highlighting. Format, minify, and validate JSON data.",
         "browserRequirements": "Requires JavaScript",
-        "softwareVersion": "1.0",
+        "softwareVersion": "2.0",
         "creator": {
             "@type": "Organization",
             "name": "Wagle Universal Solutions",
             "url": "https://wagleus.com"
+        },
+        "potentialAction": {
+            "@type": "UseAction",
+            "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://wagleus.com/pages/tools/json-formatter.html",
+                "actionPlatform": [
+                    "http://schema.org/DesktopWebPlatform",
+                    "http://schema.org/MobileWebPlatform"
+                ]
+            }
         }
     }
     </script>
@@ -461,6 +457,62 @@
             display: none;
         }
 
+        /* Documentation Styles */
+        .documentation {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .toc {
+            border-left: 3px solid #007bff;
+        }
+
+        .toc a {
+            color: #555;
+            padding: 4px 0;
+            display: block;
+        }
+
+        .toc a:hover {
+            color: #007bff;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 3px solid #007bff;
+        }
+
+        .tips-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tip {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 3px solid #28a745;
+        }
+
+        .example-container pre {
+            margin: 0;
+            overflow-x: auto;
+        }
+
+        .code-example {
+            border-left: 3px solid #6c757d;
+        }
     </style>
 </head>
 <body>
@@ -473,8 +525,10 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="/pages/tools/tools.html" >All Tools</a></li>
-                    <li><a href="/pages/tools/text-manipulation.html" class="active">Text Manipulation</a></li>
-                    <li><a href="/pages/tools/number-converter.html" >Number Converter</a></li>
+                    <li><a href="/pages/tools/text-manipulation.html" >Text Manipulation</a></li>
+                    <li><a href="/pages/tools/json-formatter.html" class="active">JSON Formatter</a></li>
+                    <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
+                    <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
                     <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder/Decoder</a></li>
                     <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
@@ -544,6 +598,204 @@
                 <div id="jsonTreeView" class="tree-view"></div>
             </div>
         </div>
+
+        <section class="documentation mt-5">
+            <h2 class="text-center mb-4">Complete Guide to JSON Formatting</h2>
+            
+            <nav class="toc bg-light p-3 mb-4 rounded">
+                <h3 class="h6 mb-2">Table of Contents</h3>
+                <ul class="list-unstyled">
+                    <li><a href="#what-is-json" class="text-decoration-none">1. Understanding JSON</a></li>
+                    <li><a href="#why-format" class="text-decoration-none">2. Why Format JSON?</a></li>
+                    <li><a href="#features" class="text-decoration-none">3. Tool Features & Usage</a></li>
+                    <li><a href="#best-practices" class="text-decoration-none">4. Best Practices</a></li>
+                    <li><a href="#examples" class="text-decoration-none">5. Common Use Cases</a></li>
+                    <li><a href="#faq" class="text-decoration-none">6. FAQ</a></li>
+                </ul>
+            </nav>
+
+            <div id="what-is-json" class="section mb-5">
+                <h3>Understanding JSON</h3>
+                <p>JSON (JavaScript Object Notation) is a lightweight, text-based format for storing and transporting data. It's the most widely used data format for web APIs and configuration files due to its simplicity and universal support.</p>
+                
+                <div class="code-example bg-light p-3 rounded mt-3">
+                    <h4 class="h6 mb-2">Basic JSON Structure:</h4>
+                    <pre><code>{
+  "string": "Hello, World!",
+  "number": 42,
+  "boolean": true,
+  "null": null,
+  "array": [1, 2, 3],
+  "object": {
+    "key": "value"
+  }
+}</code></pre>
+                </div>
+            </div>
+
+            <div id="why-format" class="section mb-5">
+                <h3>Why Format JSON?</h3>
+                <ul class="list-unstyled">
+                    <li>✓ Improved Readability: Proper indentation makes JSON easier to understand</li>
+                    <li>✓ Error Detection: Quickly spot syntax errors and missing brackets</li>
+                    <li>✓ Debugging: Easier troubleshooting of API responses and configurations</li>
+                    <li>✓ Code Maintenance: Well-formatted JSON is easier to maintain and update</li>
+                </ul>
+            </div>
+
+            <div id="features" class="section mb-5">
+                <h3>Tool Features & Usage</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>Multiple View Options</h4>
+                        <ul>
+                            <li>Formatted View: Clean, indented presentation</li>
+                            <li>Tree View: Hierarchical, collapsible structure</li>
+                            <li>Minified View: Compressed format for production</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-item">
+                        <h4>Format Conversion</h4>
+                        <ul>
+                            <li>JSON to CSV: Perfect for data analysis</li>
+                            <li>JSON to XML: Legacy system compatibility</li>
+                            <li>JSON to YAML: Configuration file conversion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="best-practices" class="section mb-5">
+                <h3>Best Practices</h3>
+                <div class="tips-container">
+                    <div class="tip">
+                        <h4>Validation</h4>
+                        <p>Always validate JSON before deployment. Our tool automatically checks for syntax errors and provides detailed error messages.</p>
+                    </div>
+                    <div class="tip">
+                        <h4>Performance</h4>
+                        <p>Use minified JSON in production environments to reduce file size and improve load times.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="examples" class="section mb-5">
+                <h3>Common Use Cases</h3>
+                <div class="example-container">
+                    <div class="example">
+                        <h4>API Response Formatting</h4>
+                        <pre class="bg-light p-3 rounded"><code>{
+  "status": "success",
+  "data": {
+    "users": [
+      {"id": 1, "name": "John"},
+      {"id": 2, "name": "Jane"}
+    ]
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div id="advanced-usage" class="section mb-5">
+                <h3>Advanced Usage</h3>
+                
+                <div class="subsection">
+                    <h4>API Integration Example</h4>
+                    <pre class="bg-light p-3 rounded"><code>fetch('https://api.example.com/data')
+    .then(response => response.json())
+    .then(data => {
+        // Format the JSON response
+        document.getElementById('jsonInput').value = JSON.stringify(data);
+        document.getElementById('formatJson').click();
+    });</code></pre>
+                </div>
+
+                <div class="subsection">
+                    <h4>Common Error Solutions</h4>
+                    <div class="error-guide">
+                        <div class="error-item">
+                            <h5>Unexpected token in JSON</h5>
+                            <p>Usually caused by:</p>
+                            <ul>
+                                <li>Missing quotes around property names</li>
+                                <li>Trailing commas in arrays/objects</li>
+                                <li>Unescaped special characters in strings</li>
+                            </ul>
+                        </div>
+                        <!-- Add more common errors -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="real-world" class="section mb-5">
+                <h3>Real-World Applications</h3>
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <h4>API Response Handling</h4>
+                        <pre class="bg-light p-3 rounded"><code>{
+  "status": 200,
+  "data": {
+    "users": [
+      {"id": 1, "name": "John", "role": "admin"},
+      {"id": 2, "name": "Jane", "role": "user"}
+    ],
+    "metadata": {
+      "total": 2,
+      "page": 1
+    }
+  }
+}</code></pre>
+                    </div>
+                    <!-- Add more examples -->
+                </div>
+            </div>
+
+            <div id="faq" class="section mb-5">
+                <h3>Frequently Asked Questions</h3>
+                <div class="accordion" id="jsonFAQ">
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Is my data secure?
+                            </button>
+                        </h4>
+                        <div id="faq1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                Yes, all processing is done locally in your browser. No data is sent to our servers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                What's the maximum file size?
+                            </button>
+                        </h4>
+                        <div id="faq2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                The tool can handle JSON files up to several megabytes, limited only by your browser's memory.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Can I convert JSON to other formats?
+                            </button>
+                        </h4>
+                        <div id="faq3" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Yes, you can convert JSON to CSV (requires array of objects), XML, or YAML formats.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Add Footer -->
