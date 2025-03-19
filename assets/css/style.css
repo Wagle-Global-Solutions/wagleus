@@ -58,6 +58,12 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Copy Button States */
+.copy-btn.copied {
+    background: #218838;
+    pointer-events: none;
+}
+
 /* Result Area Styles */
 .result {
     background: white;
@@ -269,4 +275,100 @@
     pointer-events: none;
     z-index: 1000;
     display: none;
+}
+
+/* Hash Container Styles */
+.hash-container {
+    margin: 1rem 0;
+    position: relative;
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+/* File List Styles */
+.file-list {
+    margin-top: 1rem;
+}
+
+.file-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    border: 1px solid #dee2e6;
+}
+
+/* Tab Navigation */
+.tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    border-bottom-color: #007bff;
+    color: #007bff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* File Drop Zone Styles */
+.file-drop-zone {
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    cursor: pointer;
+    margin: 1rem 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-drop-zone i {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.file-drop-zone p {
+    margin: 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.file-drop-zone:hover {
+    border-color: #0056b3;
+    background: rgba(0, 123, 255, 0.05);
+}
+
+.file-drop-zone.dragover {
+    background: rgba(0, 123, 255, 0.1);
+    border-color: #0056b3;
+    transform: scale(1.01);
+}
+
+.file-drop-zone .drag-text {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0.5rem;
 }

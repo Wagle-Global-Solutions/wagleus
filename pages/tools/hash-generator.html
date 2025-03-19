@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1FYJ98BTXG');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
+    <title>Hash Generator Tool | MD5, SHA-1, SHA-256, SHA-512 | WUS</title>
+    <meta name="description" content="Generate secure cryptographic hashes online with our free tool. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Perfect for developers and security testing.">
+    <meta name="keywords" content="hash generator, MD5 generator, SHA-256 generator, SHA-512 generator, RIPEMD-160, SHA3, online hash tool, crypto hash calculator">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/hash-generator.html">
+    <meta property="og:title" content="Hash Generator Tool | Multiple Hash Algorithms | WUS">
+    <meta property="og:description" content="Generate cryptographic hashes instantly with our free online tool. Support for MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files securely.">
+    <meta property="og:image" content="/assets/img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagleus.com/pages/tools/hash-generator.html">
+    <meta property="twitter:title" content="Hash Generator Tool | WUS">
+    <meta property="twitter:description" content="Generate secure hashes online. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files with our free tool.">
+    <meta property="twitter:image" content="/assets/img/logo.png">
+
+    <!-- Enhanced Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Hash Generator Tool",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free online hash generator tool supporting multiple algorithms including MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3.",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "creator": {
+            "@type": "Organization",
+            "name": "Wagle Universal Solutions",
+            "url": "https://wagleus.com"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .hash-output {
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        .hash-label {
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Only animation styles since they're specific to hash generator */
+        @keyframes copiedAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .copy-btn.animate {
+            animation: copiedAnimation 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a href="/pages/tools/tools.html" class="logo d-flex align-items-center">
+                <img src="/assets/img/logo.png" alt="WUS LOGO" width="100" height="100px">
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="/pages/tools/tools.html" >All Tools</a></li>
+                    <li><a href="/pages/tools/text-manipulation.html" >Text Manipulation</a></li>
+                    <li><a href="/pages/tools/number-converter.html" >Number Converter</a></li>
+                    <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder/Decoder</a></li>
+                    <li><a href="/pages/tools/hash-generator.html" class="active">Hash Generator</a></li>
+                    <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
+                </ul>
+            </nav>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </div>
+    </header>
+
+    <!-- Wrap content in main tag -->
+    <main class="main">
+        <div class="tool-container">
+            <h1 class="text-center mb-4">Hash Generator</h1>
+            <p class="tool-description text-center">
+                Generate secure cryptographic hashes using industry-standard algorithms. All processing is done locally in your browser for maximum security and privacy.
+            </p>
+
+            <!-- Quick Reference Guide -->
+            <div class="alert alert-info mb-4">
+                <h5><i class="bi bi-info-circle me-2"></i>Quick Reference</h5>
+                <ul class="mb-0">
+                    <li>Text Hashing: Instantly generate hashes from text input</li>
+                    <li>File Hashing: Verify file integrity with multiple hash algorithms</li>
+                    <li>Supported: MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, SHA3-256</li>
+                </ul>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="text">Text Hashing</button>
+                <button class="tab" data-tab="file">File Hashing</button>
+            </div>
+
+            <div class="tab-content active" id="textContent">
+                <div class="conversion-controls">
+                    <textarea id="inputText" class="text-area" 
+                        placeholder="Enter text to generate hash..."></textarea>
+
+                    <div id="textHashes">
+                        <div class="hash-container">
+                            <div class="hash-label">MD5:</div>
+                            <div class="hash-output" id="md5Output"></div>
+                            <button class="copy-btn" data-hash="md5">Copy</button>
+                        </div>
+                        <div class="hash-container">
+                            <div class="hash-label">SHA-1:</div>
+                            <div class="hash-output" id="sha1Output"></div>
+                            <button class="copy-btn" data-hash="sha1">Copy</button>
+                        </div>
+                        <div class="hash-container">
+                            <div class="hash-label">SHA-256:</div>
+                            <div class="hash-output" id="sha256Output"></div>
+                            <button class="copy-btn" data-hash="sha256">Copy</button>
+                        </div>
+                        <div class="hash-container">
+                            <div class="hash-label">SHA-512:</div>
+                            <div class="hash-output" id="sha512Output"></div>
+                            <button class="copy-btn" data-hash="sha512">Copy</button>
+                        </div>
+                        <div class="hash-container">
+                            <div class="hash-label">RIPEMD-160:</div>
+                            <div class="hash-output" id="ripemd160Output"></div>
+                            <button class="copy-btn" data-hash="ripemd160">Copy</button>
+                        </div>
+                        <div class="hash-container">
+                            <div class="hash-label">SHA3-256:</div>
+                            <div class="hash-output" id="sha3Output"></div>
+                            <button class="copy-btn" data-hash="sha3">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="fileContent">
+                <div class="file-drop-zone" id="dropZone">
+                    <i class="bi bi-cloud-upload"></i>
+                    <p>Drag and drop files here</p>
+                    <span class="drag-text">or click to select files</span>
+                    <input type="file" id="fileInput" multiple style="display: none">
+                </div>
+                <div class="file-list" id="fileList"></div>
+            </div>
+
+            <!-- Added Value Content -->
+            <section class="mt-5">
+                <h2>Understanding Hash Functions</h2>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3>What is a Hash?</h3>
+                        <p>A hash function is a mathematical algorithm that transforms data of any size into a fixed-size output. Key properties include:</p>
+                        <ul>
+                            <li><strong>Deterministic:</strong> Same input always produces the same hash</li>
+                            <li><strong>One-way:</strong> Cannot derive original data from the hash</li>
+                            <li><strong>Avalanche Effect:</strong> Small input changes create significantly different hashes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Choosing the Right Algorithm</h3>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Output Size</th>
+                                <th>Best Use Cases</th>
+                                <th>Security Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MD5</td>
+                                <td>128 bits</td>
+                                <td>File checksums (not for security)</td>
+                                <td>Not cryptographically secure</td>
+                            </tr>
+                            <tr>
+                                <td>SHA-1</td>
+                                <td>160 bits</td>
+                                <td>Legacy systems, Git</td>
+                                <td>Deprecated for security</td>
+                            </tr>
+                            <tr>
+                                <td>SHA-256</td>
+                                <td>256 bits</td>
+                                <td>Digital signatures, blockchain</td>
+                                <td>High</td>
+                            </tr>
+                            <tr>
+                                <td>SHA-512</td>
+                                <td>512 bits</td>
+                                <td>Maximum security requirements</td>
+                                <td>Very High</td>
+                            </tr>
+                            <tr>
+                                <td>RIPEMD-160</td>
+                                <td>160 bits</td>
+                                <td>Cryptocurrency addresses</td>
+                                <td>Medium-High</td>
+                            </tr>
+                            <tr>
+                                <td>SHA3-256</td>
+                                <td>256 bits</td>
+                                <td>Modern cryptographic applications</td>
+                                <td>Very High</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Real-World Applications</h3>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4>1. File Integrity Verification</h4>
+                                <div class="example-code bg-light p-3 rounded">
+                                    <p><strong>Scenario:</strong> Verifying downloaded software</p>
+                                    <ol>
+                                        <li>Download software package</li>
+                                        <li>Generate SHA-256 hash</li>
+                                        <li>Compare with publisher's hash</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4>2. Password Storage</h4>
+                                <div class="example-code bg-light p-3 rounded">
+                                    <p><strong>Note:</strong> Always use salt with password hashing!</p>
+                                    <pre><code>password + unique_salt → SHA-256
+→ store_in_database</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Step-by-Step Tutorials</h3>
+                <div class="accordion mb-4" id="hashTutorials">
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fileTutorial">
+                                How to Verify File Downloads
+                            </button>
+                        </h4>
+                        <div id="fileTutorial" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <ol>
+                                    <li>Navigate to the "File Hashing" tab</li>
+                                    <li>Drag and drop your downloaded file</li>
+                                    <li>Copy the SHA-256 hash</li>
+                                    <li>Compare with the official hash from the software provider</li>
+                                    <li>If they match, the file is authentic and unmodified</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Best Practices</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Security:</strong> Use SHA-256 or higher for cryptographic purposes</li>
+                            <li><strong>File Verification:</strong> Always use multiple hash algorithms</li>
+                            <li><strong>Performance:</strong> Use MD5/SHA-1 for non-security checksums</li>
+                            <li><strong>Compatibility:</strong> Check system requirements before choosing an algorithm</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Add Frequently Asked Questions -->
+                <h3 class="mb-4">Frequently Asked Questions</h3>
+                <div class="accordion mb-4" id="hashFAQ">
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Why do my file hashes not match the publisher's hash?
+                            </button>
+                        </h4>
+                        <div id="faq1" class="accordion-collapse collapse show">
+                            <div class="accordion-body">
+                                <p>Common reasons for hash mismatches:</p>
+                                <ul>
+                                    <li>Incomplete download - Try downloading the file again</li>
+                                    <li>Different hash algorithm used - Verify you're using the same algorithm</li>
+                                    <li>File modification during download - Check antivirus interference</li>
+                                    <li>Line ending differences - Especially common with text files</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h4 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Which hash algorithm should I use for passwords?
+                            </button>
+                        </h4>
+                        <div id="faq2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <p>For password hashing, always use:</p>
+                                <ul>
+                                    <li>Dedicated password hashing functions like bcrypt, Argon2, or PBKDF2</li>
+                                    <li>Never use MD5 or SHA-1 for passwords</li>
+                                    <li>Always add a unique salt to each password</li>
+                                    <li>If using SHA, prefer SHA-256 or SHA-512 with multiple iterations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Common Use Cases -->
+                <h3 class="mb-4">Common Use Cases & Examples</h3>
+                <div class="row g-4 mb-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Git Version Control</h5>
+                                <p>Git uses SHA-1 hashes to:</p>
+                                <ul>
+                                    <li>Track commit changes</li>
+                                    <li>Ensure data integrity</li>
+                                    <li>Generate commit IDs</li>
+                                </ul>
+                                <div class="code-example bg-light p-2 rounded">
+                                    <code>git hash-object filename</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Blockchain & Cryptocurrency</h5>
+                                <p>Uses multiple hash functions:</p>
+                                <ul>
+                                    <li>SHA-256 for Bitcoin mining</li>
+                                    <li>RIPEMD160 for addresses</li>
+                                    <li>Proof of work validation</li>
+                                </ul>
+                                <div class="code-example bg-light p-2 rounded">
+                                    <code>Block Header → SHA-256 → Hash</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5>Digital Signatures</h5>
+                                <p>Common in security:</p>
+                                <ul>
+                                    <li>Document integrity</li>
+                                    <li>Code signing</li>
+                                    <li>SSL/TLS certificates</li>
+                                </ul>
+                                <div class="code-example bg-light p-2 rounded">
+                                    <code>Document → Hash → Sign → Verify</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Security Considerations -->
+                <h3 class="mb-4">Security Considerations</h3>
+                <div class="alert alert-warning">
+                    <h5><i class="bi bi-shield-exclamation me-2"></i>Important Security Notes</h5>
+                    <ul class="mb-0">
+                        <li>MD5 and SHA-1 are considered cryptographically broken</li>
+                        <li>Use SHA-256 or stronger for security applications</li>
+                        <li>Always salt passwords before hashing</li>
+                        <li>Consider specialized algorithms for specific use cases</li>
+                    </ul>
+                </div>
+
+                <!-- Add Code Examples -->
+                <h3 class="mb-4">Implementation Examples</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5>Python Example</h5>
+                        <pre class="bg-light p-3 rounded"><code>import hashlib
+
+def verify_file_integrity(file_path, expected_hash):
+    sha256_hash = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest() == expected_hash</code></pre>
+
+                        <h5 class="mt-4">Node.js Example</h5>
+                        <pre class="bg-light p-3 rounded"><code>const crypto = require('crypto');
+const fs = require('fs');
+
+function calculateFileHash(filePath) {
+    return new Promise((resolve, reject) => {
+        const hash = crypto.createHash('sha256');
+        const stream = fs.createReadStream(filePath);
+        stream.on('data', data => hash.update(data));
+        stream.on('end', () => resolve(hash.digest('hex')));
+        stream.on('error', reject);
+    });
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Add Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container text-center">
+            <h3 class="sitename">Wagle Universal Solutions</h3>
+            <p>Contact us today to learn how we can help you achieve your goals.</p>
+            <div class="social-links d-flex justify-content-center">
+                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            <div class="copyright mt-4">
+                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+                <div class="mt-2">
+                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+            <div class="credits">
+                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <!-- Add crypto-js library before other scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        // Replace the MD5 implementation with crypto-js
+        async function generateHash(algorithm, data) {
+            // Convert input to WordArray for crypto-js
+            const wordArray = typeof data === 'string' 
+                ? CryptoJS.enc.Utf8.parse(data)
+                : CryptoJS.lib.WordArray.create(data);
+
+            switch(algorithm) {
+                case 'MD5':
+                    return CryptoJS.MD5(wordArray).toString();
+                case 'RIPEMD160':
+                    return CryptoJS.RIPEMD160(wordArray).toString();
+                case 'SHA3':
+                    return CryptoJS.SHA3(wordArray, { outputLength: 256 }).toString();
+                default:
+                    // Use Web Crypto API for SHA-1, SHA-256, SHA-512
+                    const buffer = typeof data === 'string' 
+                        ? new TextEncoder().encode(data)
+                        : data;
+                    const hashBuffer = await crypto.subtle.digest(algorithm, buffer);
+                    const hashArray = Array.from(new Uint8Array(hashBuffer));
+                    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+        }
+
+        // Text hashing
+        const inputText = document.getElementById('inputText');
+        const outputs = {
+            md5: document.getElementById('md5Output'),
+            sha1: document.getElementById('sha1Output'),
+            sha256: document.getElementById('sha256Output'),
+            sha512: document.getElementById('sha512Output'),
+            ripemd160: document.getElementById('ripemd160Output'),
+            sha3: document.getElementById('sha3Output')
+        };
+
+        async function updateTextHashes() {
+            const text = inputText.value;
+            if (!text) {
+                Object.values(outputs).forEach(output => output.textContent = '');
+                return;
+            }
+
+            try {
+                outputs.md5.textContent = await generateHash('MD5', text);
+                outputs.sha1.textContent = await generateHash('SHA-1', text);
+                outputs.sha256.textContent = await generateHash('SHA-256', text);
+                outputs.sha512.textContent = await generateHash('SHA-512', text);
+                outputs.ripemd160.textContent = await generateHash('RIPEMD160', text);
+                outputs.sha3.textContent = await generateHash('SHA3', text);
+            } catch (error) {
+                console.error('Error generating hash:', error);
+            }
+        }
+
+        // File hashing
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+
+        async function processFile(file) {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.innerHTML = `
+                <div>${file.name}</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">MD5:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">SHA-1:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">SHA-256:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">SHA-512:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">RIPEMD-160:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+                <div class="hash-container">
+                    <div class="hash-label">SHA3-256:</div>
+                    <div class="hash-output"></div>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            `;
+            fileList.appendChild(fileItem);
+
+            const reader = new FileReader();
+            const hashOutputs = fileItem.querySelectorAll('.hash-output');
+            const progressBar = fileItem.querySelector('.progress-bar-fill');
+
+            reader.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const progress = (event.loaded / event.total) * 100;
+                    progressBar.style.width = progress + '%';
+                }
+            };
+
+            reader.onload = async (event) => {
+                const buffer = event.target.result;
+                const [md5Hash, sha1Hash, sha256Hash, sha512Hash, ripemd160Hash, sha3Hash] = await Promise.all([
+                    generateHash('MD5', buffer),
+                    generateHash('SHA-1', buffer),
+                    generateHash('SHA-256', buffer),
+                    generateHash('SHA-512', buffer),
+                    generateHash('RIPEMD160', buffer),
+                    generateHash('SHA3', buffer)
+                ]);
+
+                hashOutputs[0].textContent = md5Hash;
+                hashOutputs[1].textContent = sha1Hash;
+                hashOutputs[2].textContent = sha256Hash;
+                hashOutputs[3].textContent = sha512Hash;
+                hashOutputs[4].textContent = ripemd160Hash;
+                hashOutputs[5].textContent = sha3Hash;
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        // Event Listeners
+        inputText.addEventListener('input', updateTextHashes);
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            files.forEach(processFile);
+        });
+
+        dropZone.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            files.forEach(processFile);
+        });
+
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(tab.dataset.tab + 'Content').classList.add('active');
+            });
+        });
+
+        // Copy functionality
+        document.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('copy-btn')) {
+                const button = e.target;
+                const hashOutput = button.previousElementSibling;
+                
+                if (hashOutput.textContent) {
+                    try {
+                        await navigator.clipboard.writeText(hashOutput.textContent);
+                        
+                        // Visual feedback
+                        button.textContent = 'Copied!';
+                        button.classList.add('copied', 'animate');
+                        
+                        // Reset button after 2 seconds
+                        setTimeout(() => {
+                            button.textContent = 'Copy';
+                            button.classList.remove('copied', 'animate');
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy:', err);
+                        button.textContent = 'Error!';
+                        setTimeout(() => {
+                            button.textContent = 'Copy';
+                        }, 2000);
+                    }
+                }
+            }
+        });
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'copy-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 2000);
+        }
+    </script>
+</body>
+</html>

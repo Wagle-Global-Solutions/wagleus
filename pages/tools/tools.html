@@ -190,6 +190,7 @@
                     <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
                     <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
                     <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder/Decoder</a></li>
+                    <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
                 </ul>
             </nav>
@@ -260,7 +261,7 @@
                         </div>
                     </div>
 
-                    <!-- Add Base64 Tool Showcase -->
+                    <!-- Base64 Tool Showcase -->
                     <div class="col-md-6">
                         <div class="card h-100">
                             <div class="card-body">
@@ -280,6 +281,30 @@
                                     <li>Common use case examples</li>
                                 </ul>
                                 <a href="./base64encoder-decoder.html" class="btn btn-primary">Open Tool</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hash Generator Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Hash Generator</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Input: Hello, World!</code>
+                                        <code class="d-block mb-2">↓ SHA-256</code>
+                                        <code class="d-block" style="word-break: break-all;">dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Multiple hash algorithms (MD5, SHA-1, SHA-256, etc.)</li>
+                                    <li>File integrity verification</li>
+                                    <li>Real-time hash generation</li>
+                                    <li>Drag & drop file support</li>
+                                </ul>
+                                <a href="./hash-generator.html" class="btn btn-primary">Open Tool</a>
                             </div>
                         </div>
                     </div>
@@ -318,6 +343,15 @@
                                     <li>URL-safe encoding variant</li>
                                     <li>File to Base64 conversion</li>
                                     <li>Unicode text support</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Hash Generation</h4>
+                                <ul>
+                                    <li>Multiple hash algorithms</li>
+                                    <li>Large file support</li>
+                                    <li>Progress tracking</li>
+                                    <li>Instant text hashing</li>
                                 </ul>
                             </div>
                         </div>
@@ -401,7 +435,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="accordion-item">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
@@ -431,20 +464,20 @@
               </div>
             <div class="copyright mt-4">
                 <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+                <div class="mt-2">
+                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+                    <a href="/pages/privacy.html">Privacy Policy</a>
+                </div>
             </div>
             <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+                Designed by <a>WUS</a>
             </div>
         </div>
+        <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+            <i class="bi bi-arrow-up-short"></i>
+        </a>
+        <div id="preloader"></div>
     </footer>
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -454,7 +487,6 @@
 
     <!-- Main JS File -->
     <script src="/assets/js/main.js"></script>
-
     <script>
         window.addEventListener('load', () => {
             document.querySelector('#preloader').remove();
