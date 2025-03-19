@@ -185,11 +185,16 @@
 
         .tree-key {
             color: #881391;
-            cursor: pointer;
+            cursor: default; /* Change default cursor */
             user-select: none;
         }
 
-        .tree-key::before {
+        /* Only show collapse indicator for collapsible items */
+        .tree-key.collapsible {
+            cursor: pointer;
+        }
+
+        .tree-key.collapsible::before {
             content: '▼';
             display: inline-block;
             margin-right: 5px;
@@ -197,7 +202,7 @@
             font-size: 10px;
         }
 
-        .tree-key.collapsed::before {
+        .tree-key.collapsible.collapsed::before {
             transform: rotate(-90deg);
         }
 
@@ -437,6 +442,23 @@
         /* Add style for download button */
         .btn-download {
             margin-left: 5px;
+        }
+
+        .tree-children.collapsed {
+            display: none;
+        }
+
+        /* Add ellipsis style for collapsed items */
+        .tree-key.collapsible.collapsed + .tree-children + .tree-ellipsis {
+            display: inline;
+            color: #666;
+            font-style: italic;
+            font-size: 12px;
+            margin: 0 4px;
+        }
+
+        .tree-ellipsis {
+            display: none;
         }
 
     </style>
@@ -794,9 +816,12 @@
                     } else if (typeof value === 'object') {
                         const isArray = Array.isArray(value);
                         const keySpan = document.createElement('span');
-                        keySpan.className = 'tree-key';
+                        keySpan.className = 'tree-key collapsible';
                         keySpan.textContent = `${key}`;
-                        keySpan.onclick = () => keySpan.classList.toggle('collapsed');
+                        keySpan.onclick = () => {
+                            keySpan.classList.toggle('collapsed');
+                            childrenDiv.classList.toggle('collapsed');
+                        };
 
                         node.appendChild(keySpan);
                         node.appendChild(document.createTextNode(`: ${isArray ? '[' : '{'}`));
@@ -815,6 +840,13 @@
                         }
 
                         node.appendChild(childrenDiv);
+                        
+                        // Add ellipsis element
+                        const ellipsis = document.createElement('span');
+                        ellipsis.className = 'tree-ellipsis';
+                        ellipsis.textContent = '...';
+                        node.appendChild(ellipsis);
+                        
                         node.appendChild(document.createTextNode(isArray ? ']' : '}'));
                     } else {
                         const valueType = typeof value;
