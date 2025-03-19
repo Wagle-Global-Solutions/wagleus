@@ -13,6 +13,18 @@
         <priority>0.5</priority>
     </url>
     <url>
+        <loc>https://www.wagleus.com/pages/about-us.html</loc>
+        <lastmod>2025-03-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://www.wagleus.com/pages/contact-us.html</loc>
+        <lastmod>2025-03-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
         <loc>https://www.wagleus.com/pages/terms-of-service.html</loc>
         <lastmod>2025-03-18</lastmod>
         <changefreq>yearly</changefreq>
