@@ -188,6 +188,7 @@
                 <ul>
                     <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
                     <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
+                    <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
                     <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
                     <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder/Decoder</a></li>
                     <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
@@ -233,6 +234,30 @@
                                     <li>Secure client-side processing</li>
                                 </ul>
                                 <a href="./text-manipulation.html" class="btn btn-primary">Open Tool</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password Generator Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Password Generator</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Settings: Length=12, All Characters</code>
+                                        <code class="d-block mb-2">↓ Generate Password</code>
+                                        <code class="d-block">Output: K#9mP$vL2&nX</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Customizable password length</li>
+                                    <li>Character type selection</li>
+                                    <li>Password strength indicator</li>
+                                    <li>One-click copy function</li>
+                                </ul>
+                                <a href="./password-generator.html" class="btn btn-primary">Open Tool</a>
                             </div>
                         </div>
                     </div>
@@ -354,6 +379,15 @@
                                     <li>Instant text hashing</li>
                                 </ul>
                             </div>
+                            <div class="col-md-4">
+                                <h4>Password Generation</h4>
+                                <ul>
+                                    <li>Cryptographically secure RNG</li>
+                                    <li>Custom character set support</li>
+                                    <li>Real-time strength analysis</li>
+                                    <li>NIST guideline compliance</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -426,10 +460,49 @@
                     <div class="accordion-item">
                         <h3 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                                What is Base64 encoding used for?
+                                How secure is the password generator?
                             </button>
                         </h3>
                         <div id="faq6" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Our password generator uses JavaScript's Crypto API to ensure cryptographically secure random generation. The tool runs entirely in your browser, meaning generated passwords are never transmitted or stored anywhere.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                                What makes a password strong?
+                            </button>
+                        </h3>
+                        <div id="faq7" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                A strong password should be at least 12 characters long, include a mix of uppercase and lowercase letters, numbers, and special characters. Our generator follows NIST guidelines and provides real-time strength assessment to ensure maximum security.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                                Can I customize the generated passwords?
+                            </button>
+                        </h3>
+                        <div id="faq8" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                Yes, you can fully customize your passwords by specifying length, including/excluding uppercase letters, lowercase letters, numbers, and special characters. You can also exclude specific characters that might not be allowed in certain systems.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
+                                What is Base64 encoding used for?
+                            </button>
+                        </h3>
+                        <div id="faq9" class="accordion-collapse collapse">
                             <div class="accordion-body">
                                 Base64 encoding is commonly used to transmit binary data over text-based systems, encode email attachments, create data URIs for images, and handle API authentication tokens. It converts binary data into a safe ASCII string format.
                             </div>
@@ -437,11 +510,11 @@
                     </div>
                     <div class="accordion-item">
                         <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
                                 What's the difference between standard and URL-safe Base64?
                             </button>
                         </h3>
-                        <div id="faq7" class="accordion-collapse collapse">
+                        <div id="faq10" class="accordion-collapse collapse">
                             <div class="accordion-body">
                                 Standard Base64 uses '+' and '/' characters which can cause issues in URLs. URL-safe Base64 replaces these with '-' and '_' respectively, making it safe for use in URLs, filenames, and other contexts where special characters might be problematic.
                             </div>
