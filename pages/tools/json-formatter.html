@@ -12,9 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://wagleus.com/pages/tools/json-formatter.html" />
-    <title>JSON Formatter & Validator | Free Online Tool</title>
-    <meta name="description" content="Free online JSON formatter and validator with syntax highlighting. Convert JSON to CSV, XML, YAML. Format, minify, and validate JSON data with our powerful tool.">
-    <meta name="keywords" content="json formatter, json validator, json beautifier, json to csv, json to xml, json to yaml, tree view json, minify json">
+    <title>JSON Tools: Format, Convert (CSV/XML/YAML), Minify & Tree View | Free Online</title>
+    <meta name="description" content="Free online JSON tool with multiple features: Format JSON, Convert to CSV/XML/YAML, Tree View visualization, Minification, and JSON validation. Perfect for developers working with JSON data.">
+    <meta name="keywords" content="json formatter, json to csv converter, json to xml converter, json to yaml converter, json validator, json tree view, minify json, json parser, online json tools">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
     <meta name="google-adsense-account" content="ca-pub-2031642574589224">
@@ -23,7 +23,7 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "JSON Formatter & Validator",
+        "name": "JSON Tools - Format & Convert",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Any",
         "offers": {
@@ -31,9 +31,18 @@
             "price": "0",
             "priceCurrency": "USD"
         },
-        "description": "Free online JSON formatter and validator with syntax highlighting. Format, minify, and validate JSON data.",
+        "description": "Comprehensive JSON tool offering formatting, conversion to CSV/XML/YAML, tree view visualization, minification, and validation features.",
         "browserRequirements": "Requires JavaScript",
         "softwareVersion": "2.0",
+        "featureList": [
+            "JSON Formatting",
+            "CSV Conversion",
+            "XML Conversion",
+            "YAML Conversion",
+            "Tree View Visualization",
+            "JSON Minification",
+            "JSON Validation"
+        ],
         "creator": {
             "@type": "Organization",
             "name": "Wagle Universal Solutions",
@@ -513,6 +522,53 @@
         .code-example {
             border-left: 3px solid #6c757d;
         }
+
+        .feature-highlights {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .feature-card {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .conversion-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .conversion-buttons button {
+            flex: 1;
+            min-width: 120px;
+        }
     </style>
 </head>
 <body>
@@ -539,9 +595,44 @@
     </header>
 
     <main class="tool-container">
-        <h1 class="text-center mb-4">JSON Formatter</h1>
+        <h1 class="text-center mb-4">JSON Tools: Format, Convert & Visualize</h1>
+        
+        <!-- Add Feature Highlights Section -->
+        <div class="feature-highlights mb-4">
+            <div class="row text-center g-3">
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-code-square"></i>
+                        <h3>Format JSON</h3>
+                        <p>Beautify & validate JSON</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-arrow-left-right"></i>
+                        <h3>Convert</h3>
+                        <p>To CSV, XML, or YAML</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-diagram-2"></i>
+                        <h3>Tree View</h3>
+                        <p>Visualize JSON structure</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="feature-card">
+                        <i class="bi bi-file-earmark-code"></i>
+                        <h3>Minify</h3>
+                        <p>Compress JSON data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="tool-description">
-            <p>Paste your JSON in the left panel and click "Format" to beautify it. The formatted JSON will appear in the right panel.</p>
+            <p>Powerful JSON tool with multiple features. Format JSON, convert to different formats (CSV, XML, YAML), visualize with tree view, or minify for production.</p>
         </div>
 
         <div class="json-container">
@@ -554,6 +645,12 @@
             <div class="controls-wrapper">
                 <div class="json-controls">
                     <button class="btn btn-primary" id="formatJson">Format JSON</button>
+                    
+                        <button class="btn btn-info" onclick="convertTo('csv')">Convert to CSV</button>
+                        <button class="btn btn-info" onclick="convertTo('xml')">Convert to XML</button>
+                        <button class="btn btn-info" onclick="convertTo('yaml')">Convert to YAML</button>
+                        <button class="btn btn-warning" onclick="convertTo('minify')">Minify JSON</button>
+                   
                     <select class="indent-select" id="indentSelect">
                         <option value="2">2 Spaces</option>
                         <option value="4">4 Spaces</option>
@@ -600,202 +697,298 @@
         </div>
 
         <section class="documentation mt-5">
-            <h2 class="text-center mb-4">Complete Guide to JSON Formatting</h2>
+            <h2 class="text-center mb-4">Complete Guide to JSON Tools</h2>
             
-            <nav class="toc bg-light p-3 mb-4 rounded">
-                <h3 class="h6 mb-2">Table of Contents</h3>
-                <ul class="list-unstyled">
-                    <li><a href="#what-is-json" class="text-decoration-none">1. Understanding JSON</a></li>
-                    <li><a href="#why-format" class="text-decoration-none">2. Why Format JSON?</a></li>
-                    <li><a href="#features" class="text-decoration-none">3. Tool Features & Usage</a></li>
-                    <li><a href="#best-practices" class="text-decoration-none">4. Best Practices</a></li>
-                    <li><a href="#examples" class="text-decoration-none">5. Common Use Cases</a></li>
-                    <li><a href="#faq" class="text-decoration-none">6. FAQ</a></li>
-                </ul>
-            </nav>
-
-            <div id="what-is-json" class="section mb-5">
-                <h3>Understanding JSON</h3>
-                <p>JSON (JavaScript Object Notation) is a lightweight, text-based format for storing and transporting data. It's the most widely used data format for web APIs and configuration files due to its simplicity and universal support.</p>
-                
-                <div class="code-example bg-light p-3 rounded mt-3">
-                    <h4 class="h6 mb-2">Basic JSON Structure:</h4>
-                    <pre><code>{
-  "string": "Hello, World!",
-  "number": 42,
-  "boolean": true,
-  "null": null,
-  "array": [1, 2, 3],
-  "object": {
-    "key": "value"
-  }
-}</code></pre>
+            <!-- Quick Start Guide -->
+            <div class="quick-start card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title"><i class="bi bi-lightning-charge"></i> Quick Start</h3>
+                    <ol class="step-list">
+                        <li>Paste your JSON in the input panel</li>
+                        <li>Click "Format JSON" for basic formatting</li>
+                        <li>Use conversion buttons or dropdown for different formats</li>
+                        <li>Switch to Tree View for hierarchical visualization</li>
+                    </ol>
                 </div>
             </div>
 
-            <div id="why-format" class="section mb-5">
-                <h3>Why Format JSON?</h3>
-                <ul class="list-unstyled">
-                    <li>✓ Improved Readability: Proper indentation makes JSON easier to understand</li>
-                    <li>✓ Error Detection: Quickly spot syntax errors and missing brackets</li>
-                    <li>✓ Debugging: Easier troubleshooting of API responses and configurations</li>
-                    <li>✓ Code Maintenance: Well-formatted JSON is easier to maintain and update</li>
-                </ul>
-            </div>
-
-            <div id="features" class="section mb-5">
-                <h3>Tool Features & Usage</h3>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <h4>Multiple View Options</h4>
-                        <ul>
-                            <li>Formatted View: Clean, indented presentation</li>
-                            <li>Tree View: Hierarchical, collapsible structure</li>
-                            <li>Minified View: Compressed format for production</li>
-                        </ul>
-                    </div>
-
-                    <div class="feature-item">
-                        <h4>Format Conversion</h4>
-                        <ul>
-                            <li>JSON to CSV: Perfect for data analysis</li>
-                            <li>JSON to XML: Legacy system compatibility</li>
-                            <li>JSON to YAML: Configuration file conversion</li>
+            <!-- Feature Documentation -->
+            <div class="features-grid row g-4 mb-5">
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <h3><i class="bi bi-braces"></i> JSON Formatting</h3>
+                        <ul class="feature-list">
+                            <li>Choose between 2 spaces, 4 spaces, or tab indentation</li>
+                            <li>Real-time syntax validation</li>
+                            <li>Error highlighting with detailed messages</li>
+                            <li>Copy formatted output with one click</li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <div id="best-practices" class="section mb-5">
-                <h3>Best Practices</h3>
-                <div class="tips-container">
-                    <div class="tip">
-                        <h4>Validation</h4>
-                        <p>Always validate JSON before deployment. Our tool automatically checks for syntax errors and provides detailed error messages.</p>
-                    </div>
-                    <div class="tip">
-                        <h4>Performance</h4>
-                        <p>Use minified JSON in production environments to reduce file size and improve load times.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="examples" class="section mb-5">
-                <h3>Common Use Cases</h3>
-                <div class="example-container">
-                    <div class="example">
-                        <h4>API Response Formatting</h4>
-                        <pre class="bg-light p-3 rounded"><code>{
-  "status": "success",
-  "data": {
-    "users": [
-      {"id": 1, "name": "John"},
-      {"id": 2, "name": "Jane"}
-    ]
-  }
-}</code></pre>
-                    </div>
-                </div>
-            </div>
-
-            <div id="advanced-usage" class="section mb-5">
-                <h3>Advanced Usage</h3>
                 
-                <div class="subsection">
-                    <h4>API Integration Example</h4>
-                    <pre class="bg-light p-3 rounded"><code>fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .then(data => {
-        // Format the JSON response
-        document.getElementById('jsonInput').value = JSON.stringify(data);
-        document.getElementById('formatJson').click();
-    });</code></pre>
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <h3><i class="bi bi-arrow-left-right"></i> Format Conversion</h3>
+                        <ul class="feature-list">
+                            <li>CSV: Convert JSON arrays to spreadsheet format</li>
+                            <li>XML: Transform JSON to XML structure</li>
+                            <li>YAML: Convert to human-readable YAML format</li>
+                            <li>Minify: Compress JSON by removing whitespace</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="subsection">
-                    <h4>Common Error Solutions</h4>
-                    <div class="error-guide">
-                        <div class="error-item">
-                            <h5>Unexpected token in JSON</h5>
-                            <p>Usually caused by:</p>
-                            <ul>
-                                <li>Missing quotes around property names</li>
-                                <li>Trailing commas in arrays/objects</li>
-                                <li>Unescaped special characters in strings</li>
-                            </ul>
-                        </div>
-                        <!-- Add more common errors -->
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <h3><i class="bi bi-diagram-2"></i> Tree View</h3>
+                        <ul class="feature-list">
+                            <li>Collapsible hierarchical visualization</li>
+                            <li>Color-coded keys and values</li>
+                            <li>Search functionality within tree structure</li>
+                            <li>Navigate complex JSON structures easily</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="feature-card h-100">
+                        <h3><i class="bi bi-tools"></i> Advanced Tools</h3>
+                        <ul class="feature-list">
+                            <li>Download in any supported format</li>
+                            <li>Search and navigate through JSON content</li>
+                            <li>Keyboard shortcuts for common actions</li>
+                            <li>Auto-formatting on paste</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div id="real-world" class="section mb-5">
-                <h3>Real-World Applications</h3>
-                <div class="examples-grid">
-                    <div class="example-card">
-                        <h4>API Response Handling</h4>
-                        <pre class="bg-light p-3 rounded"><code>{
-  "status": 200,
-  "data": {
-    "users": [
-      {"id": 1, "name": "John", "role": "admin"},
-      {"id": 2, "name": "Jane", "role": "user"}
-    ],
-    "metadata": {
-      "total": 2,
-      "page": 1
+            <!-- Usage Examples -->
+            <div class="usage-examples mb-5">
+                <h3 class="mb-4"><i class="bi bi-code-slash"></i> Common Use Cases</h3>
+
+                <!-- API to CSV Section -->
+                <div class="use-case-section mb-4">
+                    <h4><i class="bi bi-table"></i> API Response to CSV Spreadsheet</h4>
+                    <p class="mb-3">Perfect for when you need to:</p>
+                    <ul class="mb-3">
+                        <li>Convert API responses into Excel-compatible formats</li>
+                        <li>Create reports from JSON data</li>
+                        <li>Analyze data in spreadsheet applications</li>
+                    </ul>
+                    <div class="example-block">
+                        <pre class="example-code"><code>// API Response
+[
+  {"userId": 1, "orders": 50, "revenue": 1500},
+  {"userId": 2, "orders": 30, "revenue": 900}
+]
+
+→ Converts to CSV for Excel:
+userId,orders,revenue
+1,50,1500
+2,30,900</code></pre>
+                    </div>
+                </div>
+
+                <!-- Legacy System Integration -->
+                <div class="use-case-section mb-4">
+                    <h4><i class="bi bi-gear"></i> Integration with Legacy Systems</h4>
+                    <p class="mb-3">Useful when working with:</p>
+                    <ul class="mb-3">
+                        <li>SOAP web services</li>
+                        <li>Enterprise systems requiring XML</li>
+                        <li>EDI (Electronic Data Interchange) processes</li>
+                    </ul>
+                    <div class="example-block">
+                        <pre class="example-code"><code>// Modern API Response
+{
+  "order": {
+    "id": "12345",
+    "items": ["item1", "item2"]
+  }
+}
+
+→ Legacy System Compatible XML:
+&lt;root&gt;
+  &lt;order&gt;
+    &lt;id&gt;12345&lt;/id&gt;
+    &lt;items&gt;
+      &lt;item&gt;item1&lt;/item&gt;
+      &lt;item&gt;item2&lt;/item&gt;
+    &lt;/items&gt;
+  &lt;/order&gt;
+&lt;/root&gt;</code></pre>
+                    </div>
+                </div>
+
+                <!-- Configuration Management -->
+                <div class="use-case-section mb-4">
+                    <h4><i class="bi bi-wrench"></i> Configuration Management</h4>
+                    <p class="mb-3">Essential for:</p>
+                    <ul class="mb-3">
+                        <li>Kubernetes configurations</li>
+                        <li>Application config files</li>
+                        <li>CI/CD pipeline configurations</li>
+                    </ul>
+                    <div class="example-block">
+                        <pre class="example-code"><code>// JSON Config
+{
+  "app": {
+    "name": "myservice",
+    "ports": [8080, 9000],
+    "env": {
+      "NODE_ENV": "production"
     }
   }
-}</code></pre>
+}
+
+→ DevOps-friendly YAML:
+app:
+  name: myservice
+  ports:
+    - 8080
+    - 9000
+  env:
+    NODE_ENV: production</code></pre>
                     </div>
-                    <!-- Add more examples -->
+                </div>
+
+                <!-- Complex Data Navigation -->
+                <div class="use-case-section">
+                    <h4><i class="bi bi-diagram-3"></i> Complex Data Navigation</h4>
+                    <p class="mb-3">Ideal for:</p>
+                    <ul class="mb-3">
+                        <li>Debugging nested API responses</li>
+                        <li>Exploring complex JSON structures</li>
+                        <li>Finding specific values in large datasets</li>
+                    </ul>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Use the Tree View toggle to visualize nested structures and search through complex JSON data easily.
+                        The search feature helps you quickly locate specific values in large JSON objects.
+                    </div>
                 </div>
             </div>
 
-            <div id="faq" class="section mb-5">
-                <h3>Frequently Asked Questions</h3>
-                <div class="accordion" id="jsonFAQ">
-                    <div class="accordion-item">
-                        <h4 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                Is my data secure?
-                            </button>
-                        </h4>
-                        <div id="faq1" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                Yes, all processing is done locally in your browser. No data is sent to our servers.
-                            </div>
-                        </div>
-                    </div>
+            <style>
+                .use-case-section {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 25px;
+                    border: 1px solid #eee;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                }
 
-                    <div class="accordion-item">
-                        <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                What's the maximum file size?
-                            </button>
-                        </h4>
-                        <div id="faq2" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                The tool can handle JSON files up to several megabytes, limited only by your browser's memory.
-                            </div>
-                        </div>
-                    </div>
+                .use-case-section h4 {
+                    color: #333;
+                    margin-bottom: 15px;
+                }
 
-                    <div class="accordion-item">
-                        <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                Can I convert JSON to other formats?
-                            </button>
-                        </h4>
-                        <div id="faq3" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Yes, you can convert JSON to CSV (requires array of objects), XML, or YAML formats.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                .use-case-section h4 i {
+                    color: #007bff;
+                    margin-right: 8px;
+                }
+
+                .example-block {
+                    background: #f8f9fa;
+                    border-radius: 6px;
+                    padding: 15px;
+                    margin-top: 15px;
+                }
+
+                .example-code {
+                    margin: 0;
+                    background: transparent;
+                }
+            </style>
         </section>
+
+        <style>
+            .documentation {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .quick-start {
+                background: #f8f9fa;
+                border-left: 4px solid #007bff;
+            }
+
+            .step-list {
+                padding-left: 20px;
+                margin-bottom: 0;
+            }
+
+            .step-list li {
+                margin-bottom: 10px;
+            }
+
+            .feature-card {
+                padding: 25px;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                border: 1px solid #eee;
+            }
+
+            .feature-card h3 {
+                font-size: 1.25rem;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .feature-card i {
+                color: #007bff;
+                margin-right: 8px;
+            }
+
+            .feature-list {
+                list-style-type: none;
+                padding-left: 0;
+                margin-bottom: 0;
+            }
+
+            .feature-list li {
+                margin-bottom: 10px;
+                padding-left: 20px;
+                position: relative;
+            }
+
+            .feature-list li:before {
+                content: "→";
+                position: absolute;
+                left: 0;
+                color: #007bff;
+            }
+
+            .example-tabs {
+                background: #fff;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .example-code {
+                background: #f8f9fa;
+                padding: 15px;
+                border-radius: 4px;
+                margin: 10px 0;
+            }
+
+            .shortcut-card {
+                background: #f8f9fa;
+                padding: 15px;
+                border-radius: 4px;
+                text-align: center;
+            }
+
+            kbd {
+                background: #e9ecef;
+                padding: 3px 6px;
+                border-radius: 3px;
+                border: 1px solid #dee2e6;
+            }
+        </style>
     </main>
 
     <!-- Add Footer -->
@@ -836,6 +1029,15 @@
     <script src="/assets/js/main.js"></script>
 
     <script>
+        // Define convertTo globally
+        function convertTo(format) {
+            const indentSelect = document.getElementById('indentSelect');
+            if (indentSelect.value !== format) {  // Only update if different
+                indentSelect.value = format;
+                document.getElementById('formatJson').click();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const jsonInput = document.getElementById('jsonInput');
             const jsonOutput = document.getElementById('jsonOutput');
@@ -982,6 +1184,7 @@
 
             // Format when indentation changes
             indentSelect.addEventListener('change', () => {
+                const currentFormat = indentSelect.value;
                 if (jsonInput.value) {
                     try {
                         const json = JSON.parse(jsonInput.value);
