@@ -483,6 +483,9 @@
                         <option value="4">4 Spaces</option>
                         <option value="tab">Tab</option>
                         <option value="minify">Minify</option>
+                        <option value="csv">CSV</option>
+                        <option value="xml">XML</option>
+                        <option value="yaml">YAML</option>
                     </select>
                     <button class="btn btn-outline-secondary" id="clearJson">Clear</button>
                 </div>
@@ -588,6 +591,74 @@
                 }
             });
 
+            // Add conversion functions
+            function jsonToCSV(json) {
+                if (typeof json !== 'object' || !Array.isArray(json)) {
+                    throw new Error('JSON must be an array of objects for CSV conversion');
+                }
+                
+                if (json.length === 0) return '';
+                
+                const headers = Object.keys(json[0]);
+                const rows = [headers.join(',')];
+                
+                json.forEach(obj => {
+                    const row = headers.map(header => {
+                        const val = obj[header];
+                        return typeof val === 'string' ? `"${val}"` : val;
+                    });
+                    rows.push(row.join(','));
+                });
+                
+                return rows.join('\n');
+            }
+
+            function jsonToXML(json) {
+                function convert(obj, name = 'root') {
+                    if (typeof obj !== 'object' || obj === null) {
+                        return `<${name}>${obj}</${name}>`;
+                    }
+                    
+                    let xml = `<${name}>`;
+                    for (const key in obj) {
+                        const value = obj[key];
+                        if (Array.isArray(value)) {
+                            value.forEach(item => {
+                                xml += convert(item, 'item');
+                            });
+                        } else {
+                            xml += convert(value, key);
+                        }
+                    }
+                    xml += `</${name}>`;
+                    return xml;
+                }
+                
+                return '<?xml version="1.0" encoding="UTF-8"?>\n' + convert(json);
+            }
+
+            function jsonToYAML(json, indent = '') {
+                if (typeof json !== 'object' || json === null) {
+                    return json;
+                }
+
+                let yaml = '';
+                for (const key in json) {
+                    const value = json[key];
+                    if (Array.isArray(value)) {
+                        yaml += `${indent}${key}:\n`;
+                        value.forEach(item => {
+                            yaml += `${indent}- ${jsonToYAML(item, indent + '  ')}\n`;
+                        });
+                    } else if (typeof value === 'object' && value !== null) {
+                        yaml += `${indent}${key}:\n${jsonToYAML(value, indent + '  ')}`;
+                    } else {
+                        yaml += `${indent}${key}: ${value}\n`;
+                    }
+                }
+                return yaml;
+            }
+
             // Function to format JSON with current indentation
             function formatJSON(json) {
                 try {
@@ -600,10 +671,18 @@
                             return JSON.stringify(json, null, '\t');
                         case 'minify':
                             return JSON.stringify(json);
+                        case 'csv':
+                            return jsonToCSV(json);
+                        case 'xml':
+                            return jsonToXML(json);
+                        case 'yaml':
+                            return jsonToYAML(json);
                         default:
                             return JSON.stringify(json, null, 2);
                     }
                 } catch (e) {
+                    errorMessage.textContent = `Conversion error: ${e.message}`;
+                    errorMessage.style.display = 'block';
                     return null;
                 }
             }
@@ -677,17 +756,28 @@
                     const formatted = formatJSON(json);
                     if (!formatted) return;
 
-                    const blob = new Blob([formatted], { type: 'application/json' });
+                    const formats = {
+                        csv: 'text/csv',
+                        xml: 'application/xml',
+                        yaml: 'text/yaml',
+                        default: 'application/json'
+                    };
+
+                    const format = indentSelect.value;
+                    const mimeType = formats[format] || formats.default;
+                    const extension = format === 'default' ? 'json' : format;
+                    
+                    const blob = new Blob([formatted], { type: mimeType });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'formatted.json';
+                    a.download = `formatted.${extension}`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 } catch (e) {
-                    errorMessage.textContent = `Invalid JSON: ${e.message}`;
+                    errorMessage.textContent = `Conversion error: ${e.message}`;
                     errorMessage.style.display = 'block';
                 }
             });
