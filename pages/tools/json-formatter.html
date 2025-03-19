@@ -128,6 +128,8 @@
             border: 1px solid #e0e0e0;
             resize: vertical;
             background: #f8f9fa;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .json-input-area:focus, .json-output-area:focus {
@@ -663,6 +665,29 @@
                         errorMessage.style.display = 'block';
                     }
                 }, 300);
+            });
+
+            // Add paste handler for input area
+            jsonInput.addEventListener('paste', (e) => {
+                // Prevent default to handle paste manually
+                e.preventDefault();
+                
+                // Get pasted text
+                const text = e.clipboardData.getData('text');
+                
+                // Store current scroll position
+                const scrollTop = jsonInput.scrollTop;
+                
+                // Insert text at cursor position
+                const start = jsonInput.selectionStart;
+                const end = jsonInput.selectionEnd;
+                const beforeText = jsonInput.value.substring(0, start);
+                const afterText = jsonInput.value.substring(end);
+                jsonInput.value = beforeText + text + afterText;
+                
+                // Restore cursor position and scroll
+                jsonInput.selectionStart = jsonInput.selectionEnd = start + text.length;
+                jsonInput.scrollTop = 0;
             });
 
             // Search functionality
