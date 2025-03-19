@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1FYJ98BTXG');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
+    <title>Free Online JSON Formatter & Validator | WUS</title>
+    <meta name="description" content="Format, validate, and beautify JSON with our free online tool. Features include pretty printing, minification, tree view, and syntax highlighting.">
+    <meta name="keywords" content="json formatter, json validator, json beautifier, json parser, json tools, pretty print json">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
+    <meta property="og:description" content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
+    <meta property="og:image" content="/assets/img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="twitter:title" content="Free Text Manipulation Tool">
+    <meta property="twitter:description" content="Transform your text instantly with our free online text tools.">
+    <meta property="twitter:image" content="/assets/img/logo.png">
+
+    <!-- Enhanced Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Text Manipulation Tool",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free online text manipulation tool for converting text case, reversing text, and removing extra spaces.",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "creator": {
+            "@type": "Organization",
+            "name": "Wagle Universal Solutions",
+            "url": "https://wagleus.com"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .json-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .json-input-area, .json-output-area {
+            width: 100%;
+            min-height: 600px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            resize: vertical;
+            background: #f8f9fa;
+        }
+
+        .json-input-area:focus, .json-output-area:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+        }
+
+        .json-controls {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .error-message {
+            color: #dc3545;
+            padding: 10px;
+            border-radius: 4px;
+            background: #ffe6e6;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-label {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .tree-view {
+            font-family: monospace;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            height: 600px;
+            overflow: auto;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        .tree-node {
+            margin-left: 20px;
+            line-height: 1.5;
+        }
+
+        .tree-key {
+            color: #881391;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tree-key::before {
+            content: '▼';
+            display: inline-block;
+            margin-right: 5px;
+            transition: transform 0.2s;
+            font-size: 10px;
+        }
+
+        .tree-key.collapsed::before {
+            transform: rotate(-90deg);
+        }
+
+        .tree-key.collapsed + .tree-children {
+            display: none;
+        }
+
+        .tree-value {
+            color: #1a1aa6;
+        }
+
+        .tree-value.number { color: #098658; }
+        .tree-value.boolean { color: #0000ff; }
+        .tree-value.null { color: #ff0000; }
+        .tree-value.string { color: #795e26; }
+
+        .view-switch {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 28px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(32px);
+        }
+
+        .view-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        #jsonOutput, #jsonTreeView {
+            display: none;
+        }
+
+        #jsonOutput.active, #jsonTreeView.active {
+            display: block;
+        }
+
+        .json-output-area {
+            width: 100%;
+            min-height: 600px;
+            max-height: 600px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            resize: vertical;
+            background: #f8f9fa;
+            overflow: auto;
+            white-space: pre;
+        }
+
+        .search-container {
+            display: none;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .search-container.visible {
+            display: flex;
+        }
+
+        .tree-node.highlight {
+            background-color: #fff3cd;
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .search-nav {
+            display: flex;
+            gap: 5px;
+        }
+
+        .search-nav button {
+            padding: 8px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-nav button:hover {
+            background: #e0e0e0;
+        }
+
+        .search-result {
+            background: #fff3cd;
+        }
+
+        .search-count {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+
+        /* Add these new styles */
+        .formatted-line {
+            white-space: pre;
+            display: block;
+            line-height: 1.5;
+        }
+
+        .search-result-formatted {
+            background-color: #fff3cd;
+        }
+
+        /* Ensure output containers have position relative for proper scrolling */
+        .json-output-area, .tree-view {
+            position: relative;
+            overflow: auto;
+        }
+
+        .tree-node .highlight {
+            background-color: #fff3cd;
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a href="/pages/tools/tools.html" class="logo d-flex align-items-center">
+                <img src="/assets/img/logo.png" alt="WUS LOGO" width="100" height="100px">
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="/pages/tools/tools.html" >All Tools</a></li>
+                    <li><a href="/pages/tools/text-manipulation.html" class="active">Text Manipulation</a></li>
+                    <li><a href="/pages/tools/number-converter.html" >Number Converter</a></li>
+                    <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder/Decoder</a></li>
+                    <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
+                    <li><a href="/index.html"><i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span></a></li>
+                </ul>
+            </nav>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </div>
+    </header>
+
+    <main class="tool-container">
+        <h1 class="text-center mb-4">JSON Formatter</h1>
+        <div class="tool-description">
+            <p>Paste your JSON in the left panel and click "Format" to beautify it. The formatted JSON will appear in the right panel.</p>
+        </div>
+
+        <div class="json-controls">
+            <button class="btn btn-primary btn-lg" id="formatJson">Format JSON</button>
+            <button class="btn btn-outline-secondary btn-lg" id="clearJson">Clear</button>
+            <button class="btn btn-success btn-lg" id="copyJson">Copy</button>
+        </div>
+
+        <div class="json-container">
+            <div class="panel">
+                <div class="panel-label">Input JSON</div>
+                <textarea id="jsonInput" class="json-input-area" placeholder="Paste your JSON here..."></textarea>
+                <div id="errorMessage" class="error-message"></div>
+            </div>
+            
+            <div class="panel">
+                <div class="panel-label">Output</div>
+                <div class="view-switch">
+                    <span class="view-label">Formatted</span>
+                    <label class="switch">
+                        <input type="checkbox" id="viewToggle">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="view-label">Tree View</span>
+                </div>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search for key or value...">
+                    <div class="search-nav">
+                        <button id="prevMatch" title="Previous match"><i class="bi bi-chevron-up"></i></button>
+                        <button id="nextMatch" title="Next match"><i class="bi bi-chevron-down"></i></button>
+                    </div>
+                    <span class="search-count" id="searchCount"></span>
+                </div>
+                <pre id="jsonOutput" class="json-output-area active"></pre>
+                <div id="jsonTreeView" class="tree-view"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container text-center">
+            <h3 class="sitename">Wagle Universal Solutions</h3>
+            <p>Contact us today to learn how we can help you achieve your goals.</p>
+            <div class="social-links d-flex justify-content-center">
+                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            <div class="copyright mt-4">
+                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+                <div class="mt-2">
+                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+            <div class="credits">
+                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jsonInput = document.getElementById('jsonInput');
+            const jsonOutput = document.getElementById('jsonOutput');
+            const treeView = document.getElementById('jsonTreeView');
+            const errorMessage = document.getElementById('errorMessage');
+            const viewToggle = document.getElementById('viewToggle');
+            const searchInput = document.getElementById('searchInput');
+            const prevMatch = document.getElementById('prevMatch');
+            const nextMatch = document.getElementById('nextMatch');
+            const searchCount = document.getElementById('searchCount');
+            let currentMatchIndex = -1;
+            let matches = [];
+
+            const searchContainer = document.querySelector('.search-container');
+
+            // View toggle handler
+            viewToggle.addEventListener('change', function() {
+                jsonOutput.classList.toggle('active');
+                treeView.classList.toggle('active');
+                searchContainer.classList.toggle('visible', this.checked);
+                if (!this.checked) {
+                    // Clear search when switching to formatted view
+                    searchInput.value = '';
+                    clearHighlights();
+                    searchCount.textContent = '';
+                }
+            });
+
+            // Format JSON
+            document.getElementById('formatJson').addEventListener('click', () => {
+                try {
+                    const json = JSON.parse(jsonInput.value);
+                    const formatted = JSON.stringify(json, null, 2);
+                    jsonOutput.textContent = formatted;
+                    renderTreeView(json);
+                    errorMessage.style.display = 'none';
+                    if (searchInput.value) {
+                        performSearch(); // Reapply search after formatting
+                    }
+                } catch (e) {
+                    errorMessage.textContent = `Invalid JSON: ${e.message}`;
+                    errorMessage.style.display = 'block';
+                }
+            });
+
+            // Clear inputs
+            document.getElementById('clearJson').addEventListener('click', () => {
+                jsonInput.value = '';
+                jsonOutput.textContent = '';
+                treeView.innerHTML = '';
+                errorMessage.style.display = 'none';
+            });
+
+            // Copy to clipboard
+            document.getElementById('copyJson').addEventListener('click', function() {
+                const copyBtn = this;
+                const jsonStr = JSON.stringify(JSON.parse(jsonInput.value), null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copy';
+                    }, 2000);
+                });
+            });
+
+            function renderTreeView(json) {
+                treeView.innerHTML = '';
+                
+                function createTreeNode(key, value) {
+                    const node = document.createElement('div');
+                    node.className = 'tree-node';
+                    
+                    if (value === null) {
+                        node.innerHTML = `<span class="tree-key">${key}</span>: <span class="tree-value null">null</span>`;
+                    } else if (typeof value === 'object') {
+                        const isArray = Array.isArray(value);
+                        const keySpan = document.createElement('span');
+                        keySpan.className = 'tree-key';
+                        keySpan.textContent = `${key}`;
+                        keySpan.onclick = () => keySpan.classList.toggle('collapsed');
+
+                        node.appendChild(keySpan);
+                        node.appendChild(document.createTextNode(`: ${isArray ? '[' : '{'}`));
+
+                        const childrenDiv = document.createElement('div');
+                        childrenDiv.className = 'tree-children';
+                        
+                        if (isArray) {
+                            value.forEach((item, index) => {
+                                childrenDiv.appendChild(createTreeNode(index, item));
+                            });
+                        } else {
+                            Object.entries(value).forEach(([k, v]) => {
+                                childrenDiv.appendChild(createTreeNode(k, v));
+                            });
+                        }
+
+                        node.appendChild(childrenDiv);
+                        node.appendChild(document.createTextNode(isArray ? ']' : '}'));
+                    } else {
+                        const valueType = typeof value;
+                        const displayValue = valueType === 'string' ? `"${value}"` : value;
+                        node.innerHTML = `<span class="tree-key">${key}</span>: <span class="tree-value ${valueType}">${displayValue}</span>`;
+                    }
+
+                    return node;
+                }
+
+                if (typeof json === 'object' && json !== null) {
+                    const rootNode = document.createElement('div');
+                    rootNode.className = 'tree-root';
+                    
+                    if (Array.isArray(json)) {
+                        json.forEach((item, index) => {
+                            rootNode.appendChild(createTreeNode(index, item));
+                        });
+                    } else {
+                        Object.entries(json).forEach(([key, value]) => {
+                            rootNode.appendChild(createTreeNode(key, value));
+                        });
+                    }
+                    
+                    treeView.appendChild(rootNode);
+                }
+            }
+
+            // Real-time validation
+            let validateTimeout;
+            jsonInput.addEventListener('input', () => {
+                clearTimeout(validateTimeout);
+                validateTimeout = setTimeout(() => {
+                    try {
+                        if (jsonInput.value) {
+                            JSON.parse(jsonInput.value);
+                            errorMessage.style.display = 'none';
+                        }
+                    } catch (e) {
+                        errorMessage.textContent = `Invalid JSON: ${e.message}`;
+                        errorMessage.style.display = 'block';
+                    }
+                }, 300);
+            });
+
+            // Search functionality
+            searchInput.addEventListener('input', debounce(performSearch, 300));
+            prevMatch.addEventListener('click', () => navigateMatches(-1));
+            nextMatch.addEventListener('click', () => navigateMatches(1));
+
+            function performSearch() {
+                if (!viewToggle.checked) return;
+
+                const searchTerm = searchInput.value.toLowerCase();
+                matches = [];
+                currentMatchIndex = -1;
+                
+                clearHighlights();
+                
+                if (!searchTerm) {
+                    searchCount.textContent = '';
+                    return;
+                }
+
+                // Find spans containing exact matches
+                const elements = treeView.querySelectorAll('.tree-key, .tree-value');
+                for (const element of elements) {
+                    if (element.textContent.toLowerCase().includes(searchTerm)) {
+                        matches.push(element);
+                    }
+                }
+
+                searchCount.textContent = `${matches.length} matches`;
+                if (matches.length > 0) {
+                    navigateMatches(1);
+                }
+            }
+
+            function navigateMatches(direction) {
+                if (matches.length === 0) return;
+
+                clearHighlights();
+                
+                currentMatchIndex += direction;
+                if (currentMatchIndex >= matches.length) currentMatchIndex = 0;
+                if (currentMatchIndex < 0) currentMatchIndex = matches.length - 1;
+
+                const match = matches[currentMatchIndex];
+                match.classList.add('highlight');
+
+                // Ensure parent nodes are expanded
+                let parent = match.closest('.tree-node');
+                while (parent) {
+                    const parentKey = parent.querySelector('.tree-key');
+                    if (parentKey) {
+                        parentKey.classList.remove('collapsed');
+                    }
+                    parent = parent.parentElement.closest('.tree-node');
+                }
+
+                // Updated scrolling logic
+                const container = treeView;
+                const containerRect = container.getBoundingClientRect();
+                const matchRect = match.getBoundingClientRect();
+                
+                const relativeTop = matchRect.top - containerRect.top;
+                container.scrollTop = container.scrollTop + relativeTop - (containerRect.height / 2);
+                
+                searchCount.textContent = `${currentMatchIndex + 1} of ${matches.length} matches`;
+            }
+
+            function clearHighlights() {
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.classList.remove('highlight');
+                });
+            }
+
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        });
+    </script>
+</body>
+</html>
