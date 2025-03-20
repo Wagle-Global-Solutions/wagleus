@@ -1,0 +1,51 @@
+# Global rules
+User-agent: *
+Allow: /
+Allow: /sitemap.xml
+
+# Protect admin and sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /my-account/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /search/
+Disallow: /*?*
+
+# Specific rules for Google
+User-agent: Googlebot
+Crawl-delay: 5
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.gif
+
+# Rules for Google Image
+User-agent: Googlebot-Image
+Allow: /*.jpg
+Allow: /*.gif
+Allow: /*.png
+Allow: /*.webp
+
+# Rules for Bing
+User-agent: Bingbot
+Crawl-delay: 10
+
+# Additional protection
+Disallow: /tmp/
+Disallow: /logs/
+Disallow: /backup/
+Disallow: /.env
+Disallow: /error_log
+Disallow: /cgi-bin/
+Disallow: /*.sql
+Disallow: /*.zip
+
+# Crawl delays to prevent server overload
+Crawl-delay: 10
+
+# Add sitemap location
+Sitemap: https://www.wagleus.com/sitemap.xml

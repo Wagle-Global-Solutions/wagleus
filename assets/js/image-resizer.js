@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="preview-info">
                 <div class="file-name">${file.name}</div>
                 <div class="file-details">
-                    <span>Size: ${formatFileSize(file.size)}</span>
+                    <span>Original Size: ${formatFileSize(file.size)}</span>
                 </div>
             </div>
         `;
@@ -229,19 +229,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const sizeComparison = processedSize < originalSize ? 
             ` (${((1 - processedSize/originalSize) * 100).toFixed(1)}% smaller)` : '';
         
-        // Update file information with just sizes
+        // Update file information with only size information
         info.innerHTML = `
             <div class="file-name">${newFileName}</div>
             <div class="file-details">
-                <span>Original: ${formatFileSize(originalSize)}</span>
-                <span>Processed: ${formatFileSize(processedSize)}${sizeComparison}</span>
+                <span>Original Size: ${formatFileSize(originalSize)}</span>
+                <span>Processed Size: ${formatFileSize(processedSize)}${sizeComparison}</span>
             </div>
         `;
 
-        // Update preview image
+        // Update preview image with fade effect
         img.style.opacity = '0';
         img.src = processedSrc;
-        img.style.opacity = '1';
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 200);
     }
 
     processButton.addEventListener('click', async () => {
@@ -426,17 +428,12 @@ document.addEventListener('DOMContentLoaded', function() {
                                 // Handle resize mode normally
                                 switch(resizeMode.value) {
                                     case 'maxSize':
-                                        const maxSize = parseInt(document.getElementById('maxSize').value) || 1920;
-                                        const ratio = img.width / img.height;
-                                        
-                                        if (Math.max(img.width, img.height) > maxSize) {
-                                            if (img.width > img.height) {
-                                                newWidth = maxSize;
-                                                newHeight = maxSize / ratio;
-                                            } else {
-                                                newHeight = maxSize;
-                                                newWidth = maxSize * ratio;
-                                            }
+                                        const requestedWidth = parseInt(document.getElementById('maxSize').value);
+                                        // Only resize if a valid width is provided and it's smaller than original
+                                        if (requestedWidth && requestedWidth < img.width) {
+                                            const ratio = img.width / img.height;
+                                            newWidth = requestedWidth;
+                                            newHeight = Math.round(requestedWidth / ratio);
                                         }
                                         break;
                                     case 'percentage':

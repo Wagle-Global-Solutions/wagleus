@@ -173,6 +173,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
+                            <li><a class="dropdown-item" href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer & Compressor</a></li>
                             <li><a class="dropdown-item" href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
                             <li><a class="dropdown-item" href="/pages/tools/password-generator.html">Password Generator</a></li>
                             <li><a class="dropdown-item" href="/pages/tools/number-converter.html">Number Converter</a></li>
@@ -377,6 +378,30 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Add Image Resizer Tool Showcase -->
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="tool-demo p-3 bg-light rounded mb-3">
+                                    <h3>Bulk Image Resizer</h3>
+                                    <div class="demo-box">
+                                        <code class="d-block mb-2">Input: Multiple Images</code>
+                                        <code class="d-block mb-2">↓ Resize & Compress</code>
+                                        <code class="d-block">Output: Resized and Compressed Images</code>
+                                    </div>
+                                </div>
+                                <h4>Key Features</h4>
+                                <ul class="mb-4">
+                                    <li>Resize and compress multiple images at once</li>
+                                    <li>Support for JPEG, PNG, and WebP formats</li>
+                                    <li>Quality control for compression</li>
+                                    <li>Batch processing with preview</li>
+                                </ul>
+                                <a href="./bulk-image-resizer.html" class="btn btn-primary">Open Tool</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -450,6 +475,26 @@
                                     <li>Syntax error detection</li>
                                     <li>Pretty print formatting</li>
                                     <li>Cross-format conversion</li>
+                                </ul>
+                            </div>
+                            <!-- Add Image Resizer Details -->
+                            <div class="col-md-4">
+                                <h4>Bulk Image Resizer</h4>
+                                <ul>
+                                    <li><strong>Processing:</strong> Client-side JavaScript using HTML5 Canvas API</li>
+                                    <li><strong>Supported Formats:</strong> JPEG, PNG, WebP (input/output)</li>
+                                    <li><strong>Max File Size:</strong> 50MB per image</li>
+                                    <li><strong>Features:</strong>
+                                        <ul>
+                                            <li>Batch processing with preview</li>
+                                            <li>Proportional resizing with aspect ratio maintenance</li>
+                                            <li>Format conversion with quality control</li>
+                                            <li>Smart compression for different formats</li>
+                                            <li>ZIP download for processed images</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Browser Requirements:</strong> Modern browsers with File API and Canvas support</li>
+                                    <li><strong>Privacy:</strong> All processing happens locally, no server uploads</li>
                                 </ul>
                             </div>
                         </div>
@@ -630,6 +675,44 @@
                         <div id="faq14" class="accordion-collapse collapse">
                             <div class="accordion-body">
                                 Yes! You can share any color or combination using the share button. This generates a unique URL that preserves your exact color settings. You can also easily copy individual color codes in any format with a single click.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Image Resizer FAQs -->
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-images-1">
+                                How does the bulk image resizer handle different image formats?
+                            </button>
+                        </h3>
+                        <div id="faq-images-1" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                The tool supports JPEG, PNG, and WebP formats. Each format is handled differently:
+                                <ul>
+                                    <li>JPEG: Uses quality-based compression</li>
+                                    <li>PNG: Uses lossless compression with resolution adjustment</li>
+                                    <li>WebP: Combines features of both with modern compression</li>
+                                </ul>
+                                You can convert between formats while maintaining appropriate quality settings for each type.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-images-2">
+                                What are the limitations of the image processing tool?
+                            </button>
+                        </h3>
+                        <div id="faq-images-2" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                The main limitations are:
+                                <ul>
+                                    <li>Maximum file size: 50MB per image</li>
+                                    <li>Processing speed depends on device capability</li>
+                                    <li>Browser memory limits total batch size</li>
+                                    <li>WebP support depends on browser version</li>
+                                </ul>
+                                All processing happens in your browser for privacy and speed.
                             </div>
                         </div>
                     </div>
