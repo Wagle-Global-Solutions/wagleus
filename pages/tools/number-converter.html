@@ -130,6 +130,36 @@
             word-break: break-all;
             padding-right: 5rem;
         }
+
+        /* Add these new responsive styles */
+        @media (max-width: 768px) {
+            .converter-wrapper {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .arrow-icon {
+                transform: rotate(90deg);
+                margin: 1rem auto;
+            }
+
+            .number-input, 
+            .conversion-type,
+            .result {
+                min-width: 100%;
+                width: 100%;
+            }
+
+            .tool-container {
+                padding: 15px;
+                margin: 80px 15px;
+            }
+
+            #convertedNumber {
+                padding-right: 1rem;
+                word-break: break-all;
+            }
+        }
     </style>
 </head>
 <body>
