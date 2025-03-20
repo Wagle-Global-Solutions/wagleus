@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         customDimensionsGroup.style.display = resizeMode.value === 'custom' ? 'block' : 'none';
     });
 
+    const processingMode = document.getElementById('processingMode');
+    const resizeSettings = document.getElementById('resizeSettings');
+    const compressionSettings = document.getElementById('compressionSettings');
+
+    processingMode.addEventListener('change', () => {
+        resizeSettings.style.display = processingMode.value !== 'compress' ? 'block' : 'none';
+        compressionSettings.style.display = processingMode.value !== 'resize' ? 'block' : 'none';
+    });
+
     let files = [];
     let processedImageData = new Map(); // Store processed images in a Map
 
@@ -78,14 +87,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function calculateAspectRatio(width, height) {
+        const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+        const divisor = gcd(width, height);
+        return `${width/divisor}:${height/divisor}`;
+    }
+
     function createPreviewElement(src, file, index) {
         const div = document.createElement('div');
         div.className = 'preview-item';
         div.innerHTML = `
-            <img src="${src}" alt="Preview">
-            <div class="preview-info">${file.name}<br>${formatFileSize(file.size)}</div>
+            <div class="preview-image-container">
+                <img src="${src}" alt="Preview" data-original="${src}">
+            </div>
+            <div class="preview-info">
+                <div class="file-name">${file.name}</div>
+                <div class="file-details">
+                    <span>Original: ${formatFileSize(file.size)}</span>
+                    <span class="dimensions">Loading dimensions...</span>
+                    <span class="ratio">Loading ratio...</span>
+                </div>
+            </div>
             <button class="remove-file" data-index="${index}">&times;</button>
         `;
+
+        // Load and display original dimensions and ratio
+        const img = new Image();
+        img.onload = () => {
+            const ratio = calculateAspectRatio(img.width, img.height);
+            div.querySelector('.dimensions').textContent = `${img.width} × ${img.height}px`;
+            div.querySelector('.ratio').textContent = `Aspect Ratio: ${ratio}`;
+        };
+        img.src = src;
 
         div.querySelector('.remove-file').addEventListener('click', () => {
             files.splice(index, 1);
@@ -94,6 +127,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         return div;
+    }
+
+    async function updatePreviewWithProcessed(previewItem, processedSrc, originalSize, processedSize, newDimensions, newFileName) {
+        const img = previewItem.querySelector('img');
+        const info = previewItem.querySelector('.preview-info');
+        
+        // Calculate original and new ratios
+        const originalImg = new Image();
+        originalImg.onload = () => {
+            const originalRatio = calculateAspectRatio(originalImg.width, originalImg.height);
+            const newRatio = calculateAspectRatio(newDimensions.width, newDimensions.height);
+            
+            // Update file information
+            info.innerHTML = `
+                <div class="file-name">${newFileName}</div>
+                <div class="file-details">
+                    <span>Original: ${formatFileSize(originalSize)} (${originalImg.width} × ${originalImg.height}px)</span>
+                    <span>Original Ratio: ${originalRatio}</span>
+                    <span>Processed: ${formatFileSize(processedSize)} (${newDimensions.width} × ${newDimensions.height}px)</span>
+                    <span>New Ratio: ${newRatio}</span>
+                </div>
+            `;
+        };
+        originalImg.src = img.dataset.original;
+
+        // Update image
+        img.style.opacity = '0';
+        setTimeout(() => {
+            img.src = processedSrc;
+            img.style.opacity = '1';
+        }, 200);
     }
 
     processButton.addEventListener('click', async () => {
@@ -117,21 +181,29 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Store processed image data
                     processedImageData.set(index, {
-                        data: processed,
+                        data: processed.dataUrl,
                         name: file.name.split('.')[0],
-                        size: Math.round((processed.length * 3) / 4)
+                        size: Math.round((processed.dataUrl.length * 3) / 4)
                     });
 
-                    // Update preview
+                    // Update preview with correct extension
                     const previewItem = previewContainer.children[index];
-                    const previewImage = previewItem.querySelector('img');
-                    const previewInfo = previewItem.querySelector('.preview-info');
-                    
-                    const extension = format === 'jpeg' ? 'jpg' : format;
+                    let extension;
+                    if (format === 'same') {
+                        extension = file.name.split('.').pop();
+                    } else {
+                        extension = format === 'jpeg' ? 'jpg' : format;
+                    }
                     const newFileName = `${file.name.split('.')[0]}.${extension}`;
                     
-                    previewImage.src = processed;
-                    previewInfo.innerHTML = `${newFileName}<br>Original: ${formatFileSize(file.size)}<br>Processed: ${formatFileSize(processedImageData.get(index).size)}`;
+                    await updatePreviewWithProcessed(
+                        previewItem,
+                        processed.dataUrl,
+                        file.size,
+                        processedImageData.get(index).size,
+                        processed.dimensions,
+                        newFileName
+                    );
                 });
 
                 await Promise.all(batchPromises);
@@ -168,8 +240,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     const processed = await processImage(files[i]);
                     
-                    // Create unique filename
-                    const extension = format === 'jpeg' ? 'jpg' : format;
+                    // Modified extension handling
+                    let extension;
+                    if (format === 'same') {
+                        // Keep the original file extension
+                        extension = files[i].name.split('.').pop();
+                    } else {
+                        extension = format === 'jpeg' ? 'jpg' : format;
+                    }
+
                     let baseName = files[i].name.split('.')[0];
                     let fileName = `${baseName}.${extension}`;
                     let counter = 1;
@@ -182,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     usedNames.add(fileName);
 
                     // Add to zip with unique name
-                    const base64Data = processed.split(',')[1];
+                    const base64Data = processed.dataUrl.split(',')[1];
                     zip.file(fileName, base64Data, { base64: true });
 
                     // Update progress
@@ -237,51 +316,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.onload = () => {
                     try {
                         const canvas = document.createElement('canvas');
-                        let newWidth, newHeight;
+                        let newWidth = img.width;
+                        let newHeight = img.height;
 
-                        switch(resizeMode.value) {
-                            case 'maxSize':
-                                const maxSize = parseInt(document.getElementById('maxSize').value) || 1920;
-                                const ratio = img.width / img.height;
-                                
-                                if (Math.max(img.width, img.height) > maxSize) {
-                                    if (img.width > img.height) {
-                                        newWidth = maxSize;
-                                        newHeight = maxSize / ratio;
-                                    } else {
-                                        newHeight = maxSize;
-                                        newWidth = maxSize * ratio;
+                        // Only apply resize if in resize or both mode
+                        if (processingMode.value !== 'compress') {
+                            switch(resizeMode.value) {
+                                case 'maxSize':
+                                    const maxSize = parseInt(document.getElementById('maxSize').value) || 1920;
+                                    const ratio = img.width / img.height;
+                                    
+                                    if (Math.max(img.width, img.height) > maxSize) {
+                                        if (img.width > img.height) {
+                                            newWidth = maxSize;
+                                            newHeight = maxSize / ratio;
+                                        } else {
+                                            newHeight = maxSize;
+                                            newWidth = maxSize * ratio;
+                                        }
                                     }
-                                } else {
-                                    newWidth = img.width;
-                                    newHeight = img.height;
-                                }
-                                break;
-
-                            case 'percentage':
-                                const scale = parseInt(document.getElementById('scalePercentage').value) || 50;
-                                newWidth = (img.width * scale) / 100;
-                                newHeight = (img.height * scale) / 100;
-                                break;
-
-                            case 'custom':
-                                newWidth = parseInt(document.getElementById('width').value) || img.width;
-                                newHeight = parseInt(document.getElementById('height').value) || img.height;
-                                break;
+                                    break;
+                                case 'percentage':
+                                    const scale = parseInt(document.getElementById('scalePercentage').value) || 50;
+                                    newWidth = (img.width * scale) / 100;
+                                    newHeight = (img.height * scale) / 100;
+                                    break;
+                                case 'custom':
+                                    newWidth = parseInt(document.getElementById('width').value) || img.width;
+                                    newHeight = parseInt(document.getElementById('height').value) || img.height;
+                                    break;
+                            }
                         }
 
                         canvas.width = Math.round(newWidth);
                         canvas.height = Math.round(newHeight);
                         
-                        // Use better quality settings for the canvas
                         const ctx = canvas.getContext('2d', { alpha: false });
                         ctx.imageSmoothingEnabled = true;
                         ctx.imageSmoothingQuality = 'high';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
+                        // Handle format and quality
                         const format = document.getElementById('outputFormat').value;
-                        const quality = parseInt(document.getElementById('quality').value) / 100;
-                        resolve(canvas.toDataURL(`image/${format}`, quality));
+                        const mimeType = format === 'same' ? 
+                            file.type : // Keep original MIME type
+                            `image/${format === 'jpeg' ? 'jpeg' : format}`; // Handle other formats
+                        const quality = processingMode.value === 'resize' ? 1 : 
+                                      parseInt(document.getElementById('quality').value) / 100;
+                        
+                        resolve({
+                            dataUrl: canvas.toDataURL(mimeType, quality),
+                            dimensions: {
+                                width: Math.round(newWidth),
+                                height: Math.round(newHeight)
+                            }
+                        });
                     } catch (error) {
                         reject(error);
                     }
