@@ -536,7 +536,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Text Color:</label>
+                                                <label>Text Color: <span id="textColorHex">#000000</span></label>
                                                 <input type="color" class="form-control" id="textColorPicker">
                                             </div>
                                             <div class="col-md-6">
@@ -1160,23 +1160,70 @@
         }
 
         function updateContrastChecker() {
-            const textColor = document.getElementById('textColorPicker').value;
             const bgColor = document.getElementById('colorPreview').style.backgroundColor;
             const preview = document.getElementById('contrastPreview');
-
-            if (!textColor || !bgColor) return; // Guard against undefined colors
-
-            const ratio = calculateContrastRatio(textColor, bgColor);
-
+            
+            // Convert background color to RGB
+            const bgRGB = bgColor.match(/\d+/g).map(Number);
+            
+            // Calculate perceived brightness of background
+            const brightness = (bgRGB[0] * 299 + bgRGB[1] * 587 + bgRGB[2] * 114) / 1000;
+            
+            // Start with black or white based on background brightness
+            let textColor = brightness > 128 ? '#000000' : '#FFFFFF';
+            
+            // Calculate initial contrast ratio
+            let ratio = calculateContrastRatio(textColor, bgColor);
+            
+            // If the contrast ratio doesn't meet WCAG AA standard (4.5:1),
+            // adjust the text color to ensure compliance
+            if (ratio < 4.5) {
+                // Try the opposite color
+                textColor = textColor === '#000000' ? '#FFFFFF' : '#000000';
+                ratio = calculateContrastRatio(textColor, bgColor);
+                
+                // If still not compliant, use enhanced versions
+                if (ratio < 4.5) {
+                    // Try dark gray or light gray depending on background
+                    textColor = brightness > 128 ? '#000000' : '#FFFFFF';
+                }
+            }
+            
+            // Update color picker and hex display
+            document.getElementById('textColorPicker').value = textColor;
+            document.getElementById('textColorHex').textContent = textColor;
+            
+            // Apply colors
             preview.style.backgroundColor = bgColor;
             preview.style.color = textColor;
+            
+            // Update ratio display
+            document.getElementById('contrastRatio').innerHTML = `
+                <strong>Contrast Ratio: ${ratio.toFixed(2)}:1</strong><br>
+                <span class="text-success">Meets WCAG AA standards</span>
+            `;
+        }
+
+        document.getElementById('textColorPicker').addEventListener('input', function(e) {
+            const textColor = e.target.value;
+            const preview = document.getElementById('contrastPreview');
+            const bgColor = preview.style.backgroundColor;
+            
+            // Update hex display
+            document.getElementById('textColorHex').textContent = textColor;
+            
+            // Update preview
+            preview.style.color = textColor;
+            
+            // Update contrast ratio
+            const ratio = calculateContrastRatio(textColor, bgColor);
             document.getElementById('contrastRatio').innerHTML = `
                 <strong>Contrast Ratio: ${ratio.toFixed(2)}:1</strong><br>
                 <span class="${ratio >= 4.5 ? 'text-success' : 'text-danger'}">
                     ${ratio >= 4.5 ? 'Meets' : 'Does not meet'} WCAG AA standards
                 </span>
             `;
-        }
+        });
 
         function calculateContrastRatio(color1, color2) {
             // Parse colors to RGB
@@ -1216,8 +1263,6 @@
             const darker = Math.min(l1, l2);
             return (lighter + 0.05) / (darker + 0.05);
         }
-
-        document.getElementById('textColorPicker').addEventListener('input', updateContrastChecker);
 
         // Add these functions after your existing JavaScript code
         function openShareModal() {
