@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Add browser compatibility check
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        alert('Your browser does not support all the features required for this tool. Please use a modern browser.');
+        return;
+    }
+
+    // Add error handling utility
+    const handleError = (error, message) => {
+        console.error(error);
+        const errorAlert = document.getElementById('errorAlert');
+        const errorMessage = document.getElementById('errorMessage');
+        errorMessage.textContent = message || 'An unexpected error occurred. Please try again.';
+        errorAlert.style.display = 'block';
+        setTimeout(() => {
+            errorAlert.style.display = 'none';
+        }, 5000);
+    };
+
+    // Add memory management
+    const cleanup = () => {
+        files = [];
+        processedImageData.clear();
+        URL.revokeObjectURL(downloadUrl);
+        // Force garbage collection hint
+        if (window.gc) window.gc();
+    };
+
     const dropZone = document.getElementById('dropZone');
     const fileInput = document.getElementById('fileInput');
     const previewContainer = document.getElementById('previewContainer');
@@ -132,8 +159,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Add file size check
     function handleFiles(newFiles) {
-        const imageFiles = Array.from(newFiles).filter(file => file.type.startsWith('image/'));
+        const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+        const imageFiles = Array.from(newFiles).filter(file => {
+            if (!file.type.startsWith('image/')) {
+                handleError(null, `${file.name} is not an image file.`);
+                return false;
+            }
+            if (file.size > MAX_FILE_SIZE) {
+                handleError(null, `${file.name} is too large (max 50MB).`);
+                return false;
+            }
+            return true;
+        });
         files.push(...imageFiles);
         updatePreviews();
         processButton.disabled = files.length === 0;
@@ -168,21 +207,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="preview-info">
                 <div class="file-name">${file.name}</div>
                 <div class="file-details">
-                    <span>Original: ${formatFileSize(file.size)}</span>
-                    <span class="dimensions">Loading dimensions...</span>
-                    <span class="ratio">Loading ratio...</span>
+                    <span>Size: ${formatFileSize(file.size)}</span>
                 </div>
             </div>
         `;
-
-        // Load and display original dimensions and ratio
-        const img = new Image();
-        img.onload = () => {
-            const ratio = calculateAspectRatio(img.width, img.height);
-            div.querySelector('.dimensions').textContent = `${img.width} × ${img.height}px`;
-            div.querySelector('.ratio').textContent = `Aspect Ratio: ${ratio}`;
-        };
-        img.src = src;
 
         div.querySelector('.remove-file').addEventListener('click', () => {
             files.splice(index, 1);
@@ -197,92 +225,91 @@ document.addEventListener('DOMContentLoaded', function() {
         const img = previewItem.querySelector('img');
         const info = previewItem.querySelector('.preview-info');
         
-        // Calculate original and new ratios
-        const originalImg = new Image();
-        originalImg.onload = () => {
-            const originalRatio = calculateAspectRatio(originalImg.width, originalImg.height);
-            const newRatio = calculateAspectRatio(newDimensions.width, newDimensions.height);
-            
-            // Update file information
-            info.innerHTML = `
-                <div class="file-name">${newFileName}</div>
-                <div class="file-details">
-                    <span>Original: ${formatFileSize(originalSize)} (${originalImg.width} × ${originalImg.height}px)</span>
-                    <span>Original Ratio: ${originalRatio}</span>
-                    <span>Processed: ${formatFileSize(processedSize)} (${newDimensions.width} × ${newDimensions.height}px)</span>
-                    <span>New Ratio: ${newRatio}</span>
-                </div>
-            `;
-        };
-        originalImg.src = img.dataset.original;
+        // Calculate size reduction percentage if file got smaller
+        const sizeComparison = processedSize < originalSize ? 
+            ` (${((1 - processedSize/originalSize) * 100).toFixed(1)}% smaller)` : '';
+        
+        // Update file information with just sizes
+        info.innerHTML = `
+            <div class="file-name">${newFileName}</div>
+            <div class="file-details">
+                <span>Original: ${formatFileSize(originalSize)}</span>
+                <span>Processed: ${formatFileSize(processedSize)}${sizeComparison}</span>
+            </div>
+        `;
 
-        // Update image
+        // Update preview image
         img.style.opacity = '0';
-        setTimeout(() => {
-            img.src = processedSrc;
-            img.style.opacity = '1';
-        }, 200);
+        img.src = processedSrc;
+        img.style.opacity = '1';
     }
 
     processButton.addEventListener('click', async () => {
-        const format = document.getElementById('outputFormat').value;
-        const quality = parseInt(qualitySlider.value) / 100;
-
-        progressBar.style.display = 'block';
-        progressFill.style.width = '0%';
-        processButton.disabled = true;
-        downloadButton.style.display = 'none';
-        processedImageData.clear(); // Clear previous processed images
-        
         try {
-            // Process images in smaller batches
-            const batchSize = 3;
-            for (let i = 0; i < files.length; i += batchSize) {
-                const batch = files.slice(i, Math.min(i + batchSize, files.length));
-                const batchPromises = batch.map(async (file, batchIndex) => {
-                    const processed = await processImage(file);
-                    const index = i + batchIndex;
-                    
-                    // Store processed image data
-                    processedImageData.set(index, {
-                        data: processed.dataUrl,
-                        name: file.name.split('.')[0],
-                        size: processed.size // Use the actual blob size
+            document.body.classList.add('processing');
+            const format = document.getElementById('outputFormat').value;
+            const quality = parseInt(qualitySlider.value) / 100;
+
+            progressBar.style.display = 'block';
+            progressFill.style.width = '0%';
+            processButton.disabled = true;
+            downloadButton.style.display = 'none';
+            processedImageData.clear(); // Clear previous processed images
+            
+            try {
+                // Process images in smaller batches
+                const batchSize = 3;
+                for (let i = 0; i < files.length; i += batchSize) {
+                    const batch = files.slice(i, Math.min(i + batchSize, files.length));
+                    const batchPromises = batch.map(async (file, batchIndex) => {
+                        const processed = await processImage(file);
+                        const index = i + batchIndex;
+                        
+                        // Store processed image data
+                        processedImageData.set(index, {
+                            data: processed.dataUrl,
+                            name: file.name.split('.')[0],
+                            size: processed.size // Use the actual blob size
+                        });
+
+                        // Update preview with correct extension
+                        const previewItem = previewContainer.children[index];
+                        let extension;
+                        if (format === 'same') {
+                            extension = file.name.split('.').pop();
+                        } else {
+                            extension = format === 'jpeg' ? 'jpg' : format;
+                        }
+                        const newFileName = `${file.name.split('.')[0]}.${extension}`;
+                        
+                        await updatePreviewWithProcessed(
+                            previewItem,
+                            processed.dataUrl,
+                            file.size,
+                            processedImageData.get(index).size,
+                            processed.dimensions,
+                            newFileName
+                        );
                     });
 
-                    // Update preview with correct extension
-                    const previewItem = previewContainer.children[index];
-                    let extension;
-                    if (format === 'same') {
-                        extension = file.name.split('.').pop();
-                    } else {
-                        extension = format === 'jpeg' ? 'jpg' : format;
-                    }
-                    const newFileName = `${file.name.split('.')[0]}.${extension}`;
-                    
-                    await updatePreviewWithProcessed(
-                        previewItem,
-                        processed.dataUrl,
-                        file.size,
-                        processedImageData.get(index).size,
-                        processed.dimensions,
-                        newFileName
-                    );
-                });
+                    await Promise.all(batchPromises);
+                    progressFill.style.width = `${((i + batch.length) / files.length) * 100}%`;
+                }
 
-                await Promise.all(batchPromises);
-                progressFill.style.width = `${((i + batch.length) / files.length) * 100}%`;
+                downloadButton.style.display = 'inline-block';
+                downloadButton.onclick = handleDownload;
+
+            } catch (error) {
+                console.error('Processing error:', error);
+                alert('An error occurred while processing images. Please try again.');
+            } finally {
+                progressBar.style.display = 'none';
+                processButton.disabled = false;
             }
-
-            downloadButton.style.display = 'inline-block';
-            downloadButton.onclick = handleDownload;
-
         } catch (error) {
-            console.error('Processing error:', error);
-            alert('An error occurred while processing images. Please try again.');
+            handleError(error, 'Failed to process images. Please try again.');
         } finally {
-            progressBar.style.display = 'none';
-            processButton.disabled = false;
+            document.body.classList.remove('processing');
         }
     });
 
@@ -505,4 +532,6 @@ document.addEventListener('DOMContentLoaded', function() {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+
+    window.addEventListener('unload', cleanup);
 });
