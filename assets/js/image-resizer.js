@@ -27,6 +27,70 @@ document.addEventListener('DOMContentLoaded', function() {
     processingMode.addEventListener('change', () => {
         resizeSettings.style.display = processingMode.value !== 'compress' ? 'block' : 'none';
         compressionSettings.style.display = processingMode.value !== 'resize' ? 'block' : 'none';
+        
+        // Show compression warning for PNG format
+        const format = document.getElementById('outputFormat').value;
+        updateCompressionWarning(format);
+    });
+
+    // Add new function to handle format change
+    document.getElementById('outputFormat').addEventListener('change', (e) => {
+        updateCompressionWarning(e.target.value);
+    });
+
+    function updateCompressionWarning(format) {
+        const qualityGroup = document.getElementById('compressionSettings');
+        const warningDiv = qualityGroup.querySelector('.compression-warning') || document.createElement('div');
+        warningDiv.className = 'compression-warning text-warning small mt-2';
+        
+        if (format === 'png' || format === 'webp') {
+            warningDiv.textContent = `Note: For ${format.toUpperCase()} files, the slider controls output resolution (25% to 100%).`;
+            if (!qualityGroup.querySelector('.compression-warning')) {
+                qualityGroup.appendChild(warningDiv);
+            }
+            // Don't disable slider, we'll use it for resolution
+            qualitySlider.disabled = false;
+        } else {
+            if (qualityGroup.querySelector('.compression-warning')) {
+                qualityGroup.removeChild(warningDiv);
+            }
+            qualitySlider.disabled = false;
+        }
+    }
+
+    // Update quality slider label based on format
+    function updateQualityLabel(format, value) {
+        if (format === 'png' || format === 'webp') {
+            // Map 0-100 to 25-100 for resolution
+            const resolution = 25 + (value * 0.75);
+            qualityValue.textContent = `${Math.round(resolution)}% resolution`;
+        } else {
+            qualityValue.textContent = `${value}% quality`;
+        }
+    }
+
+    // Update quality slider event listener
+    qualitySlider.addEventListener('input', (e) => {
+        const format = document.getElementById('outputFormat').value;
+        const value = parseInt(e.target.value);
+        updateQualityLabel(format, value);
+
+        // Warning only for JPEG quality
+        if (format === 'jpeg' || format === 'same') {
+            if (value < 50) {
+                qualityValue.classList.add('text-warning');
+                qualityValue.title = "Warning: Low quality may result in visible image degradation";
+            } else {
+                qualityValue.classList.remove('text-warning');
+                qualityValue.title = "";
+            }
+        }
+    });
+
+    // Add format change handler to update quality label
+    document.getElementById('outputFormat').addEventListener('change', (e) => {
+        updateCompressionWarning(e.target.value);
+        updateQualityLabel(e.target.value, qualitySlider.value);
     });
 
     let files = [];
@@ -316,57 +380,52 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.onload = async () => {
                     try {
                         const format = document.getElementById('outputFormat').value;
-                        const quality = processingMode.value === 'resize' ? 1 : 
-                                      parseInt(document.getElementById('quality').value) / 100;
-
-                        // Return original data if no processing needed
-                        if (format === 'same' && quality === 1 && 
-                            processingMode.value !== 'resize') {
-                            resolve({
-                                dataUrl: e.target.result,
-                                dimensions: {
-                                    width: img.width,
-                                    height: img.height
-                                },
-                                size: file.size
-                            });
-                            return;
-                        }
-
-                        // Create canvas here, before using it
-                        const canvas = document.createElement('canvas');
+                        const isCompressMode = processingMode.value === 'compress' || processingMode.value === 'both';
+                        
+                        // Calculate dimensions based on format and mode
                         let newWidth = img.width;
                         let newHeight = img.height;
-
-                        // Resize logic remains the same
-                        if (processingMode.value !== 'compress') {
-                            switch(resizeMode.value) {
-                                case 'maxSize':
-                                    const maxSize = parseInt(document.getElementById('maxSize').value) || 1920;
-                                    const ratio = img.width / img.height;
-                                    
-                                    if (Math.max(img.width, img.height) > maxSize) {
-                                        if (img.width > img.height) {
-                                            newWidth = maxSize;
-                                            newHeight = maxSize / ratio;
-                                        } else {
-                                            newHeight = maxSize;
-                                            newWidth = maxSize * ratio;
+                        
+                        if (isCompressMode) {
+                            if (format === 'png' || format === 'webp') {
+                                // Map slider value (0-100) to resolution percentage (25-100)
+                                const sliderValue = parseInt(document.getElementById('quality').value);
+                                const resolutionPercent = 25 + (sliderValue * 0.75);
+                                const scale = resolutionPercent / 100;
+                                
+                                newWidth = Math.round(img.width * scale);
+                                newHeight = Math.round(img.height * scale);
+                            } else if (processingMode.value !== 'resize') {
+                                // Handle resize mode normally
+                                switch(resizeMode.value) {
+                                    case 'maxSize':
+                                        const maxSize = parseInt(document.getElementById('maxSize').value) || 1920;
+                                        const ratio = img.width / img.height;
+                                        
+                                        if (Math.max(img.width, img.height) > maxSize) {
+                                            if (img.width > img.height) {
+                                                newWidth = maxSize;
+                                                newHeight = maxSize / ratio;
+                                            } else {
+                                                newHeight = maxSize;
+                                                newWidth = maxSize * ratio;
+                                            }
                                         }
-                                    }
-                                    break;
-                                case 'percentage':
-                                    const scale = parseInt(document.getElementById('scalePercentage').value) || 50;
-                                    newWidth = (img.width * scale) / 100;
-                                    newHeight = (img.height * scale) / 100;
-                                    break;
-                                case 'custom':
-                                    newWidth = parseInt(document.getElementById('width').value) || img.width;
-                                    newHeight = parseInt(document.getElementById('height').value) || img.height;
-                                    break;
+                                        break;
+                                    case 'percentage':
+                                        const scale = parseInt(document.getElementById('scalePercentage').value) || 50;
+                                        newWidth = (img.width * scale) / 100;
+                                        newHeight = (img.height * scale) / 100;
+                                        break;
+                                    case 'custom':
+                                        newWidth = parseInt(document.getElementById('width').value) || img.width;
+                                        newHeight = parseInt(document.getElementById('height').value) || img.height;
+                                        break;
+                                }
                             }
                         }
 
+                        const canvas = document.createElement('canvas');
                         canvas.width = Math.round(newWidth);
                         canvas.height = Math.round(newHeight);
                         
@@ -379,69 +438,32 @@ document.addEventListener('DOMContentLoaded', function() {
                         ctx.imageSmoothingQuality = 'high';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        let mimeType, compressionOptions;
-                        
-                        if (format === 'same') {
-                            mimeType = file.type;
-                            // For original format at 100% quality, return original data
-                            if (quality === 1 && newWidth === img.width && newHeight === img.height) {
-                                resolve({
-                                    dataUrl: e.target.result,
-                                    dimensions: {
-                                        width: img.width,
-                                        height: img.height
-                                    },
-                                    size: file.size
-                                });
-                                return;
-                            }
-                            compressionOptions = quality;
-                        } else {
-                            switch(format) {
-                                case 'jpeg':
-                                    mimeType = 'image/jpeg';
-                                    compressionOptions = quality;
-                                    break;
-                                case 'png':
-                                    mimeType = 'image/png';
-                                    // No compression options for PNG - browser handles it
-                                    break;
-                                case 'webp':
-                                    mimeType = 'image/webp';
-                                    compressionOptions = quality;
-                                    break;
-                            }
+                        // Set format-specific options
+                        let mimeType, quality;
+                        switch(format) {
+                            case 'webp':
+                                mimeType = 'image/webp';
+                                quality = 0.9; // Keep WebP quality high
+                                break;
+                            case 'jpeg':
+                                mimeType = 'image/jpeg';
+                                quality = isCompressMode ? parseInt(document.getElementById('quality').value) / 100 : 1;
+                                break;
+                            case 'png':
+                                mimeType = 'image/png';
+                                quality = undefined; // PNG doesn't use quality
+                                break;
+                            case 'same':
+                                mimeType = file.type;
+                                quality = file.type === 'image/jpeg' && isCompressMode ? 
+                                         parseInt(document.getElementById('quality').value) / 100 : 1;
+                                break;
                         }
 
-                        // Helper function to create blob with quality adjustment
-                        const createOptimizedBlob = async (initialQuality) => {
-                            let q = initialQuality;
-                            let blob = await new Promise(resolve => {
-                                canvas.toBlob(resolve, mimeType, q);
-                            });
-
-                            // If blob is larger than original, gradually reduce quality until it's smaller
-                            while (blob.size > file.size && q > 0.1) {
-                                q -= 0.1;
-                                blob = await new Promise(resolve => {
-                                    canvas.toBlob(resolve, mimeType, q);
-                                });
-                            }
-                            return blob;
-                        };
-
-                        // Create optimized blob based on format
-                        const blob = await (async () => {
-                            if (format === 'png') {
-                                // PNG - let browser handle optimization
-                                return await new Promise(resolve => {
-                                    canvas.toBlob(resolve, 'image/png');
-                                });
-                            } else {
-                                // For JPEG, WebP, and other formats
-                                return await createOptimizedBlob(quality);
-                            }
-                        })();
+                        // Create blob with appropriate settings
+                        const blob = await new Promise(resolve => {
+                            canvas.toBlob(resolve, mimeType, quality);
+                        });
 
                         // Convert to data URL for preview
                         const dataUrl = await new Promise(resolve => {
