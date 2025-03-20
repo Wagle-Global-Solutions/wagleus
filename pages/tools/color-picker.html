@@ -157,6 +157,135 @@
                 margin-bottom: 10px;
             }
         }
+
+        .color-theory-section {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-info {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .palette-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .palette-color {
+            padding: 1rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .theory-block {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .theory-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .variations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .harmony-display {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .color-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 60px;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .contrast-checker {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+
+        .contrast-preview {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border-radius: 6px;
+        }
+
+        .color-strip {
+            display: flex;
+            gap: 4px;
+            margin: 1rem 0;
+            height: 40px;
+        }
+        .color-box {
+            flex: 1;
+            border-radius: 4px;
+            position: relative;
+        }
+        .color-box::after {
+            content: attr(data-value);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: #666;
+            white-space: nowrap;
+        }
+        .color-example {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .color-square {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .color-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -278,6 +407,102 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="color-theory-section">
+                                <h3 class="mb-4">Color Theory & Combinations</h3>
+
+                                <!-- Color Variations -->
+                                <div class="theory-block mb-5">
+                                    <h4>Color Variations</h4>
+                                    <p class="theory-description">
+                                        Tints and shades help create depth and hierarchy in design. Tints are created by adding white, shades by adding black.
+                                    </p>
+                                    <div class="variations-container">
+                                        <h6 class="mb-2">Tints (Adding White)</h6>
+                                        <div id="tintStrip" class="color-strip"></div>
+                                        <h6 class="mb-2 mt-4">Shades (Adding Black)</h6>
+                                        <div id="shadeStrip" class="color-strip"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Color Harmonies -->
+                                <div class="row">
+                                    <!-- Complementary -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Complementary Colors</h4>
+                                            <p class="theory-description">Colors opposite on the color wheel. Creates maximum contrast.</p>
+                                            <div id="complementaryDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Split Complementary -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Split-Complementary</h4>
+                                            <p class="theory-description">Uses two colors adjacent to the complement.</p>
+                                            <div id="splitComplementaryDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Triadic -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Triadic Colors</h4>
+                                            <p class="theory-description">Three colors equally spaced on the color wheel.</p>
+                                            <div id="triadicDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Tetradic -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Tetradic (Double Complementary)</h4>
+                                            <p class="theory-description">Two pairs of complementary colors.</p>
+                                            <div id="tetradicDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Analogous -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Analogous Colors</h4>
+                                            <p class="theory-description">Three adjacent colors on the color wheel.</p>
+                                            <div id="analogousDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Monochromatic -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="theory-block">
+                                            <h4>Monochromatic</h4>
+                                            <p class="theory-description">Different shades and saturations of the same hue.</p>
+                                            <div id="monochromaticDisplay" class="color-harmony"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Contrast Checker -->
+                                <div class="theory-block mt-4">
+                                    <h4>Contrast Checker</h4>
+                                    <p class="theory-description">
+                                        Check if your text color has sufficient contrast with the background color for optimal readability. WCAG guidelines recommend a minimum contrast ratio of 4.5:1 for normal text.
+                                    </p>
+                                    <div class="contrast-checker">
+                                        <div class="contrast-preview p-4 mb-3" id="contrastPreview">
+                                            <span id="previewText">Preview Text</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Text Color:</label>
+                                                <input type="color" class="form-control" id="textColorPicker">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="contrastRatio" class="mt-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -366,6 +591,8 @@
             document.getElementById('hsvValue').value = `hsv(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(value)}%)`;
             document.getElementById('cmykValue').value = rgbToCmyk(rgb.r, rgb.g, rgb.b);
             updateMarkers();
+            updateColorTheory();
+            updateContrastChecker();
         }
 
         // Update the markers reference
@@ -558,6 +785,308 @@
         drawHueSlider();
         drawColorArea();
         updateColor();
+
+        function getColorRelationships(h, s, v) {
+            const relationships = {
+                complementary: [(h + 180) % 360, s, v],
+                analogous1: [(h + 30) % 360, s, v],
+                analogous2: [(h - 30 + 360) % 360, s, v],
+                triadic1: [(h + 120) % 360, s, v],
+                triadic2: [(h + 240) % 360, s, v],
+                split1: [(h + 150) % 360, s, v],
+                split2: [(h + 210) % 360, s, v]
+            };
+
+            return relationships;
+        }
+
+        function generateColorPalettes(h, s, v) {
+            return {
+                monochromatic: [
+                    [h, s, v],                    // Original color
+                    [h, s * 0.8, v],              // Less saturated
+                    [h, s * 0.6, v],              // Even less saturated
+                    [h, s, v * 0.8],              // Darker
+                    [h, s, v * 0.6]               // Even darker
+                ]
+            };
+        }
+
+        function updateColorTheory() {
+            // Update base color and variations
+            const baseRgb = hsvToRgb(hue, saturation, value);
+            const baseHex = rgbToHex(baseRgb.r, baseRgb.g, baseRgb.b);
+
+            // Update color harmonies
+            updateComplementary(baseHex);
+            updateSplitComplementary();
+            updateTriadic();
+            updateTetradic();
+            updateAnalogous();
+            updateMonochromatic();
+            updateTintsAndShades();
+        }
+
+        function updateComplementary(baseHex) {
+            const compHue = (hue + 180) % 360;
+            const compRgb = hsvToRgb(compHue, saturation, value);
+            const compHex = rgbToHex(compRgb.r, compRgb.g, compRgb.b);
+            
+            document.getElementById('complementaryDisplay').innerHTML = generateColorSquares([
+                { color: baseHex, label: 'Base' },
+                { color: compHex, label: 'Complement' }
+            ]);
+        }
+
+        function updateSplitComplementary() {
+            const split1 = (hue + 150) % 360;
+            const split2 = (hue + 210) % 360;
+            
+            document.getElementById('splitComplementaryDisplay').innerHTML = generateColorSquares([
+                { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
+                { color: rgbToHex(...Object.values(hsvToRgb(split1, saturation, value))), label: 'Split 1' },
+                { color: rgbToHex(...Object.values(hsvToRgb(split2, saturation, value))), label: 'Split 2' }
+            ]);
+        }
+
+        function updateTriadic() {
+            const triad1 = (hue + 120) % 360;
+            const triad2 = (hue + 240) % 360;
+            
+            document.getElementById('triadicDisplay').innerHTML = generateColorSquares([
+                { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
+                { color: rgbToHex(...Object.values(hsvToRgb(triad1, saturation, value))), label: 'Triad 1' },
+                { color: rgbToHex(...Object.values(hsvToRgb(triad2, saturation, value))), label: 'Triad 2' }
+            ]);
+        }
+
+        function updateTetradic() {
+            const tetra1 = (hue + 90) % 360;
+            const tetra2 = (hue + 180) % 360;
+            const tetra3 = (hue + 270) % 360;
+            
+            document.getElementById('tetradicDisplay').innerHTML = generateColorSquares([
+                { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
+                { color: rgbToHex(...Object.values(hsvToRgb(tetra1, saturation, value))), label: 'Tetra 1' },
+                { color: rgbToHex(...Object.values(hsvToRgb(tetra2, saturation, value))), label: 'Tetra 2' },
+                { color: rgbToHex(...Object.values(hsvToRgb(tetra3, saturation, value))), label: 'Tetra 3' }
+            ]);
+        }
+
+        function updateAnalogous() {
+            const analogous1 = (hue + 30) % 360;
+            const analogous2 = (hue - 30 + 360) % 360;
+            
+            document.getElementById('analogousDisplay').innerHTML = generateColorSquares([
+                { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
+                { color: rgbToHex(...Object.values(hsvToRgb(analogous1, saturation, value))), label: 'Analogous 1' },
+                { color: rgbToHex(...Object.values(hsvToRgb(analogous2, saturation, value))), label: 'Analogous 2' }
+            ]);
+        }
+
+        function updateMonochromatic() {
+            const monochromaticColors = [];
+            
+            // Generate base color
+            monochromaticColors.push({
+                color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))),
+                label: 'Base'
+            });
+            
+            // Generate variations
+            monochromaticColors.push({
+                color: rgbToHex(...Object.values(hsvToRgb(hue, saturation * 0.8, value))),
+                label: 'Variation 1'
+            });
+            
+            monochromaticColors.push({
+                color: rgbToHex(...Object.values(hsvToRgb(hue, saturation * 0.6, value))),
+                label: 'Variation 2'
+            });
+            
+            monochromaticColors.push({
+                color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value * 0.8))),
+                label: 'Variation 3'
+            });
+            
+            monochromaticColors.push({
+                color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value * 0.6))),
+                label: 'Variation 4'
+            });
+
+            document.getElementById('monochromaticDisplay').innerHTML = generateColorSquares(monochromaticColors);
+        }
+
+        function updateTintsAndShades() {
+            const tintStrip = document.getElementById('tintStrip');
+            const shadeStrip = document.getElementById('shadeStrip');
+            
+            // Generate tints
+            let tintsHTML = '';
+            for(let i = 0; i <= 10; i++) {
+                const tintHsv = [hue, saturation, value + ((100 - value) * (i/10))];
+                const rgb = hsvToRgb(...tintHsv);
+                const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+                tintsHTML += `
+                    <div class="color-box" style="background-color: ${hex}" data-value="${i*10}%"></div>
+                `;
+            }
+            tintStrip.innerHTML = tintsHTML;
+
+            // Generate shades
+            let shadesHTML = '';
+            for(let i = 0; i <= 10; i++) {
+                const shadeHsv = [hue, saturation, value * (1 - i/10)];
+                const rgb = hsvToRgb(...shadeHsv);
+                const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+                shadesHTML += `
+                    <div class="color-box" style="background-color: ${hex}" data-value="${i*10}%"></div>
+                `;
+            }
+            shadeStrip.innerHTML = shadesHTML;
+        }
+
+        function generateColorSquares(colors) {
+            return colors.map(({color, label}) => `
+                <div class="color-square-container">
+                    <div class="color-square" style="background-color: ${color}"></div>
+                    <div class="color-label">${label}<br>${color}</div>
+                </div>
+            `).join('');
+        }
+
+        function getColorAnalysis(h, s, v) {
+            const colorCategory = getColorCategory(h);
+            const colorProperties = getColorProperties(s, v);
+
+            return `
+            <div class="color-info">
+                <p><strong>Color Category:</strong> ${colorCategory}</p>
+                <p><strong>Properties:</strong> ${colorProperties}</p>
+                <p><strong>Usage Suggestions:</strong></p>
+                <ul>
+                    ${getColorUsageSuggestions(colorCategory)}
+                </ul>
+            </div>
+        `;
+        }
+
+        function getColorCategory(h) {
+            const categories = [
+                [0, 'Red'], [30, 'Orange'], [60, 'Yellow'],
+                [120, 'Green'], [180, 'Cyan'], [240, 'Blue'],
+                [300, 'Purple'], [330, 'Pink'], [360, 'Red']
+            ];
+
+            for (let i = 0; i < categories.length - 1; i++) {
+                if (h >= categories[i][0] && h < categories[i + 1][0]) {
+                    return categories[i][1];
+                }
+            }
+            return 'Red';
+        }
+
+        function getColorProperties(s, v) {
+            const properties = [];
+            if (s < 30) properties.push('Desaturated');
+            else if (s > 70) properties.push('Vibrant');
+
+            if (v < 30) properties.push('Dark');
+            else if (v > 70) properties.push('Bright');
+            else properties.push('Medium');
+
+            return properties.join(', ');
+        }
+
+        function getColorUsageSuggestions(category) {
+            const suggestions = {
+                Red: ['Creates urgency', 'Good for calls-to-action', 'Stimulates appetite'],
+                Blue: ['Promotes trust', 'Good for corporate designs', 'Creates calm'],
+                Green: ['Represents growth', 'Environmental themes', 'Natural balance'],
+                Yellow: ['Optimistic', 'Good for warnings', 'Creates energy'],
+                Purple: ['Luxury', 'Creative contexts', 'Spiritual themes'],
+                Orange: ['Friendly', 'Confidence', 'Adventure'],
+                Pink: ['Feminine', 'Youth', 'Romance'],
+                Cyan: ['Professional', 'Clean', 'Modern'],
+            };
+
+            return (suggestions[category] || []).map(s => `<li>${s}</li>`).join('');
+        }
+
+        function generateVariations(h, s, v) {
+            const variations = [];
+            // Generate tints (adding white)
+            for(let i = 9; i >= 1; i--) {
+                variations.push([h, s, v + ((100 - v) * (i/10))]);
+            }
+            variations.push([h, s, v]); // Original color
+            // Generate shades (adding black)
+            for(let i = 1; i <= 9; i++) {
+                variations.push([h, s, v * (1 - i/10)]);
+            }
+            return variations;
+        }
+
+        function updateContrastChecker() {
+            const textColor = document.getElementById('textColorPicker').value;
+            const bgColor = document.getElementById('colorPreview').style.backgroundColor;
+            const preview = document.getElementById('contrastPreview');
+            
+            if (!textColor || !bgColor) return; // Guard against undefined colors
+            
+            const ratio = calculateContrastRatio(textColor, bgColor);
+            
+            preview.style.backgroundColor = bgColor;
+            preview.style.color = textColor;
+            
+            document.getElementById('contrastRatio').innerHTML = `
+                <strong>Contrast Ratio: ${ratio.toFixed(2)}:1</strong><br>
+                <span class="${ratio >= 4.5 ? 'text-success' : 'text-danger'}">
+                    ${ratio >= 4.5 ? 'Meets' : 'Does not meet'} WCAG AA standards
+                </span>
+            `;
+        }
+
+        function calculateContrastRatio(color1, color2) {
+            // Parse colors to RGB
+            const getRGB = (color) => {
+                // Handle hex color
+                if (color.startsWith('#')) {
+                    const r = parseInt(color.slice(1, 3), 16);
+                    const g = parseInt(color.slice(3, 5), 16);
+                    const b = parseInt(color.slice(5, 7), 16);
+                    return [r, g, b];
+                }
+                // Handle rgb/rgba color
+                const match = color.match(/\d+/g);
+                return [parseInt(match[0]), parseInt(match[1]), parseInt(match[2])];
+            };
+
+            // Calculate relative luminance
+            const getLuminance = (r, g, b) => {
+                const [rs, gs, bs] = [r, g, b].map(c => {
+                    c = c / 255;
+                    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+                });
+                return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+            };
+
+            // Get RGB values for both colors
+            const [r1, g1, b1] = getRGB(color1);
+            const [r2, g2, b2] = getRGB(color2);
+
+            // Calculate luminance
+            const l1 = getLuminance(r1, g1, b1);
+            const l2 = getLuminance(r2, g2, b2);
+
+            // Calculate contrast ratio
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+        }
+
+        // Initialize color picker
+        document.getElementById('textColorPicker').addEventListener('input', updateContrastChecker);
     </script>
 
     <!-- Add Footer -->

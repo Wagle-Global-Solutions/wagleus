@@ -471,3 +471,56 @@
         width: 100%;
     }
 }
+
+/* Color Theory Styles */
+.theory-section {
+    margin-top: 3rem;
+}
+
+.color-combination {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.color-swatch {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.color-info {
+    flex: 1;
+}
+
+.color-hex {
+    font-family: monospace;
+    background: #f8f9fa;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.color-harmony {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.color-square-container {
+    text-align: center;
+}
+
+.color-square {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.color-label {
+    font-size: 0.8rem;
+    color: #666;
+}
