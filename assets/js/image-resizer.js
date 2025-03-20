@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         div.innerHTML = `
             <div class="preview-image-container">
                 <img src="${src}" alt="Preview" data-original="${src}">
+                <button class="remove-file" data-index="${index}">&times;</button>
             </div>
             <div class="preview-info">
                 <div class="file-name">${file.name}</div>
@@ -108,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="ratio">Loading ratio...</span>
                 </div>
             </div>
-            <button class="remove-file" data-index="${index}">&times;</button>
         `;
 
         // Load and display original dimensions and ratio
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     processedImageData.set(index, {
                         data: processed.dataUrl,
                         name: file.name.split('.')[0],
-                        size: Math.round((processed.dataUrl.length * 3) / 4)
+                        size: processed.size // Use the actual blob size
                     });
 
                     // Update preview with correct extension
@@ -313,13 +313,32 @@ document.addEventListener('DOMContentLoaded', function() {
             const reader = new FileReader();
 
             reader.onload = (e) => {
-                img.onload = () => {
+                img.onload = async () => {
                     try {
+                        const format = document.getElementById('outputFormat').value;
+                        const quality = processingMode.value === 'resize' ? 1 : 
+                                      parseInt(document.getElementById('quality').value) / 100;
+
+                        // Return original data if no processing needed
+                        if (format === 'same' && quality === 1 && 
+                            processingMode.value !== 'resize') {
+                            resolve({
+                                dataUrl: e.target.result,
+                                dimensions: {
+                                    width: img.width,
+                                    height: img.height
+                                },
+                                size: file.size
+                            });
+                            return;
+                        }
+
+                        // Create canvas here, before using it
                         const canvas = document.createElement('canvas');
                         let newWidth = img.width;
                         let newHeight = img.height;
 
-                        // Only apply resize if in resize or both mode
+                        // Resize logic remains the same
                         if (processingMode.value !== 'compress') {
                             switch(resizeMode.value) {
                                 case 'maxSize':
@@ -351,25 +370,93 @@ document.addEventListener('DOMContentLoaded', function() {
                         canvas.width = Math.round(newWidth);
                         canvas.height = Math.round(newHeight);
                         
-                        const ctx = canvas.getContext('2d', { alpha: false });
+                        const ctx = canvas.getContext('2d', { 
+                            alpha: format === 'png' || format === 'webp' || 
+                                  (format === 'same' && (file.type === 'image/png' || file.type === 'image/webp'))
+                        });
+
                         ctx.imageSmoothingEnabled = true;
                         ctx.imageSmoothingQuality = 'high';
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        // Handle format and quality
-                        const format = document.getElementById('outputFormat').value;
-                        const mimeType = format === 'same' ? 
-                            file.type : // Keep original MIME type
-                            `image/${format === 'jpeg' ? 'jpeg' : format}`; // Handle other formats
-                        const quality = processingMode.value === 'resize' ? 1 : 
-                                      parseInt(document.getElementById('quality').value) / 100;
+                        let mimeType, compressionOptions;
                         
+                        if (format === 'same') {
+                            mimeType = file.type;
+                            // For original format at 100% quality, return original data
+                            if (quality === 1 && newWidth === img.width && newHeight === img.height) {
+                                resolve({
+                                    dataUrl: e.target.result,
+                                    dimensions: {
+                                        width: img.width,
+                                        height: img.height
+                                    },
+                                    size: file.size
+                                });
+                                return;
+                            }
+                            compressionOptions = quality;
+                        } else {
+                            switch(format) {
+                                case 'jpeg':
+                                    mimeType = 'image/jpeg';
+                                    compressionOptions = quality;
+                                    break;
+                                case 'png':
+                                    mimeType = 'image/png';
+                                    // No compression options for PNG - browser handles it
+                                    break;
+                                case 'webp':
+                                    mimeType = 'image/webp';
+                                    compressionOptions = quality;
+                                    break;
+                            }
+                        }
+
+                        // Helper function to create blob with quality adjustment
+                        const createOptimizedBlob = async (initialQuality) => {
+                            let q = initialQuality;
+                            let blob = await new Promise(resolve => {
+                                canvas.toBlob(resolve, mimeType, q);
+                            });
+
+                            // If blob is larger than original, gradually reduce quality until it's smaller
+                            while (blob.size > file.size && q > 0.1) {
+                                q -= 0.1;
+                                blob = await new Promise(resolve => {
+                                    canvas.toBlob(resolve, mimeType, q);
+                                });
+                            }
+                            return blob;
+                        };
+
+                        // Create optimized blob based on format
+                        const blob = await (async () => {
+                            if (format === 'png') {
+                                // PNG - let browser handle optimization
+                                return await new Promise(resolve => {
+                                    canvas.toBlob(resolve, 'image/png');
+                                });
+                            } else {
+                                // For JPEG, WebP, and other formats
+                                return await createOptimizedBlob(quality);
+                            }
+                        })();
+
+                        // Convert to data URL for preview
+                        const dataUrl = await new Promise(resolve => {
+                            const reader = new FileReader();
+                            reader.onloadend = () => resolve(reader.result);
+                            reader.readAsDataURL(blob);
+                        });
+
                         resolve({
-                            dataUrl: canvas.toDataURL(mimeType, quality),
+                            dataUrl: dataUrl,
                             dimensions: {
                                 width: Math.round(newWidth),
                                 height: Math.round(newHeight)
-                            }
+                            },
+                            size: blob.size
                         });
                     } catch (error) {
                         reject(error);
