@@ -1226,12 +1226,15 @@
             document.getElementById('modalColorPreview').style.backgroundColor = currentColor;
             document.getElementById('modalColorValues').textContent = `${currentColor} • ${currentRgb}`;
             
-            // Generate share link
-            const shareUrl = new URL(window.location.href);
-            document.getElementById('shareLink').value = shareUrl.toString();
+            // Generate share link with relative path
+            const path = '/pages/tools/color-picker.html';
+            const queryParams = `?h=${Math.round(hue)}&s=${Math.round(saturation)}&v=${Math.round(value)}`;
+            const shareUrl = window.location.protocol + '//' + window.location.host + path + queryParams;
+            
+            document.getElementById('shareLink').value = shareUrl;
             
             modal.classList.add('show');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function closeShareModal() {
