@@ -389,7 +389,7 @@
                                             <div class="value-group">
                                                 <label>HEX:</label>
                                                 <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="hexValue" readonly>
+                                                    <input type="text" class="form-control" id="hexValue" onblur="updateFromHex(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHex(this.value); this.blur(); }">
                                                     <button class="copy-icon" onclick="copyValue('hexValue')">
                                                         <i class="bi bi-clipboard"></i>
                                                     </button>
@@ -400,7 +400,7 @@
                                             <div class="value-group">
                                                 <label>RGB:</label>
                                                 <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="rgbValue" readonly>
+                                                    <input type="text" class="form-control" id="rgbValue" onblur="updateFromRgb(this.value)" onkeydown="if(event.key === 'Enter') { updateFromRgb(this.value); this.blur(); }">
                                                     <button class="copy-icon" onclick="copyValue('rgbValue')">
                                                         <i class="bi bi-clipboard"></i>
                                                     </button>
@@ -411,7 +411,7 @@
                                             <div class="value-group">
                                                 <label>HSL:</label>
                                                 <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="hslValue" readonly>
+                                                    <input type="text" class="form-control" id="hslValue" onblur="updateFromHsl(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHsl(this.value); this.blur(); }">
                                                     <button class="copy-icon" onclick="copyValue('hslValue')">
                                                         <i class="bi bi-clipboard"></i>
                                                     </button>
@@ -441,6 +441,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <small class="text-muted mt-2 mb-3 d-block text-center">
+                                        Press Enter or click outside the input box to apply changes
+                                    </small>
                                     <!-- Add Share Button -->
                                     <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
                                         <i class="bi bi-share"></i> Share Color
@@ -1296,6 +1299,197 @@
             const subject = encodeURIComponent('Check out this color!');
             const body = encodeURIComponent(`I found this amazing color: ${document.getElementById('hexValue').value}\n\nCheck it out here: ${document.getElementById('shareLink').value}`);
             window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        function updateFromHex(hexValue) {
+            // Visual feedback
+            const input = document.getElementById('hexValue');
+            const originalBg = input.style.backgroundColor;
+            
+            // Clean and validate hex
+            hexValue = hexValue.trim().replace(/^#/, '');
+            if (!/^[0-9A-Fa-f]{6}$/.test(hexValue)) {
+                // Invalid input feedback
+                input.style.backgroundColor = '#ffe6e6';
+                setTimeout(() => {
+                    input.style.backgroundColor = originalBg;
+                    updateColor(); // Reset to current value
+                }, 500);
+                return;
+            }
+            
+            // Success feedback
+            input.style.backgroundColor = '#e6ffe6';
+            setTimeout(() => {
+                input.style.backgroundColor = originalBg;
+            }, 500);
+            
+            // Convert hex to RGB
+            const r = parseInt(hexValue.substring(0, 2), 16);
+            const g = parseInt(hexValue.substring(2, 4), 16);
+            const b = parseInt(hexValue.substring(4, 6), 16);
+            
+            // Convert RGB to HSV and update
+            const hsv = rgbToHsv(r, g, b);
+            hue = hsv.h;
+            saturation = hsv.s;
+            value = hsv.v;
+            
+            drawColorArea();
+            updateColor();
+            updateMarkers();
+        }
+
+        function updateFromRgb(rgbValue) {
+            const input = document.getElementById('rgbValue');
+            const originalBg = input.style.backgroundColor;
+            
+            // Parse RGB values
+            const match = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            if (!match) {
+                input.style.backgroundColor = '#ffe6e6';
+                setTimeout(() => {
+                    input.style.backgroundColor = originalBg;
+                    updateColor();
+                }, 500);
+                return;
+            }
+            
+            const r = parseInt(match[1]);
+            const g = parseInt(match[2]);
+            const b = parseInt(match[3]);
+            
+            if (r > 255 || g > 255 || b > 255) {
+                input.style.backgroundColor = '#ffe6e6';
+                setTimeout(() => {
+                    input.style.backgroundColor = originalBg;
+                    updateColor();
+                }, 500);
+                return;
+            }
+            
+            input.style.backgroundColor = '#e6ffe6';
+            setTimeout(() => {
+                input.style.backgroundColor = originalBg;
+            }, 500);
+            
+            // Convert RGB to HSV and update
+            const hsv = rgbToHsv(r, g, b);
+            hue = hsv.h;
+            saturation = hsv.s;
+            value = hsv.v;
+            
+            drawColorArea();
+            updateColor();
+            updateMarkers();
+        }
+
+        function updateFromHsl(hslValue) {
+            const input = document.getElementById('hslValue');
+            const originalBg = input.style.backgroundColor;
+            
+            // Parse HSL values
+            const match = hslValue.match(/^hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)$/);
+            if (!match) {
+                input.style.backgroundColor = '#ffe6e6';
+                setTimeout(() => {
+                    input.style.backgroundColor = originalBg;
+                    updateColor();
+                }, 500);
+                return;
+            }
+            
+            const h = parseInt(match[1]);
+            const s = parseInt(match[2]);
+            const l = parseInt(match[3]);
+            
+            if (h > 360 || s > 100 || l > 100) {
+                input.style.backgroundColor = '#ffe6e6';
+                setTimeout(() => {
+                    input.style.backgroundColor = originalBg;
+                    updateColor();
+                }, 500);
+                return;
+            }
+            
+            input.style.backgroundColor = '#e6ffe6';
+            setTimeout(() => {
+                input.style.backgroundColor = originalBg;
+            }, 500);
+            
+            // Convert HSL to RGB
+            const rgb = hslToRgb(h, s, l);
+            
+            // Convert RGB to HSV and update
+            const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+            hue = hsv.h;
+            saturation = hsv.s;
+            value = hsv.v;
+            
+            drawColorArea();
+            updateColor();
+            updateMarkers();
+        }
+
+        function rgbToHsv(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const d = max - min;
+            
+            let h;
+            const s = max === 0 ? 0 : d / max;
+            const v = max;
+            
+            if (max === min) {
+                h = 0;
+            } else {
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h *= 60;
+            }
+            
+            return { h, s: s * 100, v: v * 100 };
+        }
+
+        function hslToRgb(h, s, l) {
+            h /= 360;
+            s /= 100;
+            l /= 100;
+            
+            let r, g, b;
+            
+            if (s === 0) {
+                r = g = b = l;
+            } else {
+                const hue2rgb = (p, q, t) => {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1/6) return p + (q - p) * 6 * t;
+                    if (t < 1/2) return q;
+                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    return p;
+                };
+                
+                const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                const p = 2 * l - q;
+                
+                r = hue2rgb(p, q, h + 1/3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1/3);
+            }
+            
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
         }
     </script>
 </body>
