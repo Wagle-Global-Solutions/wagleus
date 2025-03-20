@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1FYJ98BTXG');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
+    <title>Free Text Case Converter Tool | WUS</title>
+    <meta name="description"
+        content="Transform text to UPPERCASE, lowercase, Title Case, or remove spaces with our free online text converter tool. Perfect for writers, developers, and content creators.">
+    <meta name="keywords"
+        content="text case converter, text transformer, case changer, uppercase converter, lowercase converter, title case generator, text manipulation tool, remove extra spaces, text tools, free text converter">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
+    <meta property="og:description"
+        content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
+    <meta property="og:image" content="/assets/img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="twitter:title" content="Free Text Manipulation Tool">
+    <meta property="twitter:description" content="Transform your text instantly with our free online text tools.">
+    <meta property="twitter:image" content="/assets/img/logo.png">
+
+    <!-- Enhanced Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Text Manipulation Tool",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free online text manipulation tool for converting text case, reversing text, and removing extra spaces.",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "creator": {
+            "@type": "Organization",
+            "name": "Wagle Universal Solutions",
+            "alternateName":["WUS","Wagle","Wagleus"],
+            "url": "https://wagleus.com"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .color-picker-container {
+            padding: 20px;
+        }
+
+        .color-preview {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .color-area-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        #colorArea,
+        #hueSlider {
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        #colorArea {
+            cursor: crosshair;
+        }
+
+        #hueSlider {
+            margin-top: 10px;
+            cursor: pointer;
+            height: 20px;
+        }
+
+        .color-picker-marker {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+            top: 0;
+            left: 0;
+        }
+
+        .hue-marker {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.4);
+            transform: translateX(-50%);
+            pointer-events: none;
+            top: 310px;
+            left: 0;
+        }
+
+        .color-values input {
+            font-family: monospace;
+        }
+
+        @media (max-width: 768px) {
+            .color-area-container {
+                max-width: 100%;
+            }
+
+            .value-group {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+            <a href="/pages/tools/tools.html" class="logo d-flex align-items-center">
+                <img src="/assets/img/logo.png" alt="WUS LOGO" width="100" height="100px">
+            </a>
+            <nav id="navmenu" class="navmenu">
+                <ul class="navbar-nav d-flex flex-row align-items-center gap-3">
+                    <li class="nav-item">
+                        <a href="/pages/tools/tools.html" class="nav-link">All Tools</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Tools Menu
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/pages/tools/text-manipulation.html">Text
+                                    Manipulation</a></li>
+                            <li><a class="dropdown-item" href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
+                            <li><a class="dropdown-item" href="/pages/tools/password-generator.html">Password
+                                    Generator</a></li>
+                            <li><a class="dropdown-item" href="/pages/tools/number-converter.html">Number Converter</a>
+                            </li>
+                            <li><a class="dropdown-item" href="/pages/tools/base64encoder-decoder.html">Base64
+                                    Encoder/Decoder</a></li>
+                            <li><a class="dropdown-item" href="/pages/tools/hash-generator.html">Hash Generator</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/index.html" class="nav-link">
+                            <i class="bi bi-house-door"></i><span class="ms-2">Back to WUS</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </div>
+    </header>
+
+    <main id="main" class="main-content">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="text-center">Color Picker Tool</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="color-picker-container">
+                                <div class="color-preview mb-4" id="colorPreview"></div>
+                                <div class="color-area-container mb-4">
+                                    <canvas id="colorArea" width="300" height="300"></canvas>
+                                    <canvas id="hueSlider" width="300" height="20"></canvas> <!-- Updated height -->
+                                    <div class="color-picker-marker"></div>
+                                    <div class="hue-marker"></div>
+                                </div>
+                                <div class="color-values">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <div class="value-group">
+                                                <label>HEX:</label>
+                                                <div style="position: relative;">
+                                                    <input type="text" class="form-control" id="hexValue" readonly>
+                                                    <button class="copy-icon" onclick="copyValue('hexValue')">
+                                                        <i class="bi bi-clipboard"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="value-group">
+                                                <label>RGB:</label>
+                                                <div style="position: relative;">
+                                                    <input type="text" class="form-control" id="rgbValue" readonly>
+                                                    <button class="copy-icon" onclick="copyValue('rgbValue')">
+                                                        <i class="bi bi-clipboard"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="value-group">
+                                                <label>HSL:</label>
+                                                <div style="position: relative;">
+                                                    <input type="text" class="form-control" id="hslValue" readonly>
+                                                    <button class="copy-icon" onclick="copyValue('hslValue')">
+                                                        <i class="bi bi-clipboard"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="value-group">
+                                                <label>HSV:</label>
+                                                <div style="position: relative;">
+                                                    <input type="text" class="form-control" id="hsvValue" readonly>
+                                                    <button class="copy-icon" onclick="copyValue('hsvValue')">
+                                                        <i class="bi bi-clipboard"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <div class="value-group">
+                                                <label>CMYK:</label>
+                                                <div style="position: relative;">
+                                                    <input type="text" class="form-control" id="cmykValue" readonly>
+                                                    <button class="copy-icon" onclick="copyValue('cmykValue')">
+                                                        <i class="bi bi-clipboard"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let hue = 0;
+        let saturation = 100;
+        let value = 100;
+
+        const colorArea = document.getElementById('colorArea');
+        const hueSlider = document.getElementById('hueSlider');
+        const colorCtx = colorArea.getContext('2d');
+        const hueCtx = hueSlider.getContext('2d');
+
+        // Draw hue slider
+        function drawHueSlider() {
+            const gradient = hueCtx.createLinearGradient(0, 0, hueSlider.width, 0);
+            for (let i = 0; i <= 360; i++) {
+                gradient.addColorStop(i / 360, `hsl(${i}, 100%, 50%)`);
+            }
+            hueCtx.fillStyle = gradient;
+            hueCtx.fillRect(0, 0, hueSlider.width, hueSlider.height);
+        }
+
+        // Draw color area
+        function drawColorArea() {
+            // Clear canvas
+            colorCtx.clearRect(0, 0, colorArea.width, colorArea.height);
+
+            // Draw saturation gradient (white to pure color)
+            const saturationGradient = colorCtx.createLinearGradient(0, 0, colorArea.width, 0);
+            saturationGradient.addColorStop(0, 'white');
+            saturationGradient.addColorStop(1, `hsl(${hue}, 100%, 50%)`);
+            colorCtx.fillStyle = saturationGradient;
+            colorCtx.fillRect(0, 0, colorArea.width, colorArea.height);
+
+            // Draw value gradient (transparent black to black)
+            const valueGradient = colorCtx.createLinearGradient(0, 0, 0, colorArea.height);
+            valueGradient.addColorStop(0, 'transparent');
+            valueGradient.addColorStop(1, 'black');
+            colorCtx.fillStyle = valueGradient;
+            colorCtx.fillRect(0, 0, colorArea.width, colorArea.height);
+        }
+
+        // Convert HSV to RGB
+        function hsvToRgb(h, s, v) {
+            h = h / 360;
+            s = s / 100;
+            v = v / 100;
+
+            let r, g, b;
+            const i = Math.floor(h * 6);
+            const f = h * 6 - i;
+            const p = v * (1 - s);
+            const q = v * (1 - f * s);
+            const t = v * (1 - (1 - f) * s);
+
+            switch (i % 6) {
+                case 0: r = v; g = t; b = p; break;
+                case 1: r = q; g = v; b = p; break;
+                case 2: r = p; g = v; b = t; break;
+                case 3: r = p; g = q; b = v; break;
+                case 4: r = t; g = p; b = v; break;
+                case 5: r = v; g = p; b = q; break;
+            }
+
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
+        }
+
+        // Update color values
+        function updateColor() {
+            const rgb = hsvToRgb(hue, saturation, value);
+            const color = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+            document.getElementById('colorPreview').style.backgroundColor = color;
+            document.getElementById('hexValue').value = rgbToHex(rgb.r, rgb.g, rgb.b);
+            document.getElementById('rgbValue').value = color;
+            document.getElementById('hslValue').value = rgbToHsl(rgb.r, rgb.g, rgb.b);
+            document.getElementById('hsvValue').value = `hsv(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(value)}%)`;
+            document.getElementById('cmykValue').value = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+            updateMarkers();
+        }
+
+        // Update the markers reference
+        const colorMarker = document.querySelector('.color-picker-marker');
+        const hueMarker = document.querySelector('.hue-marker');
+
+        // Update marker positions
+        function updateMarkers() {
+            // Update color area marker
+            colorMarker.style.left = `${(saturation / 100) * colorArea.width}px`;
+            colorMarker.style.top = `${(1 - value / 100) * colorArea.height}px`;
+
+            // Update hue slider marker - simplified positioning
+            hueMarker.style.left = `${(hue / 360) * hueSlider.width}px`;
+        }
+
+        // Event Listeners
+        hueSlider.addEventListener('mousedown', function (e) {
+            const updateHue = function (e) {
+                const rect = hueSlider.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                hue = (x / hueSlider.width) * 360;
+                hue = Math.min(360, Math.max(0, hue));
+                drawColorArea();
+                updateColor();
+                updateMarkers();
+            };
+
+            updateHue(e);
+
+            const mouseUpHandler = function () {
+                document.removeEventListener('mousemove', updateHue);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+
+            document.addEventListener('mousemove', updateHue);
+            document.addEventListener('mouseup', mouseUpHandler);
+        });
+
+        colorArea.addEventListener('mousedown', function (e) {
+            const updateSaturationValue = function (e) {
+                const rect = colorArea.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                saturation = (x / colorArea.width) * 100;
+                value = 100 - (y / colorArea.height) * 100;
+
+                saturation = Math.min(100, Math.max(0, saturation));
+                value = Math.min(100, Math.max(0, value));
+
+                updateColor();
+                updateMarkers();
+            };
+
+            updateSaturationValue(e);
+
+            const mouseUpHandler = function () {
+                document.removeEventListener('mousemove', updateSaturationValue);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+
+            document.addEventListener('mousemove', updateSaturationValue);
+            document.addEventListener('mouseup', mouseUpHandler);
+        });
+
+        // Add touch support
+        function addTouchSupport(element, handler) {
+            element.addEventListener('touchstart', function (e) {
+                e.preventDefault();
+                handler(e.touches[0]);
+            });
+            element.addEventListener('touchmove', function (e) {
+                e.preventDefault();
+                handler(e.touches[0]);
+            });
+        }
+
+        addTouchSupport(hueSlider, function (touch) {
+            const rect = hueSlider.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            hue = (x / hueSlider.width) * 360;
+            hue = Math.min(360, Math.max(0, hue));
+            drawColorArea();
+            updateColor();
+        });
+
+        addTouchSupport(colorArea, function (touch) {
+            const rect = colorArea.getBoundingClientRect();
+            const x = touch.clientX - rect.left;
+            const y = touch.clientY - rect.top;
+
+            saturation = (x / colorArea.width) * 100;
+            value = 100 - (y / colorArea.height) * 100;
+
+            saturation = Math.min(100, Math.max(0, saturation));
+            value = Math.min(100, Math.max(0, value));
+
+            updateColor();
+        });
+
+        // Keep existing color conversion functions
+        function rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => {
+                const hex = parseInt(x).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+
+            return `hsl(${Math.round(h * 360)}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+        }
+
+        function rgbToCmyk(r, g, b) {
+            let c = 1 - (r / 255);
+            let m = 1 - (g / 255);
+            let y = 1 - (b / 255);
+            let k = Math.min(c, Math.min(m, y));
+
+            if (k === 1) {
+                c = m = y = 0;
+            } else {
+                c = (c - k) / (1 - k);
+                m = (m - k) / (1 - k);
+                y = (y - k) / (1 - k);
+            }
+
+            return `cmyk(${Math.round(c * 100)}%, ${Math.round(m * 100)}%, ${Math.round(y * 100)}%, ${Math.round(k * 100)}%)`;
+        }
+
+        // Add copy functionality
+        function copyValue(elementId) {
+            const input = document.getElementById(elementId);
+            input.select();
+            document.execCommand('copy');
+
+            // Visual feedback
+            const btn = event.currentTarget;
+            const icon = btn.querySelector('i');
+            icon.classList.remove('bi-clipboard');
+            icon.classList.add('bi-clipboard-check');
+
+            setTimeout(() => {
+                icon.classList.remove('bi-clipboard-check');
+                icon.classList.add('bi-clipboard');
+            }, 1500);
+        }
+
+        // Fix the hue slider width issue by setting canvas width in JS
+        function resizeHueSlider() {
+            const width = colorArea.offsetWidth;
+            hueSlider.width = width;
+            colorArea.width = width;
+            drawHueSlider();
+            drawColorArea();
+            updateColor();
+        }
+
+        // Add resize handler
+        window.addEventListener('resize', resizeHueSlider);
+
+        // Initialize everything after DOM is fully loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeHueSlider();
+            drawColorArea();
+            updateColor();
+        });
+
+        // Call resize on load
+        resizeHueSlider();
+
+        // Initialize
+        drawHueSlider();
+        drawColorArea();
+        updateColor();
+    </script>
+
+    <!-- Add Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container text-center">
+            <h3 class="sitename">Wagle Universal Solutions</h3>
+            <p>Contact us today to learn how we can help you achieve your goals.</p>
+            <div class="social-links d-flex justify-content-center">
+                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i
+                        class="bi bi-facebook"></i></a>
+                <a href="https://x.com/wagleus" class="twitter-x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"
+                    class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <div class="copyright mt-4">
+                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+                <div class="mt-2">
+                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+            <div class="credits">
+                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
