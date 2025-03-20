@@ -286,6 +286,42 @@
             font-size: 0.9rem;
             color: #666;
         }
+
+        /* Custom Modal Styles */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #666;
+        }
     </style>
 </head>
 
@@ -405,6 +441,10 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Add Share Button -->
+                                    <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
+                                        <i class="bi bi-share"></i> Share Color
+                                    </button>
                                 </div>
                             </div>
                             <div class="color-theory-section">
@@ -508,13 +548,84 @@
                 </div>
             </div>
         </div>
+
+        <!-- Add Share Modal -->
+        <div class="custom-modal" id="shareModal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeShareModal()">&times;</span>
+                <h5 class="modal-title">Share Color</h5>
+                <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
+                    <div class="color-preview mb-3" id="modalColorPreview" style="height: 100px;"></div>
+                    <p id="modalColorValues" class="text-center"></p>
+                </div>
+                <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
+                    <button onclick="shareToFacebook()" class="btn btn-outline-primary">
+                        <i class="bi bi-facebook"></i>
+                        Facebook
+                    </button>
+                    <button onclick="shareToTwitter()" class="btn btn-outline-info">
+                        <i class="bi bi-twitter-x"></i>
+                        Twitter
+                    </button>
+                    <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
+                        <i class="bi bi-whatsapp"></i>
+                        WhatsApp
+                    </button>
+                    <button onclick="shareByEmail()" class="btn btn-outline-secondary">
+                        <i class="bi bi-envelope"></i>
+                        Email
+                    </button>
+                </div>
+                <div class="mt-4">
+                    <label>Direct Link:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="shareLink" readonly>
+                        <button class="btn btn-outline-primary" onclick="copyShareLink()">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
-        let hue = 0;
-        let saturation = 100;
-        let value = 100;
+        let hue, saturation, value;
 
+        // Add URL parameter handling
+        function initializeColor() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('h') && urlParams.has('s') && urlParams.has('v')) {
+                // Get colors from URL parameters
+                hue = parseFloat(urlParams.get('h'));
+                saturation = parseFloat(urlParams.get('s'));
+                value = parseFloat(urlParams.get('v'));
+            } else {
+                // Generate random color with good visibility
+                hue = Math.floor(Math.random() * 360);
+                saturation = Math.floor(Math.random() * 40) + 60; // 60-100 for vibrant colors
+                value = Math.floor(Math.random() * 20) + 80; // 80-100 for good visibility
+            }
+
+            // Ensure valid values with fallbacks
+            hue = isNaN(hue) ? Math.floor(Math.random() * 360) : hue % 360;
+            saturation = isNaN(saturation) ? 100 : Math.min(100, Math.max(0, saturation));
+            value = isNaN(value) ? 100 : Math.min(100, Math.max(0, value));
+
+            // Update URL immediately
+            updateUrlParams();
+        }
+
+        // Function to update URL parameters
+        function updateUrlParams() {
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('h', Math.round(hue));
+            newUrl.searchParams.set('s', Math.round(saturation));
+            newUrl.searchParams.set('v', Math.round(value));
+            window.history.replaceState({}, '', newUrl);
+        }
+
+        // Initialize color picker elements
         const colorArea = document.getElementById('colorArea');
         const hueSlider = document.getElementById('hueSlider');
         const colorCtx = colorArea.getContext('2d');
@@ -593,6 +704,7 @@
             updateMarkers();
             updateColorTheory();
             updateContrastChecker();
+            updateUrlParams(); // Add this line at the end of the function
         }
 
         // Update the markers reference
@@ -678,6 +790,7 @@
             hue = Math.min(360, Math.max(0, hue));
             drawColorArea();
             updateColor();
+            updateMarkers();
         });
 
         addTouchSupport(colorArea, function (touch) {
@@ -692,6 +805,7 @@
             value = Math.min(100, Math.max(0, value));
 
             updateColor();
+            updateMarkers();
         });
 
         // Keep existing color conversion functions
@@ -771,33 +885,45 @@
         // Add resize handler
         window.addEventListener('resize', resizeHueSlider);
 
-        // Initialize everything after DOM is fully loaded
+        // Add modal initialization after DOM content is loaded
         window.addEventListener('DOMContentLoaded', () => {
+            initializeColor();
             resizeHueSlider();
+            drawHueSlider();
             drawColorArea();
             updateColor();
+            // Initialize all modals
+            if (typeof bootstrap !== 'undefined') {
+                var shareModal = new bootstrap.Modal(document.getElementById('shareModal'));
+            }
         });
 
-        // Call resize on load
-        resizeHueSlider();
-
-        // Initialize
-        drawHueSlider();
-        drawColorArea();
-        updateColor();
+        document.getElementById('shareModal').addEventListener('show.bs.modal', function (event) {
+            const currentColor = document.getElementById('hexValue').value;
+            const currentRgb = document.getElementById('rgbValue').value;
+            
+            // Update modal preview
+            document.getElementById('modalColorPreview').style.backgroundColor = currentColor;
+            document.getElementById('modalColorValues').textContent = `${currentColor} • ${currentRgb}`;
+            
+            // Generate share link
+            const shareUrl = new URL(window.location.href);
+            document.getElementById('shareLink').value = shareUrl.toString();
+        });
 
         function getColorRelationships(h, s, v) {
-            const relationships = {
+            return {
                 complementary: [(h + 180) % 360, s, v],
                 analogous1: [(h + 30) % 360, s, v],
                 analogous2: [(h - 30 + 360) % 360, s, v],
                 triadic1: [(h + 120) % 360, s, v],
                 triadic2: [(h + 240) % 360, s, v],
                 split1: [(h + 150) % 360, s, v],
-                split2: [(h + 210) % 360, s, v]
+                split2: [(h + 210) % 360, s, v],
+                tetradic1: [(h + 90) % 360, s, v],
+                tetradic2: [(h + 180) % 360, s, v],
+                tetradic3: [(h + 270) % 360, s, v]
             };
-
-            return relationships;
         }
 
         function generateColorPalettes(h, s, v) {
@@ -831,7 +957,7 @@
             const compHue = (hue + 180) % 360;
             const compRgb = hsvToRgb(compHue, saturation, value);
             const compHex = rgbToHex(compRgb.r, compRgb.g, compRgb.b);
-            
+
             document.getElementById('complementaryDisplay').innerHTML = generateColorSquares([
                 { color: baseHex, label: 'Base' },
                 { color: compHex, label: 'Complement' }
@@ -841,7 +967,7 @@
         function updateSplitComplementary() {
             const split1 = (hue + 150) % 360;
             const split2 = (hue + 210) % 360;
-            
+
             document.getElementById('splitComplementaryDisplay').innerHTML = generateColorSquares([
                 { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
                 { color: rgbToHex(...Object.values(hsvToRgb(split1, saturation, value))), label: 'Split 1' },
@@ -852,7 +978,7 @@
         function updateTriadic() {
             const triad1 = (hue + 120) % 360;
             const triad2 = (hue + 240) % 360;
-            
+
             document.getElementById('triadicDisplay').innerHTML = generateColorSquares([
                 { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
                 { color: rgbToHex(...Object.values(hsvToRgb(triad1, saturation, value))), label: 'Triad 1' },
@@ -864,7 +990,7 @@
             const tetra1 = (hue + 90) % 360;
             const tetra2 = (hue + 180) % 360;
             const tetra3 = (hue + 270) % 360;
-            
+
             document.getElementById('tetradicDisplay').innerHTML = generateColorSquares([
                 { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
                 { color: rgbToHex(...Object.values(hsvToRgb(tetra1, saturation, value))), label: 'Tetra 1' },
@@ -876,7 +1002,7 @@
         function updateAnalogous() {
             const analogous1 = (hue + 30) % 360;
             const analogous2 = (hue - 30 + 360) % 360;
-            
+
             document.getElementById('analogousDisplay').innerHTML = generateColorSquares([
                 { color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))), label: 'Base' },
                 { color: rgbToHex(...Object.values(hsvToRgb(analogous1, saturation, value))), label: 'Analogous 1' },
@@ -892,23 +1018,20 @@
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))),
                 label: 'Base'
             });
-            
+
             // Generate variations
             monochromaticColors.push({
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation * 0.8, value))),
                 label: 'Variation 1'
             });
-            
             monochromaticColors.push({
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation * 0.6, value))),
                 label: 'Variation 2'
             });
-            
             monochromaticColors.push({
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value * 0.8))),
                 label: 'Variation 3'
             });
-            
             monochromaticColors.push({
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value * 0.6))),
                 label: 'Variation 4'
@@ -920,7 +1043,7 @@
         function updateTintsAndShades() {
             const tintStrip = document.getElementById('tintStrip');
             const shadeStrip = document.getElementById('shadeStrip');
-            
+
             // Generate tints
             let tintsHTML = '';
             for(let i = 0; i <= 10; i++) {
@@ -983,11 +1106,13 @@
                     return categories[i][1];
                 }
             }
+
             return 'Red';
         }
 
         function getColorProperties(s, v) {
             const properties = [];
+
             if (s < 30) properties.push('Desaturated');
             else if (s > 70) properties.push('Vibrant');
 
@@ -1015,15 +1140,19 @@
 
         function generateVariations(h, s, v) {
             const variations = [];
+
             // Generate tints (adding white)
             for(let i = 9; i >= 1; i--) {
                 variations.push([h, s, v + ((100 - v) * (i/10))]);
             }
+
             variations.push([h, s, v]); // Original color
+
             // Generate shades (adding black)
             for(let i = 1; i <= 9; i++) {
                 variations.push([h, s, v * (1 - i/10)]);
             }
+
             return variations;
         }
 
@@ -1031,14 +1160,13 @@
             const textColor = document.getElementById('textColorPicker').value;
             const bgColor = document.getElementById('colorPreview').style.backgroundColor;
             const preview = document.getElementById('contrastPreview');
-            
+
             if (!textColor || !bgColor) return; // Guard against undefined colors
-            
+
             const ratio = calculateContrastRatio(textColor, bgColor);
-            
+
             preview.style.backgroundColor = bgColor;
             preview.style.color = textColor;
-            
             document.getElementById('contrastRatio').innerHTML = `
                 <strong>Contrast Ratio: ${ratio.toFixed(2)}:1</strong><br>
                 <span class="${ratio >= 4.5 ? 'text-success' : 'text-danger'}">
@@ -1057,6 +1185,7 @@
                     const b = parseInt(color.slice(5, 7), 16);
                     return [r, g, b];
                 }
+
                 // Handle rgb/rgba color
                 const match = color.match(/\d+/g);
                 return [parseInt(match[0]), parseInt(match[1]), parseInt(match[2])];
@@ -1085,52 +1214,86 @@
             return (lighter + 0.05) / (darker + 0.05);
         }
 
-        // Initialize color picker
         document.getElementById('textColorPicker').addEventListener('input', updateContrastChecker);
-    </script>
 
-    <!-- Add Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i
-                        class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"
-                    class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+        // Add these functions after your existing JavaScript code
+        function openShareModal() {
+            const modal = document.getElementById('shareModal');
+            const currentColor = document.getElementById('hexValue').value;
+            const currentRgb = document.getElementById('rgbValue').value;
+            
+            // Update modal preview
+            document.getElementById('modalColorPreview').style.backgroundColor = currentColor;
+            document.getElementById('modalColorValues').textContent = `${currentColor} • ${currentRgb}`;
+            
+            // Generate share link
+            const shareUrl = new URL(window.location.href);
+            document.getElementById('shareLink').value = shareUrl.toString();
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
+        function closeShareModal() {
+            const modal = document.getElementById('shareModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
 
+        // Close modal when clicking outside
+        document.getElementById('shareModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeShareModal();
+            }
+        });
 
-    <!-- Vendor JS Files -->
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        // Optional: Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('shareModal').classList.contains('show')) {
+                closeShareModal();
+            }
+        });
 
-    <!-- Main JS File -->
-    <script src="/assets/js/main.js"></script>
+        function copyShareLink() {
+            const shareLink = document.getElementById('shareLink');
+            shareLink.select();
+            document.execCommand('copy');
 
-    <script>
+            // Visual feedback
+            const button = event.currentTarget;
+            const icon = button.querySelector('i');
+            icon.classList.remove('bi-clipboard');
+            icon.classList.add('bi-clipboard-check');
 
+            setTimeout(() => {
+                icon.classList.remove('bi-clipboard-check');
+                icon.classList.add('bi-clipboard');
+            }, 1500);
+        }
+
+        function shareToFacebook() {
+            const text = encodeURIComponent(`Check out this color I found!`);
+            const url = encodeURIComponent(document.getElementById('shareLink').value);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+
+        function shareToTwitter() {
+            const text = encodeURIComponent(`Check out this color I found! ${document.getElementById('hexValue').value}`);
+            const url = encodeURIComponent(document.getElementById('shareLink').value);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        }
+
+        function shareToWhatsApp() {
+            const text = encodeURIComponent(`Check out this color I found! ${document.getElementById('hexValue').value}\n`);
+            const url = document.getElementById('shareLink').value;
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+
+        function shareByEmail() {
+            const subject = encodeURIComponent('Check out this color!');
+            const body = encodeURIComponent(`I found this amazing color: ${document.getElementById('hexValue').value}\n\nCheck it out here: ${document.getElementById('shareLink').value}`);
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
     </script>
 </body>
-
 </html>
