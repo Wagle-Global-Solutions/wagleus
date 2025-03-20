@@ -322,6 +322,63 @@
             font-size: 1.5rem;
             color: #666;
         }
+
+        .color-square-container {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .color-square {
+            position: relative;
+        }
+        
+        .color-copy-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.2s;
+            background: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .color-square-container:hover .color-copy-btn {
+            opacity: 1;
+        }
+
+        .color-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .color-box .color-copy-btn {
+            opacity: 0;
+            transition: opacity 0.2s;
+            position: absolute;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .color-box:hover .color-copy-btn {
+            opacity: 1;
+        }
+
+        .color-box-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: #666;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -1053,8 +1110,18 @@
                 const tintHsv = [hue, saturation, value + ((100 - value) * (i/10))];
                 const rgb = hsvToRgb(...tintHsv);
                 const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+                const textColor = getBestContrastColor(hex);
+                
                 tintsHTML += `
-                    <div class="color-box" style="background-color: ${hex}" data-value="${i*10}%"></div>
+                    <div class="color-box" style="background-color: ${hex}">
+                        <button class="color-copy-btn" 
+                                onclick="copyHexColor('${hex}')" 
+                                style="color: ${textColor}"
+                                title="Copy ${hex}">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                        <span class="color-box-label">${hex}</span>
+                    </div>
                 `;
             }
             tintStrip.innerHTML = tintsHTML;
@@ -1065,20 +1132,88 @@
                 const shadeHsv = [hue, saturation, value * (1 - i/10)];
                 const rgb = hsvToRgb(...shadeHsv);
                 const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+                const textColor = getBestContrastColor(hex);
+                
                 shadesHTML += `
-                    <div class="color-box" style="background-color: ${hex}" data-value="${i*10}%"></div>
+                    <div class="color-box" style="background-color: ${hex}">
+                        <button class="color-copy-btn" 
+                                onclick="copyHexColor('${hex}')" 
+                                style="color: ${textColor}"
+                                title="Copy ${hex}">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                        <span class="color-box-label">${hex}</span>
+                    </div>
                 `;
             }
             shadeStrip.innerHTML = shadesHTML;
         }
 
         function generateColorSquares(colors) {
-            return colors.map(({color, label}) => `
-                <div class="color-square-container">
-                    <div class="color-square" style="background-color: ${color}"></div>
-                    <div class="color-label">${label}<br>${color}</div>
-                </div>
-            `).join('');
+            return colors.map(({color, label}) => {
+                // Calculate best contrast color for icon
+                const textColor = getBestContrastColor(color);
+                
+                return `
+                    <div class="color-square-container">
+                        <div class="color-square" style="background-color: ${color}">
+                            <button class="color-copy-btn" 
+                                    onclick="copyHexColor('${color}')" 
+                                    style="color: ${textColor}"
+                                    title="Copy ${color}">
+                                <i class="bi bi-clipboard"></i>
+                            </button>
+                        </div>
+                        <div class="color-label">${label}<br>${color}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Add these new helper functions
+        function getBestContrastColor(bgColor) {
+            // Remove # if present
+            const color = bgColor.charAt(0) === '#' ? bgColor.substring(1) : bgColor;
+            
+            // Convert hex to RGB
+            const r = parseInt(color.substr(0,2), 16);
+            const g = parseInt(color.substr(2,2), 16);
+            const b = parseInt(color.substr(4,2), 16);
+            
+            // Calculate perceived brightness
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            
+            // Choose white or black based on brightness
+            const textColor = brightness > 128 ? '#000000' : '#FFFFFF';
+            
+            // Verify contrast ratio meets WCAG AA
+            const ratio = calculateContrastRatio(textColor, bgColor);
+            
+            // Return the color with better contrast
+            return ratio >= 4.5 ? textColor : (brightness > 128 ? '#000000' : '#FFFFFF');
+        }
+        
+        function copyHexColor(color) {
+            // Create temporary input element
+            const temp = document.createElement('input');
+            temp.value = color;
+            document.body.appendChild(temp);
+            
+            // Select and copy
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
+            
+            // Show feedback
+            const btn = event.currentTarget;
+            const icon = btn.querySelector('i');
+            icon.classList.remove('bi-clipboard');
+            icon.classList.add('bi-clipboard-check');
+            
+            setTimeout(() => {
+                icon.classList.remove('bi-clipboard-check');
+                icon.classList.add('bi-clipboard');
+            }, 1500);
         }
 
         function getColorAnalysis(h, s, v) {
