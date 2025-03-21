@@ -414,7 +414,8 @@
                         <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
                         <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
                         <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
-                        <li><a href="/pages/tools/cron-generator.html">Cron Generator</a></li>
+                        <li><a href="/pages/tools/cron-expression-generator.html">Cron Generator</a></li>
+                        <li><a href="/pages/tools/css-js-minifier.html">CSS & JS Minifier</a></li>
                     </ul>
                 </li>
                 <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
@@ -427,231 +428,240 @@
 <!-- Add backdrop div after header -->
 <div class="nav-backdrop"></div>
 
-    <main id="main" class="main-content">
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="text-center">Color Picker Tool</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="color-picker-container">
-                                <div class="color-preview mb-4" id="colorPreview"></div>
-                                <div class="color-area-container mb-4">
-                                    <canvas id="colorArea" width="300" height="300"></canvas>
-                                    <canvas id="hueSlider" width="300" height="20"></canvas> <!-- Updated height -->
-                                    <div class="color-picker-marker"></div>
-                                    <div class="hue-marker"></div>
-                                </div>
-                                <div class="color-values">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-2">
-                                            <div class="value-group">
-                                                <label>HEX:</label>
-                                                <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="hexValue" onblur="updateFromHex(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHex(this.value); this.blur(); }">
-                                                    <button class="copy-icon" onclick="copyValue('hexValue')">
-                                                        <i class="bi bi-clipboard"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="value-group">
-                                                <label>RGB:</label>
-                                                <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="rgbValue" onblur="updateFromRgb(this.value)" onkeydown="if(event.key === 'Enter') { updateFromRgb(this.value); this.blur(); }">
-                                                    <button class="copy-icon" onclick="copyValue('rgbValue')">
-                                                        <i class="bi bi-clipboard"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="value-group">
-                                                <label>HSL:</label>
-                                                <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="hslValue" onblur="updateFromHsl(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHsl(this.value); this.blur(); }">
-                                                    <button class="copy-icon" onclick="copyValue('hslValue')">
-                                                        <i class="bi bi-clipboard"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="value-group">
-                                                <label>HSV:</label>
-                                                <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="hsvValue" readonly>
-                                                    <button class="copy-icon" onclick="copyValue('hsvValue')">
-                                                        <i class="bi bi-clipboard"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-2">
-                                            <div class="value-group">
-                                                <label>CMYK:</label>
-                                                <div style="position: relative;">
-                                                    <input type="text" class="form-control" id="cmykValue" readonly>
-                                                    <button class="copy-icon" onclick="copyValue('cmykValue')">
-                                                        <i class="bi bi-clipboard"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <small class="text-muted mt-2 mb-3 d-block text-center">
-                                        Press Enter or click outside the input box to apply changes
-                                    </small>
-                                    <!-- Add Share Button -->
-                                    <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
-                                        <i class="bi bi-share"></i> Share Color
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="color-theory-section">
-                                <h3 class="mb-4">Color Theory & Combinations</h3>
+<main class="main">
+    <div class="tool-container">
+        <h1 class="text-center mb-4">Color Theory & Palette Generator</h1>
+        <p class="tool-description text-center">
+            Generate harmonious color palettes, explore color combinations, and understand color theory principles for your design projects.
+        </p>
 
-                                <!-- Color Variations -->
-                                <div class="theory-block mb-5">
-                                    <h4>Color Variations</h4>
-                                    <p class="theory-description">
-                                        Tints and shades help create depth and hierarchy in design. Tints are created by adding white, shades by adding black.
-                                    </p>
-                                    <div class="variations-container">
-                                        <h6 class="mb-2">Tints (Adding White)</h6>
-                                        <div id="tintStrip" class="color-strip"></div>
-                                        <h6 class="mb-2 mt-4">Shades (Adding Black)</h6>
-                                        <div id="shadeStrip" class="color-strip"></div>
-                                    </div>
-                                </div>
-
-                                <!-- Color Harmonies -->
-                                <div class="row">
-                                    <!-- Complementary -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Complementary Colors</h4>
-                                            <p class="theory-description">Colors opposite on the color wheel. Creates maximum contrast.</p>
-                                            <div id="complementaryDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Split Complementary -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Split-Complementary</h4>
-                                            <p class="theory-description">Uses two colors adjacent to the complement.</p>
-                                            <div id="splitComplementaryDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Triadic -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Triadic Colors</h4>
-                                            <p class="theory-description">Three colors equally spaced on the color wheel.</p>
-                                            <div id="triadicDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Tetradic -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Tetradic (Double Complementary)</h4>
-                                            <p class="theory-description">Two pairs of complementary colors.</p>
-                                            <div id="tetradicDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Analogous -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Analogous Colors</h4>
-                                            <p class="theory-description">Three adjacent colors on the color wheel.</p>
-                                            <div id="analogousDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Monochromatic -->
-                                    <div class="col-md-6 mb-4">
-                                        <div class="theory-block">
-                                            <h4>Monochromatic</h4>
-                                            <p class="theory-description">Different shades and saturations of the same hue.</p>
-                                            <div id="monochromaticDisplay" class="color-harmony"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Contrast Checker -->
-                                <div class="theory-block mt-4">
-                                    <h4>Contrast Checker</h4>
-                                    <p class="theory-description">
-                                        Check if your text color has sufficient contrast with the background color for optimal readability. WCAG guidelines recommend a minimum contrast ratio of 4.5:1 for normal text.
-                                    </p>
-                                    <div class="contrast-checker">
-                                        <div class="contrast-preview p-4 mb-3" id="contrastPreview">
-                                            <span id="previewText">Preview Text</span>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Text Color: <span id="textColorHex">#000000</span></label>
-                                                <input type="color" class="form-control" id="textColorPicker">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div id="contrastRatio" class="mt-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Warning Box -->
+        <div class="warning-box">
+            <p class="mb-0">
+                <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
+                <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
+            </p>
         </div>
 
-        <!-- Add Share Modal -->
-        <div class="custom-modal" id="shareModal">
-            <div class="modal-content">
-                <span class="modal-close" onclick="closeShareModal()">&times;</span>
-                <h5 class="modal-title">Share Color</h5>
-                <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
-                    <div class="color-preview mb-3" id="modalColorPreview" style="height: 100px;"></div>
-                    <p id="modalColorValues" class="text-center"></p>
-                </div>
-                <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
-                    <button onclick="shareToFacebook()" class="btn btn-outline-primary">
-                        <i class="bi bi-facebook"></i>
-                        Facebook
-                    </button>
-                    <button onclick="shareToTwitter()" class="btn btn-outline-info">
-                        <i class="bi bi-twitter-x"></i>
-                        Twitter
-                    </button>
-                    <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
-                        <i class="bi bi-whatsapp"></i>
-                        WhatsApp
-                    </button>
-                    <button onclick="shareByEmail()" class="btn btn-outline-secondary">
-                        <i class="bi bi-envelope"></i>
-                        Email
-                    </button>
-                </div>
-                <div class="mt-4">
-                    <label>Direct Link:</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="shareLink" readonly>
-                        <button class="btn btn-outline-primary" onclick="copyShareLink()">
-                            <i class="bi bi-clipboard"></i>
+        <!-- Main Tool Content -->
+        <div class="card">
+            <div class="card-body">
+                <div class="color-picker-container">
+                    <div class="color-preview mb-4" id="colorPreview"></div>
+                    <div class="color-area-container mb-4">
+                        <canvas id="colorArea" width="300" height="300"></canvas>
+                        <canvas id="hueSlider" width="300" height="20"></canvas> <!-- Updated height -->
+                        <div class="color-picker-marker"></div>
+                        <div class="hue-marker"></div>
+                    </div>
+                    <div class="color-values">
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <div class="value-group">
+                                    <label>HEX:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" class="form-control" id="hexValue" onblur="updateFromHex(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHex(this.value); this.blur(); }">
+                                        <button class="copy-icon" onclick="copyValue('hexValue')">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="value-group">
+                                    <label>RGB:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" class="form-control" id="rgbValue" onblur="updateFromRgb(this.value)" onkeydown="if(event.key === 'Enter') { updateFromRgb(this.value); this.blur(); }">
+                                        <button class="copy-icon" onclick="copyValue('rgbValue')">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="value-group">
+                                    <label>HSL:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" class="form-control" id="hslValue" onblur="updateFromHsl(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHsl(this.value); this.blur(); }">
+                                        <button class="copy-icon" onclick="copyValue('hslValue')">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="value-group">
+                                    <label>HSV:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" class="form-control" id="hsvValue" readonly>
+                                        <button class="copy-icon" onclick="copyValue('hsvValue')">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <div class="value-group">
+                                    <label>CMYK:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" class="form-control" id="cmykValue" readonly>
+                                        <button class="copy-icon" onclick="copyValue('cmykValue')">
+                                            <i class="bi bi-clipboard"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="text-muted mt-2 mb-3 d-block text-center">
+                            Press Enter or click outside the input box to apply changes
+                        </small>
+                        <!-- Add Share Button -->
+                        <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
+                            <i class="bi bi-share"></i> Share Color
                         </button>
                     </div>
                 </div>
+                <div class="color-theory-section">
+                    <h3 class="mb-4">Color Theory & Combinations</h3>
+
+                    <!-- Color Variations -->
+                    <div class="theory-block mb-5">
+                        <h4>Color Variations</h4>
+                        <p class="theory-description">
+                            Tints and shades help create depth and hierarchy in design. Tints are created by adding white, shades by adding black.
+                        </p>
+                        <div class="variations-container">
+                            <h6 class="mb-2">Tints (Adding White)</h6>
+                            <div id="tintStrip" class="color-strip"></div>
+                            <h6 class="mb-2 mt-4">Shades (Adding Black)</h6>
+                            <div id="shadeStrip" class="color-strip"></div>
+                        </div>
+                    </div>
+
+                    <!-- Color Harmonies -->
+                    <div class="row">
+                        <!-- Complementary -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Complementary Colors</h4>
+                                <p class="theory-description">Colors opposite on the color wheel. Creates maximum contrast.</p>
+                                <div id="complementaryDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Split Complementary -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Split-Complementary</h4>
+                                <p class="theory-description">Uses two colors adjacent to the complement.</p>
+                                <div id="splitComplementaryDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+
+                        <!-- Triadic -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Triadic Colors</h4>
+                                <p class="theory-description">Three colors equally spaced on the color wheel.</p>
+                                <div id="triadicDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tetradic -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Tetradic (Double Complementary)</h4>
+                                <p class="theory-description">Two pairs of complementary colors.</p>
+                                <div id="tetradicDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+
+                        <!-- Analogous -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Analogous Colors</h4>
+                                <p class="theory-description">Three adjacent colors on the color wheel.</p>
+                                <div id="analogousDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+
+                        <!-- Monochromatic -->
+                        <div class="col-md-6 mb-4">
+                            <div class="theory-block">
+                                <h4>Monochromatic</h4>
+                                <p class="theory-description">Different shades and saturations of the same hue.</p>
+                                <div id="monochromaticDisplay" class="color-harmony"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contrast Checker -->
+                    <div class="theory-block mt-4">
+                        <h4>Contrast Checker</h4>
+                        <p class="theory-description">
+                            Check if your text color has sufficient contrast with the background color for optimal readability. WCAG guidelines recommend a minimum contrast ratio of 4.5:1 for normal text.
+                        </p>
+                        <div class="contrast-checker">
+                            <div class="contrast-preview p-4 mb-3" id="contrastPreview">
+                                <span id="previewText">Preview Text</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Text Color: <span id="textColorHex">#000000</span></label>
+                                    <input type="color" class="form-control" id="textColorPicker">
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="contrastRatio" class="mt-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
+
+<!-- Add Share Modal -->
+<div class="custom-modal" id="shareModal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeShareModal()">&times;</span>
+        <h5 class="modal-title">Share Color</h5>
+        <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
+            <div class="color-preview mb-3" id="modalColorPreview" style="height: 100px;"></div>
+            <p id="modalColorValues" class="text-center"></p>
+        </div>
+        <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
+            <button onclick="shareToFacebook()" class="btn btn-outline-primary">
+                <i class="bi bi-facebook"></i>
+                Facebook
+            </button>
+            <button onclick="shareToTwitter()" class="btn btn-outline-info">
+                <i class="bi bi-twitter-x"></i>
+                Twitter
+            </button>
+            <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
+                <i class="bi bi-whatsapp"></i>
+                WhatsApp
+            </button>
+            <button onclick="shareByEmail()" class="btn btn-outline-secondary">
+                <i class="bi bi-envelope"></i>
+                Email
+            </button>
+        </div>
+        <div class="mt-4">
+            <label>Direct Link:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="shareLink" readonly>
+                <button class="btn btn-outline-primary" onclick="copyShareLink()">
+                    <i class="bi bi-clipboard"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 <footer id="footer" class="footer dark-background">
     <div class="container text-center">

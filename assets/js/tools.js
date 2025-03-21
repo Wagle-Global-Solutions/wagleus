@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentPage = parseInt(e.target.dataset.page);
             updatePagination();
             displayTools();
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            // Remove the window.scrollTo call to prevent scrolling
         }
     });
 

@@ -179,7 +179,8 @@
                             <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
                             <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
                             <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
-                            <li><a href="/pages/tools/cron-generator.html">Cron Generator</a></li>
+                            <li><a href="/pages/tools/cron-expression-generator.html">Cron Generator</a></li>
+                            <li><a href="/pages/tools/css-js-minifier.html">CSS & JS Minifier</a></li>
                         </ul>
                     </li>
                     <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
@@ -193,11 +194,18 @@
     <div class="nav-backdrop"></div>
 
     <main class="main">
+        
         <div class="tools-container">
             <div class="tools-header">
                 <h1>Professional Development Tools</h1>
                 <p>Efficient online utilities for text processing and number conversion. Each tool is designed for specific development tasks, with examples and technical documentation.</p>
-            
+                <div class="warning-box">
+                    <p class="mb-0">
+                        <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
+                        <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
+                        <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
+                    </p>
+                </div>
                 <!-- Simplified Search -->
                 <div class="tools-filter mt-4">
                     <div class="search-wrapper">
@@ -221,6 +229,28 @@
 
             <!-- Tool Grid Container -->
             <div class="row g-4" id="toolsGrid">
+                <!-- Add CSS & JS Minifier Card FIRST -->
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3>CSS & JavaScript Minifier</h3>
+                            <div class="tool-demo p-3 bg-light rounded mb-3">
+                                <code class="d-block mb-2">Input: .button { background: #007bff; }</code>
+                                <code class="d-block mb-2">↓ Minify</code>
+                                <code class="d-block">.button{background:#007bff}</code>
+                            </div>
+                            <h4>Key Features</h4>
+                            <ul class="mb-4">
+                                <li>CSS & JavaScript minification</li>
+                                <li>Advanced JS optimization options</li>
+                                <li>Bulk file processing</li>
+                                <li>Code analysis & statistics</li>
+                            </ul>
+                            <a href="./css-js-minifier.html" class="btn btn-primary">Open Tool</a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Existing tool cards... -->
 
                 <!-- Add Cron Expression Generator Card -->
@@ -449,6 +479,16 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row g-4">
+                            <!-- Add CSS & JS Minifier section FIRST -->
+                            <div class="col-md-4">
+                                <h4>CSS & JS Minification</h4>
+                                <ul>
+                                    <li>Standard CSS compression</li>
+                                    <li>Terser JavaScript optimization</li>
+                                    <li>Variable name mangling</li>
+                                    <li>Dead code elimination</li>
+                                </ul>
+                            </div>
                             <!-- Add Cron Generator section -->
                             <div class="col-md-4">
                                 <h4>Cron Expression Tools</h4>
