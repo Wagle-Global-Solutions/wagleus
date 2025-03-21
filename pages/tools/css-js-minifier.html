@@ -133,7 +133,50 @@
             border-bottom-color: #007bff;
             color: #007bff;
         }
+
+        .options-panel {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .option-group {
+            margin-bottom: 10px;
+        }
+
+        .analysis-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #007bff;
+        }
+
+        .progress-container {
+            margin: 20px 0;
+            display: none;
+        }
+
+        .progress {
+            height: 20px;
+            border-radius: 10px;
+            background-color: #e9ecef;
+        }
+
+        .progress-bar {
+            background-color: #007bff;
+            transition: width 0.3s ease;
+        }
+
+        .progress-status {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+        }
     </style>
+    <!-- Add Terser for JavaScript minification -->
+    <script src="https://cdn.jsdelivr.net/npm/terser/dist/bundle.min.js"></script>
 </head>
 <body>
     <!-- Header-->
@@ -199,6 +242,40 @@
                     </div>
                 </div>
 
+                <div class="options-panel mb-3">
+                    <h5>Optimization Options</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="optMangle" checked>
+                                    Mangle Variables
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="optCompress" checked>
+                                    Compress Code
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="optDropConsole" checked>
+                                    Remove Console Statements
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="optDropDebugger">
+                                    Remove Debugger Statements
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="stats-box d-none" id="statsBox">
                     <div class="stats-item">Original Size: <span id="originalSize">0</span> KB</div>
                     <div class="stats-item">Minified Size: <span id="minifiedSize">0</span> KB</div>
@@ -215,11 +292,61 @@
 
             <!-- Upload Files Section -->
             <div class="tab-content" id="upload-section">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <select class="form-select" id="uploadCodeType">
+                            <option value="css">CSS</option>
+                            <option value="js">JavaScript</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="options-panel mb-3 d-none" id="uploadOptionsPanel">
+                    <h5>JavaScript Optimization Options</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="uploadOptMangle" checked>
+                                    Mangle Variables
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="uploadOptCompress" checked>
+                                    Compress Code
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="uploadOptDropConsole" checked>
+                                    Remove Console Statements
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="uploadOptDropDebugger">
+                                    Remove Debugger Statements
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="file-drop-zone" id="dropZone">
                     <i class="bi bi-cloud-upload"></i>
                     <p>Drag & drop CSS or JavaScript files here</p>
                     <p class="drag-text">or click to select files</p>
                     <input type="file" id="fileInput" multiple accept=".css,.js" class="d-none">
+                </div>
+
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%" id="progressBar"></div>
+                    </div>
+                    <div class="progress-status" id="progressStatus">Processing files: 0/0</div>
                 </div>
 
                 <div id="fileList" class="mt-4"></div>
@@ -264,6 +391,7 @@
 <script src="/assets/vendor/aos/aos.js"></script>
 <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/terser/dist/bundle.min.js"></script>
 
 <!-- Main JS File -->
 <script src="/assets/js/index.js"></script>
@@ -289,15 +417,76 @@
         const resultBox = document.getElementById('resultBox');
         const statsBox = document.getElementById('statsBox');
 
-        minifyBtn.addEventListener('click', () => {
+        // Add getByteSize function
+        function getByteSize(str) {
+            return new TextEncoder().encode(str).length;
+        }
+
+        async function minifyCode(code, type) {
+            if (type === 'css') {
+                // Enhanced CSS minification
+                return code
+                    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+                    .replace(/\s+/g, ' ')
+                    .replace(/\s*([\{\}\:\;\,])\s*/g, '$1')
+                    .replace(/;\}/g, '}')
+                    .replace(/\s*([>~+])\s*/g, '$1')
+                    .replace(/\s*(!important)/g, '$1')
+                    .replace(/\s+{/g, '{')
+                    .replace(/;}$/g, '}')
+                    .trim();
+            } else {
+                // Enhanced JS minification using Terser
+                try {
+                    const options = {
+                        mangle: document.getElementById('optMangle').checked,
+                        compress: document.getElementById('optCompress').checked ? {
+                            drop_console: document.getElementById('optDropConsole').checked,
+                            drop_debugger: document.getElementById('optDropDebugger').checked,
+                            unsafe: true,
+                            unsafe_math: true,
+                            dead_code: true,
+                            evaluate: true,
+                            unused: true,
+                            if_return: true,
+                            join_vars: true,
+                            reduce_vars: true
+                        } : false,
+                        output: {
+                            beautify: false,
+                            comments: false
+                        }
+                    };
+
+                    // Perform analysis before minification
+                    const analysis = analyzeCode(code);
+                    displayAnalysis(analysis);
+
+                    // Use minify method from Terser
+                    const result = await window.Terser.minify({ "file.js": code }, options);
+                    
+                    if (result.error) {
+                        throw new Error(result.error);
+                    }
+
+                    return result.code;
+                } catch (e) {
+                    console.error('Advanced minification failed:', e);
+                    showError(e.message);
+                    return basicMinify(code);
+                }
+            }
+        }
+
+        // Update minifyBtn event listener to handle async minification
+        minifyBtn.addEventListener('click', async () => {
             const code = sourceCode.value;
             if (!code.trim()) return;
 
-            const minified = minifyCode(code, document.getElementById('codeType').value);
+            const minified = await minifyCode(code, document.getElementById('codeType').value);
             minifiedCode.textContent = minified;
             resultBox.classList.remove('d-none');
             
-            // Update stats
             const originalSize = getByteSize(code);
             const minifiedSize = getByteSize(minified);
             const savings = ((originalSize - minifiedSize) / originalSize * 100).toFixed(1);
@@ -377,52 +566,169 @@
             updateFileList();
         };
 
-        minifyAllBtn.addEventListener('click', async () => {
-            const zip = new JSZip();
-            
-            for (let file of files) {
-                const content = await file.text();
-                const type = file.name.endsWith('.css') ? 'css' : 'js';
-                const minified = minifyCode(content, type);
-                const filename = file.name.replace(/\.(js|css)$/, '.min.$1');
-                zip.file(filename, minified);
-            }
+        // Add type change handlers
+        const codeType = document.getElementById('codeType');
+        const uploadCodeType = document.getElementById('uploadCodeType');
+        const optionsPanel = document.querySelector('.options-panel');
+        const uploadOptionsPanel = document.getElementById('uploadOptionsPanel');
 
-            const blob = await zip.generateAsync({type: 'blob'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'minified-files.zip';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        });
-
-        function minifyCode(code, type) {
-            if (type === 'css') {
-                return code
-                    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '') // Remove comments
-                    .replace(/\s+/g, ' ') // Collapse whitespace
-                    .replace(/\s*{\s*/g, '{')
-                    .replace(/\s*}\s*/g, '}')
-                    .replace(/\s*;\s*/g, ';')
-                    .replace(/\s*:\s*/g, ':')
-                    .trim();
+        function toggleOptionsPanel(type, panel) {
+            if (type === 'js') {
+                panel.classList.remove('d-none');
             } else {
-                return code
-                    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '') // Remove comments
-                    .replace(/\s+/g, ' ') // Collapse whitespace
-                    .replace(/\s*{\s*/g, '{')
-                    .replace(/\s*}\s*/g, '}')
-                    .replace(/\s*;\s*/g, ';')
-                    .replace(/\s*:\s*/g, ':')
-                    .trim();
+                panel.classList.add('d-none');
             }
         }
 
-        function getByteSize(str) {
-            return new Blob([str]).size;
+        codeType.addEventListener('change', () => {
+            toggleOptionsPanel(codeType.value, optionsPanel);
+        });
+
+        uploadCodeType.addEventListener('change', () => {
+            toggleOptionsPanel(uploadCodeType.value, uploadOptionsPanel);
+        });
+
+        // Initialize panels
+        toggleOptionsPanel(codeType.value, optionsPanel);
+        toggleOptionsPanel(uploadCodeType.value, uploadOptionsPanel);
+
+        // Update minifyAllBtn to handle bulk minification with progress
+        minifyAllBtn.addEventListener('click', async () => {
+            const zip = new JSZip();
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const progressStatus = document.getElementById('progressStatus');
+            
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressStatus.textContent = `Processing files: 0/${files.length}`;
+
+            try {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const content = await file.text();
+                    const type = uploadCodeType.value;
+                    
+                    let minified;
+                    if (type === 'js') {
+                        // Use JS optimization options for all JS files
+                        const options = {
+                            mangle: document.getElementById('uploadOptMangle').checked,
+                            compress: document.getElementById('uploadOptCompress').checked ? {
+                                drop_console: document.getElementById('uploadOptDropConsole').checked,
+                                drop_debugger: document.getElementById('uploadOptDropDebugger').checked,
+                                unsafe: true,
+                                unsafe_math: true,
+                                dead_code: true,
+                                evaluate: true,
+                                unused: true,
+                                if_return: true,
+                                join_vars: true,
+                                reduce_vars: true
+                            } : false,
+                            output: {
+                                beautify: false,
+                                comments: false
+                            }
+                        };
+                        
+                        const result = await window.Terser.minify({ "file.js": content }, options);
+                        minified = result.code;
+                    } else {
+                        minified = basicMinify(content);
+                    }
+
+                    const filename = file.name.replace(/\.(js|css)$/, '.min.$1');
+                    zip.file(filename, minified);
+
+                    // Update progress
+                    const progress = ((i + 1) / files.length * 100).toFixed(0);
+                    progressBar.style.width = `${progress}%`;
+                    progressStatus.textContent = `Processing files: ${i + 1}/${files.length}`;
+                }
+
+                const blob = await zip.generateAsync({type: 'blob'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'minified-files.zip';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                progressContainer.style.display = 'none';
+            }
+        });
+
+        function analyzeCode(code) {
+            const analysis = {
+                variables: 0,
+                functions: 0,
+                loops: 0,
+                conditionals: 0
+            };
+
+            // Count variables
+            const varMatches = code.match(/\b(?:var|let|const)\s+[a-zA-Z_$]/g) || [];
+            analysis.variables = varMatches.length;
+
+            // Count functions
+            const funcMatches = code.match(/\bfunction\s+[a-zA-Z_$]|\b=>\s*{/g) || [];
+            analysis.functions = funcMatches.length;
+
+            // Count loops
+            const loopMatches = code.match(/\b(?:for|while|do)\b/g) || [];
+            analysis.loops = loopMatches.length;
+
+            // Count conditionals
+            const condMatches = code.match(/\b(?:if|else|switch|case)\b/g) || [];
+            analysis.conditionals = condMatches.length;
+
+            return analysis;
+        }
+
+        function displayAnalysis(analysis) {
+            // Remove existing analysis box if present
+            const existingAnalysis = document.querySelector('.analysis-box');
+            if (existingAnalysis) {
+                existingAnalysis.remove();
+            }
+
+            const analysisHtml = `
+                <div class="analysis-box">
+                    <h6>Code Analysis</h6>
+                    <div class="row">
+                        <div class="col-6 col-md-3">Variables: ${analysis.variables}</div>
+                        <div class="col-6 col-md-3">Functions: ${analysis.functions}</div>
+                        <div class="col-6 col-md-3">Loops: ${analysis.loops}</div>
+                        <div class="col-6 col-md-3">Conditionals: ${analysis.conditionals}</div>
+                    </div>
+                </div>
+            `;
+            
+            const statsBox = document.getElementById('statsBox');
+            statsBox.insertAdjacentHTML('beforebegin', analysisHtml);
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger';
+            errorDiv.textContent = `Minification Error: ${message}`;
+            document.getElementById('resultBox').insertAdjacentElement('beforebegin', errorDiv);
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        function basicMinify(code) {
+            return code
+                .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/\s*{\s*/g, '{')
+                .replace(/\s*}\s*/g, '}')
+                .replace(/\s*;\s*/g, ';')
+                .trim();
         }
     });
 </script>
