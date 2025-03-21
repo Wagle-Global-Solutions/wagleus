@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1FYJ98BTXG');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2031642574589224"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
+    <title>Free CSS & JavaScript Minifier Tool | WUS</title>
+    <meta name="description" content="Free online tool to minify CSS and JavaScript code. Reduce file size and improve website performance. Supports bulk file minification and ZIP download.">
+    <meta name="keywords" content="css minifier, javascript minifier, code minification, css compression, js compression, web performance, minify code online">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
+    <meta property="og:description" content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
+    <meta property="og:image" content="/assets/img/logo.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
+    <meta property="twitter:title" content="Free Text Manipulation Tool">
+    <meta property="twitter:description" content="Transform your text instantly with our free online text tools.">
+    <meta property="twitter:image" content="/assets/img/logo.png">
+
+    <!-- Enhanced Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Text Manipulation Tool",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free online text manipulation tool for converting text case, reversing text, and removing extra spaces.",
+        "browserRequirements": "Requires JavaScript",
+        "softwareVersion": "1.0",
+        "creator": {
+            "@type": "Organization",
+            "name": "Wagle Universal Solutions",
+            "alternateName":["WUS","Wagle","Wagleus"],
+            "url": "https://wagleus.com"
+        }
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link href="/assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <style>
+        .minifier-container {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .file-preview {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .preview-content {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-right: 40px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .stats-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stats-item {
+            display: inline-block;
+            margin-right: 20px;
+            color: #666;
+        }
+
+        .savings {
+            color: #28a745;
+            font-weight: 500;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-button.active {
+            border-bottom-color: #007bff;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header-->
+<header id="header" class="header fixed-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <a href="/pages/tools/tools.html" class="logo">
+            <img src="/assets/img/logo.png" alt="WUS LOGO">
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
+                <li class="dropdown">
+                    <a href="#"><span>Tools Menu</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
+                        <li><a href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer</a></li>
+                        <li><a href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
+                        <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
+                        <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
+                        <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
+                        <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
+                        <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
+                        <li><a href="/pages/tools/cron-generator.html">Cron Generator</a></li>
+                    </ul>
+                </li>
+                <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+    </div>
+</header>
+
+<!-- Add backdrop div after header -->
+<div class="nav-backdrop"></div>
+
+<main>
+    <div class="minifier-container">
+        <div class="container">
+            <h1 class="text-center mb-4">CSS & JavaScript Minifier</h1>
+            <p class="text-center mb-5">Minify your CSS and JavaScript code to improve website performance. Reduce file size without affecting functionality.</p>
+
+            <!-- Tab Navigation -->
+            <div class="d-flex justify-content-center mb-4">
+                <button class="tab-button active" data-tab="paste">Paste Code</button>
+                <button class="tab-button" data-tab="upload">Upload Files</button>
+            </div>
+
+            <!-- Paste Code Section -->
+            <div class="tab-content active" id="paste-section">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <select class="form-select" id="codeType">
+                            <option value="css">CSS</option>
+                            <option value="js">JavaScript</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <textarea class="form-control mb-3" id="sourceCode" rows="10" placeholder="Paste your CSS or JavaScript code here..."></textarea>
+                        <button class="btn btn-primary" id="minifyBtn">Minify Code</button>
+                    </div>
+                </div>
+
+                <div class="stats-box d-none" id="statsBox">
+                    <div class="stats-item">Original Size: <span id="originalSize">0</span> KB</div>
+                    <div class="stats-item">Minified Size: <span id="minifiedSize">0</span> KB</div>
+                    <div class="stats-item">Savings: <span id="savings" class="savings">0%</span></div>
+                </div>
+
+                <div class="result position-relative d-none" id="resultBox">
+                    <pre id="minifiedCode" class="preview-content"></pre>
+                    <button class="copy-btn" id="copyBtn">
+                        <i class="bi bi-clipboard"></i> Copy
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload Files Section -->
+            <div class="tab-content" id="upload-section">
+                <div class="file-drop-zone" id="dropZone">
+                    <i class="bi bi-cloud-upload"></i>
+                    <p>Drag & drop CSS or JavaScript files here</p>
+                    <p class="drag-text">or click to select files</p>
+                    <input type="file" id="fileInput" multiple accept=".css,.js" class="d-none">
+                </div>
+
+                <div id="fileList" class="mt-4"></div>
+
+                <button class="btn btn-primary d-none mt-3" id="minifyAllBtn">
+                    Minify & Download All
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Add Footer -->
+<footer id="footer" class="footer dark-background">
+    <div class="container text-center">
+        <h3 class="sitename">Wagle Universal Solutions</h3>
+        <p>Contact us today to learn how we can help you achieve your goals.</p>
+        <div class="social-links d-flex justify-content-center">
+            <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        <div class="copyright mt-4">
+            <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+            <div class="mt-2">
+                <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+            </div>
+        </div>
+        <div class="credits">
+            Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/aos/aos.js"></script>
+<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="/assets/js/index.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Tab switching
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab + '-section').classList.add('active');
+            });
+        });
+
+        // Single file minification
+        const minifyBtn = document.getElementById('minifyBtn');
+        const copyBtn = document.getElementById('copyBtn');
+        const sourceCode = document.getElementById('sourceCode');
+        const minifiedCode = document.getElementById('minifiedCode');
+        const resultBox = document.getElementById('resultBox');
+        const statsBox = document.getElementById('statsBox');
+
+        minifyBtn.addEventListener('click', () => {
+            const code = sourceCode.value;
+            if (!code.trim()) return;
+
+            const minified = minifyCode(code, document.getElementById('codeType').value);
+            minifiedCode.textContent = minified;
+            resultBox.classList.remove('d-none');
+            
+            // Update stats
+            const originalSize = getByteSize(code);
+            const minifiedSize = getByteSize(minified);
+            const savings = ((originalSize - minifiedSize) / originalSize * 100).toFixed(1);
+            
+            document.getElementById('originalSize').textContent = (originalSize / 1024).toFixed(2);
+            document.getElementById('minifiedSize').textContent = (minifiedSize / 1024).toFixed(2);
+            document.getElementById('savings').textContent = savings + '%';
+            statsBox.classList.remove('d-none');
+        });
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(minifiedCode.textContent);
+            copyBtn.innerHTML = '<i class="bi bi-check"></i> Copied';
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="bi bi-clipboard"></i> Copy';
+            }, 2000);
+        });
+
+        // File upload handling
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const minifyAllBtn = document.getElementById('minifyAllBtn');
+        let files = [];
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(fileList) {
+            for (let file of fileList) {
+                if (file.type === 'text/css' || file.type === 'text/javascript' || 
+                    file.name.endsWith('.css') || file.name.endsWith('.js')) {
+                    files.push(file);
+                }
+            }
+            updateFileList();
+        }
+
+        function updateFileList() {
+            fileList.innerHTML = '';
+            files.forEach((file, index) => {
+                const fileDiv = document.createElement('div');
+                fileDiv.className = 'file-preview';
+                fileDiv.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>${file.name}</span>
+                        <button class="btn btn-sm btn-danger" onclick="removeFile(${index})">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                `;
+                fileList.appendChild(fileDiv);
+            });
+            minifyAllBtn.classList.toggle('d-none', files.length === 0);
+        }
+
+        window.removeFile = (index) => {
+            files.splice(index, 1);
+            updateFileList();
+        };
+
+        minifyAllBtn.addEventListener('click', async () => {
+            const zip = new JSZip();
+            
+            for (let file of files) {
+                const content = await file.text();
+                const type = file.name.endsWith('.css') ? 'css' : 'js';
+                const minified = minifyCode(content, type);
+                const filename = file.name.replace(/\.(js|css)$/, '.min.$1');
+                zip.file(filename, minified);
+            }
+
+            const blob = await zip.generateAsync({type: 'blob'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'minified-files.zip';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        function minifyCode(code, type) {
+            if (type === 'css') {
+                return code
+                    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '') // Remove comments
+                    .replace(/\s+/g, ' ') // Collapse whitespace
+                    .replace(/\s*{\s*/g, '{')
+                    .replace(/\s*}\s*/g, '}')
+                    .replace(/\s*;\s*/g, ';')
+                    .replace(/\s*:\s*/g, ':')
+                    .trim();
+            } else {
+                return code
+                    .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, '') // Remove comments
+                    .replace(/\s+/g, ' ') // Collapse whitespace
+                    .replace(/\s*{\s*/g, '{')
+                    .replace(/\s*}\s*/g, '}')
+                    .replace(/\s*;\s*/g, ';')
+                    .replace(/\s*:\s*/g, ':')
+                    .trim();
+            }
+        }
+
+        function getByteSize(str) {
+            return new Blob([str]).size;
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</body>
+</html>
