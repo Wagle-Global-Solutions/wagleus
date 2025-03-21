@@ -875,3 +875,81 @@
 .btn-outline-primary[data-pattern] {
     margin: 0.25rem;
 }
+
+/* Updated Breadcrumb Styles */
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+/* Enhanced FAQ Styles */
+.faq-section {
+    background: #f8f9fa;
+    padding: 3rem 0;
+    border-radius: 12px;
+}
+
+.accordion-item {
+    border: none;
+    margin-bottom: 1rem;
+    background: white;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-button {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333 !important; /* Force consistent color */
+    background: white;
+    border-radius: 8px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #333 !important; /* Force consistent color */
+    background-color: #fff;
+    box-shadow: none;
+}
+
+.accordion-button:hover {
+    color: #333 !important; /* Force consistent color on hover */
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(0, 123, 255, 0.1);
+}
+
+.accordion-button::after {
+    background-size: 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.accordion-body {
+    padding: 1.25rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.accordion-body p:last-child {
+    margin-bottom: 0;
+}

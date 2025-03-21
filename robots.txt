@@ -2,6 +2,18 @@
 User-agent: *
 Allow: /
 Allow: /sitemap.xml
+Allow: /pages/
+Allow: /pages/tools/
+Allow: /assets/
+
+# Prioritize Cron Tool
+User-agent: *
+Allow: /pages/tools/cron-expression-generator.html
+
+# Ensure indexing of related assets
+Allow: /assets/js/
+Allow: /assets/css/
+Allow: /assets/img/
 
 # Protect admin and sensitive areas
 Disallow: /admin/
