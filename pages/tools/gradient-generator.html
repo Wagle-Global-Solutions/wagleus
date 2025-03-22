@@ -426,6 +426,16 @@
             <div class="gradient-preview" id="gradientPreview"></div>
 
             <div class="gradient-controls">
+                <div class="controls-header mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="angle-control-wrapper" style="flex: 1;">
+                            <label for="angleControl" class="form-label">Angle: <span id="angleValue">90</span>°</label>
+                            <input type="range" class="form-range" id="angleControl" min="0" max="360" value="90">
+                        </div>
+                        <button class="btn btn-primary ms-3" id="addColorStop">Add Color Stop</button>
+                    </div>
+                </div>
+
                 <div class="input-labels">
                     <span class="hex-label">Hex Code</span>
                     <div class="rgba-group-labels">
@@ -453,12 +463,6 @@
                         </div>
                         <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
                     </div>
-                </div>
-                <button class="btn btn-primary mt-3" id="addColorStop">Add Color Stop</button>
-
-                <div class="mt-4">
-                    <label for="angleControl" class="form-label">Angle: <span id="angleValue">90</span>°</label>
-                    <input type="range" class="form-range angle-control" id="angleControl" min="0" max="360" value="90">
                 </div>
             </div>
 
