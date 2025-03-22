@@ -143,6 +143,234 @@
             position: relative;
             margin-top: 20px;
         }
+
+        .color-input-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .color-values {
+            display: flex;
+            gap: 8px;
+            align-items: flex-end; /* align items to bottom */
+            flex: 1;
+        }
+
+        .input-labels {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-left: 50px; /* align with color picker */
+        }
+
+        .input-labels span {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .input-labels .hex-label {
+            width: 120px;
+        }
+
+        .input-labels .rgba-group-labels {
+            display: flex;
+            gap: 8px;
+            min-width: fit-content;
+        }
+
+        .input-labels .rgba-label {
+            width: 65px;
+            text-align: center;
+        }
+
+        .input-labels .position-label {
+            flex: 1;
+            min-width: 100px;
+            padding-left: 8px;
+        }
+
+        /* Make all inputs same height */
+        .color-values input {
+            height: 38px !important;
+        }
+            
+        .hex-input {
+            width: 120px !important;
+            font-family: monospace;
+        }
+
+        .rgba-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            min-width: fit-content;
+        }
+
+        .rgba-wrapper {
+            width: 65px;
+        }
+
+        .rgba-input {
+            width: 100% !important;
+            text-align: center;
+        }
+
+        /* Remove old individual labels */
+        .rgba-label {
+            display: none;
+        }
+
+        /* Update RGBA group styling */
+        .rgba-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .input-labels .rgba-group-labels {
+            display: flex;
+            gap: 8px;
+            min-width: fit-content;
+        }
+
+        .input-labels .rgba-label {
+            display: block; /* Override the general hiding */
+            width: 65px;
+            text-align: center;
+        }
+
+        .position-input {
+            flex: 1;
+            -moz-appearance: textfield; /* Firefox */
+            min-width: 100px;
+        }
+
+        /* Override any conflicting styles */
+        .form-control {
+            height: 38px;
+        }
+
+        /* Remove duplicate styles */
+        .color-value-inputs,
+        .rgba-inputs {
+            display: none;  /* Remove old structure */
+        }
+
+        .color-input-group input[type="color"] {
+            padding: 2px;
+            width: 50px;
+        }
+
+        .rgba-group-labels {
+            display: flex;
+            gap: 8px;
+            min-width: fit-content;
+            margin-left: 0; /* Reset any margin */
+        }
+
+        .input-labels {
+            padding-left: 50px;  /* Align with color picker */
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-labels span {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .input-labels .hex-label {
+            width: 120px;
+            text-align: center;
+        }
+
+        .input-labels .rgba-label {
+            width: 65px;
+            text-align: center;
+            display: block;
+        }
+
+        .input-labels .position-label {
+            flex: 1;
+            min-width: 100px;
+            text-align: left;
+            margin-left: 8px;
+        }
+
+        .rgba-group {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between; /* Ensure even spacing */
+            min-width: calc(65px * 4 + 24px); /* Account for 4 inputs and gaps */
+        }
+
+        /* Remove other duplicate or conflicting styles */
+        .rgba-wrapper {
+            display: none; /* Remove old structure */
+        }
+        
+        .color-value-inputs,
+        .rgba-inputs {
+            display: none;
+        }
+
+        .input-labels {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-left: 50px; /* Align with color picker */
+        }
+
+        .hex-input {
+            width: 120px !important;
+        }
+
+        .rgba-group-labels {
+            display: flex;
+            gap: 8px;
+        }
+
+        .input-labels .rgba-label {
+            width: 65px;
+            text-align: center;
+        }
+
+        /* Fix position label alignment */
+        .input-labels .position-label {
+            margin-left: auto; /* Push to the end */
+            padding-right: 45px; /* Account for remove button width */
+            text-align: center;
+            min-width: 100px;
+        }
+
+        /* Ensure RGBA group takes exactly the space needed */
+        .rgba-group {
+            display: flex;
+            gap: 8px;
+            width: calc(65px * 4 + 24px); /* Exact width for 4 inputs plus gaps */
+        }
+
+        /* Remove number input spinners */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
     </style>
 </head>
 <body>
@@ -198,15 +426,31 @@
             <div class="gradient-preview" id="gradientPreview"></div>
 
             <div class="gradient-controls">
+                <div class="input-labels">
+                    <span class="hex-label">Hex Code</span>
+                    <div class="rgba-group-labels">
+                        <span class="rgba-label">Red (0-255)</span>
+                        <span class="rgba-label">Green (0-255)</span>
+                        <span class="rgba-label">Blue (0-255)</span>
+                        <span class="rgba-label">Alpha (0-100%)</span>
+                    </div>
+                    <span class="position-label">Position %</span>
+                </div>
                 <div class="color-stops" id="colorStops">
                     <div class="color-stop">
-                        <input type="color" class="form-control form-control-color" value="#007bff">
-                        <input type="number" class="form-control" min="0" max="100" value="0" placeholder="Position %">
-                        <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
-                    </div>
-                    <div class="color-stop">
-                        <input type="color" class="form-control form-control-color" value="#00ff88">
-                        <input type="number" class="form-control" min="0" max="100" value="100" placeholder="Position %">
+                        <div class="color-input-group">
+                            <input type="color" class="form-control form-control-color color-input" value="#007bff">
+                            <div class="color-values">
+                                <input type="text" class="form-control hex-input" value="#007bffff" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                                <div class="rgba-group">
+                                    <input type="number" class="form-control rgba-input" min="0" max="255" value="0">
+                                    <input type="number" class="form-control rgba-input" min="0" max="255" value="123">
+                                    <input type="number" class="form-control rgba-input" min="0" max="255" value="255">
+                                    <input type="number" class="form-control rgba-input" min="0" max="100" value="100">
+                                </div>
+                                <input type="number" class="form-control position-input" min="0" max="100" value="0" placeholder="Position %">
+                            </div>
+                        </div>
                         <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
                     </div>
                 </div>

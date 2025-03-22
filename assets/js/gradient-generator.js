@@ -29,6 +29,30 @@ function getDefaultGradientData() {
     };
 }
 
+// Add utility functions at the top level
+function hexToRGBA(hex) {
+    let r = 0, g = 0, b = 0, a = 1;
+    if (hex.length === 9) {
+        // 8-digit hex with alpha
+        r = parseInt(hex.slice(1, 3), 16);
+        g = parseInt(hex.slice(3, 5), 16);
+        b = parseInt(hex.slice(5, 7), 16);
+        a = Math.round((parseInt(hex.slice(7, 9), 16) / 255) * 100);
+    } else {
+        // 6-digit hex
+        r = parseInt(hex.slice(1, 3), 16);
+        g = parseInt(hex.slice(3, 5), 16);
+        b = parseInt(hex.slice(5, 7), 16);
+        a = 100;
+    }
+    return [r, g, b, a];
+}
+
+function rgbaToHex(r, g, b, a) {
+    const alpha = Math.round((a / 100) * 255);
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}${alpha.toString(16).padStart(2, '0')}`;
+}
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     loadFromURL(); // Add this line before other initializations
@@ -95,27 +119,29 @@ function applyGradientData(data) {
     ];
 
     stops.forEach(stop => {
+        const { color, position } = stop;
+        const [r, g, b, a] = hexToRGBA(color);
+        
         const newStop = document.createElement('div');
         newStop.className = 'color-stop';
         newStop.innerHTML = `
-            <input type="color" class="form-control form-control-color" value="${stop.color}">
-            <input type="number" class="form-control" min="0" max="100" value="${stop.position}" placeholder="Position %">
+            <div class="color-input-group">
+                <input type="color" class="form-control form-control-color color-input" value="${color.slice(0, 7)}">
+                <div class="color-values">
+                    <input type="text" class="form-control hex-input" value="${color}" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                    <div class="rgba-group">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${r}">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${g}">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${b}">
+                        <input type="number" class="form-control rgba-input" min="0" max="100" value="${a}">
+                    </div>
+                    <input type="number" class="form-control position-input" min="0" max="100" value="${position}" placeholder="Position %">
+                </div>
+            </div>
             <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
         `;
 
-        newStop.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', () => {
-                updateGradient();
-                updateURL();
-            });
-        });
-
-        newStop.querySelector('.remove-stop').addEventListener('click', () => {
-            newStop.remove();
-            updateGradient();
-            updateURL();
-        });
-
+        setupColorInputListeners(newStop);
         colorStopsContainer.appendChild(newStop);
     });
 
@@ -141,40 +167,36 @@ function initializePresets() {
 }
 
 function applyPreset(preset) {
-    // Clear existing color stops
     const colorStopsContainer = document.getElementById('colorStops');
     colorStopsContainer.innerHTML = '';
 
-    // Calculate positions evenly for the number of colors
     const positions = preset.colors.map((color, index) => {
         return Math.round((index / (preset.colors.length - 1)) * 100);
     });
 
-    // Create color stops for each color in the preset
     preset.colors.forEach((color, index) => {
+        const [r, g, b] = hexToRGBA(color);
+        
         const newStop = document.createElement('div');
         newStop.className = 'color-stop';
         newStop.innerHTML = `
-            <input type="color" class="form-control form-control-color" value="${color}">
-            <input type="number" class="form-control" min="0" max="100" value="${positions[index]}" placeholder="Position %">
+            <div class="color-input-group">
+                <input type="color" class="form-control form-control-color color-input" value="${color}">
+                <div class="color-values">
+                    <input type="text" class="form-control hex-input" value="${color}ff" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                    <div class="rgba-group">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${r}">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${g}">
+                        <input type="number" class="form-control rgba-input" min="0" max="255" value="${b}">
+                        <input type="number" class="form-control rgba-input" min="0" max="100" value="100">
+                    </div>
+                    <input type="number" class="form-control position-input" min="0" max="100" value="${positions[index]}" placeholder="Position %">
+                </div>
+            </div>
             <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
         `;
 
-        newStop.querySelectorAll('input').forEach(input => {
-            input.addEventListener('input', () => {
-                updateGradient();
-                updateURL();
-            });
-        });
-
-        newStop.querySelector('.remove-stop').addEventListener('click', () => {
-            if (colorStopsContainer.children.length > 2) {
-                newStop.remove();
-                updateGradient();
-                updateURL();
-            }
-        });
-
+        setupColorInputListeners(newStop);
         colorStopsContainer.appendChild(newStop);
     });
 
@@ -189,6 +211,17 @@ function applyPreset(preset) {
 }
 
 function initializeEventListeners() {
+    // Load saved data if exists
+    const savedData = localStorage.getItem('gradientData');
+    if (savedData) {
+        try {
+            const data = JSON.parse(savedData);
+            applyGradientData(data);
+        } catch (e) {
+            console.warn('Could not load saved gradient data');
+        }
+    }
+
     // Tab navigation
     document.querySelectorAll('.tab-button').forEach(button => {
         button.addEventListener('click', () => {
@@ -212,18 +245,21 @@ function initializeEventListeners() {
     document.getElementById('addColorStop').addEventListener('click', addColorStop);
 
     // Initial color stop events with URL updates
-    document.querySelectorAll('.color-stop input').forEach(input => {
-        input.addEventListener('input', () => {
-            updateGradient();
-            updateURL(); // Add this line
-        });
+    document.querySelectorAll('.color-stop').forEach(stop => {
+        setupColorInputListeners(stop);
     });
 }
 
 function createGradientString(colors, angle) {
     switch(currentGradientType) {
         case 'linear':
-            return `linear-gradient(${angle}deg, ${colors.join(', ')})`;
+            return `linear-gradient(${angle}deg, ${colors.map(color => {
+                if (color.includes('#') && color.length === 9) {
+                    const [r, g, b, a] = hexToRGBA(color);
+                    return `rgba(${r}, ${g}, ${b}, ${a/100})`;
+                }
+                return color;
+            }).join(', ')})`;
         case 'radial':
             return `radial-gradient(circle at center, ${colors.join(', ')})`;
         case 'conic':
@@ -235,9 +271,11 @@ function createGradientString(colors, angle) {
 
 function updateGradient() {
     const colorStops = Array.from(document.querySelectorAll('.color-stop')).map(stop => {
-        const color = stop.querySelector('input[type="color"]').value;
-        const position = stop.querySelector('input[type="number"]').value;
-        return `${color} ${position}%`;
+        const hexInput = stop.querySelector('.hex-input');
+        const positionInput = stop.querySelector('.position-input');
+        // Ensure we use the full 8-digit hex if available
+        const hexValue = hexInput.value.length === 9 ? hexInput.value : hexInput.value + 'ff';
+        return `${hexValue} ${positionInput.value}%`;
     });
 
     const angle = document.getElementById('angleControl').value;
@@ -251,27 +289,105 @@ function addColorStop() {
     const colorStopsContainer = document.getElementById('colorStops');
     const newStop = document.createElement('div');
     newStop.className = 'color-stop';
+    const randomColor = generateRandomColor();
+    const [r, g, b] = hexToRGBA(randomColor);
+    
     newStop.innerHTML = `
-        <input type="color" class="form-control form-control-color" value="#ffffff">
-        <input type="number" class="form-control" min="0" max="100" value="50" placeholder="Position %">
+        <div class="color-input-group">
+            <input type="color" class="form-control form-control-color color-input" value="${randomColor}">
+            <div class="color-values">
+                <input type="text" class="form-control hex-input" value="${randomColor}ff" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                <div class="rgba-group">
+                    <input type="number" class="form-control rgba-input" min="0" max="255" value="${r}">
+                    <input type="number" class="form-control rgba-input" min="0" max="255" value="${g}">
+                    <input type="number" class="form-control rgba-input" min="0" max="255" value="${b}">
+                    <input type="number" class="form-control rgba-input" min="0" max="100" value="100">
+                </div>
+                <input type="number" class="form-control position-input" min="0" max="100" value="50" placeholder="Position %">
+            </div>
+        </div>
         <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
     `;
 
-    newStop.querySelectorAll('input').forEach(input => {
+    setupColorInputListeners(newStop);
+    colorStopsContainer.appendChild(newStop);
+    updateGradient();
+}
+
+function setupColorInputListeners(stopElement) {
+    const colorInput = stopElement.querySelector('input[type="color"]');
+    const hexInput = stopElement.querySelector('.hex-input');
+    const rgbaInputs = stopElement.querySelectorAll('.rgba-input');
+    
+    // Update RGBA inputs from hex
+    function updateRGBAFromHex(hex) {
+        const [r, g, b, a] = hexToRGBA(hex);
+        rgbaInputs[0].value = r;
+        rgbaInputs[1].value = g;
+        rgbaInputs[2].value = b;
+        rgbaInputs[3].value = a;
+    }
+
+    // Update hex from RGBA inputs
+    function updateHexFromRGBA() {
+        const r = parseInt(rgbaInputs[0].value);
+        const g = parseInt(rgbaInputs[1].value);
+        const b = parseInt(rgbaInputs[2].value);
+        const a = parseInt(rgbaInputs[3].value);
+        const hex = rgbaToHex(r, g, b, a);
+        hexInput.value = hex;
+        colorInput.value = hex.slice(0, 7); // Color input only supports 6-digit hex
+        return hex;
+    }
+
+    // Update all inputs when any value changes
+    function updateAllInputs() {
+        updateGradient();
+        updateURL();
+    }
+
+    // Color picker change
+    colorInput.addEventListener('input', () => {
+        const hex = colorInput.value;
+        hexInput.value = hex + 'ff'; // Add full opacity
+        updateRGBAFromHex(hex + 'ff');
+        updateAllInputs();
+    });
+
+    // Hex input change
+    hexInput.addEventListener('input', () => {
+        let value = hexInput.value.trim();
+        if (!value.startsWith('#')) {
+            value = '#' + value;
+        }
+        
+        if (/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/.test(value)) {
+            updateRGBAFromHex(value);
+            colorInput.value = value.slice(0, 7);
+            updateAllInputs();
+        }
+    });
+
+    // RGBA inputs change
+    rgbaInputs.forEach(input => {
         input.addEventListener('input', () => {
-            updateGradient();
-            updateURL(); // Add this line
+            if (input.checkValidity()) {
+                const hex = updateHexFromRGBA();
+                updateAllInputs();
+            }
         });
     });
 
-    newStop.querySelector('.remove-stop').addEventListener('click', () => {
-        newStop.remove();
-        updateGradient();
-        updateURL();
-    });
+    // Position input change
+    stopElement.querySelector('.position-input').addEventListener('input', updateAllInputs);
 
-    colorStopsContainer.appendChild(newStop);
-    updateGradient();
+    stopElement.querySelector('.remove-stop').addEventListener('click', () => {
+        if (document.querySelectorAll('.color-stop').length > 2) {
+            stopElement.remove();
+            updateGradient();
+            updateURL();
+        }
+    });
 }
 
 function copyCode() {
@@ -320,10 +436,13 @@ function updateURL() {
         type: currentGradientType,
         angle: document.getElementById('angleControl').value,
         stops: Array.from(document.querySelectorAll('.color-stop')).map(stop => ({
-            color: stop.querySelector('input[type="color"]').value,
-            position: stop.querySelector('input[type="number"]').value
+            color: stop.querySelector('.hex-input').value,
+            position: stop.querySelector('.position-input').value
         }))
     };
+
+    // Save to localStorage
+    localStorage.setItem('gradientData', JSON.stringify(gradientData));
 
     const params = new URLSearchParams(window.location.search);
     params.set('gradient', JSON.stringify(gradientData));
@@ -332,3 +451,8 @@ function updateURL() {
     const newURL = `${window.location.pathname}?${params.toString()}`;
     window.history.pushState({ path: newURL }, '', newURL);
 }
+
+// Handle browser back/forward
+window.addEventListener('popstate', () => {
+    loadFromURL();
+});
