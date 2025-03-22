@@ -1,4 +1,5 @@
 let currentGradientType = 'linear';
+let extendedSupport = false;
 
 const presetGradients = [
     { colors: ['#ff6b6b', '#4ecdc4'], angle: 45 },
@@ -248,62 +249,196 @@ function initializeEventListeners() {
     document.querySelectorAll('.color-stop').forEach(stop => {
         setupColorInputListeners(stop);
     });
+
+    // Add support toggle handler
+    document.getElementById('toggleSupport').addEventListener('click', (e) => {
+        extendedSupport = !extendedSupport;
+        e.target.classList.toggle('active');
+        updateGradient();
+    });
 }
 
 function createGradientString(colors, angle) {
+    // Get the first color for fallback (remove any position info)
+    const firstColor = colors[0].split(' ')[0];
+    let gradient = '';
+    
+    const gradientColors = colors.map(color => {
+        if (color.includes('#') && color.length === 9) {
+            const [r, g, b, a] = hexToRGBA(color);
+            const position = color.split(' ')[1] || '';
+            return `rgba(${r}, ${g}, ${b}, ${a/100}) ${position}`;
+        }
+        return color;
+    }).join(', ');
+
     switch(currentGradientType) {
         case 'linear':
-            return `linear-gradient(${angle}deg, ${colors.map(color => {
-                if (color.includes('#') && color.length === 9) {
-                    const [r, g, b, a] = hexToRGBA(color);
-                    return `rgba(${r}, ${g}, ${b}, ${a/100})`;
-                }
-                return color;
-            }).join(', ')})`;
+            gradient = `linear-gradient(${angle}deg, ${gradientColors})`;
+            break;
         case 'radial':
-            return `radial-gradient(circle at center, ${colors.join(', ')})`;
+            gradient = `radial-gradient(circle at center, ${gradientColors})`;
+            break;
         case 'conic':
-            return `conic-gradient(from ${angle}deg, ${colors.join(', ')})`;
+            gradient = `conic-gradient(from ${angle}deg, ${gradientColors})`;
+            break;
         default:
-            return `linear-gradient(${angle}deg, ${colors.join(', ')})`;
+            gradient = `linear-gradient(${angle}deg, ${gradientColors})`;
     }
+
+    // Return CSS with or without extended support
+    if (extendedSupport) {
+        return generateExtendedSupport(gradient, firstColor, angle, colors);
+    }
+    
+    // Always include fallback color
+    return `/* Fallback for older browsers */\nbackground-color: ${firstColor};\nbackground: ${gradient};`;
+}
+
+function generateExtendedSupport(gradient, fallback, angle, colors) {
+    let css = `/* Fallback color */\nbackground-color: ${fallback};\n\n`;
+    
+    if (currentGradientType === 'linear') {
+        // Old webkit
+        const startColor = colors[0].split(' ')[0];
+        const endColor = colors[colors.length - 1].split(' ')[0];
+        
+        css += `/* Old browsers */\n`;
+        css += `background: ${fallback};\n`;
+        
+        css += `/* FF3.6+ */\n`;
+        css += `background: -moz-${gradient};\n`;
+        
+        css += `/* Chrome,Safari4+ */\n`;
+        css += `background: -webkit-gradient(linear, left top, right top, color-stop(0%, ${startColor}), color-stop(100%, ${endColor}));\n`;
+        
+        css += `/* Chrome10+,Safari5.1+ */\n`;
+        css += `background: -webkit-${gradient};\n`;
+        
+        css += `/* Opera 11.10+ */\n`;
+        css += `background: -o-${gradient};\n`;
+        
+        css += `/* IE10+ */\n`;
+        css += `background: -ms-${gradient};\n`;
+        
+        css += `/* W3C Standard */\n`;
+        css += `background: ${gradient};\n`;
+        
+        css += `/* IE6-9 */\n`;
+        css += `filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='${startColor}', endColorstr='${endColor}', GradientType=1);`;
+    } else if (currentGradientType === 'radial') {
+        css += `/* Modern Browsers */\n`;
+        css += `background: ${gradient};\n`;
+        
+        css += `/* Webkit */\n`;
+        css += `background: -webkit-${gradient};\n`;
+        
+        css += `/* Firefox */\n`;
+        css += `background: -moz-${gradient};\n`;
+        
+        css += `/* Opera */\n`;
+        css += `background: -o-${gradient};`;
+    } else {
+        // Conic gradients (with radial fallback)
+        css += `/* Modern Browsers */\n`;
+        css += `background: ${gradient};\n\n`;
+        
+        css += `/* Fallback for browsers that don't support conic gradients */\n`;
+        css += `@supports not (background: conic-gradient(#fff, #000)) {\n`;
+        css += `  background: radial-gradient(circle at center, ${colors.join(', ')});\n`;
+        css += `}`;
+    }
+    
+    return css;
 }
 
 function updateGradient() {
-    const colorStops = Array.from(document.querySelectorAll('.color-stop')).map(stop => {
-        const hexInput = stop.querySelector('.hex-input');
-        const positionInput = stop.querySelector('.position-input');
-        // Ensure we use the full 8-digit hex if available
-        const hexValue = hexInput.value.length === 9 ? hexInput.value : hexInput.value + 'ff';
-        return `${hexValue} ${positionInput.value}%`;
-    });
+    // Get all color stops and sort them by position
+    const colorStops = Array.from(document.querySelectorAll('.color-stop'))
+        .map(stop => ({
+            element: stop,
+            hex: stop.querySelector('.hex-input').value,
+            position: parseInt(stop.querySelector('.position-input').value)
+        }))
+        .sort((a, b) => a.position - b.position);
+
+    // Update DOM order to match sorted order
+    const container = document.getElementById('colorStops');
+    colorStops.forEach(stop => container.appendChild(stop.element));
+
+    // Create gradient string with sorted stops
+    const gradientStops = colorStops.map(stop => 
+        `${stop.hex.length === 9 ? stop.hex : stop.hex + 'ff'} ${stop.position}%`
+    );
 
     const angle = document.getElementById('angleControl').value;
-    const gradientString = createGradientString(colorStops, angle);
     
-    document.getElementById('gradientPreview').style.background = gradientString;
-    document.getElementById('cssCode').textContent = `background: ${gradientString};`;
+    // Create the basic gradient string for preview
+    let previewGradient;
+    switch(currentGradientType) {
+        case 'linear':
+            previewGradient = `linear-gradient(${angle}deg, ${gradientStops.join(', ')})`;
+            break;
+        case 'radial':
+            previewGradient = `radial-gradient(circle at center, ${gradientStops.join(', ')})`;
+            break;
+        case 'conic':
+            previewGradient = `conic-gradient(from ${angle}deg, ${gradientStops.join(', ')})`;
+            break;
+    }
+
+    // Apply gradient to preview
+    const preview = document.getElementById('gradientPreview');
+    preview.style.background = previewGradient;
+
+    // Generate and show full CSS code including fallbacks
+    const gradientString = createGradientString(gradientStops, angle);
+    document.getElementById('cssCode').textContent = gradientString;
 }
 
+// Update addColorStop to enforce position constraints
 function addColorStop() {
     const colorStopsContainer = document.getElementById('colorStops');
+    const existingStops = Array.from(document.querySelectorAll('.color-stop'))
+        .map(stop => ({
+            color: stop.querySelector('.hex-input').value,
+            position: parseInt(stop.querySelector('.position-input').value)
+        }))
+        .sort((a, b) => a.position - b.position);
+
+    // Find largest gap between stops
+    let maxGap = 0;
+    let targetPosition = 50;
+    
+    for (let i = 0; i < existingStops.length - 1; i++) {
+        const gap = existingStops[i + 1].position - existingStops[i].position;
+        if (gap > maxGap) {
+            maxGap = gap;
+            // Ensure position is between 0 and 100
+            targetPosition = Math.min(100, Math.max(0, 
+                Math.round(existingStops[i].position + gap / 2)
+            ));
+        }
+    }
+
+    // Add new stop with interpolated color at target position
+    const newColor = interpolateGradientColor(existingStops, targetPosition);
+    const [r, g, b, a] = hexToRGBA(newColor);
+    
     const newStop = document.createElement('div');
     newStop.className = 'color-stop';
-    const randomColor = generateRandomColor();
-    const [r, g, b] = hexToRGBA(randomColor);
-    
     newStop.innerHTML = `
         <div class="color-input-group">
-            <input type="color" class="form-control form-control-color color-input" value="${randomColor}">
+            <input type="color" class="form-control form-control-color color-input" value="${newColor.slice(0, 7)}">
             <div class="color-values">
-                <input type="text" class="form-control hex-input" value="${randomColor}ff" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                <input type="text" class="form-control hex-input" value="${newColor}" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
                 <div class="rgba-group">
                     <input type="number" class="form-control rgba-input" min="0" max="255" value="${r}">
                     <input type="number" class="form-control rgba-input" min="0" max="255" value="${g}">
                     <input type="number" class="form-control rgba-input" min="0" max="255" value="${b}">
-                    <input type="number" class="form-control rgba-input" min="0" max="100" value="100">
+                    <input type="number" class="form-control rgba-input" min="0" max="100" value="${a}">
                 </div>
-                <input type="number" class="form-control position-input" min="0" max="100" value="50" placeholder="Position %">
+                <input type="number" class="form-control position-input" min="0" max="100" value="${targetPosition}" placeholder="Position %">
             </div>
         </div>
         <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
@@ -312,6 +447,38 @@ function addColorStop() {
     setupColorInputListeners(newStop);
     colorStopsContainer.appendChild(newStop);
     updateGradient();
+    updateURL();
+}
+
+function interpolateGradientColor(stops, position) {
+    if (stops.length < 2) return generateRandomColor();
+    
+    // Find the two stops we're between
+    let leftStop = stops[0];
+    let rightStop = stops[stops.length - 1];
+
+    for (let i = 0; i < stops.length - 1; i++) {
+        if (stops[i].position <= position && stops[i + 1].position > position) {
+            leftStop = stops[i];
+            rightStop = stops[i + 1];
+            break;
+        }
+    }
+
+    // Calculate how far between the two stops we are (0 to 1)
+    const t = (position - leftStop.position) / (rightStop.position - leftStop.position);
+    
+    // Get RGBA values for both stops
+    const leftColor = hexToRGBA(leftStop.color);
+    const rightColor = hexToRGBA(rightStop.color);
+
+    // Interpolate each channel
+    const r = Math.round(leftColor[0] + (rightColor[0] - leftColor[0]) * t);
+    const g = Math.round(leftColor[1] + (rightColor[1] - leftColor[1]) * t);
+    const b = Math.round(leftColor[2] + (rightColor[2] - leftColor[2]) * t);
+    const a = Math.round(leftColor[3] + (rightColor[3] - leftColor[3]) * t);
+
+    return rgbaToHex(r, g, b, a);
 }
 
 function setupColorInputListeners(stopElement) {
@@ -378,8 +545,17 @@ function setupColorInputListeners(stopElement) {
         });
     });
 
-    // Position input change
-    stopElement.querySelector('.position-input').addEventListener('input', updateAllInputs);
+    // Position input change with constraints
+    const positionInput = stopElement.querySelector('.position-input');
+    positionInput.addEventListener('input', () => {
+        // Ensure position is between 0 and 100
+        let value = parseInt(positionInput.value);
+        value = Math.min(100, Math.max(0, value));
+        positionInput.value = value;
+        
+        updateGradient();
+        updateURL();
+    });
 
     stopElement.querySelector('.remove-stop').addEventListener('click', () => {
         if (document.querySelectorAll('.color-stop').length > 2) {
