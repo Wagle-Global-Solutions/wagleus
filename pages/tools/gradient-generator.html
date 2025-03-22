@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-1FYJ98BTXG');
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2031642574589224"
-     crossorigin="anonymous"></script>
+        gtag('config', 'G-1FYJ98BTXG');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2031642574589224"
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://wagleus.com/pages/tools/text-manipulation.html" />
     <title>CSS Gradient Generator | WUS</title>
-    <meta name="description" content="Create beautiful CSS gradients with our free online gradient generator. Support for linear, radial, and conic gradients with real-time preview and code generation.">
-    <meta name="keywords" content="css gradient generator, gradient maker, linear gradient, radial gradient, conic gradient, css generator, gradient tool">
+    <meta name="description"
+        content="Create beautiful CSS gradients with our free online gradient generator. Support for linear, radial, and conic gradients with real-time preview and code generation.">
+    <meta name="keywords"
+        content="css gradient generator, gradient maker, linear gradient, radial gradient, conic gradient, css generator, gradient tool">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
     <meta name="google-adsense-account" content="ca-pub-2031642574589224">
@@ -25,7 +28,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wagleus.com/pages/tools/text-manipulation.html">
     <meta property="og:title" content="Free Text Manipulation Tool - Case Converter & Text Transformer">
-    <meta property="og:description" content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
+    <meta property="og:description"
+        content="Transform your text instantly with our free online text tools. Convert case, reverse text, remove spaces and more.">
     <meta property="og:image" content="/assets/img/logo.png">
 
     <!-- Twitter -->
@@ -61,15 +65,17 @@
     </script>
 
     <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -84,7 +90,7 @@
     <link href="/assets/css/style.css" rel="stylesheet">
 
     <style>
-      .gradient-preview {
+        .gradient-preview {
             width: 100%;
             height: 300px;
             border-radius: 12px;
@@ -154,7 +160,8 @@
         .color-values {
             display: flex;
             gap: 8px;
-            align-items: flex-end; /* align items to bottom */
+            align-items: flex-end;
+            /* align items to bottom */
             flex: 1;
         }
 
@@ -163,7 +170,8 @@
             gap: 8px;
             align-items: center;
             margin-bottom: 8px;
-            padding-left: 50px; /* align with color picker */
+            padding-left: 50px;
+            /* align with color picker */
         }
 
         .input-labels span {
@@ -198,7 +206,7 @@
         .color-values input {
             height: 38px !important;
         }
-            
+
         .hex-input {
             width: 120px !important;
             font-family: monospace;
@@ -239,14 +247,16 @@
         }
 
         .input-labels .rgba-label {
-            display: block; /* Override the general hiding */
+            display: block;
+            /* Override the general hiding */
             width: 65px;
             text-align: center;
         }
 
         .position-input {
             flex: 1;
-            -moz-appearance: textfield; /* Firefox */
+            -moz-appearance: textfield;
+            /* Firefox */
             min-width: 100px;
         }
 
@@ -258,7 +268,8 @@
         /* Remove duplicate styles */
         .color-value-inputs,
         .rgba-inputs {
-            display: none;  /* Remove old structure */
+            display: none;
+            /* Remove old structure */
         }
 
         .color-input-group input[type="color"] {
@@ -270,11 +281,13 @@
             display: flex;
             gap: 8px;
             min-width: fit-content;
-            margin-left: 0; /* Reset any margin */
+            margin-left: 0;
+            /* Reset any margin */
         }
 
         .input-labels {
-            padding-left: 50px;  /* Align with color picker */
+            padding-left: 50px;
+            /* Align with color picker */
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -308,15 +321,18 @@
         .rgba-group {
             display: flex;
             gap: 8px;
-            justify-content: space-between; /* Ensure even spacing */
-            min-width: calc(65px * 4 + 24px); /* Account for 4 inputs and gaps */
+            justify-content: space-between;
+            /* Ensure even spacing */
+            min-width: calc(65px * 4 + 24px);
+            /* Account for 4 inputs and gaps */
         }
 
         /* Remove other duplicate or conflicting styles */
         .rgba-wrapper {
-            display: none; /* Remove old structure */
+            display: none;
+            /* Remove old structure */
         }
-        
+
         .color-value-inputs,
         .rgba-inputs {
             display: none;
@@ -327,7 +343,8 @@
             gap: 8px;
             align-items: center;
             margin-bottom: 8px;
-            padding-left: 50px; /* Align with color picker */
+            padding-left: 50px;
+            /* Align with color picker */
         }
 
         .hex-input {
@@ -346,8 +363,10 @@
 
         /* Fix position label alignment */
         .input-labels .position-label {
-            margin-left: auto; /* Push to the end */
-            padding-right: 45px; /* Account for remove button width */
+            margin-left: auto;
+            /* Push to the end */
+            padding-right: 45px;
+            /* Account for remove button width */
             text-align: center;
             min-width: 100px;
         }
@@ -356,7 +375,8 @@
         .rgba-group {
             display: flex;
             gap: 8px;
-            width: calc(65px * 4 + 24px); /* Exact width for 4 inputs plus gaps */
+            width: calc(65px * 4 + 24px);
+            /* Exact width for 4 inputs plus gaps */
         }
 
         /* Remove number input spinners */
@@ -371,50 +391,96 @@
             -moz-appearance: textfield;
         }
 
+        /* Custom Modal Styles */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #666;
+        }
+
+        .share-preview {
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        #modalGradientPreview {
+            margin: 0;
+        }
     </style>
 </head>
+
 <body>
-   <!-- Header -->
-   <header id="header" class="header fixed-top">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
-        <a href="/pages/tools/tools.html" class="logo">
-            <img src="/assets/img/logo.png" alt="WUS LOGO">
-        </a>
+    <!-- Header -->
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <a href="/pages/tools/tools.html" class="logo">
+                <img src="/assets/img/logo.png" alt="WUS LOGO">
+            </a>
 
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
-                <li class="dropdown">
-                    <a href="#"><span>Tools Menu</span> <i class="bi bi-chevron-down"></i></a>
-                    <ul>
-                        <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
-                        <li><a href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer</a></li>
-                        <li><a href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
-                        <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
-                        <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
-                        <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
-                        <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
-                        <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
-                        <li><a href="/pages/tools/cron-expression-generator.html">Cron Generator</a></li>
-                        <li><a href="/pages/tools/css-js-minifier.html">CSS & JS Minifier</a></li>
-                    </ul>
-                </li>
-                <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-    </div>
-</header>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Tools Menu</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
+                            <li><a href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer</a></li>
+                            <li><a href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
+                            <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
+                            <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
+                            <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
+                            <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
+                            <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
+                            <li><a href="/pages/tools/cron-expression-generator.html">Cron Generator</a></li>
+                            <li><a href="/pages/tools/css-js-minifier.html">CSS & JS Minifier</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
 
-<!-- Add backdrop div after header -->
-<div class="nav-backdrop"></div>
+    <!-- Add backdrop div after header -->
+    <div class="nav-backdrop"></div>
 
     <!-- Wrap content in main tag -->
     <main>
         <div class="tool-container">
             <h1 class="text-center mb-4">CSS Gradient Generator</h1>
             <div class="tool-description text-center">
-                Create beautiful CSS gradients for your website. Choose from linear, radial, or conic gradients, customize colors, and get the code instantly.
+                Create beautiful CSS gradients for your website. Choose from linear, radial, or conic gradients,
+                customize colors, and get the code instantly.
             </div>
 
             <div class="tab-navigation">
@@ -489,16 +555,57 @@
         </div>
     </main>
 
-    <!-- Add Footer -->
+    <!-- Add Share Modal -->
+    <div class="custom-modal" id="shareModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeShareModal()">&times;</span>
+            <h5 class="modal-title">Share Gradient</h5>
+            <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
+                <div class="gradient-preview mb-3" id="modalGradientPreview" style="height: 100px;"></div>
+                <p id="modalGradientValues" class="text-center"></p>
+            </div>
+            <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
+                <button onclick="shareToFacebook()" class="btn btn-outline-primary">
+                    <i class="bi bi-facebook"></i>
+                    Facebook
+                </button>
+                <button onclick="shareToTwitter()" class="btn btn-outline-info">
+                    <i class="bi bi-twitter-x"></i>
+                    Twitter
+                </button>
+                <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
+                    <i class="bi bi-whatsapp"></i>
+                    WhatsApp
+                </button>
+                <button onclick="shareByEmail()" class="btn btn-outline-secondary">
+                    <i class="bi bi-envelope"></i>
+                    Email
+                </button>
+            </div>
+            <div class="mt-4">
+                <label>Direct Link:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="shareLink" readonly>
+                    <button class="btn btn-outline-primary" onclick="copyShareLink()">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer id="footer" class="footer dark-background">
         <div class="container text-center">
             <h3 class="sitename">Wagle Universal Solutions</h3>
             <p>Contact us today to learn how we can help you achieve your goals.</p>
             <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
+                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i
+                        class="bi bi-facebook"></i></a>
+                <a href="https://x.com/wagleus" class="twitter-x" target="_blank"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"
+                    class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
             <div class="copyright mt-4">
                 <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
                 <div class="mt-2">
@@ -516,8 +623,6 @@
         <i class="bi bi-arrow-up-short"></i>
     </a>
 
-
-
     <!-- Vendor JS Files -->
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/vendor/aos/aos.js"></script>
@@ -527,8 +632,8 @@
     <!-- Main JS File -->
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/main.js"></script>
-
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="/assets/js/gradient-generator.js"></script>
 </body>
+
 </html>

@@ -601,10 +601,83 @@ function downloadImage() {
 }
 
 function shareGradient() {
-    // Simply copy the current URL since it's already updated
-    navigator.clipboard.writeText(window.location.href).then(() => {
-        alert('Share URL copied to clipboard!');
-    });
+    const modal = document.getElementById('shareModal');
+    const currentGradientString = document.getElementById('gradientPreview').style.background;
+    
+    // Update modal preview
+    document.getElementById('modalGradientPreview').style.background = currentGradientString;
+    document.getElementById('modalGradientValues').textContent = 'CSS Gradient';
+    
+    // Generate share link with relative path
+    const path = '/pages/tools/gradient-generator.html';
+    const params = new URLSearchParams(window.location.search);
+    const shareUrl = window.location.protocol + '//' + window.location.host + path + '?' + params.toString();
+    
+    document.getElementById('shareLink').value = shareUrl;
+    
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeShareModal() {
+    const modal = document.getElementById('shareModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
+// Close modal when clicking outside
+document.getElementById('shareModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeShareModal();
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('shareModal').classList.contains('show')) {
+        closeShareModal();
+    }
+});
+
+function copyShareLink() {
+    const shareLink = document.getElementById('shareLink');
+    shareLink.select();
+    document.execCommand('copy');
+
+    // Visual feedback
+    const button = event.currentTarget;
+    const icon = button.querySelector('i');
+    icon.classList.remove('bi-clipboard');
+    icon.classList.add('bi-clipboard-check');
+
+    setTimeout(() => {
+        icon.classList.remove('bi-clipboard-check');
+        icon.classList.add('bi-clipboard');
+    }, 1500);
+}
+
+function shareToFacebook() {
+    const url = encodeURIComponent(document.getElementById('shareLink').value);
+    const text = encodeURIComponent('Check out this gradient I created!');
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+}
+
+function shareToTwitter() {
+    const url = encodeURIComponent(document.getElementById('shareLink').value);
+    const text = encodeURIComponent('Check out this gradient I created!');
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+}
+
+function shareToWhatsApp() {
+    const url = document.getElementById('shareLink').value;
+    const text = encodeURIComponent(`Check out this gradient I created!\n${url}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
+}
+
+function shareByEmail() {
+    const subject = encodeURIComponent('Check out this gradient!');
+    const body = encodeURIComponent(`I created this gradient using the CSS Gradient Generator:\n\n${document.getElementById('shareLink').value}`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
 function updateURL() {
