@@ -126,13 +126,66 @@ function applyGradientData(data) {
 
 function initializePresets() {
     const presetsContainer = document.getElementById('presetGradients');
+    presetsContainer.innerHTML = ''; // Clear existing presets
     presetGradients.forEach((preset, index) => {
         const presetEl = document.createElement('div');
         presetEl.className = 'preset-gradient';
-        presetEl.style.background = createGradientString(preset.colors, preset.angle);
+        // Update gradient string based on current type
+        presetEl.style.background = createGradientString(
+            preset.colors.map(color => `${color}`), 
+            preset.angle
+        );
         presetEl.onclick = () => applyPreset(preset);
         presetsContainer.appendChild(presetEl);
     });
+}
+
+function applyPreset(preset) {
+    // Clear existing color stops
+    const colorStopsContainer = document.getElementById('colorStops');
+    colorStopsContainer.innerHTML = '';
+
+    // Calculate positions evenly for the number of colors
+    const positions = preset.colors.map((color, index) => {
+        return Math.round((index / (preset.colors.length - 1)) * 100);
+    });
+
+    // Create color stops for each color in the preset
+    preset.colors.forEach((color, index) => {
+        const newStop = document.createElement('div');
+        newStop.className = 'color-stop';
+        newStop.innerHTML = `
+            <input type="color" class="form-control form-control-color" value="${color}">
+            <input type="number" class="form-control" min="0" max="100" value="${positions[index]}" placeholder="Position %">
+            <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
+        `;
+
+        newStop.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', () => {
+                updateGradient();
+                updateURL();
+            });
+        });
+
+        newStop.querySelector('.remove-stop').addEventListener('click', () => {
+            if (colorStopsContainer.children.length > 2) {
+                newStop.remove();
+                updateGradient();
+                updateURL();
+            }
+        });
+
+        colorStopsContainer.appendChild(newStop);
+    });
+
+    // Set the angle
+    const angleControl = document.getElementById('angleControl');
+    const angleValue = document.getElementById('angleValue');
+    angleControl.value = preset.angle;
+    angleValue.textContent = preset.angle;
+
+    updateGradient();
+    updateURL();
 }
 
 function initializeEventListeners() {
@@ -142,6 +195,7 @@ function initializeEventListeners() {
             currentGradientType = button.dataset.tab;
             document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
             button.classList.add('active');
+            initializePresets(); // Add this line to refresh presets
             updateGradient();
             updateURL(); // Add this line
         });
