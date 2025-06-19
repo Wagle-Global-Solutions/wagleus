@@ -1,33 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FYJ98BTXG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1FYJ98BTXG');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2031642574589224" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Editor - WagleUS</title>
+    <link rel="canonical" href="https://wagleus.com/pages/tools/pdfeditor.html" />
+    <title>PDF Editor - Free Online Tool | WUS</title>
+    <meta name="description" content="Edit PDFs online with our free tool. Add text, signatures, and more with this easy-to-use PDF editor.">
+    <meta name="author" content="Wagle Universal Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        .editor-container {
-            max-width: 1000px;
-            margin: 20px auto;
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            margin: 0;
             padding: 20px;
         }
+
+        .editor-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
         .controls {
             margin-bottom: 20px;
-            padding: 10px;
-            background: #f5f5f5;
-            border-radius: 5px;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
         }
+
+        input[type="file"] {
+            background: #f8f9fa;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            cursor: pointer;
+            font-size: 14px;
+            max-width: 200px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-right: 8px;
+            background: #4361ee;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #3046c5;
+            transform: translateY(-1px);
+        }
+
+        #removeText.btn-toggle {
+            background: #6c757d;
+        }
+
+        #exportPdf {
+            background: #2ecc71;
+        }
+
+        #exportPdf:hover {
+            background: #27ae60;
+        }
+
+        select {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e9ecef;
+            background: white;
+            min-width: 100px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .text-controls, .signature-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .page-controls {
+            margin: 20px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-number {
+            font-size: 16px;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .home-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            background: #212529;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-link:hover {
+            background: #343a40;
+            transform: translateY(-1px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #212529;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
         .pdf-container {
             position: relative;
             border: 1px solid #ccc;
             min-height: 800px;
             background: #fff;
         }
+
         #pdfViewer {
             width: 100%;
         }
+
         #textOverlay {
             position: absolute;
             top: 0;
@@ -36,6 +192,7 @@
             bottom: 0;
             pointer-events: none;
         }
+
         .text-input {
             position: absolute;
             background: transparent;
@@ -48,29 +205,36 @@
             overflow: hidden;  /* Hide resize handle */
             font-size: 16px;   /* Default font size */
         }
+
         .text-input.remove-mode {
             cursor: pointer;
             border: 1px dashed #ff4444;
         }
+
         .text-input.remove-mode:hover {
             background: rgba(255, 68, 68, 0.1);
         }
+
         .text-controls {
             display: inline-block;
             margin-left: 15px;
         }
+
         .text-controls select {
             padding: 8px;
             border-radius: 4px;
             margin-right: 10px;
             min-width: 120px;
         }
+
         .text-input:focus {
             outline: 1px dashed #000;
         }
+
         .text-input:hover .delete-btn {
             display: block;
         }
+
         .delete-btn {
             position: absolute;
             right: -20px;
@@ -87,57 +251,28 @@
             display: none;
             padding: 0;
         }
-        .page-controls {
-            margin: 10px 0;
-            text-align: center;
-        }
-        .page-controls button {
-            background: #444;
-            margin: 0 5px;
-        }
-        .page-number {
-            margin: 0 10px;
-            display: inline-block;
-        }
-        button {
-            padding: 8px 16px;
-            margin-right: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .home-link {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
+
         .signature-input {
             position: absolute;
             max-width: 200px;
             cursor: move;
             pointer-events: all;
         }
+
         .signature-input img {
             width: 100%;
             height: auto;
         }
+
         .signature-input.remove-mode {
             cursor: pointer;
             border: 1px dashed #ff4444;
         }
+
         .signature-input.remove-mode:hover {
             background: rgba(255, 68, 68, 0.1);
         }
+
         .signature-controls {
             display: inline-block;
             margin-left: 15px;
@@ -145,51 +280,130 @@
     </style>
 </head>
 <body>
-    <a href="/" class="home-link">Back to Home</a>
-    <div class="editor-container">
-        <h1 style="text-align: center; margin-bottom: 30px;">PDF Editor</h1>
-        <div class="controls">
-            <input type="file" id="pdfFile" accept=".pdf">
-            <button id="removeText" class="btn-toggle">Remove Text: Off</button>
-            <button id="exportPdf">Export PDF</button>
-            <div class="signature-controls">
-                <input type="file" id="signatureFile" accept="image/*">
-                <button id="addSignature">Add Signature</button>
+    <!-- Header -->
+    <header id="header" class="header fixed-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+            <a href="/pages/tools/tools.html" class="logo">
+                <img src="/assets/img/logo.png" alt="WUS LOGO">
+            </a>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="/pages/tools/tools.html" class="active">All Tools</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Tools Menu</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
+                            <li><a href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer</a></li>
+                            <li><a href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
+                            <li><a href="/pages/tools/password-generator.html">Password Generator</a></li>
+                            <li><a href="/pages/tools/number-converter.html">Number Converter</a></li>
+                            <li><a href="/pages/tools/base64encoder-decoder.html">Base64 Encoder</a></li>
+                            <li><a href="/pages/tools/hash-generator.html">Hash Generator</a></li>
+                            <li><a href="/pages/tools/color-picker.html">Color Theory</a></li>
+                            <li><a href="/pages/tools/cron-expression-generator.html">Cron Generator</a></li>
+                            <li><a href="/pages/tools/css-js-minifier.html">CSS & JS Minifier</a></li>
+                            <li><a href="/pages/tools/gradient-generator.html">Gradient Generator</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/index.html"><i class="bi bi-house-door"></i> Home</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Add backdrop div after header -->
+    <div class="nav-backdrop"></div>
+
+    <!-- Main Content -->
+    <main class="main">
+<div class="tool-container">
+        <div class="editor-container">
+            <h1 style="text-align: center; margin-bottom: 30px;">PDF Editor</h1>
+            <div class="controls">
+                <input type="file" id="pdfFile" accept=".pdf">
+                <button id="removeText" class="btn-toggle">Remove Text: Off</button>
+                <button id="exportPdf">Export PDF</button>
+                <div class="signature-controls">
+                    <input type="file" id="signatureFile" accept="image/*">
+                    <button id="addSignature">Add Signature</button>
+                </div>
+                <div class="text-controls">
+                    <select id="fontSize">
+                        <option value="12">12px</option>
+                        <option value="14">14px</option>
+                        <option value="16" selected>16px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                        <option value="24">24px</option>
+                        <option value="28">28px</option>
+                        <option value="32">32px</option>
+                    </select>
+                    <select id="fontFamily">
+                        <option value="Arial" selected>Arial</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Tahoma">Tahoma</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                    </select>
+                </div>
             </div>
-            <div class="text-controls">
-                <select id="fontSize">
-                    <option value="12">12px</option>
-                    <option value="14">14px</option>
-                    <option value="16" selected>16px</option>
-                    <option value="18">18px</option>
-                    <option value="20">20px</option>
-                    <option value="24">24px</option>
-                    <option value="28">28px</option>
-                    <option value="32">32px</option>
-                </select>
-                <select id="fontFamily">
-                    <option value="Arial" selected>Arial</option>
-                    <option value="Times New Roman">Times New Roman</option>
-                    <option value="Courier New">Courier New</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="Verdana">Verdana</option>
-                    <option value="Helvetica">Helvetica</option>
-                    <option value="Tahoma">Tahoma</option>
-                    <option value="Trebuchet MS">Trebuchet MS</option>
-                </select>
+            <div class="page-controls">
+                <button id="prevPage">Previous</button>
+                <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                <button id="nextPage">Next</button>
+            </div>
+            <div class="pdf-container">
+                <canvas id="pdfViewer"></canvas>
+                <div id="textOverlay"></div>
+            </div>
+            <canvas id="signatureCanvas" style="display: none;"></canvas>
+        </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container text-center">
+            <h3 class="sitename">Wagle Universal Solutions</h3>
+            <p>Contact us today to learn how we can help you achieve your goals.</p>
+            <div class="social-links d-flex justify-content-center">
+                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <div class="copyright mt-4">
+                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
+                <div class="mt-2">
+                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+            <div class="credits">
+                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
             </div>
         </div>
-        <div class="page-controls">
-            <button id="prevPage">Previous</button>
-            <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
-            <button id="nextPage">Next</button>
-        </div>
-        <div class="pdf-container">
-            <canvas id="pdfViewer"></canvas>
-            <div id="textOverlay"></div>
-        </div>
-        <canvas id="signatureCanvas" style="display: none;"></canvas>
-    </div>
+    </footer>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Main JS Files -->
+    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script src="/assets/js/pdfeditor.js"></script>
+</body>
+</html>
 </body>
 </html>
