@@ -324,6 +324,41 @@ function saveCurrentPageTexts() {
 }
 
 async function exportPdf() {
+    // Save current page state
+    const currentPageNumber = currentPage;
+    saveCurrentPageTexts();
+    
+    // Create PDF with first page dimensions
+    const container = document.querySelector('.pdf-container');
+    const firstPage = await processPdfPage(1);
+    
+    const pdf = new jspdf.jsPDF({
+        orientation: 'p',
+        unit: 'px',
+        format: [firstPage.width, firstPage.height]
+    });
+    
+    // Add first page
+    pdf.addImage(firstPage.imgData, 'PNG', 0, 0, firstPage.width, firstPage.height);
+    
+    // Process remaining pages
+    for (let i = 2; i <= pdfDoc.numPages; i++) {
+        const pageData = await processPdfPage(i);
+        pdf.addPage([pageData.width, pageData.height]);
+        pdf.addImage(pageData.imgData, 'PNG', 0, 0, pageData.width, pageData.height);
+    }
+    
+    // Restore original page
+    currentPage = currentPageNumber;
+    renderPage(currentPage);
+    
+    pdf.save('edited-document.pdf');
+}
+
+async function processPdfPage(pageNum) {
+    // Render the specified page
+    await renderPage(pageNum);
+    
     const container = document.querySelector('.pdf-container');
     
     // Temporarily adjust text inputs for export
@@ -338,7 +373,6 @@ async function exportPdf() {
             width: input.style.width
         });
         
-        // Adjust size to fit content
         input.style.height = 'auto';
         input.style.width = 'auto';
         input.style.border = 'none';
@@ -359,7 +393,6 @@ async function exportPdf() {
             allowTaint: true,
             backgroundColor: null,
             onclone: function(clonedDoc) {
-                // Ensure text is properly sized in the clone
                 clonedDoc.querySelectorAll('.text-input').forEach(input => {
                     input.style.height = input.scrollHeight + 'px';
                     input.style.width = input.scrollWidth + 'px';
@@ -367,17 +400,11 @@ async function exportPdf() {
             }
         });
 
-        const imgData = canvas.toDataURL('image/png', 1.0);
-        
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF({
-            orientation: 'p',
-            unit: 'px',
-            format: [canvas.width, canvas.height]
-        });
-
-        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
-        pdf.save('edited-document.pdf');
+        return {
+            imgData: canvas.toDataURL('image/png', 1.0),
+            width: canvas.width,
+            height: canvas.height
+        };
     } finally {
         // Restore original styles
         textInputs.forEach((input, index) => {
