@@ -88,20 +88,29 @@ function toggleRemoveMode() {
     isRemoveMode = !isRemoveMode;
     const removeBtn = document.getElementById('removeText');
     const textInputs = document.querySelectorAll('.text-input');
+    const signatureInputs = document.querySelectorAll('.signature-input');
     
     if (isRemoveMode) {
         removeBtn.style.background = '#ff4444';
-        removeBtn.textContent = 'Remove Text: On';
+        removeBtn.textContent = 'Remove Items: On';
         textInputs.forEach(input => {
             input.classList.add('remove-mode');
-            input.addEventListener('click', removeText);
+            input.addEventListener('click', removeItem);
+        });
+        signatureInputs.forEach(sig => {
+            sig.classList.add('remove-mode');
+            sig.addEventListener('click', removeItem);
         });
     } else {
         removeBtn.style.background = '';
-        removeBtn.textContent = 'Remove Text: Off';
+        removeBtn.textContent = 'Remove Items: Off';
         textInputs.forEach(input => {
             input.classList.remove('remove-mode');
-            input.removeEventListener('click', removeText);
+            input.removeEventListener('click', removeItem);
+        });
+        signatureInputs.forEach(sig => {
+            sig.classList.remove('remove-mode');
+            sig.removeEventListener('click', removeItem);
         });
     }
 }
@@ -112,11 +121,13 @@ function handleOverlayClick(e) {
     }
 }
 
-function removeText(e) {
+function removeItem(e) {
     if (isRemoveMode) {
-        e.target.parentElement.remove();
-        // Update stored texts for the current page
-        saveCurrentPageTexts();
+        const elementToRemove = e.target.closest('.text-input, .signature-input');
+        if (elementToRemove) {
+            elementToRemove.remove();
+            saveCurrentPageTexts();
+        }
     }
 }
 
@@ -187,7 +198,7 @@ function addTextToOverlay(x, y, text = '') {
     // Add remove mode handling for new text inputs
     if (isRemoveMode) {
         input.classList.add('remove-mode');
-        input.addEventListener('click', removeText);
+        input.addEventListener('click', removeItem);
     }
 }
 
@@ -440,6 +451,7 @@ function addSignature() {
 
     const img = document.createElement('img');
     img.src = signatureImage;
+    img.style.pointerEvents = 'none'; // Prevent img from blocking click events
     
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
