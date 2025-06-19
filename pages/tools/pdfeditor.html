@@ -121,6 +121,20 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        .signature-input {
+            position: absolute;
+            max-width: 200px;
+            cursor: move;
+            pointer-events: all;
+        }
+        .signature-input img {
+            width: 100%;
+            height: auto;
+        }
+        .signature-controls {
+            display: inline-block;
+            margin-left: 15px;
+        }
     </style>
 </head>
 <body>
@@ -131,6 +145,10 @@
             <input type="file" id="pdfFile" accept=".pdf">
             <button id="removeText" class="btn-toggle">Remove Text: Off</button>
             <button id="exportPdf">Export PDF</button>
+            <div class="signature-controls">
+                <input type="file" id="signatureFile" accept="image/*">
+                <button id="addSignature">Add Signature</button>
+            </div>
             <div class="text-controls">
                 <select id="fontSize">
                     <option value="12">12px</option>
@@ -163,8 +181,8 @@
             <canvas id="pdfViewer"></canvas>
             <div id="textOverlay"></div>
         </div>
+        <canvas id="signatureCanvas" style="display: none;"></canvas>
     </div>
     <script src="/assets/js/pdfeditor.js"></script>
 </body>
-</html>
 </html>

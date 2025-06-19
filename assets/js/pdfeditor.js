@@ -6,6 +6,7 @@ let pdfDoc = null;
 let pageTexts = {};
 let scale = 1.5;
 let isRemoveMode = false;
+let signatureImage = null;
 
 // Initialize text overlay click handler
 document.addEventListener('DOMContentLoaded', function() {
@@ -20,6 +21,8 @@ document.getElementById('removeText').addEventListener('click', toggleRemoveMode
 document.getElementById('exportPdf').addEventListener('click', exportPdf);
 document.getElementById('prevPage').addEventListener('click', () => changePage(-1));
 document.getElementById('nextPage').addEventListener('click', () => changePage(1));
+document.getElementById('signatureFile').addEventListener('change', handleSignatureUpload);
+document.getElementById('addSignature').addEventListener('click', addSignature);
 
 async function loadPdf(event) {
     const file = event.target.files[0];
@@ -52,10 +55,31 @@ async function renderPage(pageNumber) {
     const textOverlay = document.getElementById('textOverlay');
     textOverlay.innerHTML = '';
     
-    // Restore saved texts for this page
+    // Restore saved texts and signatures for this page
     if (pageTexts[pageNumber]) {
-        pageTexts[pageNumber].forEach(textData => {
-            addTextToOverlay(textData.x, textData.y, textData.text);
+        pageTexts[pageNumber].forEach(item => {
+            if (item.type === 'signature') {
+                const container = document.createElement('div');
+                container.className = 'signature-input';
+                container.style.position = 'absolute';
+                container.style.left = `${item.x}px`;
+                container.style.top = `${item.y}px`;
+                
+                const img = document.createElement('img');
+                img.src = item.signature;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.onclick = () => container.remove();
+                
+                container.appendChild(img);
+                container.appendChild(deleteBtn);
+                document.getElementById('textOverlay').appendChild(container);
+                makeDraggable(container);
+            } else {
+                addTextToOverlay(item.x, item.y, item.text);
+            }
         });
     }
 }
@@ -155,7 +179,8 @@ function addTextToOverlay(x, y, text = '') {
         pageTexts[currentPage].push({
             x: parseInt(container.style.left),
             y: parseInt(container.style.top),
-            text: input.value
+            text: input.value,
+            type: 'text'
         });
     };
     
@@ -164,6 +189,138 @@ function addTextToOverlay(x, y, text = '') {
         input.classList.add('remove-mode');
         input.addEventListener('click', removeText);
     }
+}
+
+function handleSignatureUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                processSignature(img);
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function processSignature(img) {
+    const canvas = document.getElementById('signatureCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size to match image
+    canvas.width = img.width;
+    canvas.height = img.height;
+    
+    // Draw original image
+    ctx.drawImage(img, 0, 0);
+    
+    // Get image data
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+    
+    // Convert to black and white and remove background
+    const threshold = 150; // Adjust this value to control sensitivity
+    for (let i = 0; i < data.length; i += 4) {
+        // Convert to grayscale
+        const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        
+        // Apply threshold
+        if (brightness > threshold) {
+            // Make pixel transparent if it's bright (background)
+            data[i + 3] = 0;
+        } else {
+            // Make dark pixels black
+            data[i] = 0;
+            data[i + 1] = 0;
+            data[i + 2] = 0;
+            data[i + 3] = 255;
+        }
+    }
+    
+    // Put processed image data back
+    ctx.putImageData(imageData, 0, 0);
+    
+    // Trim empty space
+    const trimmed = trimCanvas(canvas);
+    
+    // Save processed signature
+    signatureImage = trimmed.toDataURL('image/png');
+}
+
+function trimCanvas(canvas) {
+    const ctx = canvas.getContext('2d');
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const l = pixels.data.length;
+    const bound = {
+        top: null,
+        left: null,
+        right: null,
+        bottom: null
+    };
+    
+    // Get bounds
+    for (let i = 0; i < l; i += 4) {
+        if (pixels.data[i + 3] !== 0) {
+            const x = (i / 4) % canvas.width;
+            const y = ~~((i / 4) / canvas.width);
+
+            if (bound.top === null) bound.top = y;
+            if (bound.left === null) bound.left = x;
+            else if (x < bound.left) bound.left = x;
+            
+            if (bound.right === null) bound.right = x;
+            else if (bound.right < x) bound.right = x;
+            
+            if (bound.bottom === null) bound.bottom = y;
+            else if (bound.bottom < y) bound.bottom = y;
+        }
+    }
+    
+    // Create trimmed canvas
+    const trimmedCanvas = document.createElement('canvas');
+    const trimmedCtx = trimmedCanvas.getContext('2d');
+    
+    const trimmedWidth = bound.right - bound.left + 1;
+    const trimmedHeight = bound.bottom - bound.top + 1;
+    
+    trimmedCanvas.width = trimmedWidth;
+    trimmedCanvas.height = trimmedHeight;
+    
+    trimmedCtx.drawImage(
+        canvas,
+        bound.left, bound.top, trimmedWidth, trimmedHeight,
+        0, 0, trimmedWidth, trimmedHeight
+    );
+    
+    return trimmedCanvas;
+}
+
+// Modify the saveCurrentPageTexts function to include signatures
+function saveCurrentPageTexts() {
+    const texts = [];
+    document.querySelectorAll('.text-input').forEach(input => {
+        const container = input.parentElement;
+        texts.push({
+            x: parseInt(container.style.left),
+            y: parseInt(container.style.top),
+            text: input.value,
+            type: 'text'
+        });
+    });
+    
+    document.querySelectorAll('.signature-input').forEach(container => {
+        texts.push({
+            x: parseInt(container.style.left),
+            y: parseInt(container.style.top),
+            signature: container.querySelector('img').src,
+            type: 'signature'
+        });
+    });
+    
+    pageTexts[currentPage] = texts;
 }
 
 async function exportPdf() {
@@ -242,15 +399,75 @@ function changePage(offset) {
     }
 }
 
-function saveCurrentPageTexts() {
-    const texts = [];
-    document.querySelectorAll('.text-input').forEach(input => {
-        const container = input.parentElement;
-        texts.push({
-            x: parseInt(container.style.left),
-            y: parseInt(container.style.top),
-            text: input.value
-        });
+function addSignature() {
+    if (!signatureImage) {
+        alert('Please upload a signature image first');
+        return;
+    }
+
+    const container = document.createElement('div');
+    container.className = 'signature-input';
+    container.style.position = 'absolute';
+    container.style.left = '50px';
+    container.style.top = '50px';
+
+    const img = document.createElement('img');
+    img.src = signatureImage;
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.onclick = (e) => {
+        e.stopPropagation();
+        container.remove();
+        saveCurrentPageTexts();
+    };
+
+    container.appendChild(img);
+    container.appendChild(deleteBtn);
+    document.getElementById('textOverlay').appendChild(container);
+
+    // Make signature draggable
+    makeDraggable(container);
+
+    // Save the signature position
+    if (!pageTexts[currentPage]) {
+        pageTexts[currentPage] = [];
+    }
+    pageTexts[currentPage].push({
+        x: parseInt(container.style.left),
+        y: parseInt(container.style.top),
+        signature: signatureImage,
+        type: 'signature'
     });
-    pageTexts[currentPage] = texts;
+}
+
+function makeDraggable(element) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    element.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        if (e.target !== element && e.target !== element.querySelector('img')) return;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+        saveCurrentPageTexts(); // Save position after dragging
+    }
 }
