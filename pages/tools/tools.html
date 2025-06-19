@@ -197,6 +197,7 @@
                     <li class="dropdown">
                         <a href="#"><span>Tools Menu</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
+                            <li><a href="/pages/tools/pdfeditor.html">PDF Editor</a></li>
                             <li><a href="/pages/tools/text-manipulation.html">Text Manipulation</a></li>
                             <li><a href="/pages/tools/bulk-image-resizer.html">Bulk Image Resizer</a></li>
                             <li><a href="/pages/tools/json-formatter.html">JSON Formatter</a></li>
@@ -232,6 +233,18 @@
             </div>
 
             <div class="tools-grid" id="toolsGrid">
+                <!-- Add this new tool card before the existing cards -->
+                <div class="tool-card" data-tags="pdf,edit,text,signature,document">
+                    <i class="bi bi-file-pdf tool-icon"></i>
+                    <h3>PDF Editor</h3>
+                    <p>Add text and signatures to PDF documents</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">PDF</span>
+                        <span class="tool-tag">Editor</span>
+                    </div>
+                    <a href="./pdfeditor.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
                 <div class="tool-card" data-tags="color,rgb,hex,wcag,palette">
                     <i class="bi bi-palette tool-icon"></i>
                     <h3>Color Theory</h3>
@@ -409,8 +422,13 @@
                     tool.classList.remove('hidden-tool');
                 } else {
                     tool.classList.add('hidden-tool');
-                }
-            });
+
+
+
+
+
+
+</html></body>    </script>        });            });                }            });
         });
     </script>
 </body>
