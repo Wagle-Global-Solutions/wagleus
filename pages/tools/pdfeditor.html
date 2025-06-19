@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Editor - WagleUS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        .editor-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .controls {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .pdf-container {
+            position: relative;
+            border: 1px solid #ccc;
+            min-height: 800px;
+            background: #fff;
+        }
+        #pdfViewer {
+            width: 100%;
+        }
+        #textOverlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+        .text-input {
+            position: absolute;
+            background: transparent;
+            border: none;
+            padding: 5px;
+            min-width: 150px;  /* Increased from 100px */
+            min-height: 30px;  /* Added minimum height */
+            pointer-events: all;
+            resize: both;      /* Allow resizing */
+            overflow: hidden;  /* Hide resize handle */
+            font-size: 16px;   /* Default font size */
+        }
+        .text-input.remove-mode {
+            cursor: pointer;
+            border: 1px dashed #ff4444;
+        }
+        .text-input.remove-mode:hover {
+            background: rgba(255, 68, 68, 0.1);
+        }
+        .text-controls {
+            display: inline-block;
+            margin-left: 15px;
+        }
+        .text-controls select {
+            padding: 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+            min-width: 120px;
+        }
+        .text-input:focus {
+            outline: 1px dashed #000;
+        }
+        .text-input:hover .delete-btn {
+            display: block;
+        }
+        .delete-btn {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+            display: none;
+            padding: 0;
+        }
+        .page-controls {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .page-controls button {
+            background: #444;
+            margin: 0 5px;
+        }
+        .page-number {
+            margin: 0 10px;
+            display: inline-block;
+        }
+        button {
+            padding: 8px 16px;
+            margin-right: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .home-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">Back to Home</a>
+    <div class="editor-container">
+        <h1 style="text-align: center; margin-bottom: 30px;">PDF Editor</h1>
+        <div class="controls">
+            <input type="file" id="pdfFile" accept=".pdf">
+            <button id="removeText" class="btn-toggle">Remove Text: Off</button>
+            <button id="exportPdf">Export PDF</button>
+            <div class="text-controls">
+                <select id="fontSize">
+                    <option value="12">12px</option>
+                    <option value="14">14px</option>
+                    <option value="16" selected>16px</option>
+                    <option value="18">18px</option>
+                    <option value="20">20px</option>
+                    <option value="24">24px</option>
+                    <option value="28">28px</option>
+                    <option value="32">32px</option>
+                </select>
+                <select id="fontFamily">
+                    <option value="Arial" selected>Arial</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                </select>
+            </div>
+        </div>
+        <div class="page-controls">
+            <button id="prevPage">Previous</button>
+            <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+            <button id="nextPage">Next</button>
+        </div>
+        <div class="pdf-container">
+            <canvas id="pdfViewer"></canvas>
+            <div id="textOverlay"></div>
+        </div>
+    </div>
+    <script src="/assets/js/pdfeditor.js"></script>
+</body>
+</html>
+</html>
