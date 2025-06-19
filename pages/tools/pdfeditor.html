@@ -12,11 +12,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://wagleus.com/pages/tools/pdfeditor.html" />
-    <title>PDF Editor - Free Online Tool | WUS</title>
-    <meta name="description" content="Edit PDFs online with our free tool. Add text, signatures, and more with this easy-to-use PDF editor.">
+    <title>Free Online PDF Editor - Add Text, Signatures & More | WUS</title>
+    <meta name="description" content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor. No registration required, instant results.">
+    <meta name="keywords" content="pdf editor, online pdf editor, free pdf editor, add text to pdf, sign pdf, edit pdf online, pdf tools">
     <meta name="author" content="Wagle Universal Solutions">
+    <meta property="og:title" content="Free Online PDF Editor - Add Text & Signatures">
+    <meta property="og:description" content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor.">
+    <meta property="og:image" content="https://wagleus.com/assets/img/pdf-editor-preview.png">
+    <meta property="og:url" content="https://wagleus.com/pages/tools/pdfeditor.html">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    <meta name="google-adsense-account" content="ca-pub-2031642574589224">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "WUS PDF Editor",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Edit PDFs online for free. Add text, insert signatures, and annotate documents with our easy-to-use PDF editor.",
+      "browserRequirements": "Requires JavaScript. Works in modern web browsers.",
+      "softwareVersion": "1.0",
+      "abstract": "Free online PDF editor that allows users to add text and signatures to PDF documents"
+    }
+    </script>
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
@@ -307,6 +332,17 @@
             display: inline-block;
             margin-left: 15px;
         }
+
+        .tool-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -348,51 +384,55 @@
 
     <!-- Main Content -->
     <main class="main">
-<div class="tool-container">
-        <div class="editor-container">
-            <h1 style="text-align: center; margin-bottom: 30px;">PDF Editor</h1>
-            <div class="controls">
-                <input type="file" id="pdfFile" accept=".pdf">
-                <button id="removeText" class="btn-toggle">Remove Text: Off</button>
-                <button id="exportPdf">Export PDF</button>
-                <div class="signature-controls">
-                    <input type="file" id="signatureFile" accept="image/*">
-                    <button id="addSignature">Add Signature</button>
+        <div class="tool-container">
+            <div class="editor-container">
+                <h1>Free Online PDF Editor</h1>
+                <p class="tool-description">
+                    Edit your PDF documents online for free. Add text, insert signatures, and make annotations easily. 
+                    No registration required, and your files are processed securely in your browser.
+                </p>
+                <div class="controls">
+                    <input type="file" id="pdfFile" accept=".pdf">
+                    <button id="removeText" class="btn-toggle">Remove Text: Off</button>
+                    <button id="exportPdf">Export PDF</button>
+                    <div class="signature-controls">
+                        <input type="file" id="signatureFile" accept="image/*">
+                        <button id="addSignature">Add Signature</button>
+                    </div>
+                    <div class="text-controls">
+                        <select id="fontSize">
+                            <option value="12">12px</option>
+                            <option value="14">14px</option>
+                            <option value="16" selected>16px</option>
+                            <option value="18">18px</option>
+                            <option value="20">20px</option>
+                            <option value="24">24px</option>
+                            <option value="28">28px</option>
+                            <option value="32">32px</option>
+                        </select>
+                        <select id="fontFamily">
+                            <option value="Arial" selected>Arial</option>
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Courier New">Courier New</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="Verdana">Verdana</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Tahoma">Tahoma</option>
+                            <option value="Trebuchet MS">Trebuchet MS</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="text-controls">
-                    <select id="fontSize">
-                        <option value="12">12px</option>
-                        <option value="14">14px</option>
-                        <option value="16" selected>16px</option>
-                        <option value="18">18px</option>
-                        <option value="20">20px</option>
-                        <option value="24">24px</option>
-                        <option value="28">28px</option>
-                        <option value="32">32px</option>
-                    </select>
-                    <select id="fontFamily">
-                        <option value="Arial" selected>Arial</option>
-                        <option value="Times New Roman">Times New Roman</option>
-                        <option value="Courier New">Courier New</option>
-                        <option value="Georgia">Georgia</option>
-                        <option value="Verdana">Verdana</option>
-                        <option value="Helvetica">Helvetica</option>
-                        <option value="Tahoma">Tahoma</option>
-                        <option value="Trebuchet MS">Trebuchet MS</option>
-                    </select>
+                <div class="page-controls">
+                    <button id="prevPage">Previous</button>
+                    <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                    <button id="nextPage">Next</button>
                 </div>
+                <div class="pdf-container">
+                    <canvas id="pdfViewer"></canvas>
+                    <div id="textOverlay"></div>
+                </div>
+                <canvas id="signatureCanvas" style="display: none;"></canvas>
             </div>
-            <div class="page-controls">
-                <button id="prevPage">Previous</button>
-                <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
-                <button id="nextPage">Next</button>
-            </div>
-            <div class="pdf-container">
-                <canvas id="pdfViewer"></canvas>
-                <div id="textOverlay"></div>
-            </div>
-            <canvas id="signatureCanvas" style="display: none;"></canvas>
-        </div>
         </div>
     </main>
 
@@ -433,7 +473,5 @@
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/main.js"></script>
     <script src="/assets/js/pdfeditor.js"></script>
-</body>
-</html>
 </body>
 </html>
