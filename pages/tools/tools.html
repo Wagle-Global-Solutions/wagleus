@@ -103,59 +103,83 @@
         /* Tool-specific styles that aren't in style.css */
         .tool-card {
             background: white;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
+            border-radius: 8px;
+            padding: 15px;
+            height: 100%;
             transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
             border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
         }
 
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border-color: #007bff;
         }
 
         .tool-icon {
-            font-size: 3rem;
+            font-size: 2rem;
             color: #007bff;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .tool-card:hover .tool-icon {
-            transform: scale(1.1);
+            margin-bottom: 10px;
         }
 
         .tools-header {
             text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .tools-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .tools-header p {
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 30px;
         }
 
         .tool-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
             color: #333;
-            margin-bottom: 15px;
         }
 
         .tool-card p {
+            font-size: 0.9rem;
             color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .search-wrapper {
+            max-width: 500px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: auto;
+        }
+
+        .tool-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            color: #666;
+        }
+
+        .hidden-tool {
+            display: none;
         }
     </style>
 </head>
@@ -197,651 +221,138 @@
     <div class="nav-backdrop"></div>
 
     <main class="main">
-        
         <div class="tools-container">
             <div class="tools-header">
-                <h1>Professional Development Tools</h1>
-                <p>Efficient online utilities for text processing and number conversion. Each tool is designed for specific development tasks, with examples and technical documentation.</p>
-                <div class="warning-box">
-                    <p class="mb-0">
-                        <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
-                        <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
-                        <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
-                    </p>
-                </div>
-                <!-- Simplified Search -->
-                <div class="tools-filter mt-4">
-                    <div class="search-wrapper">
-                        <input type="text" class="form-control" placeholder="Search tools by name or features..." id="toolSearch">
-                        <i class="bi bi-search search-icon"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Tool Usage Statistics -->
-            <div class="stats-banner alert alert-info mb-4 text-center">
-                <p class="mb-0"><strong>Browser-Based Processing:</strong> All tools run locally in your browser for maximum privacy and speed</p>
-            </div>
-
-            <!-- Pagination Controls -->
-            <nav class="tools-pagination mb-4">
-                <ul class="pagination justify-content-center" id="toolsPagination">
-                    <!-- Pagination will be dynamically generated -->
-                </ul>
-            </nav>
-
-            <!-- Tool Grid Container -->
-            <div class="row g-4" id="toolsGrid">
-                <!-- Add Gradient Generator Card FIRST -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3>CSS Gradient Generator</h3>
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <code class="d-block mb-2">Input: Select colors & type</code>
-                                <code class="d-block mb-2">↓ Generate CSS</code>
-                                <code class="d-block">background: linear-gradient(45deg, #ff6b6b, #4ecdc4);</code>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Linear, radial & conic gradients</li>
-                                <li>Multiple color stops support</li>
-                                <li>Browser compatibility modes</li>
-                                <li>Live preview & instant code</li>
-                            </ul>
-                            <a href="./gradient-generator.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CSS & JS Minifier Card -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h3>CSS & JavaScript Minifier</h3>
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <code class="d-block mb-2">Input: .button { background: #007bff; }</code>
-                                <code class="d-block mb-2">↓ Minify</code>
-                                <code class="d-block">.button{background:#007bff}</code>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>CSS & JavaScript minification</li>
-                                <li>Advanced JS optimization options</li>
-                                <li>Bulk file processing</li>
-                                <li>Code analysis & statistics</li>
-                            </ul>
-                            <a href="./css-js-minifier.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Existing tool cards... -->
-
-                <!-- Add Cron Expression Generator Card -->
-                <div class="col-md-6" data-category="generator">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Cron Expression Generator</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: Every Monday at 9am</code>
-                                    <code class="d-block mb-2">↓ Generate Expression</code>
-                                    <code class="d-block">0 9 * * 1</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Visual cron expression builder</li>
-                                <li>Common patterns library</li>
-                                <li>Expression validator</li>
-                                <li>Next run time calculator</li>
-                            </ul>
-                            <a href="./pages/tools/cron-expression-generator.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add Color Picker Tool Showcase FIRST -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Color Theory & Code Converter</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: #007BFF</code>
-                                    <code class="d-block mb-2">↓ Multiple Formats</code>
-                                    <code class="d-block">RGB: rgb(0, 123, 255)<br>HSL: hsl(211, 100%, 50%)<br>CMYK: cmyk(100%, 52%, 0%, 0%)</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Color code conversion (HEX, RGB, HSL, CMYK)</li>
-                                <li>Color theory & harmonies</li>
-                                <li>WCAG contrast checker</li>
-                                <li>Tints and shades generator</li>
-                            </ul>
-                            <a href="./color-picker.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JSON Formatter Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>JSON Formatter</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: {"name":"John","age":30}</code>
-                                    <code class="d-block mb-2">↓ Format & Validate</code>
-                                    <code class="d-block">{
-  "name": "John",
-  "age": 30
-}</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Format & validate JSON data</li>
-                                <li>Tree view visualization</li>
-                                <li>Convert to CSV/XML/YAML</li>
-                                <li>Syntax highlighting</li>
-                            </ul>
-                            <a href="./json-formatter.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Text Manipulation</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: snake_case_variable</code>
-                                    <code class="d-block mb-2">↓ Title Case Convert</code>
-                                    <code class="d-block">Output: Snake Case Variable</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Case conversion with intelligent handling</li>
-                                <li>Advanced text cleaning and formatting</li>
-                                <li>Real-time character and word counting</li>
-                                <li>Secure client-side processing</li>
-                            </ul>
-                            <a href="./text-manipulation.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Password Generator Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Password Generator</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Settings: Length=12, All Characters</code>
-                                    <code class="d-block mb-2">↓ Generate Password</code>
-                                    <code class="d-block">Output: K#9mP$vL2&nX</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Customizable password length</li>
-                                <li>Character type selection</li>
-                                <li>Password strength indicator</li>
-                                <li>One-click copy function</li>
-                            </ul>
-                            <a href="./password-generator.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Number Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Number Converter</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: 255 (Decimal)</code>
-                                    <code class="d-block mb-2">↓ Multi-Base Convert</code>
-                                    <code class="d-block">Output: FF (Hex) | 11111111 (Binary)</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Multi-base number conversion</li>
-                                <li>Step-by-step conversion process</li>
-                                <li>Scientific notation support</li>
-                                <li>Common base quick convert</li>
-                            </ul>
-                            <a href="./number-converter.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Base64 Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Base64 Encoder/Decoder</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: Hello, World!</code>
-                                    <code class="d-block mb-2">↓ Base64 Encode</code>
-                                    <code class="d-block">Output: SGVsbG8sIFdvcmxkIQ==</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Text and file encoding</li>
-                                <li>URL-safe Base64 support</li>
-                                <li>Instant encoding/decoding</li>
-                                <li>Drag & drop file support</li>
-                            </ul>
-                            <a href="./base64encoder-decoder.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hash Generator Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Hash Generator</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: Hello, World!</code>
-                                    <code class="d-block mb-2">↓ SHA-256</code>
-                                    <code class="d-block" style="word-break: break-all;">dffd6021bb2bd5b0af676290809ec3a53191dd81c7f70a4b28688a362182986f</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Multiple hash algorithms (MD5, SHA-1, SHA-256, etc.)</li>
-                                <li>File integrity verification</li>
-                                <li>Real-time hash generation</li>
-                                <li>Drag & drop file support</li>
-                            </ul>
-                            <a href="./hash-generator.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add Image Resizer Tool Showcase -->
-                <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="tool-demo p-3 bg-light rounded mb-3">
-                                <h3>Bulk Image Resizer</h3>
-                                <div class="demo-box">
-                                    <code class="d-block mb-2">Input: Multiple Images</code>
-                                    <code class="d-block mb-2">↓ Resize & Compress</code>
-                                    <code class="d-block">Output: Resized and Compressed Images</code>
-                                </div>
-                            </div>
-                            <h4>Key Features</h4>
-                            <ul class="mb-4">
-                                <li>Resize and compress multiple images at once</li>
-                                <li>Support for JPEG, PNG, and WebP formats</li>
-                                <li>Quality control for compression</li>
-                                <li>Batch processing with preview</li>
-                            </ul>
-                            <a href="./bulk-image-resizer.html" class="btn btn-primary">Open Tool</a>
-                        </div>
-                    </div>
+                <h1>Developer Tools</h1>
+                <p>Free online utilities for developers. No signup required.</p>
+                <div class="search-wrapper">
+                    <input type="text" class="form-control" placeholder="Search tools..." id="toolSearch">
+                    <i class="bi bi-search"></i>
                 </div>
             </div>
 
-            <!-- Updated Technical Documentation -->
-            <section class="documentation mt-5">
-                <h2 class="text-center mb-4">Technical Details</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row g-4">
-                            <!-- Add CSS & JS Minifier section FIRST -->
-                            <div class="col-md-4">
-                                <h4>CSS & JS Minification</h4>
-                                <ul>
-                                    <li>Standard CSS compression</li>
-                                    <li>Terser JavaScript optimization</li>
-                                    <li>Variable name mangling</li>
-                                    <li>Dead code elimination</li>
-                                </ul>
-                            </div>
-                            <!-- Add Cron Generator section -->
-                            <div class="col-md-4">
-                                <h4>Cron Expression Tools</h4>
-                                <ul>
-                                    <li>UNIX cron format support</li>
-                                    <li>Quartz scheduler compatibility</li>
-                                    <li>Human-readable translations</li>
-                                    <li>Timezone support</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h4>Text Processing</h4>
-                                <ul>
-                                    <li>UTF-8 character support</li>
-                                    <li>Regular expression capabilities</li>
-                                    <li>Batch processing support</li>
-                                    <li>Real-time character counting</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h4>Number Systems</h4>
-                                <ul>
-                                    <li>32-bit integer support</li>
-                                    <li>Floating-point precision</li>
-                                    <li>Base 2-36 conversion</li>
-                                    <li>Scientific notation</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h4>Base64 Processing</h4>
-                                <ul>
-                                    <li>Standard Base64 encoding</li>
-                                    <li>URL-safe encoding variant</li>
-                                    <li>File to Base64 conversion</li>
-                                    <li>Unicode text support</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h4>Hash Generation</h4>
-                                <ul>
-                                    <li>Multiple hash algorithms</li>
-                                    <li>Large file support</li>
-                                    <li>Progress tracking</li>
-                                    <li>Instant text hashing</li>
-                                </ul>
-                            </div>
-                            <div class="col-md-4">
-                                <h4>Password Generation</h4>
-                                <ul>
-                                    <li>Cryptographically secure RNG</li>
-                                    <li>Custom character set support</li>
-                                    <li>Real-time strength analysis</li>
-                                    <li>NIST guideline compliance</li>
-                                </ul>
-                            </div>
-                            <!-- Add Color Theory Tools section -->
-                            <div class="col-md-4">
-                                <h4>Color Tools</h4>
-                                <ul>
-                                    <li>Multiple color format support</li>
-                                    <li>WCAG 2.1 contrast checking</li>
-                                    <li>Color harmony generation</li>
-                                    <li>Real-time color conversion</li>
-                                </ul>
-                            </div>
-                            <!-- Add JSON Formatter section -->
-                            <div class="col-md-4">
-                                <h4>JSON Processing</h4>
-                                <ul>
-                                    <li>Multi-format validation</li>
-                                    <li>Syntax error detection</li>
-                                    <li>Pretty print formatting</li>
-                                    <li>Cross-format conversion</li>
-                                </ul>
-                            </div>
-                            <!-- Add Image Resizer Details -->
-                            <div class="col-md-4">
-                                <h4>Bulk Image Resizer</h4>
-                                <ul>
-                                    <li><strong>Processing:</strong> Client-side JavaScript using HTML5 Canvas API</li>
-                                    <li><strong>Supported Formats:</strong> JPEG, PNG, WebP (input/output)</li>
-                                    <li><strong>Max File Size:</strong> 50MB per image</li>
-                                    <li><strong>Features:</strong>
-                                        <ul>
-                                            <li>Batch processing with preview</li>
-                                            <li>Proportional resizing with aspect ratio maintenance</li>
-                                            <li>Format conversion with quality control</li>
-                                            <li>Smart compression for different formats</li>
-                                            <li>ZIP download for processed images</li>
-                                        </ul>
-                                    </li>
-                                    <li><strong>Browser Requirements:</strong> Modern browsers with File API and Canvas support</li>
-                                    <li><strong>Privacy:</strong> All processing happens locally, no server uploads</li>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="tools-grid" id="toolsGrid">
+                <div class="tool-card" data-tags="color,rgb,hex,wcag,palette">
+                    <i class="bi bi-palette tool-icon"></i>
+                    <h3>Color Theory</h3>
+                    <p>Convert colors, check contrast, generate palettes</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Color</span>
+                        <span class="tool-tag">WCAG</span>
                     </div>
+                    <a href="./color-picker.html" class="btn btn-sm btn-primary mt-2">Open</a>
                 </div>
-            </section>
 
-            <!-- FAQ Section -->
-            <section class="faqs mt-5">
-                <h2 class="text-center mb-4">Frequently Asked Questions</h2>
-                <div class="accordion" id="toolsFAQ">
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                Are these tools free to use?
-                            </button>
-                        </h3>
-                        <div id="faq1" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                Yes, all tools are completely free to use with no registration required. There are no hidden fees, or premium features - everything is freely available to everyone.
-                            </div>
-                        </div>
+                <div class="tool-card" data-tags="json,format,validate,prettify">
+                    <i class="bi bi-braces tool-icon"></i>
+                    <h3>JSON Formatter</h3>
+                    <p>Format, validate and convert JSON data</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">JSON</span>
+                        <span class="tool-tag">Format</span>
                     </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                How secure are these online tools?
-                            </button>
-                        </h3>
-                        <div id="faq2" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                All our tools process data directly in your browser using JavaScript. We don't store, collect, or transmit any of your input data to our servers. Your information never leaves your device, ensuring complete privacy and security.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                Which browsers are supported?
-                            </button>
-                        </h3>
-                        <div id="faq3" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Our tools work on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend keeping your browser updated to the latest version for the best experience and security.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-                                Can I use these tools offline?
-                            </button>
-                        </h3>
-                        <div id="faq4" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Currently, our tools require an internet connection to load. However, once loaded, many tools can continue to function offline as they run entirely in your browser.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-                                Are there any usage limits?
-                            </button>
-                        </h3>
-                        <div id="faq5" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                No, there are no usage limits. You can use our tools as much as you need. However, for very large data sets, the processing speed may depend on your device's capabilities.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                                How secure is the password generator?
-                            </button>
-                        </h3>
-                        <div id="faq6" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Our password generator uses JavaScript's Crypto API to ensure cryptographically secure random generation. The tool runs entirely in your browser, meaning generated passwords are never transmitted or stored anywhere.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
-                                What makes a password strong?
-                            </button>
-                        </h3>
-                        <div id="faq7" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                A strong password should be at least 12 characters long, include a mix of uppercase and lowercase letters, numbers, and special characters. Our generator follows NIST guidelines and provides real-time strength assessment to ensure maximum security.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
-                                Can I customize the generated passwords?
-                            </button>
-                        </h3>
-                        <div id="faq8" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Yes, you can fully customize your passwords by specifying length, including/excluding uppercase letters, lowercase letters, numbers, and special characters. You can also exclude specific characters that might not be allowed in certain systems.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq9">
-                                What is Base64 encoding used for?
-                            </button>
-                        </h3>
-                        <div id="faq9" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Base64 encoding is commonly used to transmit binary data over text-based systems, encode email attachments, create data URIs for images, and handle API authentication tokens. It converts binary data into a safe ASCII string format.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
-                                What's the difference between standard and URL-safe Base64?
-                            </button>
-                        </h3>
-                        <div id="faq10" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Standard Base64 uses '+' and '/' characters which can cause issues in URLs. URL-safe Base64 replaces these with '-' and '_' respectively, making it safe for use in URLs, filenames, and other contexts where special characters might be problematic.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add new Color Tool FAQs after existing ones -->
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
-                                What color formats are supported?
-                            </button>
-                        </h3>
-                        <div id="faq11" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Our color tool supports HEX, RGB, HSL, HSV, and CMYK formats. You can easily convert between these formats and generate harmonious color combinations. All conversions follow industry standards for maximum accuracy.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
-                                What is WCAG contrast checking?
-                            </button>
-                        </h3>
-                        <div id="faq12" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                WCAG (Web Content Accessibility Guidelines) contrast checking ensures text remains readable against its background. Our tool calculates contrast ratios according to WCAG 2.1 standards, helping you meet accessibility requirements for web content.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq13">
-                                How do color harmonies work?
-                            </button>
-                        </h3>
-                        <div id="faq13" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Color harmonies are predefined color relationships based on the color wheel. Our tool generates complementary, split-complementary, triadic, tetradic, and analogous color schemes, helping you create visually appealing color combinations for your designs.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq14">
-                                Can I save or share my color palettes?
-                            </button>
-                        </h3>
-                        <div id="faq14" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                Yes! You can share any color or combination using the share button. This generates a unique URL that preserves your exact color settings. You can also easily copy individual color codes in any format with a single click.
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add Image Resizer FAQs -->
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-images-1">
-                                How does the bulk image resizer handle different image formats?
-                            </button>
-                        </h3>
-                        <div id="faq-images-1" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                The tool supports JPEG, PNG, and WebP formats. Each format is handled differently:
-                                <ul>
-                                    <li>JPEG: Uses quality-based compression</li>
-                                    <li>PNG: Uses lossless compression with resolution adjustment</li>
-                                    <li>WebP: Combines features of both with modern compression</li>
-                                </ul>
-                                You can convert between formats while maintaining appropriate quality settings for each type.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-images-2">
-                                What are the limitations of the image processing tool?
-                            </button>
-                        </h3>
-                        <div id="faq-images-2" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                The main limitations are:
-                                <ul>
-                                    <li>Maximum file size: 50MB per image</li>
-                                    <li>Processing speed depends on device capability</li>
-                                    <li>Browser memory limits total batch size</li>
-                                    <li>WebP support depends on browser version</li>
-                                </ul>
-                                All processing happens in your browser for privacy and speed.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h3 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-cron">
-                                What is a cron expression and how do I use it?
-                            </button>
-                        </h3>
-                        <div id="faq-cron" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                A cron expression is a string of fields that describe the schedule for automated tasks. Our cron generator helps you create and validate these expressions without memorizing the syntax. It supports standard cron format and includes features like next execution time prediction.
-                            </div>
-                        </div>
-                    </div>
+                    <a href="./json-formatter.html" class="btn btn-sm btn-primary mt-2">Open</a>
                 </div>
-            </section>
+
+                <div class="tool-card" data-tags="text,case,convert,string">
+                    <i class="bi bi-type tool-icon"></i>
+                    <h3>Text Manipulation</h3>
+                    <p>Convert text case, format, and clean text</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Text</span>
+                        <span class="tool-tag">Format</span>
+                    </div>
+                    <a href="./text-manipulation.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="image,resize,compress,bulk">
+                    <i class="bi bi-image tool-icon"></i>
+                    <h3>Bulk Image Resizer</h3>
+                    <p>Resize and compress multiple images</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Image</span>
+                        <span class="tool-tag">Batch</span>
+                    </div>
+                    <a href="./bulk-image-resizer.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="password,security,generate">
+                    <i class="bi bi-key tool-icon"></i>
+                    <h3>Password Generator</h3>
+                    <p>Generate secure random passwords</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Security</span>
+                        <span class="tool-tag">Generator</span>
+                    </div>
+                    <a href="./password-generator.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="number,convert,base,decimal,hex,binary">
+                    <i class="bi bi-123 tool-icon"></i>
+                    <h3>Number Converter</h3>
+                    <p>Convert between number systems</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Numbers</span>
+                        <span class="tool-tag">Convert</span>
+                    </div>
+                    <a href="./number-converter.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="base64,encode,decode,convert">
+                    <i class="bi bi-code-square tool-icon"></i>
+                    <h3>Base64 Encoder</h3>
+                    <p>Encode and decode Base64 content</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Encode</span>
+                        <span class="tool-tag">Decode</span>
+                    </div>
+                    <a href="./base64encoder-decoder.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="hash,md5,sha,security">
+                    <i class="bi bi-hash tool-icon"></i>
+                    <h3>Hash Generator</h3>
+                    <p>Generate various hash checksums</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Hash</span>
+                        <span class="tool-tag">Security</span>
+                    </div>
+                    <a href="./hash-generator.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="cron,schedule,expression">
+                    <i class="bi bi-calendar3 tool-icon"></i>
+                    <h3>Cron Generator</h3>
+                    <p>Create and validate cron expressions</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Cron</span>
+                        <span class="tool-tag">Schedule</span>
+                    </div>
+                    <a href="./cron-expression-generator.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="css,js,minify,compress">
+                    <i class="bi bi-file-code tool-icon"></i>
+                    <h3>CSS & JS Minifier</h3>
+                    <p>Minify CSS and JavaScript code</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">Minify</span>
+                        <span class="tool-tag">Code</span>
+                    </div>
+                    <a href="./css-js-minifier.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+
+                <div class="tool-card" data-tags="gradient,css,color,background">
+                    <i class="bi bi-brush tool-icon"></i>
+                    <h3>Gradient Generator</h3>
+                    <p>Create CSS gradient backgrounds</p>
+                    <div class="tool-tags">
+                        <span class="tool-tag">CSS</span>
+                        <span class="tool-tag">Gradient</span>
+                    </div>
+                    <a href="./gradient-generator.html" class="btn btn-sm btn-primary mt-2">Open</a>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -880,5 +391,27 @@
          <script src="/assets/js/tools.js"></script>
     <script src="/assets/js/index.js"></script>
     <script src="/assets/js/main.js"></script>
+
+    <script>
+        // Simple search functionality
+        document.getElementById('toolSearch').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const tools = document.querySelectorAll('.tool-card');
+            
+            tools.forEach(tool => {
+                const tags = tool.dataset.tags;
+                const title = tool.querySelector('h3').textContent.toLowerCase();
+                const description = tool.querySelector('p').textContent.toLowerCase();
+                
+                if (tags.includes(searchTerm) || 
+                    title.includes(searchTerm) || 
+                    description.includes(searchTerm)) {
+                    tool.classList.remove('hidden-tool');
+                } else {
+                    tool.classList.add('hidden-tool');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
