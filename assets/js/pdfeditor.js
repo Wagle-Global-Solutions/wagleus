@@ -64,55 +64,8 @@ async function renderPage(pageNumber) {
                 container.style.position = 'absolute';
                 container.style.left = `${item.x}px`;
                 container.style.top = `${item.y}px`;
-                
-                const img = document.createElement('img');
-                img.src = item.signature;
-                
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-btn';
-                deleteBtn.innerHTML = '×';
-                deleteBtn.onclick = () => container.remove();
-                
-                container.appendChild(img);
-                container.appendChild(deleteBtn);
-                document.getElementById('textOverlay').appendChild(container);
-                makeDraggable(container);
-            } else {
-                addTextToOverlay(item.x, item.y, item.text);
-            }
-        });
-    }
-}
-
-async function renderPage(pageNumber) {
-    const page = await pdfDoc.getPage(pageNumber);
-    const canvas = document.getElementById('pdfViewer');
-    const context = canvas.getContext('2d');
-    
-    const viewport = page.getViewport({ scale });
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-    
-    await page.render({
-        canvasContext: context,
-        viewport: viewport
-    }).promise;
-
-    document.getElementById('currentPage').textContent = pageNumber;
-    
-    // Clear previous text overlays
-    const textOverlay = document.getElementById('textOverlay');
-    textOverlay.innerHTML = '';
-    
-    // Restore saved texts and signatures for this page
-    if (pageTexts[pageNumber]) {
-        pageTexts[pageNumber].forEach(item => {
-            if (item.type === 'signature') {
-                const container = document.createElement('div');
-                container.className = 'signature-input';
-                container.style.position = 'absolute';
-                container.style.left = `${item.x}px`;
-                container.style.top = `${item.y}px`;
+                container.style.width = `${item.width || 200}px`;
+                container.style.height = `${item.height || 100}px`;
                 
                 const img = document.createElement('img');
                 img.src = item.signature;
@@ -252,6 +205,8 @@ function saveCurrentPageTexts() {
         texts.push({
             x: parseInt(container.style.left),
             y: parseInt(container.style.top),
+            width: parseInt(container.style.width),
+            height: parseInt(container.style.height),
             signature: container.querySelector('img').src,
             type: 'signature'
         });
@@ -383,6 +338,8 @@ function saveCurrentPageTexts() {
         texts.push({
             x: parseInt(container.style.left),
             y: parseInt(container.style.top),
+            width: parseInt(container.style.width),
+            height: parseInt(container.style.height),
             signature: container.querySelector('img').src,
             type: 'signature'
         });
@@ -507,10 +464,12 @@ function addSignature() {
     container.style.position = 'absolute';
     container.style.left = '50px';
     container.style.top = '50px';
+    container.style.width = '200px'; // Set initial width
+    container.style.height = '100px'; // Set initial height
 
     const img = document.createElement('img');
     img.src = signatureImage;
-    img.style.pointerEvents = 'none'; // Prevent img from blocking click events
+    img.style.pointerEvents = 'none';
     
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
@@ -525,19 +484,83 @@ function addSignature() {
     container.appendChild(deleteBtn);
     document.getElementById('textOverlay').appendChild(container);
 
+    // Save initial dimensions
+    container.dataset.originalWidth = '200';
+    container.dataset.originalHeight = '100';
+
     // Make signature draggable
     makeDraggable(container);
 
-    // Save the signature position
+    // Add resize observer
+    const resizeObserver = new ResizeObserver(() => {
+        saveCurrentPageTexts();
+    });
+    resizeObserver.observe(container);
+
+    // Save the signature position and dimensions
     if (!pageTexts[currentPage]) {
         pageTexts[currentPage] = [];
     }
     pageTexts[currentPage].push({
         x: parseInt(container.style.left),
         y: parseInt(container.style.top),
+        width: parseInt(container.style.width),
+        height: parseInt(container.style.height),
         signature: signatureImage,
         type: 'signature'
     });
+}
+
+// Update the renderPage function's signature handling
+async function renderPage(pageNumber) {
+    const page = await pdfDoc.getPage(pageNumber);
+    const canvas = document.getElementById('pdfViewer');
+    const context = canvas.getContext('2d');
+    
+    const viewport = page.getViewport({ scale });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    
+    await page.render({
+        canvasContext: context,
+        viewport: viewport
+    }).promise;
+
+    document.getElementById('currentPage').textContent = pageNumber;
+    
+    // Clear previous text overlays
+    const textOverlay = document.getElementById('textOverlay');
+    textOverlay.innerHTML = '';
+    
+    // Restore saved texts and signatures for this page
+    if (pageTexts[pageNumber]) {
+        pageTexts[pageNumber].forEach(item => {
+            if (item.type === 'signature') {
+                const container = document.createElement('div');
+                container.className = 'signature-input';
+                container.style.position = 'absolute';
+                container.style.left = `${item.x}px`;
+                container.style.top = `${item.y}px`;
+                container.style.width = `${item.width || 200}px`;
+                container.style.height = `${item.height || 100}px`;
+                
+                const img = document.createElement('img');
+                img.src = item.signature;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.onclick = () => container.remove();
+                
+                container.appendChild(img);
+                container.appendChild(deleteBtn);
+                document.getElementById('textOverlay').appendChild(container);
+                makeDraggable(container);
+            } else {
+                addTextToOverlay(item.x, item.y, item.text);
+            }
+        });
+    }
 }
 
 function makeDraggable(element) {

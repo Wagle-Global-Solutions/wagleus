@@ -273,13 +273,25 @@
         .signature-input {
             position: absolute;
             max-width: 200px;
+            min-width: 50px;  /* Added min-width */
             cursor: move;
             pointer-events: all;
+            resize: both;     /* Allow resizing */
+            overflow: hidden; /* Required for resize to work */
+            padding-bottom: 10px; /* Space for resize handle */
+            padding-right: 10px;  /* Space for resize handle */
+            border: 1px solid transparent; /* For resize handle visibility */
+        }
+
+        .signature-input:hover {
+            border-color: #4361ee;
         }
 
         .signature-input img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: contain;
+            pointer-events: none;
         }
 
         .signature-input.remove-mode {
