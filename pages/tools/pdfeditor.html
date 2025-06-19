@@ -343,6 +343,23 @@
             line-height: 1.6;
             font-size: 16px;
         }
+
+        .mobile-disclaimer {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+
+        @media (max-width: 768px) {
+            .mobile-disclaimer {
+                display: block; /* Show only on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -391,6 +408,10 @@
                     Edit your PDF documents online for free. Add text, insert signatures, and make annotations easily. 
                     No registration required, and your files are processed securely in your browser.
                 </p>
+                <div class="mobile-disclaimer">
+                    <strong>⚠️ Desktop Recommended:</strong> This PDF editor requires drag-and-drop functionality that works best on desktop devices.
+                    For the best experience, please use a desktop or laptop computer.
+                </div>
                 <div class="controls">
                     <input type="file" id="pdfFile" accept=".pdf">
                     <button id="removeText" class="btn-toggle">Remove Text: Off</button>
