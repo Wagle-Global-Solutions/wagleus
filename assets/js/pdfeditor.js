@@ -84,18 +84,69 @@ async function renderPage(pageNumber) {
     }
 }
 
+async function renderPage(pageNumber) {
+    const page = await pdfDoc.getPage(pageNumber);
+    const canvas = document.getElementById('pdfViewer');
+    const context = canvas.getContext('2d');
+    
+    const viewport = page.getViewport({ scale });
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+    
+    await page.render({
+        canvasContext: context,
+        viewport: viewport
+    }).promise;
+
+    document.getElementById('currentPage').textContent = pageNumber;
+    
+    // Clear previous text overlays
+    const textOverlay = document.getElementById('textOverlay');
+    textOverlay.innerHTML = '';
+    
+    // Restore saved texts and signatures for this page
+    if (pageTexts[pageNumber]) {
+        pageTexts[pageNumber].forEach(item => {
+            if (item.type === 'signature') {
+                const container = document.createElement('div');
+                container.className = 'signature-input';
+                container.style.position = 'absolute';
+                container.style.left = `${item.x}px`;
+                container.style.top = `${item.y}px`;
+                
+                const img = document.createElement('img');
+                img.src = item.signature;
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.onclick = () => container.remove();
+                
+                container.appendChild(img);
+                container.appendChild(deleteBtn);
+                document.getElementById('textOverlay').appendChild(container);
+                makeDraggable(container);
+            } else {
+                addTextToOverlay(item.x, item.y, item.text);
+            }
+        });
+    }
+}
+
 function toggleRemoveMode() {
     isRemoveMode = !isRemoveMode;
     const removeBtn = document.getElementById('removeText');
-    const textInputs = document.querySelectorAll('.text-input');
+    const textContainers = document.querySelectorAll('.text-container');
     const signatureInputs = document.querySelectorAll('.signature-input');
     
     if (isRemoveMode) {
         removeBtn.style.background = '#ff4444';
         removeBtn.textContent = 'Remove Items: On';
-        textInputs.forEach(input => {
-            input.classList.add('remove-mode');
-            input.addEventListener('click', removeItem);
+        textContainers.forEach(container => {
+            container.classList.add('remove-mode');
+            container.addEventListener('click', removeItem);
+            // Remove the input class since we're styling the container now
+            container.querySelector('.text-input').classList.remove('remove-mode');
         });
         signatureInputs.forEach(sig => {
             sig.classList.add('remove-mode');
@@ -104,9 +155,10 @@ function toggleRemoveMode() {
     } else {
         removeBtn.style.background = '';
         removeBtn.textContent = 'Remove Items: Off';
-        textInputs.forEach(input => {
-            input.classList.remove('remove-mode');
-            input.removeEventListener('click', removeItem);
+        textContainers.forEach(container => {
+            container.classList.remove('remove-mode');
+            container.removeEventListener('click', removeItem);
+            container.querySelector('.text-input').classList.remove('remove-mode');
         });
         signatureInputs.forEach(sig => {
             sig.classList.remove('remove-mode');
@@ -123,7 +175,7 @@ function handleOverlayClick(e) {
 
 function removeItem(e) {
     if (isRemoveMode) {
-        const elementToRemove = e.target.closest('.text-input, .signature-input');
+        const elementToRemove = e.target.closest('.text-container, .signature-input');
         if (elementToRemove) {
             elementToRemove.remove();
             saveCurrentPageTexts();
@@ -135,9 +187,13 @@ function addTextToOverlay(x, y, text = '') {
     if (isRemoveMode) return;
     
     const container = document.createElement('div');
+    container.className = 'text-container';
     container.style.position = 'absolute';
     container.style.left = `${x}px`;
     container.style.top = `${y}px`;
+    
+    const dragHandle = document.createElement('div');
+    dragHandle.className = 'drag-handle';
     
     const input = document.createElement('textarea');
     input.className = 'text-input';
@@ -146,6 +202,23 @@ function addTextToOverlay(x, y, text = '') {
     input.style.fontSize = `${document.getElementById('fontSize').value}px`;
     input.style.fontFamily = document.getElementById('fontFamily').value;
     
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.innerHTML = '×';
+    deleteBtn.onclick = () => container.remove();
+    
+    container.appendChild(dragHandle);
+    container.appendChild(input);
+    container.appendChild(deleteBtn);
+    document.getElementById('textOverlay').appendChild(container);
+    
+    // Make the container draggable
+    makeDraggable(container);
+    
+    if (!text) {
+        input.focus();
+    }
+    
     // Auto-resize functionality
     input.addEventListener('input', function() {
         this.style.height = 'auto';
@@ -153,53 +226,38 @@ function addTextToOverlay(x, y, text = '') {
         this.style.width = Math.max(150, this.scrollWidth) + 'px';
     });
     
-    // Update font size when changed
-    document.getElementById('fontSize').addEventListener('change', function() {
-        const size = this.value;
-        document.querySelectorAll('.text-input').forEach(input => {
-            input.style.fontSize = `${size}px`;
-        });
-    });
-
-    // Update font family when changed
-    document.getElementById('fontFamily').addEventListener('change', function() {
-        const font = this.value;
-        document.querySelectorAll('.text-input').forEach(input => {
-            input.style.fontFamily = font;
-        });
-    });
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.innerHTML = '×';
-    deleteBtn.onclick = () => container.remove();
-    
-    container.appendChild(input);
-    container.appendChild(deleteBtn);
-    document.getElementById('textOverlay').appendChild(container);
-    
-    if (!text) {
-        input.focus();
-    }
-    
     // Save text position and content
-    input.onchange = () => {
-        if (!pageTexts[currentPage]) {
-            pageTexts[currentPage] = [];
-        }
-        pageTexts[currentPage].push({
-            x: parseInt(container.style.left),
-            y: parseInt(container.style.top),
-            text: input.value,
-            type: 'text'
-        });
-    };
+    input.onchange = () => saveCurrentPageTexts();
     
     // Add remove mode handling for new text inputs
     if (isRemoveMode) {
         input.classList.add('remove-mode');
-        input.addEventListener('click', removeItem);
+        container.addEventListener('click', removeItem);
     }
+}
+
+// Modify saveCurrentPageTexts function to handle the new container structure
+function saveCurrentPageTexts() {
+    const texts = [];
+    document.querySelectorAll('.text-container').forEach(container => {
+        texts.push({
+            x: parseInt(container.style.left),
+            y: parseInt(container.style.top),
+            text: container.querySelector('.text-input').value,
+            type: 'text'
+        });
+    });
+    
+    document.querySelectorAll('.signature-input').forEach(container => {
+        texts.push({
+            x: parseInt(container.style.left),
+            y: parseInt(container.style.top),
+            signature: container.querySelector('img').src,
+            type: 'signature'
+        });
+    });
+    
+    pageTexts[currentPage] = texts;
 }
 
 function handleSignatureUpload(event) {
@@ -312,12 +370,11 @@ function trimCanvas(canvas) {
 // Modify the saveCurrentPageTexts function to include signatures
 function saveCurrentPageTexts() {
     const texts = [];
-    document.querySelectorAll('.text-input').forEach(input => {
-        const container = input.parentElement;
+    document.querySelectorAll('.text-container').forEach(container => {
         texts.push({
             x: parseInt(container.style.left),
             y: parseInt(container.style.top),
-            text: input.value,
+            text: container.querySelector('.text-input').value,
             type: 'text'
         });
     });
@@ -367,14 +424,19 @@ async function exportPdf() {
 }
 
 async function processPdfPage(pageNum) {
-    // Render the specified page
     await renderPage(pageNum);
     
     const container = document.querySelector('.pdf-container');
     
-    // Temporarily adjust text inputs for export
+    // Temporarily adjust text inputs and hide UI elements for export
     const textInputs = document.querySelectorAll('.text-input');
+    const dragHandles = document.querySelectorAll('.drag-handle');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
     const originalStyles = [];
+    
+    // Hide drag handles and delete buttons during export
+    dragHandles.forEach(handle => handle.style.display = 'none');
+    deleteButtons.forEach(btn => btn.style.display = 'none');
     
     textInputs.forEach(input => {
         originalStyles.push({
@@ -391,10 +453,6 @@ async function processPdfPage(pageNum) {
         input.style.minWidth = '0';
         input.style.minHeight = '0';
     });
-    
-    // Hide delete buttons during export
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(btn => btn.style.display = 'none');
     
     try {
         const canvas = await html2canvas(container, {
@@ -417,12 +475,13 @@ async function processPdfPage(pageNum) {
             height: canvas.height
         };
     } finally {
-        // Restore original styles
+        // Restore original styles and UI elements
         textInputs.forEach((input, index) => {
             Object.assign(input.style, originalStyles[index]);
         });
         
-        // Restore delete buttons
+        // Show drag handles and delete buttons again
+        dragHandles.forEach(handle => handle.style.display = 'block');
         deleteButtons.forEach(btn => btn.style.display = '');
     }
 }
@@ -483,15 +542,27 @@ function addSignature() {
 
 function makeDraggable(element) {
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    element.onmousedown = dragMouseDown;
+    const dragHandle = element.querySelector('.drag-handle');
 
     function dragMouseDown(e) {
-        if (e.target !== element && e.target !== element.querySelector('img')) return;
         e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
+        // Get the clicked element
+        const target = e.target;
+        
+        // Allow dragging if:
+        // 1. Clicking the drag handle (for text containers)
+        // 2. Clicking the signature image or container
+        // 3. Not clicking the delete button
+        if (!target.classList.contains('delete-btn') && 
+            (target.classList.contains('drag-handle') || 
+             element.classList.contains('signature-input') ||
+             target.matches('.signature-input img'))) {
+            
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
     }
 
     function elementDrag(e) {
@@ -507,6 +578,16 @@ function makeDraggable(element) {
     function closeDragElement() {
         document.onmouseup = null;
         document.onmousemove = null;
-        saveCurrentPageTexts(); // Save position after dragging
+        saveCurrentPageTexts();
+    }
+
+    // For text containers, only drag with handle
+    if (dragHandle) {
+        dragHandle.onmousedown = dragMouseDown;
+    }
+    
+    // For signatures, make the whole container draggable
+    if (element.classList.contains('signature-input')) {
+        element.onmousedown = dragMouseDown;
     }
 }

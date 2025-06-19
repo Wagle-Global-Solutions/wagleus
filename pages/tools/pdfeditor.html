@@ -206,25 +206,43 @@
             font-size: 16px;   /* Default font size */
         }
 
-        .text-input.remove-mode {
+        .drag-handle {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 20px;
+            height: 20px;
+            background: #4361ee;
+            border-radius: 50%;
+            cursor: move;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .drag-handle::after {
+            content: "↖";  /* Changed to arrow icon */
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .text-container {
+            position: absolute;
+            cursor: default;
+        }
+
+        .text-container.remove-mode {
             cursor: pointer;
+        }
+
+        .text-container.remove-mode .text-input {
             border: 1px dashed #ff4444;
         }
 
-        .text-input.remove-mode:hover {
+        .text-container.remove-mode:hover .text-input {
             background: rgba(255, 68, 68, 0.1);
-        }
-
-        .text-controls {
-            display: inline-block;
-            margin-left: 15px;
-        }
-
-        .text-controls select {
-            padding: 8px;
-            border-radius: 4px;
-            margin-right: 10px;
-            min-width: 120px;
         }
 
         .text-input:focus {
