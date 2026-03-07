@@ -1,0 +1,346 @@
+/* ============================================================
+   TOOL PAGE WRAPPER STYLES
+   Adds dark-theme nav/footer to tool pages while preserving
+   the tool's own CSS for functionality
+   ============================================================ */
+
+/* Override the old header */
+#header.header {
+    display: none !important;
+}
+
+.nav-backdrop {
+    display: none !important;
+}
+
+/* Tool page body */
+body {
+    background-color: #08080a;
+    color: #f0f0f0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Tool container adjustments for dark theme */
+.tool-container {
+    padding-top: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.tool-container h1 {
+    color: #f0f0f0 !important;
+}
+
+.tool-container h2,
+.tool-container h3,
+.tool-container h4 {
+    color: #e0e0e0 !important;
+}
+
+.tool-container p,
+.tool-container li {
+    color: #a0a0a8 !important;
+}
+
+.tool-container a {
+    color: #c0c0c0 !important;
+}
+
+.tool-container a:hover {
+    color: #ffffff !important;
+}
+
+/* Override tool-page light backgrounds */
+.tool-description,
+.warning-box,
+.quick-start,
+.feature-card,
+.feature-highlights .feature-card,
+.use-case-section,
+.documentation .card {
+    background: #1a1a1f !important;
+    border-color: #2a2a30 !important;
+    color: #a0a0a8 !important;
+}
+
+.warning-box {
+    border-left-color: #c0c0c0 !important;
+}
+
+/* Text areas and inputs */
+.json-input-area,
+.json-output-area,
+.tree-view,
+textarea,
+.tool-container input[type="text"],
+.tool-container input[type="number"],
+.tool-container input[type="email"],
+.tool-container select {
+    background: #18181c !important;
+    border-color: #2a2a30 !important;
+    color: #f0f0f0 !important;
+}
+
+.tool-container input::placeholder,
+.tool-container textarea::placeholder {
+    color: #6b6b74 !important;
+}
+
+/* Panel labels */
+.panel-label {
+    color: #a0a0a8 !important;
+}
+
+/* Buttons */
+.tool-container .btn-primary {
+    background: #e0e0e0 !important;
+    color: #08080a !important;
+    border: none !important;
+}
+
+.tool-container .btn-primary:hover {
+    background: #ffffff !important;
+}
+
+.tool-container .btn-info,
+.tool-container .btn-warning,
+.tool-container .btn-success,
+.tool-container .btn-outline-secondary {
+    background: #1a1a1f !important;
+    color: #c0c0c0 !important;
+    border: 1px solid #2a2a30 !important;
+}
+
+.tool-container .btn-info:hover,
+.tool-container .btn-warning:hover,
+.tool-container .btn-success:hover,
+.tool-container .btn-outline-secondary:hover {
+    border-color: #c0c0c0 !important;
+    background: #222228 !important;
+}
+
+/* Badges and tags */
+.badge {
+    background: rgba(192, 192, 192, 0.06) !important;
+    color: #c0c0c0 !important;
+    border: 1px solid #2a2a30 !important;
+}
+
+/* Code blocks */
+.example-code,
+pre code {
+    background: #111114 !important;
+    color: #e0e0e0 !important;
+    border-color: #2a2a30 !important;
+}
+
+.example-block {
+    background: #111114 !important;
+    border-color: #2a2a30 !important;
+}
+
+/* Alert/info boxes */
+.alert-info {
+    background: rgba(192, 192, 192, 0.04) !important;
+    border-color: #2a2a30 !important;
+    color: #a0a0a8 !important;
+}
+
+/* Table overrides */
+.tool-container table {
+    color: #f0f0f0;
+}
+
+.tool-container table th {
+    background: #1a1a1f !important;
+    color: #e0e0e0 !important;
+    border-color: #2a2a30 !important;
+}
+
+.tool-container table td {
+    border-color: #2a2a30 !important;
+    background: #111114 !important;
+    color: #a0a0a8 !important;
+}
+
+/* Card overrides */
+.card {
+    background: #1a1a1f !important;
+    border-color: #2a2a30 !important;
+}
+
+.card-body,
+.card-title {
+    color: #e0e0e0 !important;
+}
+
+/* Feature cards in tools */
+.feature-card h3 {
+    color: #f0f0f0 !important;
+}
+
+.feature-card p {
+    color: #a0a0a8 !important;
+}
+
+.feature-card i {
+    color: #c0c0c0 !important;
+}
+
+/* Step lists */
+.step-list li,
+.feature-list li {
+    color: #a0a0a8 !important;
+}
+
+/* Indent select */
+.indent-select {
+    background: #18181c !important;
+    color: #f0f0f0 !important;
+    border-color: #2a2a30 !important;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* Switch slider in dark */
+.slider {
+    background-color: #3a3a42 !important;
+}
+
+input:checked+.slider {
+    background-color: #c0c0c0 !important;
+}
+
+/* Search in tree view */
+.search-input {
+    background: #18181c !important;
+    color: #f0f0f0 !important;
+    border-color: #2a2a30 !important;
+}
+
+.search-nav button {
+    background: #1a1a1f !important;
+    border-color: #2a2a30 !important;
+    color: #c0c0c0 !important;
+}
+
+.search-nav button:hover {
+    background: #222228 !important;
+}
+
+.search-count {
+    color: #6b6b74 !important;
+}
+
+/* Error message */
+.error-message {
+    background: rgba(248, 113, 113, 0.1) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(248, 113, 113, 0.2) !important;
+}
+
+/* Tree view colors for dark theme */
+.tree-key {
+    color: #c0c0c0 !important;
+}
+
+.tree-value.string {
+    color: #86e6a5 !important;
+}
+
+.tree-value.number {
+    color: #7dc4e0 !important;
+}
+
+.tree-value.boolean {
+    color: #d9a6ff !important;
+}
+
+.tree-value.null {
+    color: #f87171 !important;
+}
+
+/* Highlight in dark */
+.tree-node.highlight,
+.search-result,
+.search-result-formatted {
+    background-color: rgba(192, 192, 192, 0.12) !important;
+}
+
+/* Password generator specific */
+.password-display {
+    background: #18181c !important;
+    color: #f0f0f0 !important;
+    border-color: #2a2a30 !important;
+}
+
+/* Controls wrapping */
+.controls-wrapper {
+    background: transparent !important;
+}
+
+/* Footer on tool pages — reuse the design system footer */
+.tool-footer {
+    background: #111114;
+    border-top: 1px solid #2a2a30;
+    padding: 24px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.tool-footer p {
+    color: #6b6b74 !important;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.tool-footer a {
+    color: #6b6b74 !important;
+    margin: 0 12px;
+    font-size: 0.85rem;
+}
+
+.tool-footer a:hover {
+    color: #a0a0a8 !important;
+}
+
+/* Download button */
+.btn-download {
+    background: #1a1a1f !important;
+    color: #c0c0c0 !important;
+    border: 1px solid #2a2a30 !important;
+}
+
+.btn-download:hover {
+    background: #222228 !important;
+    border-color: #c0c0c0 !important;
+}
+
+/* View switch labels */
+.view-label {
+    color: #a0a0a8 !important;
+}
+
+/* Hide old footer from template */
+.footer:not(.tool-footer) {
+    display: none !important;
+}
+
+/* Scrollbar for dark theme */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111114;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a3a42;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a4a54;
+}
