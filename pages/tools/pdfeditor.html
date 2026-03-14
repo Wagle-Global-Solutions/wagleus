@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
-    
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/pdfeditor.html" />
     <title>Free Online PDF Editor - Add Text, Signatures & More | WUS</title>
-    <meta name="description" content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor. No registration required, instant results.">
-    <meta name="keywords" content="pdf editor, online pdf editor, free pdf editor, add text to pdf, sign pdf, edit pdf online, pdf tools">
+    <meta name="description"
+        content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor. No registration required, instant results.">
+    <meta name="keywords"
+        content="pdf editor, online pdf editor, free pdf editor, add text to pdf, sign pdf, edit pdf online, pdf tools">
     <meta name="author" content="Wagle Universal Solutions">
     <meta property="og:title" content="Free Online PDF Editor - Add Text & Signatures">
-    <meta property="og:description" content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor.">
+    <meta property="og:description"
+        content="Edit PDFs online for free. Add text, insert signatures, annotate documents with our easy-to-use PDF editor.">
     <meta property="og:image" content="https://www.wagleus.com/assets/img/pdf-editor-preview.png">
     <meta property="og:url" content="https://www.wagleus.com/pages/tools/pdfeditor.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
@@ -46,47 +50,31 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #f8f9fa;
-            color: #212529;
-            margin: 0;
-            padding: 20px;
-        }
-
         .editor-container {
             max-width: 1200px;
             margin: 20px auto;
             padding: 30px;
-            background: white;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .controls {
             margin-bottom: 20px;
             padding: 15px;
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -144,7 +132,8 @@
             font-size: 14px;
         }
 
-        .text-controls, .signature-controls {
+        .text-controls,
+        .signature-controls {
             display: flex;
             gap: 8px;
             align-items: center;
@@ -161,7 +150,7 @@
 
         .page-number {
             font-size: 16px;
-            color: #495057;
+            color: #f0f0f0;
             font-weight: 500;
         }
 
@@ -217,12 +206,17 @@
             background: transparent;
             border: none;
             padding: 5px;
-            min-width: 150px;  /* Increased from 100px */
-            min-height: 30px;  /* Added minimum height */
+            min-width: 150px;
+            /* Increased from 100px */
+            min-height: 30px;
+            /* Added minimum height */
             pointer-events: all;
-            resize: both;      /* Allow resizing */
-            overflow: hidden;  /* Hide resize handle */
-            font-size: 16px;   /* Default font size */
+            resize: both;
+            /* Allow resizing */
+            overflow: hidden;
+            /* Hide resize handle */
+            font-size: 16px;
+            /* Default font size */
         }
 
         .drag-handle {
@@ -237,11 +231,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .drag-handle::after {
-            content: "↖";  /* Changed to arrow icon */
+            content: "↖";
+            /* Changed to arrow icon */
             color: white;
             font-size: 12px;
             font-weight: bold;
@@ -292,14 +287,20 @@
         .signature-input {
             position: absolute;
             max-width: 200px;
-            min-width: 50px;  /* Added min-width */
+            min-width: 50px;
+            /* Added min-width */
             cursor: move;
             pointer-events: all;
-            resize: both;     /* Allow resizing */
-            overflow: hidden; /* Required for resize to work */
-            padding-bottom: 10px; /* Space for resize handle */
-            padding-right: 10px;  /* Space for resize handle */
-            border: 1px solid transparent; /* For resize handle visibility */
+            resize: both;
+            /* Allow resizing */
+            overflow: hidden;
+            /* Required for resize to work */
+            padding-bottom: 10px;
+            /* Space for resize handle */
+            padding-right: 10px;
+            /* Space for resize handle */
+            border: 1px solid transparent;
+            /* For resize handle visibility */
         }
 
         .signature-input:hover {
@@ -329,7 +330,7 @@
 
         .tool-description {
             text-align: center;
-            color: #666;
+            color: #a0a0a8;
             margin-bottom: 30px;
             max-width: 800px;
             margin-left: auto;
@@ -346,38 +347,47 @@
             padding: 15px;
             margin-bottom: 20px;
             text-align: center;
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
         }
 
         @media (max-width: 768px) {
             .mobile-disclaimer {
-                display: block; /* Show only on mobile */
+                display: block;
+                /* Show only on mobile */
             }
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
-    </div>
-  </div>
-</nav>
-<!-- Old header removed -->
+    <nav class="nav scrolled" id="main-nav"
+        style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
+            <a href="/" style="display:flex;align-items:center;">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions"
+                    style="height:40px;width:auto;">
+            </a>
+            <div style="display:flex;align-items:center;gap:4px;">
+                <a href="/"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
+                <a href="/pages/tools/tools.html"
+                    style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All
+                    Tools</a>
+                <a href="/pages/about-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
+                <a href="/pages/contact-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get
+                    in Touch</a>
+            </div>
+        </div>
+    </nav>
+    </nav>
+    <!-- Main Content Area -->
 
-    <!-- Add backdrop div after header -->
-    
 
     <!-- Main Content -->
     <main class="main">
@@ -385,11 +395,12 @@
             <div class="editor-container">
                 <h1>Free Online PDF Editor</h1>
                 <p class="tool-description">
-                    Edit your PDF documents online for free. Add text, insert signatures, and make annotations easily. 
+                    Edit your PDF documents online for free. Add text, insert signatures, and make annotations easily.
                     No registration required, and your files are processed securely in your browser.
                 </p>
                 <div class="mobile-disclaimer">
-                    <strong>⚠️ Desktop Recommended:</strong> This PDF editor requires drag-and-drop functionality that works best on desktop devices.
+                    <strong>⚠️ Desktop Recommended:</strong> This PDF editor requires drag-and-drop functionality that
+                    works best on desktop devices.
                     For the best experience, please use a desktop or laptop computer.
                 </div>
                 <div class="controls">
@@ -425,7 +436,8 @@
                 </div>
                 <div class="page-controls">
                     <button id="prevPage">Previous</button>
-                    <span class="page-number">Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+                    <span class="page-number">Page <span id="currentPage">1</span> of <span
+                            id="totalPages">1</span></span>
                     <button id="nextPage">Next</button>
                 </div>
                 <div class="pdf-container">
@@ -437,51 +449,22 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Section -->
+    <div class="tool-footer">
+        <p>
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html">All Tools</a>
+        </p>
+    </div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Vendor JS Files -->
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS Files -->
-    <script src="/assets/js/index.js"></script>
-    <script src="/assets/js/main.js"></script>
     <script src="/assets/js/pdfeditor.js"></script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
 </body>
+
 </html>

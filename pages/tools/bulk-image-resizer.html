@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/bulk-image-resizer.html" />
     <title>Free Online Bulk Image Resizer & Compressor | Best Multi-Image Processing Tool</title>
-    <meta name="description" content="Free online tool to resize and compress multiple images at once. Convert between JPEG, PNG, WebP formats, maintain aspect ratio, and reduce file size. No upload limits, works offline, and free forever.">
-    <meta name="keywords" content="bulk image resizer, image compression tool, batch image processor, compress multiple images, resize photos online, image format converter, webp converter, png compressor, jpeg optimizer, free image tool, image resizer online, photo batch processing">
+    <meta name="description"
+        content="Free online tool to resize and compress multiple images at once. Convert between JPEG, PNG, WebP formats, maintain aspect ratio, and reduce file size. No upload limits, works offline, and free forever.">
+    <meta name="keywords"
+        content="bulk image resizer, image compression tool, batch image processor, compress multiple images, resize photos online, image format converter, webp converter, png compressor, jpeg optimizer, free image tool, image resizer online, photo batch processing">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.wagleus.com/pages/tools/bulk-image-resizer.html">
     <meta property="og:title" content="Free Online Bulk Image Resizer & Compressor | Process Multiple Images Instantly">
-    <meta property="og:description" content="Free tool to resize and compress multiple images at once. Support for JPEG, PNG, WebP formats. No upload limits, works offline, and free forever.">
+    <meta property="og:description"
+        content="Free tool to resize and compress multiple images at once. Support for JPEG, PNG, WebP formats. No upload limits, works offline, and free forever.">
     <meta property="og:image" content="/assets/img/logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.wagleus.com/pages/tools/bulk-image-resizer.html">
     <meta property="twitter:title" content="Free Online Bulk Image Resizer & Compressor">
-    <meta property="twitter:description" content="Process multiple images instantly. Resize, compress, and convert formats with our free tool.">
+    <meta property="twitter:description"
+        content="Process multiple images instantly. Resize, compress, and convert formats with our free tool.">
     <meta property="twitter:image" content="/assets/img/logo.png">
 
     <!-- Enhanced Structured Data -->
@@ -101,27 +106,19 @@
     </script>
 
     <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 
     <style>
         .tool-container {
@@ -129,7 +126,7 @@
             padding: 2rem;
             background: #fff;
             border-radius: 16px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
             margin: 100px auto;
         }
 
@@ -143,7 +140,8 @@
             cursor: pointer;
         }
 
-        .file-drop-zone:hover, .file-drop-zone.dragover {
+        .file-drop-zone:hover,
+        .file-drop-zone.dragover {
             border-color: #007bff;
             background: #fff;
         }
@@ -160,7 +158,8 @@
             gap: 1.5rem;
             overflow-y: auto;
             padding: 1rem;
-            height: 100%; /* Fill available space */
+            height: 100%;
+            /* Fill available space */
         }
 
         .preview-item {
@@ -168,15 +167,19 @@
             border: 1px solid #dee2e6;
             border-radius: 8px;
             overflow: hidden;
-            height: fit-content; /* Adjust to content */
-            min-height: 350px; /* Minimum height for preview item */
+            height: fit-content;
+            /* Adjust to content */
+            min-height: 350px;
+            /* Minimum height for preview item */
             display: flex;
             flex-direction: column;
         }
 
         .preview-image-container {
-            flex: 1; /* Take remaining space */
-            min-height: 250px; /* Minimum height for image container */
+            flex: 1;
+            /* Take remaining space */
+            min-height: 250px;
+            /* Minimum height for image container */
             position: relative;
             background: #f8f9fa;
         }
@@ -194,7 +197,8 @@
             padding: 1rem;
             border-top: 1px solid #dee2e6;
             background: #fff;
-            flex-shrink: 0; /* Don't shrink info section */
+            flex-shrink: 0;
+            /* Don't shrink info section */
         }
 
         .preview-info .file-name {
@@ -224,7 +228,7 @@
             position: absolute;
             top: 8px;
             right: 8px;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             border: none;
             width: 24px;
             height: 24px;
@@ -254,10 +258,12 @@
             background: #dee2e6;
             border-radius: 2px;
             -webkit-appearance: none;
+            appearance: none;
         }
 
         .compression-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
+            appearance: none;
             width: 16px;
             height: 16px;
             background: #007bff;
@@ -320,13 +326,16 @@
         }
 
         .file-drop-zone {
-            flex-shrink: 0; /* Prevent drop zone from shrinking */
+            flex-shrink: 0;
+            /* Prevent drop zone from shrinking */
         }
 
         .preview-container {
             overflow-y: auto;
-            padding-right: 10px; /* Space for scrollbar */
-            margin-right: -10px; /* Offset padding */
+            padding-right: 10px;
+            /* Space for scrollbar */
+            margin-right: -10px;
+            /* Offset padding */
             flex: 1;
         }
 
@@ -353,9 +362,10 @@
             .tool-layout {
                 grid-template-columns: 1fr;
             }
-            
+
             .preview-panel {
-                height: 500px; /* Fixed height on mobile */
+                height: 500px;
+                /* Fixed height on mobile */
             }
 
             .preview-container {
@@ -369,7 +379,7 @@
             opacity: 0.6;
             pointer-events: none;
         }
-        
+
         /* Add error state styles */
         .error-state {
             border-color: #dc3545;
@@ -382,11 +392,11 @@
                 padding: 1rem;
                 margin: 60px auto;
             }
-            
+
             .settings-panel {
                 padding: 1rem;
             }
-            
+
             .preview-panel {
                 height: 400px;
             }
@@ -395,33 +405,40 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Header -->
     <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
-    </div>
-  </div>
-</nav>
-<!-- Old header removed -->
+    <nav class="nav scrolled" id="main-nav"
+        style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
+            <a href="/" style="display:flex;align-items:center;">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions"
+                    style="height:40px;width:auto;">
+            </a>
+            <div style="display:flex;align-items:center;gap:4px;">
+                <a href="/"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
+                <a href="/pages/tools/tools.html"
+                    style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All
+                    Tools</a>
+                <a href="/pages/about-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
+                <a href="/pages/contact-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get
+                    in Touch</a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Add backdrop div after header -->
-    
     <!-- Main Content -->
     <div class="container tool-container">
         <h1 class="text-center mb-4">Bulk Image Resizer</h1>
         <div class="warning-box">
             <p class="mb-0">
-                <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
-                <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
+                <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on
+                <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or
                 <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
             </p>
         </div>
@@ -453,7 +470,8 @@
                     <div class="form-group" id="maxSizeGroup">
                         <label>Width:</label>
                         <div class="dimension-input-group">
-                            <input type="number" class="form-control" id="maxSize" placeholder="Original width if empty" value="">
+                            <input type="number" class="form-control" id="maxSize" placeholder="Original width if empty"
+                                value="">
                             <span class="dimension-unit">px</span>
                         </div>
                         <div class="alert alert-warning mt-2 small">
@@ -465,7 +483,8 @@
                     <div class="form-group" id="percentageGroup" style="display: none;">
                         <label>Scale to:</label>
                         <div class="dimension-input-group">
-                            <input type="number" class="form-control" id="scalePercentage" placeholder="e.g., 50" value="50">
+                            <input type="number" class="form-control" id="scalePercentage" placeholder="e.g., 50"
+                                value="50">
                             <span class="dimension-unit">%</span>
                         </div>
                         <small class="dimension-info text-muted">
@@ -539,13 +558,14 @@
         <!-- Documentation Section -->
         <section class="documentation mt-5">
             <h2 class="mb-4">Image Processing Tool Documentation</h2>
-            
+
             <div class="features mb-5">
                 <h3>Key Features</h3>
                 <ul>
                     <li><strong>Bulk Processing:</strong> Resize and compress multiple images simultaneously</li>
                     <li><strong>Format Support:</strong> Process JPEG, PNG, and WebP images</li>
-                    <li><strong>Offline Processing:</strong> All processing happens in your browser - no uploads needed</li>
+                    <li><strong>Offline Processing:</strong> All processing happens in your browser - no uploads needed
+                    </li>
                     <li><strong>Format Conversion:</strong> Convert between JPEG, PNG, and WebP formats</li>
                     <li><strong>Smart Compression:</strong> Optimize file size while maintaining quality</li>
                     <li><strong>Aspect Ratio Control:</strong> Maintain or customize image proportions</li>
@@ -589,50 +609,57 @@
 
             <div class="faq mb-5">
                 <h3>Frequently Asked Questions</h3>
-                
+
                 <div class="accordion" id="faqAccordion">
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1">
                                 Is this tool completely free?
                             </button>
                         </h4>
                         <div id="faq1" class="accordion-collapse collapse show">
                             <div class="accordion-body">
-                                Yes, our image processing tool is completely free with no hidden costs or watermarks. Process as many images as you need without limitations.
+                                Yes, our image processing tool is completely free with no hidden costs or watermarks.
+                                Process as many images as you need without limitations.
                             </div>
                         </div>
                     </div>
 
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq2">
                                 Are my images uploaded to your server?
                             </button>
                         </h4>
                         <div id="faq2" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                No, all processing happens locally in your browser. Your images are never uploaded to any server, ensuring complete privacy and faster processing.
+                                No, all processing happens locally in your browser. Your images are never uploaded to
+                                any server, ensuring complete privacy and faster processing.
                             </div>
                         </div>
                     </div>
 
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq3">
                                 What's the maximum file size or number of images I can process?
                             </button>
                         </h4>
                         <div id="faq3" class="accordion-collapse collapse">
                             <div class="accordion-body">
-                                There's no hard limit on file size or number of images. The only limitation is your device's memory and processing power.
+                                There's no hard limit on file size or number of images. The only limitation is your
+                                device's memory and processing power.
                             </div>
                         </div>
                     </div>
 
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq4">
                                 Which format should I choose for my images?
                             </button>
                         </h4>
@@ -640,8 +667,10 @@
                             <div class="accordion-body">
                                 <ul>
                                     <li><strong>JPEG:</strong> Best for photographs and images with many colors</li>
-                                    <li><strong>PNG:</strong> Ideal for graphics, screenshots, and images needing transparency</li>
-                                    <li><strong>WebP:</strong> Modern format offering better compression than JPEG and PNG, but may not be supported by older software</li>
+                                    <li><strong>PNG:</strong> Ideal for graphics, screenshots, and images needing
+                                        transparency</li>
+                                    <li><strong>WebP:</strong> Modern format offering better compression than JPEG and
+                                        PNG, but may not be supported by older software</li>
                                 </ul>
                             </div>
                         </div>
@@ -651,75 +680,34 @@
         </section>
     </div>
 
-    <!-- Add Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Add noscript warning -->
-    <noscript>
-        <div class="alert alert-warning text-center">
-            This tool requires JavaScript to function. Please enable JavaScript in your browser.
-        </div>
-    </noscript>
-
-    <!-- Add error handling display -->
-    <div class="alert alert-danger" id="errorAlert" style="display: none;" role="alert">
-        <strong>Error:</strong> <span id="errorMessage"></span>
+    <!-- Footer Section -->
+    <div class="tool-footer">
+        <p>
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html">All Tools</a>
+        </p>
     </div>
 
-    <!-- Add loading indicator -->
-    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-
-    <!-- Vendor JS Files -->
+    <!-- Scripts -->
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="/assets/js/index.js"></script>
-    <script src="/assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <script src="/assets/js/image-resizer.js"></script>
 
     <script>
-       
+
     </script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
+    <!-- Dark Theme Footer -->
+    <div class="tool-footer"
+        style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
+        <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
+        </p>
+    </div>
 </body>
+
 </html>

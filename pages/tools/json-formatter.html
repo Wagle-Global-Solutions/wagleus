@@ -1,1370 +1,1512 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    
 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/json-formatter.html" />
-    <title>JSON Tools: Format, Convert (CSV/XML/YAML), Minify & Tree View | Free Online</title>
-    <meta name="description" content="Free online JSON tool with multiple features: Format JSON, Convert to CSV/XML/YAML, Tree View visualization, Minification, and JSON validation. Perfect for developers working with JSON data.">
-    <meta name="keywords" content="json formatter, json to csv converter, json to xml converter, json to yaml converter, json validator, json tree view, minify json, json parser, online json tools">
+    <title>JSON Formatter & Validator — Format, Convert, Visualize | Wagle Universal Solutions</title>
+    <meta name="description"
+        content="Free online JSON formatter, validator, and converter. Format, minify, and validate JSON. Convert JSON to CSV, XML, or YAML. Interactive tree view. No data sent to servers.">
+    <meta name="keywords"
+        content="json formatter, json validator, json to csv, json to xml, json to yaml, json minifier, json tree view, online json tool, json beautifier, json parser">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
-    
-    <!-- Single Schema Markup -->
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.wagleus.com/pages/tools/json-formatter.html">
+    <meta property="og:title" content="JSON Formatter & Validator — Free Online Tool | WUS">
+    <meta property="og:description"
+        content="Format, validate, and convert JSON instantly. Tree view, CSV/XML/YAML export, and more. Free, private, no signup.">
+    <meta property="og:image" content="https://www.wagleus.com/assets/img/WUSPL%20Logo/Universal-01.png">
+    <meta property="og:site_name" content="Wagle Universal Solutions">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON Formatter & Validator — WUS Tools">
+    <meta name="twitter:description"
+        content="Professional JSON tool: format, validate, convert, visualize. Free and private.">
+    <meta name="twitter:image" content="https://www.wagleus.com/assets/img/WUSPL%20Logo/Universal-01.png">
+
+    <!-- Schema Markup -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "JSON Tools - Format & Convert",
+        "name": "JSON Formatter & Validator",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "description": "Comprehensive JSON tool offering formatting, conversion to CSV/XML/YAML, tree view visualization, minification, and validation features.",
-        "browserRequirements": "Requires JavaScript",
-        "softwareVersion": "2.0",
-        "featureList": [
-            "JSON Formatting",
-            "CSV Conversion",
-            "XML Conversion",
-            "YAML Conversion",
-            "Tree View Visualization",
-            "JSON Minification",
-            "JSON Validation"
-        ],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free online JSON formatter, validator, and multi-format converter.",
         "creator": {
             "@type": "Organization",
             "name": "Wagle Universal Solutions",
-            "alternateName":["WUS","Wagle","Wagleus"],
             "url": "https://wagleus.com"
-        },
-        "potentialAction": {
-            "@type": "UseAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://www.wagleus.com/pages/tools/json-formatter.html",
-                "actionPlatform": [
-                    "http://schema.org/DesktopWebPlatform",
-                    "http://schema.org/MobileWebPlatform"
-                ]
-            }
         }
     }
     </script>
 
-    <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <!-- Design System -->
+    <link rel="stylesheet" href="/assets/css/design-system.css">
 
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- JetBrains Mono for code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
     <style>
-        .json-container {
+        /* ── Page Header ── */
+        .page-header {
+            padding: calc(var(--nav-height) + var(--space-3xl)) 0 var(--space-2xl);
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb {
             display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            padding: 0 40px;  /* Reduced from larger padding */
-            max-width: 1500px; /* Add max-width to prevent too wide on large screens */
-            margin-left: auto;
-            margin-right: auto;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: var(--space-lg);
         }
 
-        /* Override the tool-container max-width */
-        .tool-container {
-            max-width: 1300px !important;
-            padding: 30px 0;  /* Remove horizontal padding */
-            width: 100%;
+        .breadcrumb a {
+            color: var(--text-muted);
         }
 
-        /* Center the heading and description with specific width */
-        .tool-container h1,
-        .tool-description {
-            max-width: 1000px;  /* Increased from 900px */
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 40px;  /* Match container padding */
+        .breadcrumb a:hover {
+            color: var(--text-primary);
         }
 
-        /* Center the control buttons */
-        .json-controls {
-            max-width: 1000px;  /* Increased from 900px */
-            margin: 20px auto;
-            padding: 0 40px;  /* Match container padding */
+        .breadcrumb .separator {
+            color: var(--border-light);
         }
 
-        @media (max-width: 768px) {
-            .json-container {
-                flex-direction: column;
+        .page-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: var(--space-md);
+        }
+
+        .page-header p {
+            font-size: 1.05rem;
+            max-width: 600px;
+        }
+
+        /* ── Quick Action Pills ── */
+        .tool-pills {
+            display: flex;
+            gap: var(--space-sm);
+            flex-wrap: wrap;
+            margin-top: var(--space-xl);
+        }
+
+        .tool-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            background: rgba(192, 192, 192, 0.04);
+        }
+
+        .tool-pill i {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* ── Tool Workspace ── */
+        .tool-section {
+            padding: var(--space-2xl) 0 var(--space-4xl);
+        }
+
+        .tool-workspace {
+            display: grid;
+            grid-template-columns: 1fr 160px 1fr;
+            gap: var(--space-lg);
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .tool-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .tool-controls-col {
+                order: 3;
             }
         }
 
-        .json-input-area, .json-output-area {
-            width: 100%;
-            min-height: 600px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            resize: vertical;
-            background: #f8f9fa;
-            overflow-y: auto;
-            overflow-x: hidden;
+        /* ── Panel Cards ── */
+        .panel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: border-color var(--duration-md);
         }
 
-        .json-input-area:focus, .json-output-area:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+        .panel-card:focus-within {
+            border-color: var(--border-light);
         }
 
-        .json-controls {
+        .panel-header {
             display: flex;
-            gap: 10px;
-            margin: 20px 0;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) var(--space-lg);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-tertiary);
         }
 
-        .error-message {
-            color: #dc3545;
-            padding: 10px;
-            border-radius: 4px;
-            background: #ffe6e6;
-            margin-top: 10px;
-            display: none;
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
         }
 
-        .panel {
-            flex: 1;
+        .panel-title i {
+            width: 14px;
+            height: 14px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: var(--space-xs);
+        }
+
+        .panel-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: transparent;
+            cursor: pointer;
+            transition: color var(--duration-sm), border-color var(--duration-sm), background var(--duration-sm);
+            font-family: var(--font-sans);
+        }
+
+        .panel-btn i {
+            width: 12px;
+            height: 12px;
+        }
+
+        .panel-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-light);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .panel-btn.success {
+            color: var(--success);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        /* ── Textarea ── */
+        #json-input {
+            width: 100%;
+            min-height: 380px;
+            padding: var(--space-lg);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: none;
+            outline: none;
+            resize: vertical;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.65;
+            tab-size: 2;
+        }
+
+        #json-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* ── Status Bar ── */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border-light);
+        }
+
+        .status-dot.valid {
+            background: var(--success);
+        }
+
+        .status-dot.invalid {
+            background: var(--error);
+        }
+
+        .status-text.valid {
+            color: var(--success);
+        }
+
+        .status-text.invalid {
+            color: var(--error);
+        }
+
+        /* ── Controls Column ── */
+        .tool-controls-col {
             display: flex;
             flex-direction: column;
+            gap: var(--space-sm);
+            padding-top: 52px;
+            /* align with panel body */
         }
 
-        .panel-label {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #555;
+        .ctrl-btn {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            transition: all var(--duration-sm);
+            text-align: center;
         }
 
-        .tree-view {
-            font-family: monospace;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            height: 600px;
-            overflow: auto;
+        .ctrl-btn:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-light);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+
+        .ctrl-btn.primary {
+            background: var(--accent-bright);
+            border-color: var(--accent-bright);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+
+        .ctrl-btn.primary:hover {
+            background: var(--white);
+            border-color: var(--white);
+            color: var(--bg-primary);
+        }
+
+        .ctrl-btn.danger:hover {
+            border-color: rgba(248, 113, 113, 0.5);
+            color: var(--error);
+        }
+
+        .ctrl-divider {
+            height: 1px;
+            background: var(--border);
+            margin: var(--space-xs) 0;
+        }
+
+        .ctrl-label {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 2px 0;
+        }
+
+        /* Indent select */
+        .ctrl-select {
+            width: 100%;
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+        }
+
+        .ctrl-select:hover,
+        .ctrl-select:focus {
+            border-color: var(--border-light);
+            color: var(--text-primary);
+        }
+
+        /* ── Output Panel ── */
+        .output-panel-content {
+            min-height: 380px;
             position: relative;
-            scroll-behavior: smooth;
-            word-wrap: break-word;
-            word-break: break-all;
         }
 
+        #json-output {
+            width: 100%;
+            min-height: 380px;
+            padding: var(--space-lg);
+            background: transparent;
+            color: var(--text-primary);
+            border: none;
+            outline: none;
+            resize: vertical;
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.85rem;
+            line-height: 1.65;
+            tab-size: 2;
+        }
+
+        /* Tree view container */
+        #tree-container {
+            display: none;
+            padding: var(--space-lg);
+            min-height: 380px;
+            max-height: 520px;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+        }
+
+        /* ── Tree View ── */
         .tree-node {
-            margin-left: 20px;
-            line-height: 1.5;
+            line-height: 1.9;
+        }
+
+        .tree-toggle {
+            cursor: pointer;
+            user-select: none;
+            color: var(--text-muted);
+            margin-right: 4px;
+            font-size: 0.7em;
+            display: inline-block;
+            width: 12px;
         }
 
         .tree-key {
-            color: #881391;
-            cursor: default; /* Change default cursor */
-            user-select: none;
+            color: #c792ea;
         }
 
-        /* Only show collapse indicator for collapsible items */
-        .tree-key.collapsible {
-            cursor: pointer;
+        .tree-str {
+            color: #80cbc4;
         }
 
-        .tree-key.collapsible::before {
-            content: '▼';
-            display: inline-block;
-            margin-right: 5px;
-            transition: transform 0.2s;
-            font-size: 10px;
+        .tree-num {
+            color: #f78c6c;
         }
 
-        .tree-key.collapsible.collapsed::before {
-            transform: rotate(-90deg);
+        .tree-bool {
+            color: #82aaff;
         }
 
-        .tree-key.collapsed + .tree-children {
+        .tree-null {
+            color: var(--error);
+        }
+
+        .tree-punc {
+            color: var(--text-muted);
+        }
+
+        .tree-children {
+            padding-left: 20px;
+            border-left: 1px solid var(--border);
+            margin-left: 6px;
+        }
+
+        .tree-node.collapsed>.tree-children {
             display: none;
         }
 
-        .tree-value {
-            color: #1a1aa6;
+        .tree-highlight {
+            background: rgba(192, 192, 192, 0.15);
+            border-radius: 2px;
         }
 
-        .tree-value.number { color: #098658; }
-        .tree-value.boolean { color: #0000ff; }
-        .tree-value.null { color: #ff0000; }
-        .tree-value.string { color: #795e26; }
-
-        .view-switch {
-            display: flex;
+        /* ── Tree search ── */
+        .tree-search-bar {
+            display: none;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
+            gap: var(--space-sm);
+            padding: var(--space-sm) var(--space-lg);
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
         }
 
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 28px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 20px;
-            width: 20px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input:checked + .slider:before {
-            transform: translateX(32px);
-        }
-
-        .view-label {
-            font-size: 14px;
-            color: #666;
-        }
-
-        #jsonOutput, #jsonTreeView {
-            display: none;
-        }
-
-        #jsonOutput.active, #jsonTreeView.active {
-            display: block;
-        }
-
-        .json-output-area {
-            width: 100%;
-            min-height: 600px;
-            max-height: 600px;
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 14px;
-            line-height: 1.6;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            resize: vertical;
-            background: #f8f9fa;
-            overflow: auto;
-            white-space: pre-wrap;       /* Wrap text */
-            word-wrap: break-word;       /* Break long words */
-            word-break: break-all;       /* Break strings */
-        }
-
-        .search-container {
-            display: none;
-            gap: 10px;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .search-container.visible {
+        .tree-search-bar.visible {
             display: flex;
         }
 
-        .tree-node.highlight {
-            background-color: #fff3cd;
-            border-radius: 4px;
-            padding: 2px 4px;
-            margin: -2px -4px;
-        }
-
-        .search-input {
+        .tree-search-bar input {
             flex: 1;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            font-family: var(--font-sans);
+            padding: 4px 10px;
+            outline: none;
         }
 
-        .search-nav {
+        .tree-search-bar input:focus {
+            border-color: var(--border-light);
+        }
+
+        .tree-search-count {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            min-width: 50px;
+        }
+
+        .tree-search-nav {
             display: flex;
-            gap: 5px;
+            gap: 4px;
         }
 
-        .search-nav button {
-            padding: 8px 12px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+        .tree-search-nav button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            font-size: 0.75rem;
             cursor: pointer;
+            font-family: var(--font-sans);
         }
 
-        .search-nav button:hover {
-            background: #e0e0e0;
+        .tree-search-nav button:hover {
+            color: var(--text-primary);
+            border-color: var(--border-light);
         }
 
-        .search-result {
-            background: #fff3cd;
+        /* ── View Toggle ── */
+        .view-toggle {
+            display: flex;
+            gap: 4px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 2px;
         }
 
-        .search-count {
-            font-size: 12px;
-            color: #666;
-            margin-left: 10px;
-        }
-
-        /* Add these new styles */
-        .formatted-line {
-            white-space: pre;
-            display: block;
-            line-height: 1.5;
-        }
-
-        .search-result-formatted {
-            background-color: #fff3cd;
-        }
-
-        /* Ensure output containers have position relative for proper scrolling */
-        .json-output-area, .tree-view {
-            position: relative;
-            overflow: auto;
-        }
-
-        .tree-node .highlight {
-            background-color: #fff3cd;
+        .view-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            padding: 4px 10px;
             border-radius: 4px;
-            padding: 2px 4px;
-            margin: -2px -4px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            transition: all var(--duration-sm);
         }
 
-        .controls-wrapper {
+        .view-toggle-btn i {
+            width: 12px;
+            height: 12px;
+        }
+
+        .view-toggle-btn.active {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        /* ── Info boxes ── */
+        .tool-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-2xl);
+        }
+
+        .tool-info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            transition: border-color var(--duration-md), transform var(--duration-sm);
+        }
+
+        .tool-info-card:hover {
+            border-color: var(--border-light);
+            transform: translateY(-2px);
+        }
+
+        .tool-info-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(192, 192, 192, 0.06);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
             display: flex;
-            align-items: center;      /* Add this to center vertically */
+            align-items: center;
             justify-content: center;
-            padding: 0 10px;
-            width: auto;
-            min-height: 600px;       /* Match the height of input/output areas */
+            margin-bottom: var(--space-md);
+            color: var(--accent);
         }
 
-        .json-controls {
-            display: flex;
-            flex-direction: column;  /* Always stack vertically */
-            gap: 8px;               /* Reduced gap between buttons */
+        .tool-info-icon i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .tool-info-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .tool-info-card p {
+            font-size: 0.85rem;
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
-            width: 150px;          /* Fixed width for controls */
         }
 
-        /* Remove previous media queries for .json-controls and buttons */
-        @media (max-width: 768px) {
-            .json-container {
+        /* ── CTA ── */
+        .cta-section {
+            position: relative;
+            overflow: hidden;
+            padding: var(--space-4xl) 0;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .cta-glow {
+            position: absolute;
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(192, 192, 192, 0.06) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            margin-bottom: var(--space-md);
+        }
+
+        .cta-section p {
+            margin-bottom: var(--space-xl);
+        }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-weight: 500;
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            transition: all var(--duration-sm);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-sans);
+        }
+
+        .btn-primary {
+            background: var(--accent-bright);
+            color: var(--bg-primary);
+            padding: var(--space-md) var(--space-xl);
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            font-size: 1rem;
+            padding: var(--space-md) var(--space-2xl);
+        }
+
+        /* ── Keyboard shortcuts ── */
+        .shortcuts-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .shortcut-item kbd {
+            display: inline-block;
+            font-size: 0.7rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-family: var(--font-sans);
+            color: var(--text-secondary);
+        }
+
+        /* ── Reveal animation ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── Footer (from tools.html) ── */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: var(--space-4xl) 0 var(--space-xl);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-3xl);
+            margin-bottom: var(--space-3xl);
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-xl);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer-logo img {
+            height: 36px;
+            width: auto;
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-desc {
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .footer-social a {
+            color: var(--text-muted);
+            transition: color var(--duration-sm);
+        }
+
+        .footer-social a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-social i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .footer h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-lg);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .footer-links a,
+        .footer-links span {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: var(--space-xl);
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: var(--space-xl);
+        }
+
+        .footer-bottom-links a {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 640px) {
+            .footer-bottom {
                 flex-direction: column;
-                padding: 10px; /* Reduce padding on mobile */
+                gap: var(--space-md);
+                text-align: center;
             }
+        }
 
-            .controls-wrapper {
-                padding: 10px 0;
-            }
+        /* ── Scroll to top ── */
+        .scroll-top {
+            position: fixed;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all var(--duration-md);
+            z-index: 100;
+        }
 
-            .json-controls {
-                flex-direction: column;
-            }
+        .scroll-top.visible {
+            opacity: 1;
+            transform: none;
+        }
 
-            .json-controls button,
-            .json-controls select {
-                width: 100%;
-                max-width: none;
-            }
+        .scroll-top:hover {
+            background: var(--bg-card-hover);
+            color: var(--text-primary);
+        }
 
-            .output-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .output-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .view-switch {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .conversion-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-            }
-
-            .conversion-buttons button {
-                width: 100%;
-            }
-
-            /* Adjust output area header for mobile */
-            .output-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .output-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            /* Make view switch full width on mobile */
-            .view-switch {
-                width: 100%;
-                justify-content: space-between;
-            }
+        .scroll-top i {
+            width: 18px;
+            height: 18px;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 </head>
+
 <body>
-  <!-- Header -->
-  <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
+
+    <!-- Navigation (identical to tools.html) -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo" aria-label="Wagle Universal Solutions Home">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" width="120" height="48">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="/">Home</a>
+                <a href="/#services">Services</a>
+                <a href="/#work">Work</a>
+                <a href="/pages/tools/tools.html" class="active">Tools</a>
+                <a href="/pages/about-us.html">About</a>
+                <a href="/pages/contact-us.html" class="nav-cta">Get in Touch</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a>
+                <span class="separator">/</span>
+                <a href="/pages/tools/tools.html">Developer Tools</a>
+                <span class="separator">/</span>
+                <span>JSON Formatter</span>
+            </div>
+            <h1>JSON Formatter <span style="color:var(--text-secondary);font-weight:400">&amp; Validator</span></h1>
+            <p>Format, validate, and convert JSON instantly. No data leaves your device.</p>
+            <div class="tool-pills">
+                <span class="tool-pill"><i data-lucide="check-circle"></i> Free & Private</span>
+                <span class="tool-pill"><i data-lucide="zap"></i> Instant Processing</span>
+                <span class="tool-pill"><i data-lucide="code"></i> Tree View</span>
+                <span class="tool-pill"><i data-lucide="file-text"></i> CSV / XML / YAML Export</span>
+            </div>
+        </div>
     </div>
-  </div>
-</nav>
-<!-- Old header removed -->
 
-<!-- Add backdrop div after header -->
+    <!-- Tool Workspace -->
+    <section class="tool-section">
+        <div class="container">
 
+            <!-- Main 3-column workspace -->
+            <div class="tool-workspace">
 
-    <main class="tool-container">
-        <h1 class="text-center mb-4">JSON Tools: Format, Convert & Visualize</h1>
-        <div class="warning-box">
-            <p class="mb-0">
-                <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
-                <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
-            </p>
-        </div>
-        <!-- Add Feature Highlights Section -->
-        <div class="feature-highlights mb-4">
-            <div class="row text-center g-3">
-                <div class="col-md-3">
-                    <div class="feature-card">
-                        <i class="bi bi-code-square"></i>
-                        <h3>Format JSON</h3>
-                        <p>Beautify & validate JSON</p>
+                <!-- Input Panel -->
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i data-lucide="file-json"></i>
+                            Input JSON
+                        </div>
+                        <div class="panel-actions">
+                            <button class="panel-btn" id="btn-sample" title="Load sample JSON">
+                                <i data-lucide="flask-conical"></i> Sample
+                            </button>
+                            <button class="panel-btn" id="btn-clear-input" title="Clear input">
+                                <i data-lucide="x"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea id="json-input" placeholder='Paste your JSON here...' spellcheck="false" autocorrect="off"
+                        autocapitalize="off" aria-label="JSON input"></textarea>
+                    <div class="status-bar">
+                        <div class="status-indicator">
+                            <span class="status-dot" id="status-dot"></span>
+                            <span class="status-text" id="status-text">Waiting for input</span>
+                        </div>
+                        <span id="char-count" style="color:var(--text-muted)">0 chars</span>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="feature-card">
-                        <i class="bi bi-arrow-left-right"></i>
-                        <h3>Convert</h3>
-                        <p>To CSV, XML, or YAML</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card">
-                        <i class="bi bi-diagram-2"></i>
-                        <h3>Tree View</h3>
-                        <p>Visualize JSON structure</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="feature-card">
-                        <i class="bi bi-file-earmark-code"></i>
-                        <h3>Minify</h3>
-                        <p>Compress JSON data</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="tool-description">
-            <p>Powerful JSON tool with multiple features. Format JSON, convert to different formats (CSV, XML, YAML), visualize with tree view, or minify for production.</p>
-        </div>
-
-        <div class="json-container">
-            <div class="panel">
-                <div class="panel-label">Input JSON</div>
-                <textarea id="jsonInput" class="json-input-area" placeholder="Paste your JSON here..."></textarea>
-                <div id="errorMessage" class="error-message"></div>
-            </div>
-            
-            <div class="controls-wrapper">
-                <div class="json-controls">
-                    <button class="btn btn-primary" id="formatJson">Format JSON</button>
-                    
-                        <button class="btn btn-info" onclick="convertTo('csv')">Convert to CSV</button>
-                        <button class="btn btn-info" onclick="convertTo('xml')">Convert to XML</button>
-                        <button class="btn btn-info" onclick="convertTo('yaml')">Convert to YAML</button>
-                        <button class="btn btn-warning" onclick="convertTo('minify')">Minify JSON</button>
-                   
-                    <select class="indent-select" id="indentSelect">
+                <!-- Controls Column -->
+                <div class="tool-controls-col">
+                    <button class="ctrl-btn primary" id="btn-format">Format JSON</button>
+                    <div class="ctrl-divider"></div>
+                    <div class="ctrl-label">Convert</div>
+                    <button class="ctrl-btn" id="btn-csv">→ CSV</button>
+                    <button class="ctrl-btn" id="btn-xml">→ XML</button>
+                    <button class="ctrl-btn" id="btn-yaml">→ YAML</button>
+                    <div class="ctrl-divider"></div>
+                    <button class="ctrl-btn" id="btn-minify">Minify</button>
+                    <div class="ctrl-divider"></div>
+                    <div class="ctrl-label">Indent</div>
+                    <select class="ctrl-select" id="indent-select" aria-label="Indentation">
                         <option value="2">2 Spaces</option>
                         <option value="4">4 Spaces</option>
                         <option value="tab">Tab</option>
-                        <option value="minify">Minify</option>
-                        <option value="csv">CSV</option>
-                        <option value="xml">XML</option>
-                        <option value="yaml">YAML</option>
                     </select>
-                    <button class="btn btn-outline-secondary" id="clearJson">Clear</button>
                 </div>
-            </div>
-            
-            <div class="panel">
-                <div class="output-header">
-                    <div class="panel-label">Output</div>
-                    <div class="output-controls">
-                        <button class="btn btn-success btn-sm" id="copyJson">Copy</button>
-                        <button class="btn btn-primary btn-sm btn-download" id="downloadJson">
-                            <i class="bi bi-download"></i> Download
-                        </button>
-                        <div class="view-switch">
-                            <span class="view-label">Formatted</span>
-                            <label class="switch">
-                                <input type="checkbox" id="viewToggle">
-                                <span class="slider"></span>
-                            </label>
-                            <span class="view-label">Tree View</span>
+
+                <!-- Output Panel -->
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <i data-lucide="terminal"></i>
+                            Output
+                        </div>
+                        <div class="panel-actions">
+                            <!-- View toggle -->
+                            <div class="view-toggle">
+                                <button class="view-toggle-btn active" id="view-raw" title="Raw text view">
+                                    <i data-lucide="code-2"></i> Raw
+                                </button>
+                                <button class="view-toggle-btn" id="view-tree" title="Tree view">
+                                    <i data-lucide="git-branch"></i> Tree
+                                </button>
+                            </div>
+                            <button class="panel-btn" id="btn-copy" title="Copy output">
+                                <i data-lucide="copy"></i> Copy
+                            </button>
+                            <button class="panel-btn" id="btn-download" title="Download output">
+                                <i data-lucide="download"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search for key or value...">
-                    <div class="search-nav">
-                        <button id="prevMatch" title="Previous match"><i class="bi bi-chevron-up"></i></button>
-                        <button id="nextMatch" title="Next match"><i class="bi bi-chevron-down"></i></button>
+                    <!-- Tree search bar -->
+                    <div class="tree-search-bar" id="tree-search-bar">
+                        <input type="text" id="tree-search-input" placeholder="Search in tree..."
+                            aria-label="Search in tree">
+                        <span class="tree-search-count" id="tree-search-count"></span>
+                        <div class="tree-search-nav">
+                            <button id="tree-search-prev" aria-label="Previous match">↑</button>
+                            <button id="tree-search-next" aria-label="Next match">↓</button>
+                        </div>
                     </div>
-                    <span class="search-count" id="searchCount"></span>
+                    <div class="output-panel-content">
+                        <textarea id="json-output" placeholder="Output will appear here..." readonly spellcheck="false"
+                            aria-label="JSON output"></textarea>
+                        <div id="tree-container" aria-label="JSON tree view"></div>
+                    </div>
+                    <div class="status-bar">
+                        <span id="output-label" style="color:var(--text-muted);font-size:0.75rem;">Formatted JSON</span>
+                        <span id="output-size" style="color:var(--text-muted)"></span>
+                    </div>
                 </div>
-                <pre id="jsonOutput" class="json-output-area active"></pre>
-                <div id="jsonTreeView" class="tree-view"></div>
+
             </div>
+
+            <!-- Keyboard shortcuts -->
+            <div class="shortcuts-row reveal" style="margin-top:var(--space-lg)">
+                <div class="shortcut-item"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> Format</div>
+                <div class="shortcut-item"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> Minify</div>
+                <div class="shortcut-item"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd> Copy</div>
+                <div class="shortcut-item"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd> Clear</div>
+                <div class="shortcut-item"><kbd>Ctrl</kbd>+<kbd>F</kbd> Tree Search</div>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="tool-info-grid reveal" style="margin-top:var(--space-3xl)">
+                <div class="tool-info-card">
+                    <div class="tool-info-icon"><i data-lucide="braces"></i></div>
+                    <h4>JSON Formatting</h4>
+                    <p>Beautify JSON with 2-space, 4-space, or tab indentation. Real-time validation highlights errors
+                        instantly.</p>
+                </div>
+                <div class="tool-info-card">
+                    <div class="tool-info-icon"><i data-lucide="git-branch"></i></div>
+                    <h4>Tree Visualization</h4>
+                    <p>Explore complex JSON with a collapsible, color-coded tree view. Search within the structure with
+                        prev/next navigation.</p>
+                </div>
+                <div class="tool-info-card">
+                    <div class="tool-info-icon"><i data-lucide="arrow-right-left"></i></div>
+                    <h4>Format Conversion</h4>
+                    <p>Convert JSON arrays to CSV spreadsheets, XML for legacy systems, or YAML for configuration files.
+                    </p>
+                </div>
+                <div class="tool-info-card">
+                    <div class="tool-info-icon"><i data-lucide="shield-check"></i></div>
+                    <h4>100% Private</h4>
+                    <p>All processing happens locally in your browser. No data is sent to any server, ever.</p>
+                </div>
+            </div>
+
         </div>
+    </section>
 
-        <section class="documentation mt-5">
-            <h2 class="text-center mb-4">Complete Guide to JSON Tools</h2>
-            
-            <!-- Quick Start Guide -->
-            <div class="quick-start card mb-4">
-                <div class="card-body">
-                    <h3 class="card-title"><i class="bi bi-lightning-charge"></i> Quick Start</h3>
-                    <ol class="step-list">
-                        <li>Paste your JSON in the input panel</li>
-                        <li>Click "Format JSON" for basic formatting</li>
-                        <li>Use conversion buttons or dropdown for different formats</li>
-                        <li>Switch to Tree View for hierarchical visualization</li>
-                    </ol>
-                </div>
-            </div>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="container reveal">
+            <h2>Need a custom tool for your team?</h2>
+            <p>We build web applications, SaaS products, and developer tools. Let's talk about your project.</p>
+            <a href="/pages/contact-us.html" class="btn btn-primary btn-lg">Get in Touch</a>
+        </div>
+    </section>
 
-            <!-- Feature Documentation -->
-            <div class="features-grid row g-4 mb-5">
-                <div class="col-md-6">
-                    <div class="feature-card h-100">
-                        <h3><i class="bi bi-braces"></i> JSON Formatting</h3>
-                        <ul class="feature-list">
-                            <li>Choose between 2 spaces, 4 spaces, or tab indentation</li>
-                            <li>Real-time syntax validation</li>
-                            <li>Error highlighting with detailed messages</li>
-                            <li>Copy formatted output with one click</li>
-                        </ul>
+    <!-- Footer (identical to tools.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">
+                        <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" width="100"
+                            height="40">
+                    </div>
+                    <p class="footer-desc">Custom web applications, SaaS products, and full-stack consulting for
+                        businesses worldwide.</p>
+                    <div class="footer-social" style="margin-top: var(--space-lg);">
+                        <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank"
+                            rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                        <a href="https://github.com/AnshumanWagle" target="_blank" rel="noopener" aria-label="GitHub"><i
+                                data-lucide="github"></i></a>
+                        <a href="https://www.facebook.com/WagleUniversalSolutions" target="_blank" rel="noopener"
+                            aria-label="Facebook"><i data-lucide="facebook"></i></a>
                     </div>
                 </div>
-                
-                <div class="col-md-6">
-                    <div class="feature-card h-100">
-                        <h3><i class="bi bi-arrow-left-right"></i> Format Conversion</h3>
-                        <ul class="feature-list">
-                            <li>CSV: Convert JSON arrays to spreadsheet format</li>
-                            <li>XML: Transform JSON to XML structure</li>
-                            <li>YAML: Convert to human-readable YAML format</li>
-                            <li>Minify: Compress JSON by removing whitespace</li>
-                        </ul>
+                <div>
+                    <h4>Services</h4>
+                    <div class="footer-links">
+                        <a href="/#services">Web Applications</a>
+                        <a href="/#services">SaaS Development</a>
+                        <a href="/#services">Full-Stack Consulting</a>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="feature-card h-100">
-                        <h3><i class="bi bi-diagram-2"></i> Tree View</h3>
-                        <ul class="feature-list">
-                            <li>Collapsible hierarchical visualization</li>
-                            <li>Color-coded keys and values</li>
-                            <li>Search functionality within tree structure</li>
-                            <li>Navigate complex JSON structures easily</li>
-                        </ul>
+                <div>
+                    <h4>Company</h4>
+                    <div class="footer-links">
+                        <a href="/pages/about-us.html">About Us</a>
+                        <a href="/#work">Our Work</a>
+                        <a href="/pages/tools/tools.html">Developer Tools</a>
+                        <a href="/pages/contact-us.html">Contact</a>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="feature-card h-100">
-                        <h3><i class="bi bi-tools"></i> Advanced Tools</h3>
-                        <ul class="feature-list">
-                            <li>Download in any supported format</li>
-                            <li>Search and navigate through JSON content</li>
-                            <li>Keyboard shortcuts for common actions</li>
-                            <li>Auto-formatting on paste</li>
-                        </ul>
+                <div>
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="mailto:support@wagleus.com">support@wagleus.com</a>
+                        <a href="tel:+9779861145725">+977 986-114-5725</a>
+                        <span style="font-size:0.875rem;color:var(--text-muted)">Kathmandu, Nepal · UTC+5:45</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Usage Examples -->
-            <div class="usage-examples mb-5">
-                <h3 class="mb-4"><i class="bi bi-code-slash"></i> Common Use Cases</h3>
-
-                <!-- API to CSV Section -->
-                <div class="use-case-section mb-4">
-                    <h4><i class="bi bi-table"></i> API Response to CSV Spreadsheet</h4>
-                    <p class="mb-3">Perfect for when you need to:</p>
-                    <ul class="mb-3">
-                        <li>Convert API responses into Excel-compatible formats</li>
-                        <li>Create reports from JSON data</li>
-                        <li>Analyze data in spreadsheet applications</li>
-                    </ul>
-                    <div class="example-block">
-                        <pre class="example-code"><code>// API Response
-[
-  {"userId": 1, "orders": 50, "revenue": 1500},
-  {"userId": 2, "orders": 30, "revenue": 900}
-]
-
-→ Converts to CSV for Excel:
-userId,orders,revenue
-1,50,1500
-2,30,900</code></pre>
-                    </div>
+            <div class="footer-bottom">
+                <p>© 2025 Wagle Universal Solutions. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/pages/privacy.html">Privacy Policy</a>
+                    <a href="/pages/terms-of-service.html">Terms of Service</a>
                 </div>
-
-                <!-- Legacy System Integration -->
-                <div class="use-case-section mb-4">
-                    <h4><i class="bi bi-gear"></i> Integration with Legacy Systems</h4>
-                    <p class="mb-3">Useful when working with:</p>
-                    <ul class="mb-3">
-                        <li>SOAP web services</li>
-                        <li>Enterprise systems requiring XML</li>
-                        <li>EDI (Electronic Data Interchange) processes</li>
-                    </ul>
-                    <div class="example-block">
-                        <pre class="example-code"><code>// Modern API Response
-{
-  "order": {
-    "id": "12345",
-    "items": ["item1", "item2"]
-  }
-}
-
-→ Legacy System Compatible XML:
-&lt;root&gt;
-  &lt;order&gt;
-    &lt;id&gt;12345&lt;/id&gt;
-    &lt;items&gt;
-      &lt;item&gt;item1&lt;/item&gt;
-      &lt;item&gt;item2&lt;/item&gt;
-    &lt;/items&gt;
-  &lt;/order&gt;
-&lt;/root&gt;</code></pre>
-                    </div>
-                </div>
-
-                <!-- Configuration Management -->
-                <div class="use-case-section mb-4">
-                    <h4><i class="bi bi-wrench"></i> Configuration Management</h4>
-                    <p class="mb-3">Essential for:</p>
-                    <ul class="mb-3">
-                        <li>Kubernetes configurations</li>
-                        <li>Application config files</li>
-                        <li>CI/CD pipeline configurations</li>
-                    </ul>
-                    <div class="example-block">
-                        <pre class="example-code"><code>// JSON Config
-{
-  "app": {
-    "name": "myservice",
-    "ports": [8080, 9000],
-    "env": {
-      "NODE_ENV": "production"
-    }
-  }
-}
-
-→ DevOps-friendly YAML:
-app:
-  name: myservice
-  ports:
-    - 8080
-    - 9000
-  env:
-    NODE_ENV: production</code></pre>
-                    </div>
-                </div>
-
-                <!-- Complex Data Navigation -->
-                <div class="use-case-section">
-                    <h4><i class="bi bi-diagram-3"></i> Complex Data Navigation</h4>
-                    <p class="mb-3">Ideal for:</p>
-                    <ul class="mb-3">
-                        <li>Debugging nested API responses</li>
-                        <li>Exploring complex JSON structures</li>
-                        <li>Finding specific values in large datasets</li>
-                    </ul>
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle me-2"></i>
-                        Use the Tree View toggle to visualize nested structures and search through complex JSON data easily.
-                        The search feature helps you quickly locate specific values in large JSON objects.
-                    </div>
-                </div>
-            </div>
-
-            <style>
-                .use-case-section {
-                    background: #fff;
-                    border-radius: 8px;
-                    padding: 25px;
-                    border: 1px solid #eee;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-                }
-
-                .use-case-section h4 {
-                    color: #333;
-                    margin-bottom: 15px;
-                }
-
-                .use-case-section h4 i {
-                    color: #007bff;
-                    margin-right: 8px;
-                }
-
-                .example-block {
-                    background: #f8f9fa;
-                    border-radius: 6px;
-                    padding: 15px;
-                    margin-top: 15px;
-                }
-
-                .example-code {
-                    margin: 0;
-                    background: transparent;
-                }
-            </style>
-        </section>
-
-        <style>
-            .documentation {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-
-            .quick-start {
-                background: #f8f9fa;
-                border-left: 4px solid #007bff;
-            }
-
-            .step-list {
-                padding-left: 20px;
-                margin-bottom: 0;
-            }
-
-            .step-list li {
-                margin-bottom: 10px;
-            }
-
-            .feature-card {
-                padding: 25px;
-                background: #fff;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-                border: 1px solid #eee;
-            }
-
-            .feature-card h3 {
-                font-size: 1.25rem;
-                margin-bottom: 15px;
-                color: #333;
-            }
-
-            .feature-card i {
-                color: #007bff;
-                margin-right: 8px;
-            }
-
-            .feature-list {
-                list-style-type: none;
-                padding-left: 0;
-                margin-bottom: 0;
-            }
-
-            .feature-list li {
-                margin-bottom: 10px;
-                padding-left: 20px;
-                position: relative;
-            }
-
-            .feature-list li:before {
-                content: "→";
-                position: absolute;
-                left: 0;
-                color: #007bff;
-            }
-
-            .example-tabs {
-                background: #fff;
-                border-radius: 8px;
-                overflow: hidden;
-            }
-
-            .example-code {
-                background: #f8f9fa;
-                padding: 15px;
-                border-radius: 4px;
-                margin: 10px 0;
-            }
-
-            .shortcut-card {
-                background: #f8f9fa;
-                padding: 15px;
-                border-radius: 4px;
-                text-align: center;
-            }
-
-            kbd {
-                background: #e9ecef;
-                padding: 3px 6px;
-                border-radius: 3px;
-                border: 1px solid #dee2e6;
-            }
-        </style>
-    </main>
-
-    <!-- Add Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
+    <button class="scroll-top" aria-label="Scroll to top"><i data-lucide="chevron-up"></i></button>
 
-
-    <!-- Vendor JS Files -->
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="/assets/js/index.js"></script>
+    <!-- Scripts -->
     <script src="/assets/js/main.js"></script>
-
     <script>
-        // Define convertTo globally
-        function convertTo(format) {
-            const indentSelect = document.getElementById('indentSelect');
-            if (indentSelect.value !== format) {  // Only update if different
-                indentSelect.value = format;
-                document.getElementById('formatJson').click();
-            }
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const jsonInput = document.getElementById('jsonInput');
-            const jsonOutput = document.getElementById('jsonOutput');
-            const treeView = document.getElementById('jsonTreeView');
-            const errorMessage = document.getElementById('errorMessage');
-            const viewToggle = document.getElementById('viewToggle');
-            const searchInput = document.getElementById('searchInput');
-            const prevMatch = document.getElementById('prevMatch');
-            const nextMatch = document.getElementById('nextMatch');
-            const searchCount = document.getElementById('searchCount');
-            let currentMatchIndex = -1;
-            let matches = [];
+            /* ─── State ─── */
+            let currentOutput = '';
+            let currentFormat = 'json';
+            let isTreeView = false;
+            let treeSearchMatches = [];
+            let treeSearchIndex = 0;
 
-            const searchContainer = document.querySelector('.search-container');
-            const indentSelect = document.getElementById('indentSelect');
+            /* ─── Elements ─── */
+            const inputEl = document.getElementById('json-input');
+            const outputEl = document.getElementById('json-output');
+            const treeContainer = document.getElementById('tree-container');
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const charCount = document.getElementById('char-count');
+            const outputLabel = document.getElementById('output-label');
+            const outputSize = document.getElementById('output-size');
+            const treeSearchBar = document.getElementById('tree-search-bar');
+            const treeSearchInput = document.getElementById('tree-search-input');
+            const treeSearchCount = document.getElementById('tree-search-count');
+            const indentSelect = document.getElementById('indent-select');
 
-            // View toggle handler
-            viewToggle.addEventListener('change', function() {
-                jsonOutput.classList.toggle('active');
-                treeView.classList.toggle('active');
-                searchContainer.classList.toggle('visible', this.checked);
-                if (!this.checked) {
-                    // Clear search when switching to formatted view
-                    searchInput.value = '';
-                    clearHighlights();
-                    searchCount.textContent = '';
-                }
-            });
-
-            // Add conversion functions
-            function jsonToCSV(json) {
-                if (typeof json !== 'object' || !Array.isArray(json)) {
-                    throw new Error('JSON must be an array of objects for CSV conversion');
-                }
-                
-                if (json.length === 0) return '';
-                
-                const headers = Object.keys(json[0]);
-                const rows = [headers.join(',')];
-                
-                json.forEach(obj => {
-                    const row = headers.map(header => {
-                        const val = obj[header];
-                        return typeof val === 'string' ? `"${val}"` : val;
-                    });
-                    rows.push(row.join(','));
-                });
-                
-                return rows.join('\n');
+            /* ─── Helpers ─── */
+            function getIndent() {
+                const v = indentSelect.value;
+                return v === 'tab' ? '\t' : parseInt(v);
             }
 
-            function jsonToXML(json) {
-                function convert(obj, name = 'root') {
-                    if (typeof obj !== 'object' || obj === null) {
-                        return `<${name}>${obj}</${name}>`;
-                    }
-                    
-                    let xml = `<${name}>`;
-                    for (const key in obj) {
-                        const value = obj[key];
-                        if (Array.isArray(value)) {
-                            value.forEach(item => {
-                                xml += convert(item, 'item');
-                            });
-                        } else {
-                            xml += convert(value, key);
-                        }
-                    }
-                    xml += `</${name}>`;
-                    return xml;
-                }
-                
-                return '<?xml version="1.0" encoding="UTF-8"?>\n' + convert(json);
+            function setStatus(valid, msg) {
+                statusDot.className = 'status-dot ' + (valid === true ? 'valid' : valid === false ? 'invalid' : '');
+                statusText.className = 'status-text ' + (valid === true ? 'valid' : valid === false ? 'invalid' : '');
+                statusText.textContent = msg;
             }
 
-            function jsonToYAML(json, indent = '') {
-                if (typeof json !== 'object' || json === null) {
-                    return json;
-                }
-
-                let yaml = '';
-                for (const key in json) {
-                    const value = json[key];
-                    if (Array.isArray(value)) {
-                        yaml += `${indent}${key}:\n`;
-                        value.forEach(item => {
-                            yaml += `${indent}- ${jsonToYAML(item, indent + '  ')}\n`;
-                        });
-                    } else if (typeof value === 'object' && value !== null) {
-                        yaml += `${indent}${key}:\n${jsonToYAML(value, indent + '  ')}`;
-                    } else {
-                        yaml += `${indent}${key}: ${value}\n`;
-                    }
-                }
-                return yaml;
+            function setOutput(text, label = 'Formatted JSON', format = 'json') {
+                currentOutput = text;
+                currentFormat = format;
+                outputEl.value = text;
+                outputLabel.textContent = label;
+                outputSize.textContent = text ? (text.length > 1024
+                    ? (text.length / 1024).toFixed(1) + ' KB'
+                    : text.length + ' chars') : '';
             }
 
-            // Function to format JSON with current indentation
-            function formatJSON(json) {
+            function tryParse() {
+                const raw = inputEl.value.trim();
+                if (!raw) { setStatus(null, 'Waiting for input'); return null; }
                 try {
-                    switch(indentSelect.value) {
-                        case '2':
-                            return JSON.stringify(json, null, 2);
-                        case '4':
-                            return JSON.stringify(json, null, 4);
-                        case 'tab':
-                            return JSON.stringify(json, null, '\t');
-                        case 'minify':
-                            return JSON.stringify(json);
-                        case 'csv':
-                            return jsonToCSV(json);
-                        case 'xml':
-                            return jsonToXML(json);
-                        case 'yaml':
-                            return jsonToYAML(json);
-                        default:
-                            return JSON.stringify(json, null, 2);
-                    }
+                    const parsed = JSON.parse(raw);
+                    setStatus(true, 'Valid JSON');
+                    return parsed;
                 } catch (e) {
-                    errorMessage.textContent = `Conversion error: ${e.message}`;
-                    errorMessage.style.display = 'block';
+                    setStatus(false, e.message.split('\n')[0].slice(0, 60));
                     return null;
                 }
             }
 
-            // Format JSON
-            document.getElementById('formatJson').addEventListener('click', () => {
+            /* ─── Input live validation ─── */
+            inputEl.addEventListener('input', () => {
+                const raw = inputEl.value;
+                charCount.textContent = raw.length.toLocaleString() + ' chars';
+                tryParse();
+            });
+
+            /* ─── Format ─── */
+            document.getElementById('btn-format').addEventListener('click', () => {
+                const parsed = tryParse();
+                if (!parsed) return;
+                setOutput(JSON.stringify(parsed, null, getIndent()), 'Formatted JSON', 'json');
+                if (isTreeView) renderTree(parsed);
+            });
+
+            /* ─── Minify ─── */
+            document.getElementById('btn-minify').addEventListener('click', () => {
+                const parsed = tryParse();
+                if (!parsed) return;
+                setOutput(JSON.stringify(parsed), 'Minified JSON', 'json');
+            });
+
+            /* ─── CSV ─── */
+            document.getElementById('btn-csv').addEventListener('click', () => {
+                const parsed = tryParse();
+                if (!parsed) return;
                 try {
-                    const json = JSON.parse(jsonInput.value);
-                    const formatted = formatJSON(json);
-                    if (formatted) {
-                        jsonOutput.textContent = formatted;
-                        renderTreeView(json);
-                        errorMessage.style.display = 'none';
-                        if (searchInput.value) {
-                            performSearch();
-                        }
-                    }
-                } catch (e) {
-                    errorMessage.textContent = `Invalid JSON: ${e.message}`;
-                    errorMessage.style.display = 'block';
-                }
-            });
-
-            // Format when indentation changes
-            indentSelect.addEventListener('change', () => {
-                const currentFormat = indentSelect.value;
-                if (jsonInput.value) {
-                    try {
-                        const json = JSON.parse(jsonInput.value);
-                        const formatted = formatJSON(json);
-                        if (formatted) {
-                            jsonOutput.textContent = formatted;
-                        }
-                    } catch (e) {
-                        // Keep existing content if error
-                    }
-                }
-            });
-
-            // Clear inputs
-            document.getElementById('clearJson').addEventListener('click', () => {
-                jsonInput.value = '';
-                jsonOutput.textContent = '';
-                treeView.innerHTML = '';
-                errorMessage.style.display = 'none';
-            });
-
-            // Copy to clipboard
-            document.getElementById('copyJson').addEventListener('click', function() {
-                const copyBtn = this;
-                try {
-                    const json = JSON.parse(jsonInput.value);
-                    const formatted = formatJSON(json);
-                    if (!formatted) return;
-
-                    navigator.clipboard.writeText(formatted).then(() => {
-                        copyBtn.textContent = 'Copied!';
-                        setTimeout(() => {
-                            copyBtn.textContent = 'Copy';
-                        }, 2000);
-                    });
-                } catch (e) {
-                    errorMessage.textContent = `Invalid JSON: ${e.message}`;
-                    errorMessage.style.display = 'block';
-                }
-            });
-
-            // Download functionality
-            document.getElementById('downloadJson').addEventListener('click', function() {
-                try {
-                    const json = JSON.parse(jsonInput.value);
-                    const formatted = formatJSON(json);
-                    if (!formatted) return;
-
-                    const formats = {
-                        csv: 'text/csv',
-                        xml: 'application/xml',
-                        yaml: 'text/yaml',
-                        default: 'application/json'
+                    const arr = Array.isArray(parsed) ? parsed : [parsed];
+                    const keys = [...new Set(arr.flatMap(o => Object.keys(o)))];
+                    const esc = v => {
+                        const s = v == null ? '' : String(v);
+                        return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
                     };
-
-                    const format = indentSelect.value;
-                    const mimeType = formats[format] || formats.default;
-                    const extension = format === 'default' ? 'json' : format;
-                    
-                    const blob = new Blob([formatted], { type: mimeType });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `formatted.${extension}`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                } catch (e) {
-                    errorMessage.textContent = `Conversion error: ${e.message}`;
-                    errorMessage.style.display = 'block';
-                }
+                    const rows = [keys.join(','), ...arr.map(o => keys.map(k => esc(o[k])).join(','))];
+                    setOutput(rows.join('\n'), 'CSV Export', 'csv');
+                } catch (e) { setStatus(false, 'CSV: ' + e.message); }
             });
 
-            function renderTreeView(json) {
-                treeView.innerHTML = '';
-                
-                function createTreeNode(key, value) {
-                    const node = document.createElement('div');
-                    node.className = 'tree-node';
-                    
-                    if (value === null) {
-                        node.innerHTML = `<span class="tree-key">${key}</span>: <span class="tree-value null">null</span>`;
-                    } else if (typeof value === 'object') {
-                        const isArray = Array.isArray(value);
-                        const keySpan = document.createElement('span');
-                        keySpan.className = 'tree-key collapsible';
-                        keySpan.textContent = `${key}`;
-                        keySpan.onclick = () => {
-                            keySpan.classList.toggle('collapsed');
-                            childrenDiv.classList.toggle('collapsed');
-                        };
-
-                        node.appendChild(keySpan);
-                        node.appendChild(document.createTextNode(`: ${isArray ? '[' : '{'}`));
-
-                        const childrenDiv = document.createElement('div');
-                        childrenDiv.className = 'tree-children';
-                        
-                        if (isArray) {
-                            value.forEach((item, index) => {
-                                childrenDiv.appendChild(createTreeNode(index, item));
-                            });
-                        } else {
-                            Object.entries(value).forEach(([k, v]) => {
-                                childrenDiv.appendChild(createTreeNode(k, v));
-                            });
+            /* ─── XML ─── */
+            document.getElementById('btn-xml').addEventListener('click', () => {
+                const parsed = tryParse();
+                if (!parsed) return;
+                try {
+                    function toXml(obj, tag = 'root', depth = 0) {
+                        const pad = '  '.repeat(depth);
+                        if (obj === null || obj === undefined) return `${pad}<${tag} />\n`;
+                        if (Array.isArray(obj)) return obj.map((v, i) => toXml(v, 'item', depth)).join('');
+                        if (typeof obj === 'object') {
+                            const inner = Object.entries(obj).map(([k, v]) => toXml(v, k, depth + 1)).join('');
+                            return `${pad}<${tag}>\n${inner}${pad}</${tag}>\n`;
                         }
-
-                        node.appendChild(childrenDiv);
-                        
-                        // Add ellipsis element
-                        const ellipsis = document.createElement('span');
-                        ellipsis.className = 'tree-ellipsis';
-                        ellipsis.textContent = '...';
-                        node.appendChild(ellipsis);
-                        
-                        node.appendChild(document.createTextNode(isArray ? ']' : '}'));
-                    } else {
-                        const valueType = typeof value;
-                        const displayValue = valueType === 'string' ? `"${value}"` : value;
-                        node.innerHTML = `<span class="tree-key">${key}</span>: <span class="tree-value ${valueType}">${displayValue}</span>`;
+                        const safe = String(obj).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                        return `${pad}<${tag}>${safe}</${tag}>\n`;
                     }
+                    setOutput('<?xml version="1.0" encoding="UTF-8"?>\n' + toXml(parsed).trim(), 'XML Export', 'xml');
+                } catch (e) { setStatus(false, 'XML: ' + e.message); }
+            });
 
-                    return node;
-                }
-
-                if (typeof json === 'object' && json !== null) {
-                    const rootNode = document.createElement('div');
-                    rootNode.className = 'tree-root';
-                    
-                    if (Array.isArray(json)) {
-                        json.forEach((item, index) => {
-                            rootNode.appendChild(createTreeNode(index, item));
-                        });
-                    } else {
-                        Object.entries(json).forEach(([key, value]) => {
-                            rootNode.appendChild(createTreeNode(key, value));
-                        });
-                    }
-                    
-                    treeView.appendChild(rootNode);
-                }
-            }
-
-            // Real-time validation
-            let validateTimeout;
-            jsonInput.addEventListener('input', () => {
-                clearTimeout(validateTimeout);
-                validateTimeout = setTimeout(() => {
-                    try {
-                        if (jsonInput.value) {
-                            JSON.parse(jsonInput.value);
-                            errorMessage.style.display = 'none';
+            /* ─── YAML ─── */
+            document.getElementById('btn-yaml').addEventListener('click', () => {
+                const parsed = tryParse();
+                if (!parsed) return;
+                try {
+                    function toYaml(val, depth = 0) {
+                        const pad = '  '.repeat(depth);
+                        if (val === null) return 'null';
+                        if (typeof val === 'boolean') return String(val);
+                        if (typeof val === 'number') return String(val);
+                        if (typeof val === 'string') {
+                            return /[:#\[\]{}&*!|>'"%@,\n]/.test(val) || val === '' || /^\s|\s$/.test(val)
+                                ? '"' + val.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"'
+                                : val;
                         }
-                    } catch (e) {
-                        errorMessage.textContent = `Invalid JSON: ${e.message}`;
-                        errorMessage.style.display = 'block';
+                        if (Array.isArray(val)) {
+                            if (!val.length) return '[]';
+                            return '\n' + val.map(v => {
+                                const inner = toYaml(v, depth + 1);
+                                return inner.startsWith('\n')
+                                    ? `${pad}- ${inner.trimStart()}`
+                                    : `${pad}- ${inner}`;
+                            }).join('\n');
+                        }
+                        if (typeof val === 'object') {
+                            const keys = Object.keys(val);
+                            if (!keys.length) return '{}';
+                            return '\n' + keys.map(k => {
+                                const inner = toYaml(val[k], depth + 1);
+                                return inner.startsWith('\n')
+                                    ? `${pad}${k}:${inner}`
+                                    : `${pad}${k}: ${inner}`;
+                            }).join('\n');
+                        }
+                        return String(val);
                     }
-                }, 300);
+                    const yaml = toYaml(parsed).trimStart();
+                    setOutput(yaml, 'YAML Export', 'yaml');
+                } catch (e) { setStatus(false, 'YAML: ' + e.message); }
             });
 
-            // Add paste handler for input area
-            jsonInput.addEventListener('paste', (e) => {
-                // Prevent default to handle paste manually
-                e.preventDefault();
-                
-                // Get pasted text
-                const text = e.clipboardData.getData('text');
-                
-                // Store current scroll position
-                const scrollTop = jsonInput.scrollTop;
-                
-                // Insert text at cursor position
-                const start = jsonInput.selectionStart;
-                const end = jsonInput.selectionEnd;
-                const beforeText = jsonInput.value.substring(0, start);
-                const afterText = jsonInput.value.substring(end);
-                jsonInput.value = beforeText + text + afterText;
-                
-                // Restore cursor position and scroll
-                jsonInput.selectionStart = jsonInput.selectionEnd = start + text.length;
-                jsonInput.scrollTop = 0;
-            });
-
-            // Search functionality
-            searchInput.addEventListener('input', debounce(performSearch, 300));
-            prevMatch.addEventListener('click', () => navigateMatches(-1));
-            nextMatch.addEventListener('click', () => navigateMatches(1));
-
-            function performSearch() {
-                if (!viewToggle.checked) return;
-
-                const searchTerm = searchInput.value.toLowerCase();
-                matches = [];
-                currentMatchIndex = -1;
-                
-                clearHighlights();
-                
-                if (!searchTerm) {
-                    searchCount.textContent = '';
-                    return;
-                }
-
-                // Find spans containing exact matches
-                const elements = treeView.querySelectorAll('.tree-key, .tree-value');
-                for (const element of elements) {
-                    if (element.textContent.toLowerCase().includes(searchTerm)) {
-                        matches.push(element);
-                    }
-                }
-
-                searchCount.textContent = `${matches.length} matches`;
-                if (matches.length > 0) {
-                    navigateMatches(1);
-                }
-            }
-
-            function navigateMatches(direction) {
-                if (matches.length === 0) return;
-
-                clearHighlights();
-                
-                currentMatchIndex += direction;
-                if (currentMatchIndex >= matches.length) currentMatchIndex = 0;
-                if (currentMatchIndex < 0) currentMatchIndex = matches.length - 1;
-
-                const match = matches[currentMatchIndex];
-                match.classList.add('highlight');
-
-                // Ensure parent nodes are expanded
-                let parent = match.closest('.tree-node');
-                while (parent) {
-                    const parentKey = parent.querySelector('.tree-key');
-                    if (parentKey) {
-                        parentKey.classList.remove('collapsed');
-                    }
-                    parent = parent.parentElement.closest('.tree-node');
-                }
-
-                // Updated scrolling logic
-                const container = treeView;
-                const containerRect = container.getBoundingClientRect();
-                const matchRect = match.getBoundingClientRect();
-                
-                const relativeTop = matchRect.top - containerRect.top;
-                container.scrollTop = container.scrollTop + relativeTop - (containerRect.height / 2);
-                
-                searchCount.textContent = `${currentMatchIndex + 1} of ${matches.length} matches`;
-            }
-
-            function clearHighlights() {
-                document.querySelectorAll('.highlight').forEach(el => {
-                    el.classList.remove('highlight');
-                });
-            }
-
-            function debounce(func, wait) {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
+            /* ─── Sample ─── */
+            document.getElementById('btn-sample').addEventListener('click', () => {
+                const sample = {
+                    "user": { "id": 1, "name": "Anish Wagle", "email": "anish@wagleus.com", "active": true },
+                    "projects": [
+                        { "id": "p1", "name": "WUS Platform", "status": "active", "tags": ["web", "saas"] },
+                        { "id": "p2", "name": "JSON Tools", "status": "shipped", "tags": ["tools", "oss"] }
+                    ],
+                    "meta": { "version": "2.0", "timestamp": new Date().toISOString(), "private": false }
                 };
+                inputEl.value = JSON.stringify(sample, null, 2);
+                charCount.textContent = inputEl.value.length.toLocaleString() + ' chars';
+                setStatus(true, 'Valid JSON');
+                setOutput(JSON.stringify(sample, null, getIndent()), 'Formatted JSON', 'json');
+            });
+
+            /* ─── Clear ─── */
+            document.getElementById('btn-clear-input').addEventListener('click', () => {
+                inputEl.value = '';
+                charCount.textContent = '0 chars';
+                setStatus(null, 'Waiting for input');
+                setOutput('');
+                treeContainer.innerHTML = '';
+            });
+
+            /* ─── Copy ─── */
+            document.getElementById('btn-copy').addEventListener('click', () => {
+                if (!currentOutput) return;
+                navigator.clipboard.writeText(currentOutput).then(() => {
+                    const btn = document.getElementById('btn-copy');
+                    btn.classList.add('success');
+                    btn.innerHTML = '<i data-lucide="check"></i> Copied';
+                    if (window.lucide) lucide.createIcons();
+                    setTimeout(() => {
+                        btn.classList.remove('success');
+                        btn.innerHTML = '<i data-lucide="copy"></i> Copy';
+                        if (window.lucide) lucide.createIcons();
+                    }, 2000);
+                });
+            });
+
+            /* ─── Download ─── */
+            document.getElementById('btn-download').addEventListener('click', () => {
+                if (!currentOutput) return;
+                const mimes = { json: 'application/json', csv: 'text/csv', xml: 'application/xml', yaml: 'text/yaml' };
+                const blob = new Blob([currentOutput], { type: mimes[currentFormat] || 'text/plain' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = `output.${currentFormat}`;
+                a.click();
+                URL.revokeObjectURL(a.href);
+            });
+
+            /* ─── View toggle ─── */
+            document.getElementById('view-raw').addEventListener('click', () => {
+                isTreeView = false;
+                outputEl.style.display = '';
+                treeContainer.style.display = 'none';
+                treeSearchBar.classList.remove('visible');
+                document.getElementById('view-raw').classList.add('active');
+                document.getElementById('view-tree').classList.remove('active');
+            });
+
+            document.getElementById('view-tree').addEventListener('click', () => {
+                isTreeView = true;
+                outputEl.style.display = 'none';
+                treeContainer.style.display = 'block';
+                treeSearchBar.classList.add('visible');
+                document.getElementById('view-tree').classList.add('active');
+                document.getElementById('view-raw').classList.remove('active');
+                const parsed = tryParse();
+                if (parsed !== null) renderTree(parsed);
+            });
+
+            /* ─── Tree Rendering ─── */
+            function renderTree(data) {
+                treeContainer.innerHTML = '';
+                treeContainer.appendChild(buildNode(data, null, true));
             }
+
+            function buildNode(val, key, isRoot) {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'tree-node';
+
+                if (val !== null && typeof val === 'object') {
+                    const isArr = Array.isArray(val);
+                    const entries = isArr ? val.map((v, i) => [i, v]) : Object.entries(val);
+                    const count = entries.length;
+                    const toggle = document.createElement('span');
+                    toggle.className = 'tree-toggle';
+                    toggle.textContent = '▾';
+
+                    const header = document.createElement('span');
+                    if (key !== null) {
+                        const k = document.createElement('span');
+                        k.className = 'tree-key';
+                        k.textContent = isRoot ? '' : (isArr ? `[${key}]` : key);
+                        if (!isRoot) { header.appendChild(k); header.appendChild(span('tree-punc', ': ')); }
+                    }
+                    header.appendChild(span('tree-punc', isArr ? '[' : '{'));
+                    const summary = document.createElement('span');
+                    summary.style.cssText = 'color:var(--text-muted);font-size:0.78em;margin-left:4px';
+                    summary.textContent = ` // ${count} ${count === 1 ? 'item' : 'items'}`;
+                    summary.dataset.summaryCollapsed = 'true';
+                    summary.style.display = 'none';
+
+                    toggle.addEventListener('click', () => {
+                        wrapper.classList.toggle('collapsed');
+                        toggle.textContent = wrapper.classList.contains('collapsed') ? '▸' : '▾';
+                        summary.style.display = wrapper.classList.contains('collapsed') ? '' : 'none';
+                    });
+
+                    const closing = span('tree-punc', isArr ? ']' : '}');
+                    const children = document.createElement('div');
+                    children.className = 'tree-children';
+
+                    entries.forEach(([k, v], idx) => {
+                        const child = buildNode(v, k, false);
+                        if (idx < entries.length - 1) child.appendChild(span('tree-punc', ','));
+                        children.appendChild(child);
+                    });
+
+                    const keySpan = key !== null && !isRoot ? (() => {
+                        const k = document.createElement('span');
+                        k.className = 'tree-key';
+                        k.textContent = key;
+                        return k;
+                    })() : null;
+
+                    wrapper.appendChild(toggle);
+                    if (keySpan) { wrapper.appendChild(keySpan); wrapper.appendChild(span('tree-punc', ': ')); }
+                    wrapper.appendChild(span('tree-punc', isArr ? '[' : '{'));
+                    wrapper.appendChild(summary);
+                    wrapper.appendChild(children);
+                    wrapper.appendChild(closing);
+                } else {
+                    // Leaf
+                    const line = document.createElement('span');
+                    if (key !== null) {
+                        line.appendChild(span('tree-key', key));
+                        line.appendChild(span('tree-punc', ': '));
+                    }
+                    line.appendChild(buildLeaf(val));
+                    wrapper.appendChild(line);
+                }
+                return wrapper;
+            }
+
+            function buildLeaf(val) {
+                const s = document.createElement('span');
+                if (val === null) { s.className = 'tree-null'; s.textContent = 'null'; }
+                else if (typeof val === 'string') { s.className = 'tree-str'; s.textContent = `"${val}"`; }
+                else if (typeof val === 'number') { s.className = 'tree-num'; s.textContent = val; }
+                else if (typeof val === 'boolean') { s.className = 'tree-bool'; s.textContent = val; }
+                return s;
+            }
+
+            function span(cls, text) {
+                const s = document.createElement('span');
+                s.className = cls;
+                s.textContent = text;
+                return s;
+            }
+
+            /* ─── Tree Search ─── */
+            function scrollToMatch(el) {
+                // Scroll within the fixed-height treeContainer rather than the whole page
+                const containerRect = treeContainer.getBoundingClientRect();
+                const elRect = el.getBoundingClientRect();
+                const offset = elRect.top - containerRect.top + treeContainer.scrollTop;
+                treeContainer.scrollTop = offset - treeContainer.clientHeight / 2;
+            }
+
+            function doTreeSearch(query) {
+                treeSearchMatches = [];
+                treeSearchIndex = 0;
+                treeContainer.querySelectorAll('.tree-highlight').forEach(el => el.classList.remove('tree-highlight'));
+                if (!query) { treeSearchCount.textContent = ''; return; }
+                const q = query.toLowerCase();
+                treeContainer.querySelectorAll('.tree-key, .tree-str, .tree-num, .tree-bool, .tree-null').forEach(el => {
+                    if (el.textContent.toLowerCase().includes(q)) {
+                        el.classList.add('tree-highlight');
+                        treeSearchMatches.push(el);
+                    }
+                });
+                treeSearchCount.textContent = treeSearchMatches.length
+                    ? `${treeSearchIndex + 1} / ${treeSearchMatches.length}`
+                    : '0 matches';
+                if (treeSearchMatches.length) scrollToMatch(treeSearchMatches[0]);
+            }
+
+            treeSearchInput.addEventListener('input', () => doTreeSearch(treeSearchInput.value));
+
+            document.getElementById('tree-search-next').addEventListener('click', () => {
+                if (!treeSearchMatches.length) return;
+                treeSearchIndex = (treeSearchIndex + 1) % treeSearchMatches.length;
+                treeSearchCount.textContent = `${treeSearchIndex + 1} / ${treeSearchMatches.length}`;
+                scrollToMatch(treeSearchMatches[treeSearchIndex]);
+            });
+
+            document.getElementById('tree-search-prev').addEventListener('click', () => {
+                if (!treeSearchMatches.length) return;
+                treeSearchIndex = (treeSearchIndex - 1 + treeSearchMatches.length) % treeSearchMatches.length;
+                treeSearchCount.textContent = `${treeSearchIndex + 1} / ${treeSearchMatches.length}`;
+                scrollToMatch(treeSearchMatches[treeSearchIndex]);
+            });
+
+            /* ─── Keyboard Shortcuts ─── */
+            document.addEventListener('keydown', e => {
+                if (e.ctrlKey || e.metaKey) {
+                    if (e.key === 'Enter') { e.preventDefault(); document.getElementById('btn-format').click(); }
+                    else if (e.shiftKey && e.key === 'M') { e.preventDefault(); document.getElementById('btn-minify').click(); }
+                    else if (e.shiftKey && e.key === 'C') { e.preventDefault(); document.getElementById('btn-copy').click(); }
+                    else if (e.shiftKey && e.key === 'X') { e.preventDefault(); document.getElementById('btn-clear-input').click(); }
+                    else if (e.key === 'f' && isTreeView) { e.preventDefault(); treeSearchInput.focus(); }
+                }
+            });
+
+            /* ─── Auto-format on paste ─── */
+            inputEl.addEventListener('paste', () => {
+                setTimeout(() => {
+                    const parsed = tryParse();
+                    if (parsed !== null) {
+                        setOutput(JSON.stringify(parsed, null, getIndent()), 'Formatted JSON', 'json');
+                        charCount.textContent = inputEl.value.length.toLocaleString() + ' chars';
+                    }
+                }, 0);
+            });
         });
     </script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
 </body>
+
 </html>

@@ -134,16 +134,85 @@ pre code {
     border-color: #2a2a30 !important;
 }
 
-.example-block {
+/* Alerts */
+.alert-info,
+.alert-success,
+.alert-warning,
+.alert-danger {
+    background: rgba(192, 192, 192, 0.04) !important;
+    border: 1px solid #2a2a30 !important;
+    color: #a0a0a8 !important;
+}
+
+/* Tool page layouts */
+.tool-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+}
+
+/* Accordion overrides (common in tools) */
+.accordion-item {
     background: #111114 !important;
     border-color: #2a2a30 !important;
 }
 
-/* Alert/info boxes */
-.alert-info {
-    background: rgba(192, 192, 192, 0.04) !important;
+.accordion-button {
+    background: #1a1a1f !important;
+    color: #f0f0f0 !important;
     border-color: #2a2a30 !important;
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background: #222228 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #2a2a30 !important;
+}
+
+.accordion-button::after {
+    filter: invert(1);
+}
+
+.accordion-body {
     color: #a0a0a8 !important;
+}
+
+/* Form controls refine */
+.form-control,
+.form-select {
+    background: #18181c !important;
+    border: 1px solid #2a2a30 !important;
+    color: #f0f0f0 !important;
+    padding: 0.6rem 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: #1c1c22 !important;
+    border-color: #c0c0c0 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.1) !important;
+}
+
+.form-check-input {
+    background-color: #2a2a30 !important;
+    border-color: #3a3a42 !important;
+}
+
+.form-check-input:checked {
+    background-color: #e0e0e0 !important;
+    border-color: #ffffff !important;
+}
+
+/* Custom tool boxes */
+.result-box,
+.output-box {
+    background: #0d0d0f !important;
+    border: 1px solid #2a2a30 !important;
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #f0f0f0;
 }
 
 /* Table overrides */

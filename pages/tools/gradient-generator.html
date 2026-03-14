@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    
-    
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/gradient-generator.html" />
@@ -75,21 +75,11 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 
     <style>
         .gradient-preview {
@@ -258,6 +248,7 @@
         .position-input {
             flex: 1;
             -moz-appearance: textfield;
+            appearance: textfield;
             /* Firefox */
             min-width: 100px;
         }
@@ -385,12 +376,14 @@
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
+            appearance: none;
             margin: 0;
         }
 
         /* Firefox */
         input[type="number"] {
             -moz-appearance: textfield;
+            appearance: textfield;
         }
 
         /* Custom Modal Styles */
@@ -445,23 +438,31 @@
 <body>
     <!-- Header -->
     <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
-    </div>
-  </div>
-</nav>
-<!-- Old header removed -->
+    <nav class="nav scrolled" id="main-nav"
+        style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
+            <a href="/" style="display:flex;align-items:center;">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions"
+                    style="height:40px;width:auto;">
+            </a>
+            <div style="display:flex;align-items:center;gap:4px;">
+                <a href="/"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
+                <a href="/pages/tools/tools.html"
+                    style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All
+                    Tools</a>
+                <a href="/pages/about-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
+                <a href="/pages/contact-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get
+                    in Touch</a>
+            </div>
+        </div>
+    </nav>
+    </nav>
+    <!-- Main Content Area -->
 
-    <!-- Add backdrop div after header -->
-    
 
     <!-- Wrap content in main tag -->
     <main>
@@ -506,14 +507,16 @@
                         <div class="color-input-group">
                             <input type="color" class="form-control form-control-color color-input" value="#007bff">
                             <div class="color-values">
-                                <input type="text" class="form-control hex-input" value="#007bffff" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
+                                <input type="text" class="form-control hex-input" value="#007bffff"
+                                    pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$" placeholder="Hex">
                                 <div class="rgba-group">
                                     <input type="number" class="form-control rgba-input" min="0" max="255" value="0">
                                     <input type="number" class="form-control rgba-input" min="0" max="255" value="123">
                                     <input type="number" class="form-control rgba-input" min="0" max="255" value="255">
                                     <input type="number" class="form-control rgba-input" min="0" max="100" value="100">
                                 </div>
-                                <input type="number" class="form-control position-input" min="0" max="100" value="0" placeholder="Position %">
+                                <input type="number" class="form-control position-input" min="0" max="100" value="0"
+                                    placeholder="Position %">
                             </div>
                         </div>
                         <button class="btn btn-danger btn-sm remove-stop"><i class="bi bi-trash"></i></button>
@@ -546,12 +549,14 @@
         <!-- Documentation Section -->
         <section class="documentation mt-5">
             <h2>Understanding CSS Gradients</h2>
-            <p class="lead">CSS gradients allow you to display smooth transitions between two or more specified colors. They are widely used in modern web design to create attractive backgrounds and UI elements.</p>
+            <p class="lead">CSS gradients allow you to display smooth transitions between two or more specified colors.
+                They are widely used in modern web design to create attractive backgrounds and UI elements.</p>
 
             <h3>Types of Gradients</h3>
             <div class="mb-4">
                 <h4>Linear Gradients</h4>
-                <p>Linear gradients transition colors in a straight line. They can be angled in any direction and support multiple color stops. Common uses include buttons, headers, and section backgrounds.</p>
+                <p>Linear gradients transition colors in a straight line. They can be angled in any direction and
+                    support multiple color stops. Common uses include buttons, headers, and section backgrounds.</p>
                 <div class="code-example">
                     <code>background: linear-gradient(45deg, #ff6b6b, #4ecdc4);</code>
                 </div>
@@ -559,7 +564,8 @@
 
             <div class="mb-4">
                 <h4>Radial Gradients</h4>
-                <p>Radial gradients create circular or elliptical transitions from a central point. They're perfect for spotlight effects, circular buttons, or creating focus on specific elements.</p>
+                <p>Radial gradients create circular or elliptical transitions from a central point. They're perfect for
+                    spotlight effects, circular buttons, or creating focus on specific elements.</p>
                 <div class="code-example">
                     <code>background: radial-gradient(circle at center, #ff6b6b, #4ecdc4);</code>
                 </div>
@@ -567,14 +573,17 @@
 
             <div class="mb-4">
                 <h4>Conic Gradients</h4>
-                <p>Conic gradients rotate colors around a center point. They're ideal for pie charts, color wheels, and creative background effects.</p>
+                <p>Conic gradients rotate colors around a center point. They're ideal for pie charts, color wheels, and
+                    creative background effects.</p>
                 <div class="code-example">
                     <code>background: conic-gradient(from 0deg, #ff6b6b, #4ecdc4);</code>
                 </div>
             </div>
 
             <h3>Browser Compatibility</h3>
-            <p>Modern browsers support all gradient types, but some older browsers may need vendor prefixes or fallback solutions. Our generator automatically provides necessary fallbacks when you enable "Extended Support".</p>
+            <p>Modern browsers support all gradient types, but some older browsers may need vendor prefixes or fallback
+                solutions. Our generator automatically provides necessary fallbacks when you enable "Extended Support".
+            </p>
 
             <h3>Best Practices</h3>
             <ul>
@@ -597,46 +606,54 @@
                     </h2>
                     <div id="faq1" class="accordion-collapse collapse show">
                         <div class="accordion-body">
-                            Linear gradients progress in a straight line, radial gradients expand from a center point in circles, and conic gradients rotate around a center point like a color wheel.
+                            Linear gradients progress in a straight line, radial gradients expand from a center point in
+                            circles, and conic gradients rotate around a center point like a color wheel.
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq2">
                             Why do I need browser compatibility support?
                         </button>
                     </h2>
                     <div id="faq2" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Different browsers may interpret gradient syntax differently. Our extended support option adds vendor prefixes and fallbacks to ensure consistent appearance across all browsers and versions.
+                            Different browsers may interpret gradient syntax differently. Our extended support option
+                            adds vendor prefixes and fallbacks to ensure consistent appearance across all browsers and
+                            versions.
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq3">
                             How do color stops work in gradients?
                         </button>
                     </h2>
                     <div id="faq3" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Color stops define where colors begin and end in your gradient. By adjusting their positions (0-100%), you can control the transition points and create custom color distributions.
+                            Color stops define where colors begin and end in your gradient. By adjusting their positions
+                            (0-100%), you can control the transition points and create custom color distributions.
                         </div>
                     </div>
                 </div>
 
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#faq4">
                             Can I save or share my gradients?
                         </button>
                     </h2>
                     <div id="faq4" class="accordion-collapse collapse">
                         <div class="accordion-body">
-                            Yes! You can download the CSS code, save the gradient as an image, or share it directly via social media or a unique URL that preserves all your gradient settings.
+                            Yes! You can download the CSS code, save the gradient as an image, or share it directly via
+                            social media or a unique URL that preserves all your gradient settings.
                         </div>
                     </div>
                 </div>
@@ -683,55 +700,30 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i
-                        class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"
-                    class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Section -->
+    <div class="tool-footer">
+        <p>
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html">All Tools</a>
+        </p>
+    </div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Vendor JS Files -->
+    <!-- Scripts -->
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="/assets/js/index.js"></script>
-    <script src="/assets/js/main.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="/assets/js/gradient-generator.js"></script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
+    <!-- Dark Theme Footer -->
+    <div class="tool-footer"
+        style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
+        <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
+        </p>
+    </div>
 </body>
 
 </html>

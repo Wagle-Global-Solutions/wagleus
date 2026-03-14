@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/text-manipulation.html" />
     <title>Hash Generator Tool | MD5, SHA-1, SHA-256, SHA-512 | WUS</title>
-    <meta name="description" content="Generate secure cryptographic hashes online with our free tool. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Perfect for developers and security testing.">
-    <meta name="keywords" content="hash generator, MD5 generator, SHA-256 generator, SHA-512 generator, RIPEMD-160, SHA3, online hash tool, crypto hash calculator">
+    <meta name="description"
+        content="Generate secure cryptographic hashes online with our free tool. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Perfect for developers and security testing.">
+    <meta name="keywords"
+        content="hash generator, MD5 generator, SHA-256 generator, SHA-512 generator, RIPEMD-160, SHA3, online hash tool, crypto hash calculator">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.wagleus.com/pages/tools/hash-generator.html">
     <meta property="og:title" content="Hash Generator Tool | Multiple Hash Algorithms | WUS">
-    <meta property="og:description" content="Generate cryptographic hashes instantly with our free online tool. Support for MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files securely.">
+    <meta property="og:description"
+        content="Generate cryptographic hashes instantly with our free online tool. Support for MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files securely.">
     <meta property="og:image" content="/assets/img/logo.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.wagleus.com/pages/tools/hash-generator.html">
     <meta property="twitter:title" content="Hash Generator Tool | WUS">
-    <meta property="twitter:description" content="Generate secure hashes online. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files with our free tool.">
+    <meta property="twitter:description"
+        content="Generate secure hashes online. Supporting MD5, SHA-1, SHA-256, SHA-512, RIPEMD-160, and SHA3. Process text and files with our free tool.">
     <meta property="twitter:image" content="/assets/img/logo.png">
 
     <!-- Enhanced Structured Data -->
@@ -53,34 +58,26 @@
     </script>
 
     <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 
     <style>
         .hash-output {
             font-family: monospace;
             word-break: break-all;
         }
-        
+
         .hash-label {
             font-weight: 500;
             color: #666;
@@ -89,49 +86,65 @@
 
         /* Only animation styles since they're specific to hash generator */
         @keyframes copiedAnimation {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .copy-btn.animate {
             animation: copiedAnimation 0.3s ease;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 </head>
-<body>
-   <!-- Header -->
-   <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
-    </div>
-  </div>
-</nav>
-<!-- Old header removed -->
 
-<!-- Add backdrop div after header -->
+<body>
+    <!-- Header -->
+    <!-- Dark Theme Nav -->
+    <nav class="nav scrolled" id="main-nav"
+        style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
+            <a href="/" style="display:flex;align-items:center;">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions"
+                    style="height:40px;width:auto;">
+            </a>
+            <div style="display:flex;align-items:center;gap:4px;">
+                <a href="/"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
+                <a href="/pages/tools/tools.html"
+                    style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All
+                    Tools</a>
+                <a href="/pages/about-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
+                <a href="/pages/contact-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get
+                    in Touch</a>
+            </div>
+        </div>
+    </nav>
+    </nav>
+    <!-- Main Content Area -->
 
     <!-- Wrap content in main tag -->
     <main class="main">
         <div class="tool-container">
             <h1 class="text-center mb-4">Hash Generator</h1>
             <p class="tool-description text-center">
-                Generate secure cryptographic hashes using industry-standard algorithms. All processing is done locally in your browser for maximum security and privacy.
+                Generate secure cryptographic hashes using industry-standard algorithms. All processing is done locally
+                in your browser for maximum security and privacy.
             </p>
             <div class="warning-box">
                 <p class="mb-0">
-                    <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
-                    <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
+                    <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on
+                    <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or
                     <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
                 </p>
             </div>
@@ -152,8 +165,7 @@
 
             <div class="tab-content active" id="textContent">
                 <div class="conversion-controls">
-                    <textarea id="inputText" class="text-area" 
-                        placeholder="Enter text to generate hash..."></textarea>
+                    <textarea id="inputText" class="text-area" placeholder="Enter text to generate hash..."></textarea>
 
                     <div id="textHashes">
                         <div class="hash-container">
@@ -206,11 +218,13 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h3>What is a Hash?</h3>
-                        <p>A hash function is a mathematical algorithm that transforms data of any size into a fixed-size output. Key properties include:</p>
+                        <p>A hash function is a mathematical algorithm that transforms data of any size into a
+                            fixed-size output. Key properties include:</p>
                         <ul>
                             <li><strong>Deterministic:</strong> Same input always produces the same hash</li>
                             <li><strong>One-way:</strong> Cannot derive original data from the hash</li>
-                            <li><strong>Avalanche Effect:</strong> Small input changes create significantly different hashes</li>
+                            <li><strong>Avalanche Effect:</strong> Small input changes create significantly different
+                                hashes</li>
                         </ul>
                     </div>
                 </div>
@@ -302,7 +316,8 @@
                 <div class="accordion mb-4" id="hashTutorials">
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fileTutorial">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#fileTutorial">
                                 How to Verify File Downloads
                             </button>
                         </h4>
@@ -327,7 +342,8 @@
                             <li><strong>Security:</strong> Use SHA-256 or higher for cryptographic purposes</li>
                             <li><strong>File Verification:</strong> Always use multiple hash algorithms</li>
                             <li><strong>Performance:</strong> Use MD5/SHA-1 for non-security checksums</li>
-                            <li><strong>Compatibility:</strong> Check system requirements before choosing an algorithm</li>
+                            <li><strong>Compatibility:</strong> Check system requirements before choosing an algorithm
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -337,7 +353,8 @@
                 <div class="accordion mb-4" id="hashFAQ">
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq1">
                                 Why do my file hashes not match the publisher's hash?
                             </button>
                         </h4>
@@ -356,7 +373,8 @@
 
                     <div class="accordion-item">
                         <h4 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faq2">
                                 Which hash algorithm should I use for passwords?
                             </button>
                         </h4>
@@ -472,55 +490,29 @@ function calculateFileHash(filePath) {
         </div>
     </main>
 
-    <!-- Add Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container text-center">
-            <h3 class="sitename">Wagle Universal Solutions</h3>
-            <p>Contact us today to learn how we can help you achieve your goals.</p>
-            <div class="social-links d-flex justify-content-center">
-                <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
-            <div class="copyright mt-4">
-                <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-                <div class="mt-2">
-                    <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                </div>
-            </div>
-            <div class="credits">
-                Designed by <a>WUS</a> | <a href="/pages/privacy.html">Privacy Policy</a>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Section -->
+    <div class="tool-footer">
+        <p>
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html">All Tools</a>
+        </p>
+    </div>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Add crypto-js library before other scripts -->
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    
-    <!-- Vendor JS Files -->
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-
-    <!-- Main JS File -->
-    <script src="/assets/js/index.js"></script>
-    <script src="/assets/js/main.js"></script>
 
     <script>
         // Replace the MD5 implementation with crypto-js
         async function generateHash(algorithm, data) {
             // Convert input to WordArray for crypto-js
-            const wordArray = typeof data === 'string' 
+            const wordArray = typeof data === 'string'
                 ? CryptoJS.enc.Utf8.parse(data)
                 : CryptoJS.lib.WordArray.create(data);
 
-            switch(algorithm) {
+            switch (algorithm) {
                 case 'MD5':
                     return CryptoJS.MD5(wordArray).toString();
                 case 'RIPEMD160':
@@ -529,7 +521,7 @@ function calculateFileHash(filePath) {
                     return CryptoJS.SHA3(wordArray, { outputLength: 256 }).toString();
                 default:
                     // Use Web Crypto API for SHA-1, SHA-256, SHA-512
-                    const buffer = typeof data === 'string' 
+                    const buffer = typeof data === 'string'
                         ? new TextEncoder().encode(data)
                         : data;
                     const hashBuffer = await crypto.subtle.digest(algorithm, buffer);
@@ -681,7 +673,7 @@ function calculateFileHash(filePath) {
             tab.addEventListener('click', () => {
                 tabs.forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
-                
+
                 document.querySelectorAll('.tab-content').forEach(content => {
                     content.classList.remove('active');
                 });
@@ -694,15 +686,15 @@ function calculateFileHash(filePath) {
             if (e.target.classList.contains('copy-btn')) {
                 const button = e.target;
                 const hashOutput = button.previousElementSibling;
-                
+
                 if (hashOutput.textContent) {
                     try {
                         await navigator.clipboard.writeText(hashOutput.textContent);
-                        
+
                         // Visual feedback
                         button.textContent = 'Copied!';
                         button.classList.add('copied', 'animate');
-                        
+
                         // Reset button after 2 seconds
                         setTimeout(() => {
                             button.textContent = 'Copy';
@@ -727,14 +719,6 @@ function calculateFileHash(filePath) {
             setTimeout(() => notification.remove(), 2000);
         }
     </script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
 </body>
+
 </html>

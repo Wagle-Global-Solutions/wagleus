@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    
-    
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://www.wagleus.com/pages/tools/color-picker.html" />
@@ -14,7 +14,7 @@
         content="color theory tool, color code converter, WCAG contrast checker, color harmony generator, hex to rgb converter, color accessibility, color palette generator, web color tool, color scheme maker, color code translator">
     <meta name="author" content="Wagle Universal Solutions">
     <meta name="robots" content="index, follow">
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -65,29 +65,19 @@
     </script>
 
     <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-<link rel="manifest" href="/assets/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Main CSS File -->
-    <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="/assets/css/tool-wrapper.css" rel="stylesheet">
 
     <style>
         .color-picker-container {
@@ -200,7 +190,7 @@
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .theory-description {
@@ -260,11 +250,13 @@
             margin: 1rem 0;
             height: 40px;
         }
+
         .color-box {
             flex: 1;
             border-radius: 4px;
             position: relative;
         }
+
         .color-box::after {
             content: attr(data-value);
             position: absolute;
@@ -275,18 +267,21 @@
             color: #666;
             white-space: nowrap;
         }
+
         .color-example {
             display: flex;
             gap: 1rem;
             align-items: center;
             margin: 1rem 0;
         }
+
         .color-square {
             width: 100px;
             height: 100px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .color-label {
             font-size: 0.9rem;
             color: #666;
@@ -332,11 +327,11 @@
             position: relative;
             cursor: pointer;
         }
-        
+
         .color-square {
             position: relative;
         }
-        
+
         .color-copy-btn {
             position: absolute;
             top: 50%;
@@ -350,7 +345,7 @@
             cursor: pointer;
             border-radius: 4px;
         }
-        
+
         .color-square-container:hover .color-copy-btn {
             opacity: 1;
         }
@@ -390,211 +385,231 @@
 </head>
 
 <body>
-   <!-- Header -->
-   <!-- Dark Theme Nav -->
-<nav class="nav scrolled" id="main-nav" style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
-  <div style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
-    <a href="/" style="display:flex;align-items:center;">
-      <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" style="height:40px;width:auto;">
-    </a>
-    <div style="display:flex;align-items:center;gap:4px;">
-      <a href="/" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
-      <a href="/pages/tools/tools.html" style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All Tools</a>
-      <a href="/pages/about-us.html" style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
-      <a href="/pages/contact-us.html" style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get in Touch</a>
-    </div>
-  </div>
-</nav>
-<!-- Old header removed -->
-
-<!-- Add backdrop div after header -->
-
-
-<main class="main">
-    <div class="tool-container">
-        <h1 class="text-center mb-4">Color Theory & Palette Generator</h1>
-        <p class="tool-description text-center">
-            Generate harmonious color palettes, explore color combinations, and understand color theory principles for your design projects.
-        </p>
-
-        <!-- Warning Box -->
-        <div class="warning-box">
-            <p class="mb-0">
-                <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on 
-                <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or 
-                <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
-            </p>
+    <!-- Header -->
+    <!-- Dark Theme Nav -->
+    <nav class="nav scrolled" id="main-nav"
+        style="position:fixed;top:0;left:0;right:0;height:72px;z-index:1000;background:rgba(8,8,10,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 0 #2a2a30;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1200px;margin:0 auto;padding:0 2rem;">
+            <a href="/" style="display:flex;align-items:center;">
+                <img src="/assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions"
+                    style="height:40px;width:auto;">
+            </a>
+            <div style="display:flex;align-items:center;gap:4px;">
+                <a href="/"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Home</a>
+                <a href="/pages/tools/tools.html"
+                    style="font-size:0.875rem;font-weight:500;color:#f0f0f0;padding:8px 16px;border-radius:6px;text-decoration:none;background:rgba(255,255,255,0.05);font-family:Inter,-apple-system,sans-serif;">All
+                    Tools</a>
+                <a href="/pages/about-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#a0a0a8;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">About</a>
+                <a href="/pages/contact-us.html"
+                    style="font-size:0.875rem;font-weight:500;color:#08080a;background:#e0e0e0;padding:8px 24px;border-radius:9999px;text-decoration:none;font-family:Inter,-apple-system,sans-serif;">Get
+                    in Touch</a>
+            </div>
         </div>
+    </nav>
+    </nav>
+    <!-- Main Content Area -->
 
-        <!-- Main Tool Content -->
-        <div class="card">
-            <div class="card-body">
-                <div class="color-picker-container">
-                    <div class="color-preview mb-4" id="colorPreview"></div>
-                    <div class="color-area-container mb-4">
-                        <canvas id="colorArea" width="300" height="300"></canvas>
-                        <canvas id="hueSlider" width="300" height="20"></canvas> <!-- Updated height -->
-                        <div class="color-picker-marker"></div>
-                        <div class="hue-marker"></div>
-                    </div>
-                    <div class="color-values">
-                        <div class="row">
-                            <div class="col-md-6 mb-2">
-                                <div class="value-group">
-                                    <label>HEX:</label>
-                                    <div style="position: relative;">
-                                        <input type="text" class="form-control" id="hexValue" onblur="updateFromHex(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHex(this.value); this.blur(); }">
-                                        <button class="copy-icon" onclick="copyValue('hexValue')">
-                                            <i class="bi bi-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="value-group">
-                                    <label>RGB:</label>
-                                    <div style="position: relative;">
-                                        <input type="text" class="form-control" id="rgbValue" onblur="updateFromRgb(this.value)" onkeydown="if(event.key === 'Enter') { updateFromRgb(this.value); this.blur(); }">
-                                        <button class="copy-icon" onclick="copyValue('rgbValue')">
-                                            <i class="bi bi-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="value-group">
-                                    <label>HSL:</label>
-                                    <div style="position: relative;">
-                                        <input type="text" class="form-control" id="hslValue" onblur="updateFromHsl(this.value)" onkeydown="if(event.key === 'Enter') { updateFromHsl(this.value); this.blur(); }">
-                                        <button class="copy-icon" onclick="copyValue('hslValue')">
-                                            <i class="bi bi-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="value-group">
-                                    <label>HSV:</label>
-                                    <div style="position: relative;">
-                                        <input type="text" class="form-control" id="hsvValue" readonly>
-                                        <button class="copy-icon" onclick="copyValue('hsvValue')">
-                                            <i class="bi bi-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <div class="value-group">
-                                    <label>CMYK:</label>
-                                    <div style="position: relative;">
-                                        <input type="text" class="form-control" id="cmykValue" readonly>
-                                        <button class="copy-icon" onclick="copyValue('cmykValue')">
-                                            <i class="bi bi-clipboard"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <small class="text-muted mt-2 mb-3 d-block text-center">
-                            Press Enter or click outside the input box to apply changes
-                        </small>
-                        <!-- Add Share Button -->
-                        <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
-                            <i class="bi bi-share"></i> Share Color
-                        </button>
-                    </div>
-                </div>
-                <div class="color-theory-section">
-                    <h3 class="mb-4">Color Theory & Combinations</h3>
 
-                    <!-- Color Variations -->
-                    <div class="theory-block mb-5">
-                        <h4>Color Variations</h4>
-                        <p class="theory-description">
-                            Tints and shades help create depth and hierarchy in design. Tints are created by adding white, shades by adding black.
-                        </p>
-                        <div class="variations-container">
-                            <h6 class="mb-2">Tints (Adding White)</h6>
-                            <div id="tintStrip" class="color-strip"></div>
-                            <h6 class="mb-2 mt-4">Shades (Adding Black)</h6>
-                            <div id="shadeStrip" class="color-strip"></div>
-                        </div>
-                    </div>
+    <main class="main">
+        <div class="tool-container">
+            <h1 class="text-center mb-4">Color Theory & Palette Generator</h1>
+            <p class="tool-description text-center">
+                Generate harmonious color palettes, explore color combinations, and understand color theory principles
+                for your design projects.
+            </p>
 
-                    <!-- Color Harmonies -->
-                    <div class="row">
-                        <!-- Complementary -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Complementary Colors</h4>
-                                <p class="theory-description">Colors opposite on the color wheel. Creates maximum contrast.</p>
-                                <div id="complementaryDisplay" class="color-harmony"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Split Complementary -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Split-Complementary</h4>
-                                <p class="theory-description">Uses two colors adjacent to the complement.</p>
-                                <div id="splitComplementaryDisplay" class="color-harmony"></div>
-                            </div>
-                        </div>
+            <!-- Warning Box -->
+            <div class="warning-box">
+                <p class="mb-0">
+                    <strong>Help Us Improve!</strong> Found a bug or have suggestions? Connect with us on
+                    <a href="https://x.com/wagleus" target="_blank">X (Twitter)</a> or
+                    <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank">LinkedIn</a>.
+                </p>
+            </div>
 
-                        <!-- Triadic -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Triadic Colors</h4>
-                                <p class="theory-description">Three colors equally spaced on the color wheel.</p>
-                                <div id="triadicDisplay" class="color-harmony"></div>
-                            </div>
+            <!-- Main Tool Content -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="color-picker-container">
+                        <div class="color-preview mb-4" id="colorPreview"></div>
+                        <div class="color-area-container mb-4">
+                            <canvas id="colorArea" width="300" height="300"></canvas>
+                            <canvas id="hueSlider" width="300" height="20"></canvas> <!-- Updated height -->
+                            <div class="color-picker-marker"></div>
+                            <div class="hue-marker"></div>
                         </div>
-
-                        <!-- Tetradic -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Tetradic (Double Complementary)</h4>
-                                <p class="theory-description">Two pairs of complementary colors.</p>
-                                <div id="tetradicDisplay" class="color-harmony"></div>
-                            </div>
-                        </div>
-
-                        <!-- Analogous -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Analogous Colors</h4>
-                                <p class="theory-description">Three adjacent colors on the color wheel.</p>
-                                <div id="analogousDisplay" class="color-harmony"></div>
-                            </div>
-                        </div>
-
-                        <!-- Monochromatic -->
-                        <div class="col-md-6 mb-4">
-                            <div class="theory-block">
-                                <h4>Monochromatic</h4>
-                                <p class="theory-description">Different shades and saturations of the same hue.</p>
-                                <div id="monochromaticDisplay" class="color-harmony"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contrast Checker -->
-                    <div class="theory-block mt-4">
-                        <h4>Contrast Checker</h4>
-                        <p class="theory-description">
-                            Check if your text color has sufficient contrast with the background color for optimal readability. WCAG guidelines recommend a minimum contrast ratio of 4.5:1 for normal text.
-                        </p>
-                        <div class="contrast-checker">
-                            <div class="contrast-preview p-4 mb-3" id="contrastPreview">
-                                <span id="previewText">Preview Text</span>
-                            </div>
+                        <div class="color-values">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label>Text Color: <span id="textColorHex">#000000</span></label>
-                                    <input type="color" class="form-control" id="textColorPicker">
+                                <div class="col-md-6 mb-2">
+                                    <div class="value-group">
+                                        <label>HEX:</label>
+                                        <div style="position: relative;">
+                                            <input type="text" class="form-control" id="hexValue"
+                                                onblur="updateFromHex(this.value)"
+                                                onkeydown="if(event.key === 'Enter') { updateFromHex(this.value); this.blur(); }">
+                                            <button class="copy-icon" onclick="copyValue('hexValue')">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div id="contrastRatio" class="mt-2"></div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="value-group">
+                                        <label>RGB:</label>
+                                        <div style="position: relative;">
+                                            <input type="text" class="form-control" id="rgbValue"
+                                                onblur="updateFromRgb(this.value)"
+                                                onkeydown="if(event.key === 'Enter') { updateFromRgb(this.value); this.blur(); }">
+                                            <button class="copy-icon" onclick="copyValue('rgbValue')">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="value-group">
+                                        <label>HSL:</label>
+                                        <div style="position: relative;">
+                                            <input type="text" class="form-control" id="hslValue"
+                                                onblur="updateFromHsl(this.value)"
+                                                onkeydown="if(event.key === 'Enter') { updateFromHsl(this.value); this.blur(); }">
+                                            <button class="copy-icon" onclick="copyValue('hslValue')">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="value-group">
+                                        <label>HSV:</label>
+                                        <div style="position: relative;">
+                                            <input type="text" class="form-control" id="hsvValue" readonly>
+                                            <button class="copy-icon" onclick="copyValue('hsvValue')">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <div class="value-group">
+                                        <label>CMYK:</label>
+                                        <div style="position: relative;">
+                                            <input type="text" class="form-control" id="cmykValue" readonly>
+                                            <button class="copy-icon" onclick="copyValue('cmykValue')">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="text-muted mt-2 mb-3 d-block text-center">
+                                Press Enter or click outside the input box to apply changes
+                            </small>
+                            <!-- Add Share Button -->
+                            <button class="btn btn-primary w-100 mt-3" onclick="openShareModal()">
+                                <i class="bi bi-share"></i> Share Color
+                            </button>
+                        </div>
+                    </div>
+                    <div class="color-theory-section">
+                        <h3 class="mb-4">Color Theory & Combinations</h3>
+
+                        <!-- Color Variations -->
+                        <div class="theory-block mb-5">
+                            <h4>Color Variations</h4>
+                            <p class="theory-description">
+                                Tints and shades help create depth and hierarchy in design. Tints are created by adding
+                                white, shades by adding black.
+                            </p>
+                            <div class="variations-container">
+                                <h6 class="mb-2">Tints (Adding White)</h6>
+                                <div id="tintStrip" class="color-strip"></div>
+                                <h6 class="mb-2 mt-4">Shades (Adding Black)</h6>
+                                <div id="shadeStrip" class="color-strip"></div>
+                            </div>
+                        </div>
+
+                        <!-- Color Harmonies -->
+                        <div class="row">
+                            <!-- Complementary -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Complementary Colors</h4>
+                                    <p class="theory-description">Colors opposite on the color wheel. Creates maximum
+                                        contrast.</p>
+                                    <div id="complementaryDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+
+                            <!-- Split Complementary -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Split-Complementary</h4>
+                                    <p class="theory-description">Uses two colors adjacent to the complement.</p>
+                                    <div id="splitComplementaryDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+
+                            <!-- Triadic -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Triadic Colors</h4>
+                                    <p class="theory-description">Three colors equally spaced on the color wheel.</p>
+                                    <div id="triadicDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+
+                            <!-- Tetradic -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Tetradic (Double Complementary)</h4>
+                                    <p class="theory-description">Two pairs of complementary colors.</p>
+                                    <div id="tetradicDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+
+                            <!-- Analogous -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Analogous Colors</h4>
+                                    <p class="theory-description">Three adjacent colors on the color wheel.</p>
+                                    <div id="analogousDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+
+                            <!-- Monochromatic -->
+                            <div class="col-md-6 mb-4">
+                                <div class="theory-block">
+                                    <h4>Monochromatic</h4>
+                                    <p class="theory-description">Different shades and saturations of the same hue.</p>
+                                    <div id="monochromaticDisplay" class="color-harmony"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contrast Checker -->
+                        <div class="theory-block mt-4">
+                            <h4>Contrast Checker</h4>
+                            <p class="theory-description">
+                                Check if your text color has sufficient contrast with the background color for optimal
+                                readability. WCAG guidelines recommend a minimum contrast ratio of 4.5:1 for normal
+                                text.
+                            </p>
+                            <div class="contrast-checker">
+                                <div class="contrast-preview p-4 mb-3" id="contrastPreview">
+                                    <span id="previewText">Preview Text</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Text Color: <span id="textColorHex">#000000</span></label>
+                                        <input type="color" class="form-control" id="textColorPicker">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="contrastRatio" class="mt-2"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -602,73 +617,59 @@
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 
-<!-- Add Share Modal -->
-<div class="custom-modal" id="shareModal">
-    <div class="modal-content">
-        <span class="modal-close" onclick="closeShareModal()">&times;</span>
-        <h5 class="modal-title">Share Color</h5>
-        <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
-            <div class="color-preview mb-3" id="modalColorPreview" style="height: 100px;"></div>
-            <p id="modalColorValues" class="text-center"></p>
-        </div>
-        <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
-            <button onclick="shareToFacebook()" class="btn btn-outline-primary">
-                <i class="bi bi-facebook"></i>
-                Facebook
-            </button>
-            <button onclick="shareToTwitter()" class="btn btn-outline-info">
-                <i class="bi bi-twitter-x"></i>
-                Twitter
-            </button>
-            <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
-                <i class="bi bi-whatsapp"></i>
-                WhatsApp
-            </button>
-            <button onclick="shareByEmail()" class="btn btn-outline-secondary">
-                <i class="bi bi-envelope"></i>
-                Email
-            </button>
-        </div>
-        <div class="mt-4">
-            <label>Direct Link:</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="shareLink" readonly>
-                <button class="btn btn-outline-primary" onclick="copyShareLink()">
-                    <i class="bi bi-clipboard"></i>
+    <!-- Add Share Modal -->
+    <div class="custom-modal" id="shareModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeShareModal()">&times;</span>
+            <h5 class="modal-title">Share Color</h5>
+            <div class="share-preview mb-3 p-3 rounded" id="sharePreview">
+                <div class="color-preview mb-3" id="modalColorPreview" style="height: 100px;"></div>
+                <p id="modalColorValues" class="text-center"></p>
+            </div>
+            <div class="share-options d-flex flex-wrap gap-2 justify-content-center">
+                <button onclick="shareToFacebook()" class="btn btn-outline-primary">
+                    <i class="bi bi-facebook"></i>
+                    Facebook
+                </button>
+                <button onclick="shareToTwitter()" class="btn btn-outline-info">
+                    <i class="bi bi-twitter-x"></i>
+                    Twitter
+                </button>
+                <button onclick="shareToWhatsApp()" class="btn btn-outline-success">
+                    <i class="bi bi-whatsapp"></i>
+                    WhatsApp
+                </button>
+                <button onclick="shareByEmail()" class="btn btn-outline-secondary">
+                    <i class="bi bi-envelope"></i>
+                    Email
                 </button>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<footer id="footer" class="footer dark-background">
-    <div class="container text-center">
-        <h3 class="sitename">Wagle Universal Solutions</h3>
-        <p>Contact us today to learn how we can help you achieve your goals.</p>
-        <div class="social-links d-flex justify-content-center">
-            <a href="https://www.facebook.com/profile.php?id=61558961715001" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://x.com/wagleus" class="twitter-x" target="_blank" ><i class="bi bi-twitter-x"></i></a>
-            <a href="https://www.linkedin.com/company/wagle-universal-solutions/ " target="_blank"class="linkedin"><i class="bi bi-linkedin"></i></a>
-          </div>
-        <div class="copyright mt-4">
-            <span>Copyright</span> <strong class="px-1 sitename">WUS</strong> <span>All Rights Reserved</span>
-            <div class="mt-2">
-                <a href="../terms-of-service.html" class="text-white">Terms of Service</a>
-                <a href="/pages/privacy.html">Privacy Policy</a>
+            <div class="mt-4">
+                <label>Direct Link:</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="shareLink" readonly>
+                    <button class="btn btn-outline-primary" onclick="copyShareLink()">
+                        <i class="bi bi-clipboard"></i>
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="credits">
-            Designed by <a>WUS</a>
-        </div>
     </div>
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-</footer>
-<script src="/assets/js/index.js"></script>
+    <!-- Footer Section -->
+    <div class="tool-footer">
+        <p>
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html">All Tools</a>
+        </p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
         let hue, saturation, value;
 
@@ -981,11 +982,11 @@
         document.getElementById('shareModal').addEventListener('show.bs.modal', function (event) {
             const currentColor = document.getElementById('hexValue').value;
             const currentRgb = document.getElementById('rgbValue').value;
-            
+
             // Update modal preview
             document.getElementById('modalColorPreview').style.backgroundColor = currentColor;
             document.getElementById('modalColorValues').textContent = `${currentColor} • ${currentRgb}`;
-            
+
             // Generate share link
             const shareUrl = new URL(window.location.href);
             document.getElementById('shareLink').value = shareUrl.toString();
@@ -1092,7 +1093,7 @@
 
         function updateMonochromatic() {
             const monochromaticColors = [];
-            
+
             // Generate base color
             monochromaticColors.push({
                 color: rgbToHex(...Object.values(hsvToRgb(hue, saturation, value))),
@@ -1126,12 +1127,12 @@
 
             // Generate tints
             let tintsHTML = '';
-            for(let i = 0; i <= 10; i++) {
-                const tintHsv = [hue, saturation, value + ((100 - value) * (i/10))];
+            for (let i = 0; i <= 10; i++) {
+                const tintHsv = [hue, saturation, value + ((100 - value) * (i / 10))];
                 const rgb = hsvToRgb(...tintHsv);
                 const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
                 const textColor = getBestContrastColor(hex);
-                
+
                 tintsHTML += `
                     <div class="color-box" style="background-color: ${hex}">
                         <button class="color-copy-btn" 
@@ -1148,12 +1149,12 @@
 
             // Generate shades
             let shadesHTML = '';
-            for(let i = 0; i <= 10; i++) {
-                const shadeHsv = [hue, saturation, value * (1 - i/10)];
+            for (let i = 0; i <= 10; i++) {
+                const shadeHsv = [hue, saturation, value * (1 - i / 10)];
                 const rgb = hsvToRgb(...shadeHsv);
                 const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
                 const textColor = getBestContrastColor(hex);
-                
+
                 shadesHTML += `
                     <div class="color-box" style="background-color: ${hex}">
                         <button class="color-copy-btn" 
@@ -1170,10 +1171,10 @@
         }
 
         function generateColorSquares(colors) {
-            return colors.map(({color, label}) => {
+            return colors.map(({ color, label }) => {
                 // Calculate best contrast color for icon
                 const textColor = getBestContrastColor(color);
-                
+
                 return `
                     <div class="color-square-container">
                         <div class="color-square" style="background-color: ${color}">
@@ -1189,47 +1190,47 @@
                 `;
             }).join('');
         }
-        
+
         // Add these new helper functions
         function getBestContrastColor(bgColor) {
             // Remove # if present
             const color = bgColor.charAt(0) === '#' ? bgColor.substring(1) : bgColor;
-            
+
             // Convert hex to RGB
-            const r = parseInt(color.substr(0,2), 16);
-            const g = parseInt(color.substr(2,2), 16);
-            const b = parseInt(color.substr(4,2), 16);
-            
+            const r = parseInt(color.substr(0, 2), 16);
+            const g = parseInt(color.substr(2, 2), 16);
+            const b = parseInt(color.substr(4, 2), 16);
+
             // Calculate perceived brightness
             const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-            
+
             // Choose white or black based on brightness
             const textColor = brightness > 128 ? '#000000' : '#FFFFFF';
-            
+
             // Verify contrast ratio meets WCAG AA
             const ratio = calculateContrastRatio(textColor, bgColor);
-            
+
             // Return the color with better contrast
             return ratio >= 4.5 ? textColor : (brightness > 128 ? '#000000' : '#FFFFFF');
         }
-        
+
         function copyHexColor(color) {
             // Create temporary input element
             const temp = document.createElement('input');
             temp.value = color;
             document.body.appendChild(temp);
-            
+
             // Select and copy
             temp.select();
             document.execCommand('copy');
             document.body.removeChild(temp);
-            
+
             // Show feedback
             const btn = event.currentTarget;
             const icon = btn.querySelector('i');
             icon.classList.remove('bi-clipboard');
             icon.classList.add('bi-clipboard-check');
-            
+
             setTimeout(() => {
                 icon.classList.remove('bi-clipboard-check');
                 icon.classList.add('bi-clipboard');
@@ -1300,15 +1301,15 @@
             const variations = [];
 
             // Generate tints (adding white)
-            for(let i = 9; i >= 1; i--) {
-                variations.push([h, s, v + ((100 - v) * (i/10))]);
+            for (let i = 9; i >= 1; i--) {
+                variations.push([h, s, v + ((100 - v) * (i / 10))]);
             }
 
             variations.push([h, s, v]); // Original color
 
             // Generate shades (adding black)
-            for(let i = 1; i <= 9; i++) {
-                variations.push([h, s, v * (1 - i/10)]);
+            for (let i = 1; i <= 9; i++) {
+                variations.push([h, s, v * (1 - i / 10)]);
             }
 
             return variations;
@@ -1317,41 +1318,41 @@
         function updateContrastChecker() {
             const bgColor = document.getElementById('colorPreview').style.backgroundColor;
             const preview = document.getElementById('contrastPreview');
-            
+
             // Convert background color to RGB
             const bgRGB = bgColor.match(/\d+/g).map(Number);
-            
+
             // Calculate perceived brightness of background
             const brightness = (bgRGB[0] * 299 + bgRGB[1] * 587 + bgRGB[2] * 114) / 1000;
-            
+
             // Start with black or white based on background brightness
             let textColor = brightness > 128 ? '#000000' : '#FFFFFF';
-            
+
             // Calculate initial contrast ratio
             let ratio = calculateContrastRatio(textColor, bgColor);
-            
+
             // If the contrast ratio doesn't meet WCAG AA standard (4.5:1),
             // adjust the text color to ensure compliance
             if (ratio < 4.5) {
                 // Try the opposite color
                 textColor = textColor === '#000000' ? '#FFFFFF' : '#000000';
                 ratio = calculateContrastRatio(textColor, bgColor);
-                
+
                 // If still not compliant, use enhanced versions
                 if (ratio < 4.5) {
                     // Try dark gray or light gray depending on background
                     textColor = brightness > 128 ? '#000000' : '#FFFFFF';
                 }
             }
-            
+
             // Update color picker and hex display
             document.getElementById('textColorPicker').value = textColor;
             document.getElementById('textColorHex').textContent = textColor;
-            
+
             // Apply colors
             preview.style.backgroundColor = bgColor;
             preview.style.color = textColor;
-            
+
             // Update ratio display
             document.getElementById('contrastRatio').innerHTML = `
                 <strong>Contrast Ratio: ${ratio.toFixed(2)}:1</strong><br>
@@ -1359,17 +1360,17 @@
             `;
         }
 
-        document.getElementById('textColorPicker').addEventListener('input', function(e) {
+        document.getElementById('textColorPicker').addEventListener('input', function (e) {
             const textColor = e.target.value;
             const preview = document.getElementById('contrastPreview');
             const bgColor = preview.style.backgroundColor;
-            
+
             // Update hex display
             document.getElementById('textColorHex').textContent = textColor;
-            
+
             // Update preview
             preview.style.color = textColor;
-            
+
             // Update contrast ratio
             const ratio = calculateContrastRatio(textColor, bgColor);
             document.getElementById('contrastRatio').innerHTML = `
@@ -1424,18 +1425,18 @@
             const modal = document.getElementById('shareModal');
             const currentColor = document.getElementById('hexValue').value;
             const currentRgb = document.getElementById('rgbValue').value;
-            
+
             // Update modal preview
             document.getElementById('modalColorPreview').style.backgroundColor = currentColor;
             document.getElementById('modalColorValues').textContent = `${currentColor} • ${currentRgb}`;
-            
+
             // Generate share link with relative path
             const path = '/pages/tools/color-picker.html';
             const queryParams = `?h=${Math.round(hue)}&s=${Math.round(saturation)}&v=${Math.round(value)}`;
             const shareUrl = window.location.protocol + '//' + window.location.host + path + queryParams;
-            
+
             document.getElementById('shareLink').value = shareUrl;
-            
+
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
@@ -1447,14 +1448,14 @@
         }
 
         // Close modal when clicking outside
-        document.getElementById('shareModal').addEventListener('click', function(e) {
+        document.getElementById('shareModal').addEventListener('click', function (e) {
             if (e.target === this) {
                 closeShareModal();
             }
         });
 
         // Optional: Close on Escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && document.getElementById('shareModal').classList.contains('show')) {
                 closeShareModal();
             }
@@ -1505,7 +1506,7 @@
             // Visual feedback
             const input = document.getElementById('hexValue');
             const originalBg = input.style.backgroundColor;
-            
+
             // Clean and validate hex
             hexValue = hexValue.trim().replace(/^#/, '');
             if (!/^[0-9A-Fa-f]{6}$/.test(hexValue)) {
@@ -1517,24 +1518,24 @@
                 }, 500);
                 return;
             }
-            
+
             // Success feedback
             input.style.backgroundColor = '#e6ffe6';
             setTimeout(() => {
                 input.style.backgroundColor = originalBg;
             }, 500);
-            
+
             // Convert hex to RGB
             const r = parseInt(hexValue.substring(0, 2), 16);
             const g = parseInt(hexValue.substring(2, 4), 16);
             const b = parseInt(hexValue.substring(4, 6), 16);
-            
+
             // Convert RGB to HSV and update
             const hsv = rgbToHsv(r, g, b);
             hue = hsv.h;
             saturation = hsv.s;
             value = hsv.v;
-            
+
             drawColorArea();
             updateColor();
             updateMarkers();
@@ -1543,7 +1544,7 @@
         function updateFromRgb(rgbValue) {
             const input = document.getElementById('rgbValue');
             const originalBg = input.style.backgroundColor;
-            
+
             // Parse RGB values
             const match = rgbValue.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
             if (!match) {
@@ -1554,11 +1555,11 @@
                 }, 500);
                 return;
             }
-            
+
             const r = parseInt(match[1]);
             const g = parseInt(match[2]);
             const b = parseInt(match[3]);
-            
+
             if (r > 255 || g > 255 || b > 255) {
                 input.style.backgroundColor = '#ffe6e6';
                 setTimeout(() => {
@@ -1567,18 +1568,18 @@
                 }, 500);
                 return;
             }
-            
+
             input.style.backgroundColor = '#e6ffe6';
             setTimeout(() => {
                 input.style.backgroundColor = originalBg;
             }, 500);
-            
+
             // Convert RGB to HSV and update
             const hsv = rgbToHsv(r, g, b);
             hue = hsv.h;
             saturation = hsv.s;
             value = hsv.v;
-            
+
             drawColorArea();
             updateColor();
             updateMarkers();
@@ -1587,7 +1588,7 @@
         function updateFromHsl(hslValue) {
             const input = document.getElementById('hslValue');
             const originalBg = input.style.backgroundColor;
-            
+
             // Parse HSL values
             const match = hslValue.match(/^hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)$/);
             if (!match) {
@@ -1598,11 +1599,11 @@
                 }, 500);
                 return;
             }
-            
+
             const h = parseInt(match[1]);
             const s = parseInt(match[2]);
             const l = parseInt(match[3]);
-            
+
             if (h > 360 || s > 100 || l > 100) {
                 input.style.backgroundColor = '#ffe6e6';
                 setTimeout(() => {
@@ -1611,21 +1612,21 @@
                 }, 500);
                 return;
             }
-            
+
             input.style.backgroundColor = '#e6ffe6';
             setTimeout(() => {
                 input.style.backgroundColor = originalBg;
             }, 500);
-            
+
             // Convert HSL to RGB
             const rgb = hslToRgb(h, s, l);
-            
+
             // Convert RGB to HSV and update
             const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
             hue = hsv.h;
             saturation = hsv.s;
             value = hsv.v;
-            
+
             drawColorArea();
             updateColor();
             updateMarkers();
@@ -1635,15 +1636,15 @@
             r /= 255;
             g /= 255;
             b /= 255;
-            
+
             const max = Math.max(r, g, b);
             const min = Math.min(r, g, b);
             const d = max - min;
-            
+
             let h;
             const s = max === 0 ? 0 : d / max;
             const v = max;
-            
+
             if (max === min) {
                 h = 0;
             } else {
@@ -1654,7 +1655,7 @@
                 }
                 h *= 60;
             }
-            
+
             return { h, s: s * 100, v: v * 100 };
         }
 
@@ -1662,29 +1663,29 @@
             h /= 360;
             s /= 100;
             l /= 100;
-            
+
             let r, g, b;
-            
+
             if (s === 0) {
                 r = g = b = l;
             } else {
                 const hue2rgb = (p, q, t) => {
                     if (t < 0) t += 1;
                     if (t > 1) t -= 1;
-                    if (t < 1/6) return p + (q - p) * 6 * t;
-                    if (t < 1/2) return q;
-                    if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                    if (t < 1 / 6) return p + (q - p) * 6 * t;
+                    if (t < 1 / 2) return q;
+                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
                     return p;
                 };
-                
+
                 const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
                 const p = 2 * l - q;
-                
-                r = hue2rgb(p, q, h + 1/3);
+
+                r = hue2rgb(p, q, h + 1 / 3);
                 g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1/3);
+                b = hue2rgb(p, q, h - 1 / 3);
             }
-            
+
             return {
                 r: Math.round(r * 255),
                 g: Math.round(g * 255),
@@ -1692,14 +1693,16 @@
             };
         }
     </script>
-<!-- Dark Theme Footer -->
-<div class="tool-footer" style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
-  <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
-    © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
-    <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
-    <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
-    <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
-  </p>
-</div>
+    <!-- Dark Theme Footer -->
+    <div class="tool-footer"
+        style="background:#111114;border-top:1px solid #2a2a30;padding:24px 0;text-align:center;margin-top:40px;">
+        <p style="color:#6b6b74;font-size:0.85rem;margin:0;font-family:Inter,-apple-system,sans-serif;">
+            © 2024 Wagle Universal Solutions &nbsp;·&nbsp;
+            <a href="/pages/privacy.html" style="color:#6b6b74;text-decoration:none;">Privacy</a> &nbsp;·&nbsp;
+            <a href="/pages/terms-of-service.html" style="color:#6b6b74;text-decoration:none;">Terms</a> &nbsp;·&nbsp;
+            <a href="/pages/tools/tools.html" style="color:#6b6b74;text-decoration:none;">All Tools</a>
+        </p>
+    </div>
 </body>
+
 </html>
