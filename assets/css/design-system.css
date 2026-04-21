@@ -982,25 +982,46 @@ ol {
 .footer-social {
   display: flex;
   gap: var(--space-md);
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .footer-social a {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: all var(--duration-sm);
+  line-height: 1;
+  padding: 0;
 }
 
 .footer-social a:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: rgba(192, 192, 192, 0.04);
+}
+
+.footer-social a svg {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.footer-social a i {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
 }
 
 .footer-bottom {
