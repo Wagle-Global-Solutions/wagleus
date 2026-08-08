@@ -5,31 +5,31 @@
    Tool-specific styles remain in each page's <style> block.
    ============================================================ */
 
-/* ---------- Google Fonts ---------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* ---------- Fonts (mirror of design-system.css) ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght,CASL@300..1000,0..1&family=Space+Mono:wght@400;700&display=swap');
 
 /* ---------- Design Tokens (mirror of design-system.css) ---------- */
 :root {
-    --bg-primary: #08080a;
-    --bg-secondary: #111114;
-    --bg-tertiary: #18181c;
-    --bg-card: #1a1a1f;
-    --bg-card-hover: #1e1e24;
-    --border: #2a2a30;
-    --border-light: #404048;
-    --accent: #c0c0c0;
-    --accent-bright: #e0e0e0;
-    --accent-dim: #808080;
-    --text-primary: #f0f0f0;
-    --text-secondary: #a0a0a8;
-    --text-muted: #606068;
+    --bg-primary: #f5f2ea;
+    --bg-secondary: #ede7d6;
+    --bg-tertiary: #e7dfc9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #ede7d6;
+    --border: #d9d0b8;
+    --border-light: #b9ac8a;
+    --accent: #e1461f;
+    --accent-bright: #a92e0f;
+    --accent-dim: #6f6656;
+    --text-primary: #18140f;
+    --text-secondary: #4a4235;
+    --text-muted: #6f6656;
     --white: #ffffff;
-    --success: #34d399;
-    --error: #f87171;
-    --nav-height: 72px;
+    --success: #3f7a52;
+    --error: #b23414;
+    --nav-height: 76px;
     --max-width: 1200px;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    --font-sans: 'Recursive', -apple-system, sans-serif;
+    --font-mono: 'Space Mono', 'Fira Code', 'Consolas', monospace;
     --space-xs: 4px;
     --space-sm: 8px;
     --space-md: 12px;
@@ -123,7 +123,7 @@ p {
 }
 
 .nav.scrolled {
-    background: rgba(8, 8, 10, 0.88);
+    background: rgba(245, 242, 234, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 1px 0 var(--border);
@@ -168,7 +168,7 @@ p {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(24, 20, 15, 0.05);
 }
 
 .nav-cta {
@@ -325,7 +325,7 @@ p {
     padding: 4px 12px;
     border: 1px solid var(--border);
     border-radius: var(--radius-full);
-    background: rgba(192, 192, 192, 0.04);
+    background: rgba(225, 70, 31, 0.06);
 }
 
 /* ---------- Tool Content Area ---------- */
@@ -435,14 +435,7 @@ p {
 }
 
 .cta-glow {
-    position: absolute;
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(ellipse, rgba(192, 192, 192, 0.05) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    display: none;
 }
 
 .cta-section h2 {

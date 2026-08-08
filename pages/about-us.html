@@ -14,7 +14,7 @@
     <meta property="og:title" content="About Us — Wagle Universal Solutions">
     <meta property="og:description"
         content="Full-stack software team building custom web applications, SaaS products, and digital platforms for businesses worldwide.">
-    <meta property="og:image" content="https://www.wagleus.com/assets/img/WUSPL%20Logo/Universal-01.png">
+    <meta property="og:image" content="https://www.wagleus.com/assets/img/WUSPL%20Logo/Universal-03.png">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us — Wagle Universal Solutions">
@@ -44,7 +44,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
 
     <link rel="stylesheet" href="../assets/css/design-system.css">
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css">
 </head>
 
 <body>
@@ -52,14 +52,13 @@
     <!-- Navigation -->
     <nav class="nav" id="main-nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo" aria-label="Wagle Universal Solutions Home">
-                <img src="../assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" width="120"
-                    height="48">
+            <a href="../index.html" class="nav-logo" aria-label="Wagle Universal Solutions Home">
+                <img src="../assets/img/WUSPL Logo/Universal-03.png" alt="Wagle Universal Solutions" style="height:56px;width:auto;">
             </a>
             <div class="nav-links" id="nav-links">
-                <a href="/">Home</a>
-                <a href="/#services">Services</a>
-                <a href="/#work">Work</a>
+                <a href="../index.html">Home</a>
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#work">Work</a>
                 <a href="tools/tools.html">Tools</a>
                 <a href="about-us.html" class="active">About</a>
                 <a href="contact-us.html" class="nav-cta">Get in Touch</a>
@@ -75,12 +74,12 @@
     <div class="page-header">
         <div class="container">
             <div class="breadcrumb">
-                <a href="/">Home</a>
+                <a href="../index.html">Home</a>
                 <span class="separator">/</span>
                 <span>About Us</span>
             </div>
-            <h1>About Wagle Universal Solutions</h1>
-            <p>A full-stack software team building real products for real businesses.</p>
+            <h1 class="reveal">About Wagle Universal Solutions</h1>
+            <p class="reveal">A full-stack software team building real products for real businesses.</p>
         </div>
     </div>
 
@@ -92,7 +91,6 @@
                     <img src="../assets/img/founder.jpg" alt="Anish Wagle — Founder" loading="lazy">
                 </div>
                 <div>
-                    <span class="section-label">Our Story</span>
                     <h2 class="section-title">Founded by an engineer<br>who builds products.</h2>
                     <p>
                         Wagle Universal Solutions (WUSPL) was founded in 2024 by Anish Wagle — a full-stack developer
@@ -101,9 +99,9 @@
                     </p>
                     <p style="margin-top: var(--space-md);">
                         We've built and shipped production applications for clients in the <strong
-                            style="color: var(--text-primary);">United Kingdom</strong> and <strong
-                            style="color: var(--text-primary);">Australia</strong>, and developed our own SaaS product,
-                        <strong style="color: var(--text-primary);">AstroEngine.ai</strong> — an AI-powered Vedic
+                            style="color: var(--ink);">United Kingdom</strong> and <strong
+                            style="color: var(--ink);">Australia</strong>, and developed our own SaaS product,
+                        <strong style="color: var(--ink);">AstroEngine.ai</strong> — an AI-powered Vedic
                         astrology platform. This hands-on product-building experience informs every project we take on.
                     </p>
                 </div>
@@ -114,32 +112,35 @@
     <!-- How We Work -->
     <section class="section-alt">
         <div class="container">
-            <div class="text-center reveal">
-                <span class="section-label">How We Work</span>
+            <div class="reveal">
                 <h2 class="section-title">Our process, simplified</h2>
-                <p class="section-subtitle centered">
+                <p class="section-subtitle">
                     We keep things straightforward — clear communication, iterative delivery, and no surprises.
                 </p>
             </div>
 
-            <div class="process-steps" style="margin-top: var(--space-2xl);">
+            <div class="grid grid-4" style="margin-top: var(--space-2xl);">
                 <div class="process-step reveal reveal-delay-1">
+                    <span class="mono" style="color: var(--accent-ink); font-size: 0.75rem;">01</span>
                     <h4>Discover</h4>
                     <p>We start by understanding your business, goals, and technical requirements. No generic
                         questionnaires — just honest conversation.</p>
                 </div>
                 <div class="process-step reveal reveal-delay-2">
-                    <h4>Design & Plan</h4>
+                    <span class="mono" style="color: var(--accent-ink); font-size: 0.75rem;">02</span>
+                    <h4>Design &amp; Plan</h4>
                     <p>Architecture decisions, tech stack selection, and project breakdown. We share our plan with you
                         before writing a single line of code.</p>
                 </div>
                 <div class="process-step reveal reveal-delay-3">
-                    <h4>Build & Iterate</h4>
+                    <span class="mono" style="color: var(--accent-ink); font-size: 0.75rem;">03</span>
+                    <h4>Build &amp; Iterate</h4>
                     <p>Agile development with regular check-ins. You see progress every week, not just at the end. We
                         ship incrementally.</p>
                 </div>
-                <div class="process-step reveal reveal-delay-4">
-                    <h4>Deploy & Support</h4>
+                <div class="process-step reveal reveal-delay-3">
+                    <span class="mono" style="color: var(--accent-ink); font-size: 0.75rem;">04</span>
+                    <h4>Deploy &amp; Support</h4>
                     <p>Launch with confidence. We handle deployment, monitoring setup, and provide ongoing support as
                         your product grows.</p>
                 </div>
@@ -150,8 +151,7 @@
     <!-- Tech Stack -->
     <section class="section">
         <div class="container">
-            <div class="text-center reveal">
-                <span class="section-label">Tech Stack</span>
+            <div class="reveal">
                 <h2 class="section-title">Technologies we work with</h2>
             </div>
 
@@ -197,29 +197,28 @@
         <div class="container">
             <div class="grid grid-2 reveal">
                 <div>
-                    <span class="section-label">Company Details</span>
-                    <h2 class="section-title">Official Information</h2>
+                    <h2 class="section-title">Official information</h2>
                     <p style="margin-bottom: var(--space-lg);">
                         Wagle Universal Solutions Pvt. Ltd. is a registered software company based in Kathmandu, Nepal,
                         serving clients globally.
                     </p>
                     <div style="display: flex; flex-direction: column; gap: var(--space-md);">
                         <div class="contact-info-card">
-                            <div class="icon"><i data-lucide="building-2"></i></div>
+                            <div class="icon" aria-hidden="true">REG</div>
                             <div>
                                 <h4>Registration</h4>
                                 <p>333041/080/081</p>
                             </div>
                         </div>
                         <div class="contact-info-card">
-                            <div class="icon"><i data-lucide="map-pin"></i></div>
+                            <div class="icon" aria-hidden="true">LOC</div>
                             <div>
                                 <h4>Location</h4>
                                 <p>Kathmandu, Nepal</p>
                             </div>
                         </div>
                         <div class="contact-info-card">
-                            <div class="icon"><i data-lucide="mail"></i></div>
+                            <div class="icon" aria-hidden="true"><i class="bi bi-envelope"></i></div>
                             <div>
                                 <h4>Email</h4>
                                 <p><a href="mailto:support@wagleus.com">support@wagleus.com</a></p>
@@ -228,19 +227,19 @@
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; justify-content: center;">
-                    <h3 style="margin-bottom: var(--space-md);">Countries We've Served</h3>
-                    <div style="display: flex; flex-direction: column; gap: var(--space-md);">
-                        <div class="tech-badge" style="padding: var(--space-md);">
-                            <i data-lucide="globe" style="width: 18px; height: 18px; color: var(--accent);"></i>
-                            <span>United Kingdom — Restaurant digital platform</span>
+                    <h3 style="margin-bottom: var(--space-md);">Countries we've served</h3>
+                    <div>
+                        <div class="country-row">
+                            <span class="mono">UK</span>
+                            <span>Restaurant digital platform</span>
                         </div>
-                        <div class="tech-badge" style="padding: var(--space-md);">
-                            <i data-lucide="globe" style="width: 18px; height: 18px; color: var(--accent);"></i>
-                            <span>Australia — Education consultation portal</span>
+                        <div class="country-row">
+                            <span class="mono">AU</span>
+                            <span>Education consultation portal</span>
                         </div>
-                        <div class="tech-badge" style="padding: var(--space-md);">
-                            <i data-lucide="map-pin" style="width: 18px; height: 18px; color: var(--accent);"></i>
-                            <span>Nepal — Company headquarters & SaaS products</span>
+                        <div class="country-row">
+                            <span class="mono">NP</span>
+                            <span>Company headquarters &amp; SaaS products</span>
                         </div>
                     </div>
                 </div>
@@ -250,7 +249,6 @@
 
     <!-- CTA -->
     <section class="cta-section">
-        <div class="cta-glow" aria-hidden="true"></div>
         <div class="container reveal">
             <h2>Ready to start building?</h2>
             <p>Let's discuss your project. We respond within 24 hours.</p>
@@ -264,33 +262,32 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo">
-                        <img src="../assets/img/WUSPL Logo/Wagle-10.png" alt="Wagle Universal Solutions" width="100"
-                            height="40">
+                        <img src="../assets/img/WUSPL Logo/Universal-03.png" alt="Wagle Universal Solutions" style="height:56px;width:auto;">
                     </div>
                     <p class="footer-desc">Custom web applications, SaaS products, and full-stack consulting for
                         businesses worldwide.</p>
                     <div class="footer-social" style="margin-top: var(--space-lg);">
                         <a href="https://www.linkedin.com/company/wagle-universal-solutions" target="_blank"
-                            rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
-                        <a href="https://github.com/AnshumanWagle" target="_blank" rel="noopener" aria-label="GitHub"><i
-                                data-lucide="github"></i></a>
+                            rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://github.com/AnshumanWagle" target="_blank" rel="noopener"
+                            aria-label="GitHub"><i class="bi bi-github"></i></a>
                         <a href="https://www.facebook.com/WagleUniversalSolutions" target="_blank" rel="noopener"
-                            aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                            aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                     </div>
                 </div>
                 <div>
                     <h4>Services</h4>
                     <div class="footer-links">
-                        <a href="/#services">Web Applications</a>
-                        <a href="/#services">SaaS Development</a>
-                        <a href="/#services">Full-Stack Consulting</a>
+                        <a href="../index.html#services">Web Applications</a>
+                        <a href="../index.html#services">SaaS Development</a>
+                        <a href="../index.html#services">Full-Stack Consulting</a>
                     </div>
                 </div>
                 <div>
                     <h4>Company</h4>
                     <div class="footer-links">
                         <a href="about-us.html">About Us</a>
-                        <a href="/#work">Our Work</a>
+                        <a href="../index.html#work">Our Work</a>
                         <a href="tools/tools.html">Developer Tools</a>
                         <a href="contact-us.html">Contact</a>
                     </div>
@@ -314,10 +311,9 @@
         </div>
     </footer>
 
-    <button class="scroll-top" aria-label="Scroll to top"><i data-lucide="chevron-up"></i></button>
+    <button class="scroll-top" aria-label="Scroll to top"><i class="bi bi-arrow-up"></i></button>
 
     <script src="../assets/js/main.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', () => { if (window.lucide) lucide.createIcons(); });</script>
 </body>
 
 </html>

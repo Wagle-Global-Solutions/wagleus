@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-07T00:00:00Z",
+  "title": "Design System: Wagle Universal Solutions",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Vermillion", "canonical": "#e1461f", "tonalRamp": ["#3a1206", "#5c1c0a", "#7f270f", "#a92e0f", "#e1461f", "#f07350", "#f7a891", "#fbe4d8"] },
+      "accent-ink": { "role": "primary", "displayName": "Vermillion Ink", "canonical": "#a92e0f", "tonalRamp": ["#2e0d05", "#4a1608", "#711f0b", "#a92e0f", "#c95634", "#df8163", "#eeb19d", "#fbe4d8"] },
+      "accent-paper": { "role": "primary", "displayName": "Vermillion Paper (reserved, unspent)", "canonical": "#fbe4d8", "tonalRamp": ["#f7a891", "#f7c1ae", "#f9d4c5", "#fbe4d8", "#fdeee6", "#fef4ee", "#fef9f6", "#fffbf9"] },
+      "paper": { "role": "neutral", "displayName": "Specimen Paper", "canonical": "#f5f2ea", "tonalRamp": ["#4a4235", "#6f6656", "#94886f", "#b9ac8a", "#d9d0b8", "#e7dfc9", "#ede7d6", "#f5f2ea"] },
+      "paper-raised": { "role": "neutral", "displayName": "Paper Raised", "canonical": "#ede7d6", "tonalRamp": ["#453e32", "#6a614f", "#8f8268", "#b4a582", "#d4c8a9", "#e0d5bd", "#e7dccb", "#ede7d6"] },
+      "paper-deep": { "role": "neutral", "displayName": "Paper Deep", "canonical": "#e7dfc9", "tonalRamp": ["#3f3a2e", "#615a48", "#847a62", "#a89b7c", "#c9baa1", "#d8ccb1", "#dfd4bd", "#e7dfc9"] },
+      "ink": { "role": "neutral", "displayName": "Warm Ink", "canonical": "#18140f", "tonalRamp": ["#18140f", "#2b241b", "#403627", "#574936", "#6f6656", "#948c78", "#c1baa9", "#e7e3d9"] },
+      "ink-soft": { "role": "neutral", "displayName": "Ink Soft", "canonical": "#4a4235", "tonalRamp": ["#201c16", "#332c23", "#4a4235", "#655a48", "#847760", "#a4957d", "#c5b9a5", "#e7e0d3"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "canonical": "#6f6656", "tonalRamp": ["#2c281f", "#403a2e", "#574f3f", "#6f6656", "#8c8271", "#aca38f", "#cdc5b3", "#eae5da"] },
+      "line": { "role": "neutral", "displayName": "Line", "canonical": "#d9d0b8", "tonalRamp": ["#4a4331", "#6c624a", "#928366", "#b4a481", "#d9d0b8", "#e5dec9", "#efe9da", "#f8f4ec"] },
+      "line-strong": { "role": "neutral", "displayName": "Line Strong", "canonical": "#b9ac8a", "tonalRamp": ["#3d371f", "#5b5230", "#7c7043", "#9c8d5c", "#b9ac8a", "#cabfa4", "#dbd3bf", "#ede8dc"] },
+      "white": { "role": "neutral", "displayName": "White", "canonical": "#ffffff", "tonalRamp": ["#c9c9c9", "#d6d6d6", "#e3e3e3", "#eeeeee", "#f5f5f5", "#fafafa", "#fdfdfd", "#ffffff"] },
+      "success": { "role": "neutral", "displayName": "Success Green", "canonical": "#3f7a52", "tonalRamp": ["#12291a", "#1f4529", "#2c5f38", "#3a7a48", "#3f7a52", "#69a17c", "#9cc4ac", "#d4e8db"] },
+      "error": { "role": "neutral", "displayName": "Error Red", "canonical": "#b23414", "tonalRamp": ["#2f0d05", "#4c150a", "#712010", "#932a15", "#b23414", "#cf6142", "#e5987f", "#f6d3c6"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Specimen Display", "purpose": "Hero headline only; the one place wght and CASL are user-controlled live via the axis slider." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles (h2)." },
+      "title": { "displayName": "Title", "purpose": "Card and plate titles (h3)." },
+      "body": { "displayName": "Body", "purpose": "Running paragraph copy." },
+      "label": { "displayName": "Mono Label", "purpose": "Nav, buttons, tags, form labels, breadcrumbs, footer headings, coordinate readouts." }
+    },
+    "shadows": [
+      { "name": "hairline-sm", "value": "0 1px 0 rgba(24,20,15,0.08)", "purpose": "Reserved flat-ink elevation token; not yet spent on a shipped surface." },
+      { "name": "hairline-md", "value": "0 2px 0 rgba(24,20,15,0.08)", "purpose": "Reserved flat-ink elevation token; not yet spent on a shipped surface." },
+      { "name": "ambient-ring", "value": "0 4px 24px rgba(24,20,15,0.12)", "purpose": "The system's one soft/ambient shadow token; kept for future use, not the axis-slider thumb (which uses a solid 1px accent ring instead)." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(225,70,31,0.18)", "purpose": "Form input focus state — the one deliberate soft glow in an otherwise flat system." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "The system's single easing curve for all state transitions (buttons, cards, nav, drawer)." },
+      { "name": "duration-sm", "value": "0.15s", "purpose": "Fast micro-interactions: color/border/transform hover states." },
+      { "name": "duration-md", "value": "0.3s", "purpose": "Nav drawer, reveal-on-scroll, section transitions." },
+      { "name": "duration-lg", "value": "0.5s", "purpose": "Slower reveal transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "560px" },
+      { "name": "md", "value": "640px" },
+      { "name": "lg", "value": "760px" },
+      { "name": "xl", "value": "860px" },
+      { "name": "2xl", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Vermillion-filled CTA with mono uppercase label; lives inside the axis-control footer as the site's one primary CTA.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Start a Project →</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.6rem; border-radius: 2px; border: 1px solid #e1461f; background: #e1461f; color: #fff; cursor: pointer; transition: background 0.15s cubic-bezier(0.22,1,0.36,1), border-color 0.15s cubic-bezier(0.22,1,0.36,1), transform 0.15s cubic-bezier(0.22,1,0.36,1); } .ds-btn-primary:hover { background: #a92e0f; border-color: #a92e0f; transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: 2px solid #a92e0f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline button that inverts to solid ink on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">View Our Work</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.6rem; border-radius: 2px; border: 1px solid #18140f; background: transparent; color: #18140f; cursor: pointer; transition: background 0.15s cubic-bezier(0.22,1,0.36,1), color 0.15s cubic-bezier(0.22,1,0.36,1); } .ds-btn-secondary:hover { background: #18140f; color: #f5f2ea; } .ds-btn-secondary:focus-visible { outline: 2px solid #18140f; outline-offset: 2px; }"
+    },
+    {
+      "name": "Spec Plate Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White plate card with hairline border, ink title, and accent border/lift on hover. No decorative numeral badge above the title.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Custom Web Applications</h3><p class=\"ds-card-body\">Scalable, responsive web applications built with Angular, Next.js, .NET, and Node.js.</p></div>",
+      "css": ".ds-card { background: #fff; border: 1px solid #d9d0b8; border-radius: 3px; padding: 2rem; transition: border-color 0.3s cubic-bezier(0.22,1,0.36,1), transform 0.3s cubic-bezier(0.22,1,0.36,1); } .ds-card:hover { border-color: #e1461f; transform: translateY(-3px); } .ds-card-title { font-family: 'Recursive', sans-serif; font-weight: 600; font-size: 1.3rem; letter-spacing: -0.01em; margin-bottom: 0.5rem; color: #18140f; } .ds-card-body { font-family: 'Recursive', sans-serif; font-size: 0.95rem; color: #4a4235; line-height: 1.6; }"
+    },
+    {
+      "name": "Mono Tag / Badge",
+      "kind": "chip",
+      "description": "Uppercase mono chip used for tech badges and project tags.",
+      "html": "<span class=\"ds-tag\">Next.js</span>",
+      "css": ".ds-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.3rem 0.6rem; border: 1px solid #b9ac8a; border-radius: 2px; color: #4a4235; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Form field with mono uppercase label above and accent focus ring.",
+      "html": "<div class=\"ds-form-group\"><label class=\"ds-label\">Name</label><input class=\"ds-input\" type=\"text\" placeholder=\"Your name\"></div>",
+      "css": ".ds-label { display: block; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #6f6656; margin-bottom: 0.4rem; } .ds-input { width: 100%; font-family: 'Recursive', sans-serif; font-size: 1rem; color: #18140f; background: #fff; border: 1px solid #b9ac8a; border-radius: 2px; padding: 0.75rem 1rem; transition: border-color 0.15s cubic-bezier(0.22,1,0.36,1); } .ds-input::placeholder { color: #6f6656; opacity: 0.8; } .ds-input:focus { outline: none; border-color: #e1461f; box-shadow: 0 0 0 3px rgba(225,70,31,0.18); }"
+    },
+    {
+      "name": "Primary Navigation",
+      "kind": "nav",
+      "description": "Fixed translucent-paper nav with mono uppercase links and a wipe-in accent underline. Logo is the full uncropped WUSPL lockup image only, no wordmark text alongside it.",
+      "html": "<nav class=\"ds-nav\"><div class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link ds-active\">Home</a><a href=\"#\" class=\"ds-nav-link\">Services</a><a href=\"#\" class=\"ds-nav-cta\">Get in Touch</a></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; height: 76px; background: rgba(245,242,234,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid #d9d0b8; padding: 0 2rem; } .ds-nav-links { display: flex; align-items: center; gap: 2rem; font-family: 'Space Mono', monospace; font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase; } .ds-nav-link { color: #4a4235; position: relative; padding: 0.4rem 0; transition: color 0.15s cubic-bezier(0.22,1,0.36,1); } .ds-nav-link:hover, .ds-nav-link.ds-active { color: #18140f; } .ds-nav-link::after { content: ''; position: absolute; left: 0; right: 100%; bottom: -2px; height: 2px; background: #e1461f; transition: right 0.3s cubic-bezier(0.22,1,0.36,1); } .ds-nav-link:hover::after, .ds-nav-link.ds-active::after { right: 0; } .ds-nav-cta { background: #18140f; color: #f5f2ea; padding: 0.6rem 1.1rem; border-radius: 2px; transition: background 0.15s cubic-bezier(0.22,1,0.36,1); } .ds-nav-cta:hover { background: #e1461f; }"
+    },
+    {
+      "name": "Specimen Axis Control",
+      "kind": "custom",
+      "description": "Signature interactive component: a range slider that live-drives font-variation-settings (wght + CASL) on the hero headline, with a mono readout and a footer row holding the hint text plus the primary CTA.",
+      "html": "<div class=\"ds-axis-control\"><div class=\"ds-axis-labels\"><span>Draft</span><span class=\"ds-axis-current\">WGHT 300 · CASL 1.00</span><span>Production</span></div><input type=\"range\" class=\"ds-axis-slider\" min=\"0\" max=\"100\" value=\"8\" aria-label=\"Drag from draft to production\"><div class=\"ds-axis-footer\"><p class=\"ds-axis-hint\">Same typeface, same team.</p><a href=\"#\" class=\"ds-btn-primary\">Start a Project →</a></div></div>",
+      "css": ".ds-axis-control { border: 1px solid #b9ac8a; background: #fff; border-radius: 3px; padding: 1.5rem 2rem; max-width: 620px; } .ds-axis-labels { display: flex; justify-content: space-between; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #6f6656; margin-bottom: 0.5rem; } .ds-axis-current { color: #a92e0f; font-weight: 700; } .ds-axis-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 2px; background: #b9ac8a; outline: none; margin: 1rem 0 0.5rem; } .ds-axis-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #e1461f; border: 3px solid #f5f2ea; box-shadow: 0 0 0 1px #e1461f; cursor: grab; } .ds-axis-footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; margin-top: 1rem; } .ds-axis-hint { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: #6f6656; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Foundry Specimen Sheet",
+    "overview": "This site presents itself as a live type-foundry specimen for the company's own name: the wordmark is the demonstration, and the demonstration is the pitch. Instead of the soft-gradient dark-SaaS hero this category defaults to, the hero exposes a single variable-font axis (drag from \"Draft\" to \"Production\") that visibly hardens the headline in real time, on a warm specimen-paper canvas with hairline baseline rules. Everything downstream — spec-sheet plate cards, mono-labeled tags, registration crop marks — reads as annotation on a drawing, not as decoration on a product page. The rejected reference is the generic dark-mode SaaS hero (gradient orbs, glow text); this build explicitly strips those out (`.hero-bg, .hero-gradient-orb, .hero-grid-lines, .gradient-text, .cta-glow { display: none !important; }`).\n\nDensity is calm and print-like: generous section padding (`--space-4xl` = 6rem), a 44px baseline grid behind body copy, and a single accent color spent sparingly (CTAs, the axis slider, numerals, hover states) so its rarity keeps meaning. The palette is warm and paper-bound rather than cool-tech; the type system does the work a second typeface usually would, because the one thing this company sells — precision, shipped — is the axis control itself.\n\nThe display face changed from Fraunces to Recursive after Fraunces was flagged as an overused choice; Recursive was chosen specifically because it preserves the live axis-drag mechanism and maps even more directly onto the site's own thesis — its CASL (casual↔formal) axis is read literally as \"draft sketch to shipped product,\" alongside wght 300–1000.",
+    "keyCharacteristics": [
+      "One variable typeface (Recursive) spans the entire display-to-body hierarchy; Space Mono is the only second face, reserved for coordinates/labels/tags.",
+      "Warm ink on specimen paper, one committed vermillion accent; no secondary or tertiary hue.",
+      "Flat surfaces with hairline borders and a 44px baseline grid; no soft drop shadows.",
+      "Sharp, near-square corners (2–4px) everywhere — cards, buttons, badges, inputs.",
+      "Interactive font-axis drag as the signature mechanism, not a one-off hero gimmick — the axis slider drives wght and CASL together on the hero headline live via specimen.js.",
+      "Section headings stand alone with no kicker/eyebrow label above them — the specimen-sheet metaphor is carried by the baseline grid and plate cards, not by numbered labels."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Vermillion is the only saturated color in the system. It marks exactly one thing per view: the CTA, the live axis value, or the active state. Everything else is warm neutral ink-on-paper.", "section": "colors" },
+      { "name": "The No-Drop-Shadow Rule", "body": "Depth is conveyed by hairline borders and 1–2px offset flat shadows, never a soft blurred drop shadow, except the single ambient shadow reserved for the axis-slider thumb ring and the form-focus ring. A specimen sheet has ink lines, not glow.", "section": "colors" },
+      { "name": "The One-Face Specimen Rule", "body": "Recursive is the entire type system — display and body both — because the product being sold is precision made visible. This is a deliberate structural choice tied to the site's own thesis, not a placeholder waiting for a pairing.", "section": "typography" },
+      { "name": "The Mono-Annotates Rule", "body": "Space Mono never carries headline or body content. It only labels, tags, or annotates.", "section": "typography" },
+      { "name": "The No-Kicker Rule", "body": "Section headings never carry a label, eyebrow, or plate-number prefix above them. .section-label is disabled site-wide; where a section's only heading was previously a kicker-style label, it now ships as a real h2, not decorative annotation.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces sit flat with a hairline border at rest. The only depth response to interaction is a border-color shift to accent plus a small upward translate — never a shadow bloom.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do spend the vermillion accent (#e1461f) on exactly one focal element per view — a CTA, the live axis value, an active state — never as a background fill for large areas.",
+      "Do use Recursive's variable axes (wght, CASL) as a live design tool wherever precision-made-visible is the point, anchored in the hero slider mechanism.",
+      "Do keep corners sharp (2–4px) and borders hairline (1px); this is a specimen-sheet world, not a soft-card world.",
+      "Do reserve Space Mono for labels, tags, coordinates, and readouts only — never headlines or body paragraphs.",
+      "Do use real semantic icons (Bootstrap Icons, scoped to functional contexts already in the build) rather than unicode glyphs standing in for icons."
+    ],
+    "donts": [
+      "Don't introduce soft blurred drop shadows or glow effects outside the two confirmed exceptions (axis-slider thumb ring token, form-focus ring). Depth is borders and lift, not blur.",
+      "Don't add a second display typeface. The one-face rule is structural to the concept, not a placeholder waiting for a pairing.",
+      "Don't add a kicker/eyebrow label above a section heading. .section-label is disabled site-wide; a heading stands alone or ships as a real heading element.",
+      "Don't build a 3-up big-number/small-label stat-card row. The hero's proof numbers ship as a single plain mono line, not stat cards.",
+      "Don't use decorative icon glyphs to signal section identity (numeral badges, sparkle/feature icons, unicode-glyph-as-icon). Bootstrap Icons are shipped, but scoped strictly to functional uses already in the build: social links, scroll-to-top, contact-method markers.",
+      "Don't reintroduce gradient-orb or glow-text hero treatments; they're explicitly zeroed out in the stylesheet as the rejected default this world replaces."
+    ]
+  }
+}

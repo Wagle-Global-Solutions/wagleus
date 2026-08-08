@@ -1,7 +1,7 @@
 /* ============================================================
    TOOL PAGE WRAPPER STYLES
-   Adds dark-theme nav/footer to tool pages while preserving
-   the tool's own CSS for functionality
+   Brings the specimen-paper theme to tool pages while preserving
+   each tool's own functional markup and Bootstrap structure.
    ============================================================ */
 
 /* Override the old header */
@@ -15,12 +15,12 @@
 
 /* Tool page body */
 body {
-    background-color: #08080a;
-    color: #f0f0f0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f5f2ea;
+    color: #18140f;
+    font-family: 'Recursive', -apple-system, sans-serif;
 }
 
-/* Tool container adjustments for dark theme */
+/* Tool container adjustments */
 .tool-container {
     padding-top: 80px;
     padding-left: 20px;
@@ -28,29 +28,29 @@ body {
 }
 
 .tool-container h1 {
-    color: #f0f0f0 !important;
+    color: #18140f !important;
 }
 
 .tool-container h2,
 .tool-container h3,
 .tool-container h4 {
-    color: #e0e0e0 !important;
+    color: #18140f !important;
 }
 
 .tool-container p,
 .tool-container li {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 .tool-container a {
-    color: #c0c0c0 !important;
+    color: #a92e0f !important;
 }
 
 .tool-container a:hover {
-    color: #ffffff !important;
+    color: #e1461f !important;
 }
 
-/* Override tool-page light backgrounds */
+/* Tool-page panels */
 .tool-description,
 .warning-box,
 .quick-start,
@@ -58,13 +58,13 @@ body {
 .feature-highlights .feature-card,
 .use-case-section,
 .documentation .card {
-    background: #1a1a1f !important;
-    border-color: #2a2a30 !important;
-    color: #a0a0a8 !important;
+    background: #ffffff !important;
+    border-color: #d9d0b8 !important;
+    color: #4a4235 !important;
 }
 
 .warning-box {
-    border-left-color: #c0c0c0 !important;
+    border-left-color: #e1461f !important;
 }
 
 /* Text areas and inputs */
@@ -76,62 +76,62 @@ textarea,
 .tool-container input[type="number"],
 .tool-container input[type="email"],
 .tool-container select {
-    background: #18181c !important;
-    border-color: #2a2a30 !important;
-    color: #f0f0f0 !important;
+    background: #ffffff !important;
+    border-color: #d9d0b8 !important;
+    color: #18140f !important;
 }
 
 .tool-container input::placeholder,
 .tool-container textarea::placeholder {
-    color: #6b6b74 !important;
+    color: #6f6656 !important;
 }
 
 /* Panel labels */
 .panel-label {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 /* Buttons */
 .tool-container .btn-primary {
-    background: #e0e0e0 !important;
-    color: #08080a !important;
+    background: #e1461f !important;
+    color: #ffffff !important;
     border: none !important;
 }
 
 .tool-container .btn-primary:hover {
-    background: #ffffff !important;
+    background: #a92e0f !important;
 }
 
 .tool-container .btn-info,
 .tool-container .btn-warning,
 .tool-container .btn-success,
 .tool-container .btn-outline-secondary {
-    background: #1a1a1f !important;
-    color: #c0c0c0 !important;
-    border: 1px solid #2a2a30 !important;
+    background: #ffffff !important;
+    color: #4a4235 !important;
+    border: 1px solid #d9d0b8 !important;
 }
 
 .tool-container .btn-info:hover,
 .tool-container .btn-warning:hover,
 .tool-container .btn-success:hover,
 .tool-container .btn-outline-secondary:hover {
-    border-color: #c0c0c0 !important;
-    background: #222228 !important;
+    border-color: #e1461f !important;
+    background: #fbe4d8 !important;
 }
 
 /* Badges and tags */
 .badge {
-    background: rgba(192, 192, 192, 0.06) !important;
-    color: #c0c0c0 !important;
-    border: 1px solid #2a2a30 !important;
+    background: rgba(225, 70, 31, 0.08) !important;
+    color: #a92e0f !important;
+    border: 1px solid #d9d0b8 !important;
 }
 
 /* Code blocks */
 .example-code,
 pre code {
-    background: #111114 !important;
-    color: #e0e0e0 !important;
-    border-color: #2a2a30 !important;
+    background: #ede7d6 !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
 }
 
 /* Alerts */
@@ -139,9 +139,9 @@ pre code {
 .alert-success,
 .alert-warning,
 .alert-danger {
-    background: rgba(192, 192, 192, 0.04) !important;
-    border: 1px solid #2a2a30 !important;
-    color: #a0a0a8 !important;
+    background: rgba(24, 20, 15, 0.04) !important;
+    border: 1px solid #d9d0b8 !important;
+    color: #4a4235 !important;
 }
 
 /* Tool page layouts */
@@ -153,194 +153,190 @@ pre code {
 
 /* Accordion overrides (common in tools) */
 .accordion-item {
-    background: #111114 !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    border-color: #d9d0b8 !important;
 }
 
 .accordion-button {
-    background: #1a1a1f !important;
-    color: #f0f0f0 !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
     box-shadow: none !important;
 }
 
 .accordion-button:not(.collapsed) {
-    background: #222228 !important;
-    color: #ffffff !important;
-    border-bottom: 1px solid #2a2a30 !important;
-}
-
-.accordion-button::after {
-    filter: invert(1);
+    background: #ede7d6 !important;
+    color: #a92e0f !important;
+    border-bottom: 1px solid #d9d0b8 !important;
 }
 
 .accordion-body {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 /* Form controls refine */
 .form-control,
 .form-select {
-    background: #18181c !important;
-    border: 1px solid #2a2a30 !important;
-    color: #f0f0f0 !important;
+    background: #ffffff !important;
+    border: 1px solid #d9d0b8 !important;
+    color: #18140f !important;
     padding: 0.6rem 1rem;
 }
 
 .form-control:focus,
 .form-select:focus {
-    background: #1c1c22 !important;
-    border-color: #c0c0c0 !important;
-    color: #ffffff !important;
-    box-shadow: 0 0 0 2px rgba(192, 192, 192, 0.1) !important;
+    background: #ffffff !important;
+    border-color: #e1461f !important;
+    color: #18140f !important;
+    box-shadow: 0 0 0 2px rgba(225, 70, 31, 0.12) !important;
 }
 
 .form-check-input {
-    background-color: #2a2a30 !important;
-    border-color: #3a3a42 !important;
+    background-color: #ede7d6 !important;
+    border-color: #b9ac8a !important;
 }
 
 .form-check-input:checked {
-    background-color: #e0e0e0 !important;
-    border-color: #ffffff !important;
+    background-color: #e1461f !important;
+    border-color: #a92e0f !important;
 }
 
 /* Custom tool boxes */
 .result-box,
 .output-box {
-    background: #0d0d0f !important;
-    border: 1px solid #2a2a30 !important;
+    background: #ffffff !important;
+    border: 1px solid #d9d0b8 !important;
     border-radius: 8px;
     padding: 1.5rem;
-    color: #f0f0f0;
+    color: #18140f;
 }
 
 /* Table overrides */
 .tool-container table {
-    color: #f0f0f0;
+    color: #18140f;
 }
 
 .tool-container table th {
-    background: #1a1a1f !important;
-    color: #e0e0e0 !important;
-    border-color: #2a2a30 !important;
+    background: #ede7d6 !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
 }
 
 .tool-container table td {
-    border-color: #2a2a30 !important;
-    background: #111114 !important;
-    color: #a0a0a8 !important;
+    border-color: #d9d0b8 !important;
+    background: #ffffff !important;
+    color: #4a4235 !important;
 }
 
 /* Card overrides */
 .card {
-    background: #1a1a1f !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    border-color: #d9d0b8 !important;
 }
 
 .card-body,
 .card-title {
-    color: #e0e0e0 !important;
+    color: #18140f !important;
 }
 
 /* Feature cards in tools */
 .feature-card h3 {
-    color: #f0f0f0 !important;
+    color: #18140f !important;
 }
 
 .feature-card p {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 .feature-card i {
-    color: #c0c0c0 !important;
+    color: #e1461f !important;
 }
 
 /* Step lists */
 .step-list li,
 .feature-list li {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 /* Indent select */
 .indent-select {
-    background: #18181c !important;
-    color: #f0f0f0 !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
     padding: 6px 10px;
     border-radius: 6px;
 }
 
-/* Switch slider in dark */
+/* Switch slider */
 .slider {
-    background-color: #3a3a42 !important;
+    background-color: #d9d0b8 !important;
 }
 
 input:checked+.slider {
-    background-color: #c0c0c0 !important;
+    background-color: #e1461f !important;
 }
 
 /* Search in tree view */
 .search-input {
-    background: #18181c !important;
-    color: #f0f0f0 !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
 }
 
 .search-nav button {
-    background: #1a1a1f !important;
-    border-color: #2a2a30 !important;
-    color: #c0c0c0 !important;
+    background: #ffffff !important;
+    border-color: #d9d0b8 !important;
+    color: #a92e0f !important;
 }
 
 .search-nav button:hover {
-    background: #222228 !important;
+    background: #fbe4d8 !important;
 }
 
 .search-count {
-    color: #6b6b74 !important;
+    color: #6f6656 !important;
 }
 
 /* Error message */
 .error-message {
-    background: rgba(248, 113, 113, 0.1) !important;
-    color: #f87171 !important;
-    border: 1px solid rgba(248, 113, 113, 0.2) !important;
+    background: rgba(178, 52, 20, 0.08) !important;
+    color: #a92e0f !important;
+    border: 1px solid rgba(178, 52, 20, 0.25) !important;
 }
 
-/* Tree view colors for dark theme */
+/* Tree view colors, tuned for a light ground */
 .tree-key {
-    color: #c0c0c0 !important;
+    color: #a92e0f !important;
 }
 
 .tree-value.string {
-    color: #86e6a5 !important;
+    color: #1f7a43 !important;
 }
 
 .tree-value.number {
-    color: #7dc4e0 !important;
+    color: #1f6fa8 !important;
 }
 
 .tree-value.boolean {
-    color: #d9a6ff !important;
+    color: #7a3fb0 !important;
 }
 
 .tree-value.null {
-    color: #f87171 !important;
+    color: #b23414 !important;
 }
 
-/* Highlight in dark */
+/* Highlight */
 .tree-node.highlight,
 .search-result,
 .search-result-formatted {
-    background-color: rgba(192, 192, 192, 0.12) !important;
+    background-color: rgba(225, 70, 31, 0.14) !important;
 }
 
 /* Password generator specific */
 .password-display {
-    background: #18181c !important;
-    color: #f0f0f0 !important;
-    border-color: #2a2a30 !important;
+    background: #ffffff !important;
+    color: #18140f !important;
+    border-color: #d9d0b8 !important;
 }
 
 /* Controls wrapping */
@@ -350,44 +346,44 @@ input:checked+.slider {
 
 /* Footer on tool pages — reuse the design system footer */
 .tool-footer {
-    background: #111114;
-    border-top: 1px solid #2a2a30;
+    background: #ede7d6;
+    border-top: 1px solid #d9d0b8;
     padding: 24px 0;
     text-align: center;
     margin-top: 40px;
 }
 
 .tool-footer p {
-    color: #6b6b74 !important;
+    color: #6f6656 !important;
     font-size: 0.85rem;
     margin: 0;
 }
 
 .tool-footer a {
-    color: #6b6b74 !important;
+    color: #6f6656 !important;
     margin: 0 12px;
     font-size: 0.85rem;
 }
 
 .tool-footer a:hover {
-    color: #a0a0a8 !important;
+    color: #a92e0f !important;
 }
 
 /* Download button */
 .btn-download {
-    background: #1a1a1f !important;
-    color: #c0c0c0 !important;
-    border: 1px solid #2a2a30 !important;
+    background: #ffffff !important;
+    color: #a92e0f !important;
+    border: 1px solid #d9d0b8 !important;
 }
 
 .btn-download:hover {
-    background: #222228 !important;
-    border-color: #c0c0c0 !important;
+    background: #fbe4d8 !important;
+    border-color: #e1461f !important;
 }
 
 /* View switch labels */
 .view-label {
-    color: #a0a0a8 !important;
+    color: #4a4235 !important;
 }
 
 /* Hide old footer from template */
@@ -395,21 +391,21 @@ input:checked+.slider {
     display: none !important;
 }
 
-/* Scrollbar for dark theme */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #111114;
+    background: #ede7d6;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #3a3a42;
+    background: #b9ac8a;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #4a4a54;
+    background: #8a7c5c;
 }
